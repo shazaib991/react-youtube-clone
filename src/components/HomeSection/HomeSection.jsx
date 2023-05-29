@@ -68,7 +68,6 @@ export const HomeSection = () => {
     e.currentTarget.children[1].children[2].children[0].style.display = "none";
   };
 
-  //TODO: fix it if there are double & and ; signs
   const decodeEntity = (str) => {
     let firstEntity = str.search("&");
     let SecondEntity = str.search(";");

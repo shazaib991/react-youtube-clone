@@ -17,15 +17,21 @@ export const Header = () => {
     searchBox.current.parentElement.children[0].focus();
   };
 
-  const handleMoreIconClick = () => {
-    moreIcon.current.classList.add("transition-all");
-    moreIcon.current.classList.add("duration-500");
-    setTimeout(() => {
-      console.log("test");
-    }, 2000);
+  const handleMoreIconMouseDown = () => {
+    moreIcon.current.classList.add("bg-black/10");
+    moreIcon.current.classList.add("border-bg-black");
+    moreIcon.current.classList.add("border-[8px]");
     moreIcon.current.classList.remove("transition-all");
-    moreIcon.current.classList.remove("duration-500");
-  }
+    moreIcon.current.classList.remove("duration-300");
+  };
+
+  const handleMoreIconMouseUp = () => {
+    moreIcon.current.classList.remove("bg-black/10");
+    moreIcon.current.classList.remove("border-bg-black");
+    moreIcon.current.classList.remove("border-[8px]");
+    moreIcon.current.classList.add("transition-all");
+    moreIcon.current.classList.add("duration-300");
+  };
 
   return (
     <div className="w-full h-[56px] flex items-center sticky top-0 justify-between px-[18px] z-10 bg-white">
@@ -39,12 +45,7 @@ export const Header = () => {
             </div>
           </div>
           <div className="flex items-center ml-[17px]">
-            <img
-              src={youtubeLogo}
-              width={90}
-              height={20}
-              alt="youtube logo"
-            />
+            <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
         </div>
         <div className="flex items-center ml-[168px]">
@@ -100,7 +101,12 @@ export const Header = () => {
         </div>
       </div>
       <div className="flex items-center">
-        <div className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer active:bg-black/10 active:border-bg-black/15 active:border-[1px]" onClick={handleMoreIconClick} ref={moreIcon}>
+        <div
+          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer transition-all duration-300"
+          onMouseDown={handleMoreIconMouseDown}
+          onMouseUp={handleMoreIconMouseUp}
+          ref={moreIcon}
+        >
           <MoreVertIcon />
         </div>
         <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer">
