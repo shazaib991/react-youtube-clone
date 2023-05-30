@@ -1,11 +1,20 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
+import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import KeyboardOutlinedIcon from "@mui/icons-material/KeyboardOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import { decode } from "html-entities";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const HomeSection = () => {
+export const HomeSection = ({ moreIconActive }) => {
   const [clickedId, setClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
@@ -18,10 +27,14 @@ export const HomeSection = () => {
     const videoCategoryArr = [];
 
     const videoFilterResponse = await axios(
-      `https://www.googleapis.com/youtube/v3/videoCategories?key=${import.meta.env.VITE_API_KEY}&part=snippet&regionCode=${countryCode}`
+      `https://www.googleapis.com/youtube/v3/videoCategories?key=${
+        import.meta.env.VITE_API_KEY
+      }&part=snippet&regionCode=${countryCode}`
     );
     const videoResponse = await axios(
-      `https://www.googleapis.com/youtube/v3/search?key=${import.meta.env.VITE_API_KEY}&part=snippet&maxResults=12&regionCode=${countryCode}`
+      `https://www.googleapis.com/youtube/v3/search?key=${
+        import.meta.env.VITE_API_KEY
+      }&part=snippet&maxResults=12&regionCode=${countryCode}`
     );
 
     const videoFilterData = await videoFilterResponse.data.items;
@@ -35,10 +48,14 @@ export const HomeSection = () => {
 
     for (let i = 0; i < videoData.length; i++) {
       const channelResponse = await axios(
-        `https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=snippet&id=${videoData[i].snippet.channelId}`
+        `https://www.googleapis.com/youtube/v3/channels?key=${
+          import.meta.env.VITE_API_KEY
+        }&part=snippet&id=${videoData[i].snippet.channelId}`
       );
       const videoDetailsResponse = await axios(
-        `https://www.googleapis.com/youtube/v3/videos?key=${import.meta.env.VITE_API_KEY}&part=statistics&part=contentDetails&id=${videoData[i].id.videoId}`
+        `https://www.googleapis.com/youtube/v3/videos?key=${
+          import.meta.env.VITE_API_KEY
+        }&part=statistics&part=contentDetails&id=${videoData[i].id.videoId}`
       );
 
       const channelDataArray = await channelResponse.data.items;
@@ -182,6 +199,63 @@ export const HomeSection = () => {
   return (
     <div className="w-full ml-[265px] mr-[25px]">
       <div className="h-[56px] w-[78.6%] bg-white fixed z-[100]">
+        <div
+          className={`w-[296px] rounded-[10px] absolute py-[8px] top-[-8px] right-[106px] bg-white z-[200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+            moreIconActive ? "" : "hidden"
+          }`}
+        >
+          <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <AdminPanelSettingsOutlinedIcon />
+            <p className="ml-[18px] text-[14px]">Your data in YouTube</p>
+          </div>
+          <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
+          <div className="flex items-center justify-between px-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <div className="flex items-center">
+              <ModeNightOutlinedIcon />
+              <p className="ml-[18px] text-[14px]">Appearance: Light</p>
+            </div>
+            <NavigateNextIcon />
+          </div>
+          <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <div className="flex items-center">
+              <TranslateOutlinedIcon />
+              <p className="ml-[18px] text-[14px]">Language: English</p>
+            </div>
+            <NavigateNextIcon />
+          </div>
+          <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <div className="flex items-center">
+              <GppMaybeOutlinedIcon />
+              <p className="ml-[18px] text-[14px]">Restricted Mode: Off</p>
+            </div>
+            <NavigateNextIcon />
+          </div>
+          <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <div className="flex items-center">
+              <LanguageOutlinedIcon />
+              <p className="ml-[18px] text-[14px]">Location: United Kingdom</p>
+            </div>
+            <NavigateNextIcon />
+          </div>
+          <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <KeyboardOutlinedIcon />
+            <p className="ml-[18px] text-[14px]">Keyboard shortcuts</p>
+          </div>
+          <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
+          <div className="flex items-center pl-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <SettingsOutlinedIcon />
+            <p className="ml-[18px] text-[14px]">Settings</p>
+          </div>
+          <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
+          <div className="flex items-center pl-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <HelpOutlineOutlinedIcon />
+            <p className="ml-[18px] text-[14px]">Help</p>
+          </div>
+          <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+            <FeedbackOutlinedIcon />
+            <p className="ml-[18px] text-[14px]">Send feedback</p>
+          </div>
+        </div>
         <div
           className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
           style={{
@@ -338,7 +412,10 @@ export const HomeSection = () => {
                       </div>
                     </div>
                     <div>
-                      <MoreVertIcon className="text-[20px] absolute top-[10px] right-0" style={{display: "none"}}/>
+                      <MoreVertIcon
+                        className="text-[20px] absolute top-[10px] right-0"
+                        style={{ display: "none" }}
+                      />
                     </div>
                   </div>
                 </div>

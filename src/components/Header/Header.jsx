@@ -3,7 +3,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
 import { useRef, useState } from "react";
 
-export const Header = () => {
+export const Header = ({ setMoreIconActive }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
   const searchBox = useRef();
@@ -31,6 +31,10 @@ export const Header = () => {
     moreIcon.current.classList.remove("border-[8px]");
     moreIcon.current.classList.add("transition-all");
     moreIcon.current.classList.add("duration-300");
+  };
+
+  const handleMoreIconClick = () => {
+    setMoreIconActive((prevState) => !prevState);
   };
 
   return (
@@ -95,7 +99,7 @@ export const Header = () => {
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
           </div>
-          <div className="w-[40px] h-[40px] flex justify-center items-center bg-[#707070]/5 rounded-[50%] hover:bg-black/10 ml-[8px] cursor-pointer">
+          <div className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] hover:bg-black/10 ml-[8px] cursor-pointer">
             <MicIcon sx={{ fontSize: "22px" }} />
           </div>
         </div>
@@ -105,6 +109,7 @@ export const Header = () => {
           className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer transition-all duration-300"
           onMouseDown={handleMoreIconMouseDown}
           onMouseUp={handleMoreIconMouseUp}
+          onClick={handleMoreIconClick}
           ref={moreIcon}
         >
           <MoreVertIcon />
