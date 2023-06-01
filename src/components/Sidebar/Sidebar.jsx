@@ -23,11 +23,11 @@ import HelpIcon from "@mui/icons-material/Help";
 import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 
-export const Sidebar = () => {
+export const Sidebar = ({ moreIconActive }) => {
   const date = new Date();
 
   return (
-    <div className="w-[240px] h-full fixed overflow-y-auto invisible hover:visible">
+    <div className="w-[240px] h-full fixed overflow-y-auto invisible hover:visible overscroll-contain">
       <div className="h-[1150px] visible pt-[12px]">
         <a
           className="flex items-center bg-[#f2f2f2] hover:bg-[#e6e6e6] mx-[11px] py-[9px] rounded-[11px]"
@@ -114,16 +114,27 @@ export const Sidebar = () => {
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <VideoLibraryOutlinedIcon className="ml-[16px]" fontSize="inherit"/>
-          <VideoLibraryIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <VideoLibraryOutlinedIcon className="ml-[16px]" fontSize="inherit" />
+          <VideoLibraryIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Library</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <AccessTimeIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <WatchLaterIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <AccessTimeIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <WatchLaterIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">History</p>
         </a>
         <hr className="mt-[14px] mb-[14px]" />
@@ -155,40 +166,75 @@ export const Sidebar = () => {
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <WhatshotOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <WhatshotIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <WhatshotOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <WhatshotIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Trending</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <MusicNoteOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <MusicNoteIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <MusicNoteOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <MusicNoteIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Music</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <VideogameAssetOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <VideogameAssetIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <VideogameAssetOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <VideogameAssetIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Gaming</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <FeedOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <FeedIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <FeedOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <FeedIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">News</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <EmojiEventsOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <EmojiEventsIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <EmojiEventsOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <EmojiEventsIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Sports</p>
         </a>
         <hr className="mt-[14px] mb-[13px]" />
@@ -196,8 +242,15 @@ export const Sidebar = () => {
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <AddCircleOutlineIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <AddCircleIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <AddCircleOutlineIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <AddCircleIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Browse channels</p>
         </a>
         <hr className="mt-[14px] mb-[13px]" />
@@ -205,32 +258,60 @@ export const Sidebar = () => {
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <SettingsOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <SettingsIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <SettingsOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <SettingsIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Settings</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <FlagOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <FlagIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <FlagOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <FlagIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Report history</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <HelpOutlineOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <HelpIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <HelpOutlineOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <HelpIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Help</p>
         </a>
         <a
           className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
           href="/"
         >
-          <FeedbackOutlinedIcon className="ml-[16px] text-[20px]" fontSize="inherit"/>
-          <FeedbackIcon className="ml-[16px] text-[20px]" style={{display: "none"}} fontSize="inherit"/>
+          <FeedbackOutlinedIcon
+            className="ml-[16px] text-[20px]"
+            fontSize="inherit"
+          />
+          <FeedbackIcon
+            className="ml-[16px] text-[20px]"
+            style={{ display: "none" }}
+            fontSize="inherit"
+          />
           <p className="text-[14px] ml-[26px]">Send feedback</p>
         </a>
         <hr className="mt-[14px] mb-[13px]" />

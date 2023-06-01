@@ -23,7 +23,7 @@ export const HomeSection = ({ moreIconActive }) => {
   let currentPos;
 
   const getData = async () => {
-    const countryCode = "US";
+    const countryCode = "UK";
     const videoCategoryArr = [];
 
     const videoFilterResponse = await axios(
@@ -85,6 +85,7 @@ export const HomeSection = ({ moreIconActive }) => {
     e.currentTarget.children[1].children[2].children[0].style.display = "none";
   };
 
+  //fix multiple entity in one string
   const decodeEntity = (str) => {
     let firstEntity = str.search("&");
     let SecondEntity = str.search(";");
