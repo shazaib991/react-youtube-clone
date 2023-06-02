@@ -14,7 +14,7 @@ import { decode } from "html-entities";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const HomeSection = ({ moreIconActive }) => {
+export const HomeSection = ({ moreIconActive, setMoreIconActive }) => {
   const [clickedId, setClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
@@ -200,7 +200,7 @@ export const HomeSection = ({ moreIconActive }) => {
   return (
     <div className="w-full ml-[265px] mr-[25px]">
       <div className="h-[56px] w-[78.6%] bg-white fixed z-[100]">
-        <div
+        {/* <div
           className={`w-[296px] rounded-[10px] absolute py-[8px] top-[-8px] right-[106px] bg-white z-[200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
             moreIconActive ? "" : "hidden"
           }`}
@@ -256,7 +256,7 @@ export const HomeSection = ({ moreIconActive }) => {
             <FeedbackOutlinedIcon />
             <p className="ml-[18px] text-[14px]">Send feedback</p>
           </div>
-        </div>
+        </div> */}
         <div
           className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
           style={{

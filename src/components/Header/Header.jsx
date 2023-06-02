@@ -1,9 +1,14 @@
 import MicIcon from "@mui/icons-material/Mic";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useRef, useState } from "react";
 
-export const Header = ({ setMoreIconActive }) => {
+export const Header = ({
+  setMoreIconActive,
+  moreIconActive,
+  handleMoreIconClickDisable,
+}) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
   const searchBox = useRef();
@@ -35,6 +40,16 @@ export const Header = ({ setMoreIconActive }) => {
 
   const handleMoreIconClick = () => {
     setMoreIconActive((prevState) => !prevState);
+    const disableScroll = document.querySelector(".disableScroll");
+    const sidebarDisableScroll = document.querySelector(
+      ".sidebarDisableScroll"
+    );
+    !moreIconActive
+      ? disableBodyScroll(disableScroll, { reserveScrollBarGap: true })
+      : enableBodyScroll(disableScroll);
+    !moreIconActive
+      ? disableBodyScroll(sidebarDisableScroll, { reserveScrollBarGap: true })
+      : enableBodyScroll(sidebarDisableScroll);
   };
 
   return (
@@ -106,7 +121,7 @@ export const Header = ({ setMoreIconActive }) => {
       </div>
       <div className="flex items-center">
         <div
-          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer transition-all duration-300"
+          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer transition-all duration-300 z-[300]"
           onMouseDown={handleMoreIconMouseDown}
           onMouseUp={handleMoreIconMouseUp}
           onClick={handleMoreIconClick}

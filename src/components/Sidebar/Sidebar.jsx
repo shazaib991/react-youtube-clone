@@ -23,11 +23,11 @@ import HelpIcon from "@mui/icons-material/Help";
 import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 
-export const Sidebar = ({ moreIconActive }) => {
+export const Sidebar = () => {
   const date = new Date();
 
   return (
-    <div className="w-[240px] h-full fixed overflow-y-auto invisible hover:visible overscroll-contain">
+    <div className="w-[240px] h-full fixed overflow-y-scroll invisible hover:visible overscroll-contain sidebarDisableScroll">
       <div className="h-[1150px] visible pt-[12px]">
         <a
           className="flex items-center bg-[#f2f2f2] hover:bg-[#e6e6e6] mx-[11px] py-[9px] rounded-[11px]"
