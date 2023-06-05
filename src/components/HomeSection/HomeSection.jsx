@@ -200,63 +200,6 @@ export const HomeSection = ({ moreIconActive, setMoreIconActive }) => {
   return (
     <div className="w-full ml-[265px] mr-[25px]">
       <div className="h-[56px] w-[78.6%] bg-white fixed z-[100]">
-        {/* <div
-          className={`w-[296px] rounded-[10px] absolute py-[8px] top-[-8px] right-[106px] bg-white z-[200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
-            moreIconActive ? "" : "hidden"
-          }`}
-        >
-          <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <AdminPanelSettingsOutlinedIcon />
-            <p className="ml-[18px] text-[14px]">Your data in YouTube</p>
-          </div>
-          <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
-          <div className="flex items-center justify-between px-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <div className="flex items-center">
-              <ModeNightOutlinedIcon />
-              <p className="ml-[18px] text-[14px]">Appearance: Light</p>
-            </div>
-            <NavigateNextIcon />
-          </div>
-          <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <div className="flex items-center">
-              <TranslateOutlinedIcon />
-              <p className="ml-[18px] text-[14px]">Language: English</p>
-            </div>
-            <NavigateNextIcon />
-          </div>
-          <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <div className="flex items-center">
-              <GppMaybeOutlinedIcon />
-              <p className="ml-[18px] text-[14px]">Restricted Mode: Off</p>
-            </div>
-            <NavigateNextIcon />
-          </div>
-          <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <div className="flex items-center">
-              <LanguageOutlinedIcon />
-              <p className="ml-[18px] text-[14px]">Location: United Kingdom</p>
-            </div>
-            <NavigateNextIcon />
-          </div>
-          <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <KeyboardOutlinedIcon />
-            <p className="ml-[18px] text-[14px]">Keyboard shortcuts</p>
-          </div>
-          <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
-          <div className="flex items-center pl-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <SettingsOutlinedIcon />
-            <p className="ml-[18px] text-[14px]">Settings</p>
-          </div>
-          <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
-          <div className="flex items-center pl-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <HelpOutlineOutlinedIcon />
-            <p className="ml-[18px] text-[14px]">Help</p>
-          </div>
-          <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-            <FeedbackOutlinedIcon />
-            <p className="ml-[18px] text-[14px]">Send feedback</p>
-          </div>
-        </div> */}
         <div
           className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
           style={{

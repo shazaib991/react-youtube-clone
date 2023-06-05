@@ -22,13 +22,36 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import HelpIcon from "@mui/icons-material/Help";
 import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import { useCallback, useEffect, useRef } from "react";
 
-export const Sidebar = () => {
+export const Sidebar = ({ moreIconActive }) => {
   const date = new Date();
+  const disableScroll = useRef();
+
+  let handleEvent = useCallback((e) => {
+    e.preventDefault();
+  }, []);
+
+  useEffect(() => {
+    if (moreIconActive) {
+      disableScroll.current.addEventListener("scroll", handleEvent);
+      disableScroll.current.addEventListener("mousewheel", handleEvent);
+      disableScroll.current.addEventListener("touchmove", handleEvent);
+    } else {
+      disableScroll.current.removeEventListener("scroll", handleEvent);
+      disableScroll.current.removeEventListener("mousewheel", handleEvent);
+      disableScroll.current.removeEventListener("touchmove", handleEvent);
+    }
+  }, [moreIconActive]);
 
   return (
-    <div className="w-[240px] h-full fixed overflow-y-scroll invisible hover:visible overscroll-contain sidebarDisableScroll">
-      <div className="h-[1150px] visible pt-[12px]">
+    <div
+      className={`w-[240px] h-[100vh] fixed overflow-y-scroll invisible ${
+        moreIconActive ? "" : "hover:visible"
+      } overscroll-contain`}
+      ref={disableScroll}
+    >
+      <div className="visible pt-[12px] mb-[70px]">
         <a
           className="flex items-center bg-[#f2f2f2] hover:bg-[#e6e6e6] mx-[11px] py-[9px] rounded-[11px]"
           href="/"

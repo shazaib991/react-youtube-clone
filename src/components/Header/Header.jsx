@@ -1,7 +1,6 @@
 import MicIcon from "@mui/icons-material/Mic";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useRef, useState } from "react";
 
 export const Header = ({
@@ -40,16 +39,6 @@ export const Header = ({
 
   const handleMoreIconClick = () => {
     setMoreIconActive((prevState) => !prevState);
-    const disableScroll = document.querySelector(".disableScroll");
-    const sidebarDisableScroll = document.querySelector(
-      ".sidebarDisableScroll"
-    );
-    !moreIconActive
-      ? disableBodyScroll(disableScroll, { reserveScrollBarGap: true })
-      : enableBodyScroll(disableScroll);
-    !moreIconActive
-      ? disableBodyScroll(sidebarDisableScroll, { reserveScrollBarGap: true })
-      : enableBodyScroll(sidebarDisableScroll);
   };
 
   return (

@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Header } from "./components/Header/Header";
 import { HomeSection } from "./components/HomeSection/HomeSection";
 import { Sidebar } from "./components/Sidebar/Sidebar";
-import { enableBodyScroll } from "body-scroll-lock";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
 import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
@@ -16,21 +15,37 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
+  const disableScroll = useRef();
 
   const handleMoreIconClickDisable = () => {
     setMoreIconActive(false);
-    const disableScroll = document.querySelector(".disableScroll");
-    const sidebarDisableScroll = document.querySelector(
-      ".sidebarDisableScroll"
-    );
-    enableBodyScroll(disableScroll);
-    enableBodyScroll(sidebarDisableScroll);
   };
 
+  let handleEvent = useCallback((e) => {
+    e.preventDefault();
+  }, []);
+
+  useEffect(() => {
+    if (moreIconActive) {
+      disableScroll.current.addEventListener("scroll", handleEvent);
+      disableScroll.current.addEventListener("mousewheel", handleEvent);
+      disableScroll.current.addEventListener("touchmove", handleEvent);
+    } else {
+      disableScroll.current.removeEventListener("scroll", handleEvent);
+      disableScroll.current.removeEventListener("mousewheel", handleEvent);
+      disableScroll.current.removeEventListener("touchmove", handleEvent);
+    }
+  }, [moreIconActive]);
+
   return (
-    <div className="disableScroll relative">
+    <div
+      className={`h-[100vh] overflow-y-scroll relative ${
+        moreIconActive ? "invisible" : ""
+      }`}
+      ref={disableScroll}
+    >
       <div
-        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] bg-white z-[200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] visible bg-white z-[200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
           moreIconActive ? "" : "hidden"
         }`}
       >
@@ -86,7 +101,7 @@ export default function App() {
           <p className="ml-[18px] text-[14px]">Send feedback</p>
         </div>
       </div>
-      <div>
+      <div className="visible">
         <Header
           setMoreIconActive={setMoreIconActive}
           handleMoreIconClickDisable={handleMoreIconClickDisable}

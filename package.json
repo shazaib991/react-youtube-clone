@@ -20,7 +20,8 @@
     "html-entities": "^2.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "tua-body-scroll-lock": "^1.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
