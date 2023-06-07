@@ -5,8 +5,8 @@ import { useRef, useState } from "react";
 
 export const Header = ({
   setMoreIconActive,
-  moreIconActive,
   handleMoreIconClickDisable,
+  moreIconActive,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
@@ -38,11 +38,15 @@ export const Header = ({
   };
 
   const handleMoreIconClick = () => {
+    console.log("enable");
     setMoreIconActive((prevState) => !prevState);
   };
 
   return (
-    <div className="w-full h-[56px] flex items-center sticky top-0 justify-between px-[18px] z-10 bg-white">
+    <div
+      className="w-full h-[56px] flex items-center sticky top-0 justify-between px-[18px] z-10 bg-white"
+      onClick={moreIconActive ? handleMoreIconClickDisable : ""}
+    >
       <div className="flex">
         <div className="flex items-center">
           <div className="w-[38px] h-[38px] flex justify-center items-center rounded-[50%] hover:bg-black/10 cursor-pointer">
