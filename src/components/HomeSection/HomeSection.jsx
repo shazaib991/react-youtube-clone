@@ -1,23 +1,15 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
-import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import KeyboardOutlinedIcon from "@mui/icons-material/KeyboardOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import { decode } from "html-entities";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-export const HomeSection = ({ moreIconActive, setMoreIconActive }) => {
+export const HomeSection = () => {
   const [clickedId, setClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
+  const videoCategoryScroll = useRef();
   let isMouseDown = false;
   let startX;
   let currentPos;
@@ -183,6 +175,7 @@ export const HomeSection = ({ moreIconActive, setMoreIconActive }) => {
 
   const handleMouseDownVideoCategory = (e) => {
     isMouseDown = true;
+    e.currentTarget.classList.remove("scroll-smooth");
     startX = e.pageX - e.currentTarget.offsetLeft;
     currentPos = e.currentTarget.scrollLeft;
   };
@@ -197,9 +190,22 @@ export const HomeSection = ({ moreIconActive, setMoreIconActive }) => {
     e.currentTarget.scrollLeft = currentPos - walkX;
   };
 
+  const handleScrollVideoCategoryMouseUp = () => {
+    videoCategoryScroll.current.classList.add("scroll-smooth");
+    isMouseDown = false;
+  };
+
+  const handleScrollVideoCategoryMouseLeave = () => {
+    if (isMouseDown) {
+      videoCategoryScroll.current.classList.add("scroll-smooth");
+      isMouseDown = false;
+      return;
+    }
+  };
+
   return (
     <div className="w-full ml-[265px] mr-[25px]">
-      <div className="h-[56px] w-[78.6%] bg-white fixed z-[100]">
+      <div className="h-[56px] w-[78%] bg-white fixed z-[100]">
         <div
           className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
           style={{
@@ -214,12 +220,13 @@ export const HomeSection = ({ moreIconActive, setMoreIconActive }) => {
           <NavigateBeforeIcon />
         </div>
         <div
-          className="h-full w-full overflow-scroll scrollbar-hide bg-white"
+          className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
           onScroll={handleScrollVideoCategory}
           onMouseDown={handleMouseDownVideoCategory}
-          onMouseLeave={() => (isMouseDown = false)}
-          onMouseUp={() => (isMouseDown = false)}
+          onMouseLeave={handleScrollVideoCategoryMouseLeave}
+          onMouseUp={handleScrollVideoCategoryMouseUp}
           onMouseMove={handleMouseMoveVideoCategory}
+          ref={videoCategoryScroll}
         >
           <div className="w-max flex mt-[12px] mb-[12px]">
             {videoCategoryArr.length !== 0

@@ -17,7 +17,10 @@ export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
   const disableScroll = useRef();
 
-  const handleMoreIconClickDisable = (e) => {
+  const handleMoreIconClickDisable = () => {
+    if (!moreIconActive) {
+      return;
+    }
     setMoreIconActive(false);
   };
 
