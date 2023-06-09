@@ -10,6 +10,8 @@ export const HomeSection = () => {
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
   const videoCategoryScroll = useRef();
+  const leftScrollVideoCategory = useRef();
+  const rightScrollVideoCategory = useRef();
   let isMouseDown = false;
   let startX;
   let currentPos;
@@ -70,7 +72,7 @@ export const HomeSection = () => {
   }, []);
 
   const handleMouseOver = (e) => {
-    e.currentTarget.children[1].children[2].children[0].style.display = null;
+    e.currentTarget.children[1].children[2].children[0].style.display = "";
   };
 
   const handleMouseLeave = (e) => {
@@ -143,33 +145,40 @@ export const HomeSection = () => {
     }
   };
 
-  const handleRightScrollVideoCategory = (e) => {
-    e.currentTarget.parentElement.children[2].scrollLeft += 400;
+  const handleRightScrollVideoCategory = () => {
+    rightScrollVideoCategory.current.parentElement.children[2].scrollLeft += 400;
   };
 
-  const handleLeftScrollVideoCategory = (e) => {
-    e.currentTarget.parentElement.children[2].scrollLeft -= 400;
+  const handleLeftScrollVideoCategory = () => {
+    leftScrollVideoCategory.current.parentElement.children[2].scrollLeft -= 400;
   };
 
-  const handleScrollVideoCategory = (e) => {
-    if (e.currentTarget.scrollLeft > 0) {
-      e.currentTarget.previousSibling.classList.remove("hidden");
-      e.currentTarget.previousSibling.previousSibling.classList.remove(
+  const handleScrollVideoCategory = () => {
+    if (videoCategoryScroll.current.scrollLeft > 0) {
+      videoCategoryScroll.current.previousSibling.classList.remove("hidden");
+      videoCategoryScroll.current.previousSibling.previousSibling.classList.remove(
         "hidden"
       );
-      e.currentTarget.nextSibling.classList.remove("hidden");
-      e.currentTarget.nextSibling.nextSibling.classList.remove("hidden");
-    } else if (e.currentTarget.scrollLeft === 0) {
-      e.currentTarget.previousSibling.classList.add("hidden");
-      e.currentTarget.previousSibling.previousSibling.classList.add("hidden");
+      videoCategoryScroll.current.nextSibling.classList.remove("hidden");
+      videoCategoryScroll.current.nextSibling.nextSibling.classList.remove(
+        "hidden"
+      );
+    } else if (videoCategoryScroll.current.scrollLeft === 0) {
+      videoCategoryScroll.current.previousSibling.classList.add("hidden");
+      videoCategoryScroll.current.previousSibling.previousSibling.classList.add(
+        "hidden"
+      );
     }
 
     if (
-      e.currentTarget.scrollLeft ===
-      e.currentTarget.scrollWidth - e.currentTarget.clientWidth
+      videoCategoryScroll.current.scrollLeft ===
+      videoCategoryScroll.current.scrollWidth -
+        videoCategoryScroll.current.clientWidth
     ) {
-      e.currentTarget.nextSibling.classList.add("hidden");
-      e.currentTarget.nextSibling.nextSibling.classList.add("hidden");
+      videoCategoryScroll.current.nextSibling.classList.add("hidden");
+      videoCategoryScroll.current.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
     }
   };
 
@@ -216,6 +225,7 @@ export const HomeSection = () => {
         <div
           className="w-[38px] h-[38px] flex justify-center absolute left-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer hidden"
           onClick={handleLeftScrollVideoCategory}
+          ref={leftScrollVideoCategory}
         >
           <NavigateBeforeIcon />
         </div>
@@ -270,6 +280,7 @@ export const HomeSection = () => {
         <div
           className="w-[38px] h-[38px] flex justify-center absolute right-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer"
           onClick={handleRightScrollVideoCategory}
+          ref={rightScrollVideoCategory}
         >
           <NavigateNextIcon />
         </div>

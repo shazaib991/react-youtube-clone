@@ -44,7 +44,7 @@ export default function App() {
     <div
       className={`h-[100vh] overflow-y-scroll relative ${
         moreIconActive ? "invisible" : ""
-      }`}
+      } scroll-smooth`}
       ref={disableScroll}
     >
       <div

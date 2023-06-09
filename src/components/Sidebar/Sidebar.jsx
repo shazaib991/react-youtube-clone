@@ -48,7 +48,7 @@ export const Sidebar = ({ moreIconActive }) => {
     <div
       className={`w-[240px] h-[100vh] fixed overflow-y-scroll invisible ${
         moreIconActive ? "" : "hover:visible"
-      } overscroll-contain`}
+      } overscroll-contain scroll-smooth`}
       ref={disableScroll}
     >
       <div className="visible pt-[12px] mb-[70px]">
