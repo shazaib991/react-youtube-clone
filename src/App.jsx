@@ -15,6 +15,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
+  const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
   const disableScroll = useRef();
 
   const handleMoreIconClickDisable = () => {
@@ -109,10 +110,14 @@ export default function App() {
           setMoreIconActive={setMoreIconActive}
           handleMoreIconClickDisable={handleMoreIconClickDisable}
           moreIconActive={moreIconActive}
+          setSidebarBurgerMenuClick={setSidebarBurgerMenuClick}
         />
         <div className="flex" onClick={handleMoreIconClickDisable}>
-          <Sidebar moreIconActive={moreIconActive} />
-          <HomeSection moreIconActive={moreIconActive} />
+          <Sidebar
+            moreIconActive={moreIconActive}
+            sidebarBurgerMenuClick={sidebarBurgerMenuClick}
+          />
+          <HomeSection sidebarBurgerMenuClick={sidebarBurgerMenuClick} />
         </div>
       </div>
     </div>

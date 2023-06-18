@@ -5,7 +5,7 @@ import { decode } from "html-entities";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-export const HomeSection = () => {
+export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   const [clickedId, setClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
@@ -213,7 +213,11 @@ export const HomeSection = () => {
   };
 
   return (
-    <div className="w-full ml-[265px] mr-[25px]">
+    <div
+      className={`w-full ${
+        sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"
+      } mr-[25px]`}
+    >
       <div className="h-[56px] w-[78%] bg-white fixed z-[100]">
         <div
           className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"

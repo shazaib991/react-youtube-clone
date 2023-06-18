@@ -7,6 +7,7 @@ export const Header = ({
   setMoreIconActive,
   handleMoreIconClickDisable,
   moreIconActive,
+  setSidebarBurgerMenuClick,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
@@ -38,8 +39,11 @@ export const Header = ({
   };
 
   const handleMoreIconClick = () => {
-    console.log("enable");
     setMoreIconActive((prevState) => !prevState);
+  };
+
+  const handleSidebarBurgerMenuClick = () => {
+    setSidebarBurgerMenuClick((prevState) => !prevState);
   };
 
   return (
@@ -49,7 +53,10 @@ export const Header = ({
     >
       <div className="flex">
         <div className="flex items-center">
-          <div className="w-[38px] h-[38px] flex justify-center items-center rounded-[50%] hover:bg-black/10 cursor-pointer">
+          <div
+            className="w-[38px] h-[38px] flex justify-center items-center rounded-[50%] hover:bg-black/10 cursor-pointer"
+            onClick={handleSidebarBurgerMenuClick}
+          >
             <div className="w-[18px] h-[13px] flex flex-col justify-between">
               <div className="w-full h-[1px] bg-black"></div>
               <div className="w-full h-[1px] bg-black"></div>
