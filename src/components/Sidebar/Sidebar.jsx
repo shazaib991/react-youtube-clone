@@ -47,7 +47,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
   return (
     <div
       className={`${
-        sidebarBurgerMenuClick ? "w-[82px]" : "w-[240px]"
+        sidebarBurgerMenuClick ? "w-[83px]" : "w-[240px]"
       } h-[100vh] fixed overflow-y-scroll invisible ${
         moreIconActive ? "" : "hover:visible"
       } overscroll-contain scroll-smooth`}

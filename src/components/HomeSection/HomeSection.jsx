@@ -213,38 +213,53 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   };
 
   return (
-    <div
-      className={`w-full ${
-        sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"
-      } mr-[25px]`}
-    >
-      <div className="h-[56px] w-[78%] bg-white fixed z-[100]">
+    <div className="w-full">
+      {videoCategoryArr.length !== 0 ? (
+        ""
+      ) : (
         <div
-          className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(255,255,255,1) 48%, rgba(255,255,255,0.1) 75%",
-          }}
-        ></div>
-        <div
-          className="w-[38px] h-[38px] flex justify-center absolute left-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer hidden"
-          onClick={handleLeftScrollVideoCategory}
-          ref={leftScrollVideoCategory}
+          className={`${sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"}`}
         >
-          <NavigateBeforeIcon />
+          <div className="w-full h-[1px] bg-[#e5e5e5] mb-[68px]"></div>
+          <div className="w-full h-[1px] bg-[#e5e5e5]"></div>
         </div>
-        <div
-          className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
-          onScroll={handleScrollVideoCategory}
-          onMouseDown={handleMouseDownVideoCategory}
-          onMouseLeave={handleScrollVideoCategoryMouseLeave}
-          onMouseUp={handleScrollVideoCategoryMouseUp}
-          onMouseMove={handleMouseMoveVideoCategory}
-          ref={videoCategoryScroll}
-        >
-          <div className="w-max flex mt-[12px] mb-[12px]">
-            {videoCategoryArr.length !== 0
-              ? videoCategoryArr.map((item, index) => {
+      )}
+      <div
+        className={`${
+          sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"
+        } mr-[25px] flex justify-center`}
+      >
+        {videoCategoryArr.length !== 0 ? (
+          <div
+            className={`h-[56px] ${
+              sidebarBurgerMenuClick ? "w-[90.35%]" : "w-[78%]"
+            } bg-white fixed z-[100]`}
+          >
+            <div
+              className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,255,255,1) 48%, rgba(255,255,255,0.1) 75%",
+              }}
+            ></div>
+            <div
+              className="w-[38px] h-[38px] flex justify-center absolute left-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer hidden"
+              onClick={handleLeftScrollVideoCategory}
+              ref={leftScrollVideoCategory}
+            >
+              <NavigateBeforeIcon />
+            </div>
+            <div
+              className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
+              onScroll={handleScrollVideoCategory}
+              onMouseDown={handleMouseDownVideoCategory}
+              onMouseLeave={handleScrollVideoCategoryMouseLeave}
+              onMouseUp={handleScrollVideoCategoryMouseUp}
+              onMouseMove={handleMouseMoveVideoCategory}
+              ref={videoCategoryScroll}
+            >
+              <div className="w-max flex mt-[12px] mb-[12px]">
+                {videoCategoryArr.map((item, index) => {
                   return (
                     <button
                       key={index}
@@ -252,142 +267,163 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         clickedId === index ? "bg-black" : "bg-[#f2f2f2]"
                       } text-[14px] ${
                         clickedId === index ? "text-white" : ""
-                      } mr-[10px] px-[12px] rounded-[8px] select-none`}
+                      } mr-[12px] px-[12px] rounded-[8px] select-none`}
                       onClick={() => setClickedId(index)}
                     >
                       {item}
                     </button>
                   );
-                })
-              : "test"}
-            {videoCategoryArr.length !== 0 ? (
-              <div>
-                <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none">
-                  Recently uploaded
-                </button>
-                <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none">
-                  Watched
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div
-          className="h-[32px] w-[75px] flex justify-end absolute right-0 top-[12px]"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(255,255,255,0.1) 10%, rgba(255,255,255,1) 50%)",
-          }}
-        ></div>
-        <div
-          className="w-[38px] h-[38px] flex justify-center absolute right-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer"
-          onClick={handleRightScrollVideoCategory}
-          ref={rightScrollVideoCategory}
-        >
-          <NavigateNextIcon />
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-between mt-[80px]">
-        {videoData.length !== 0
-          ? videoData.map((item) => {
-              const videoDate = new Date(item.snippet.publishedAt);
-              const currentDate = new Date(Date.now());
-              const days = Math.trunc(
-                (currentDate.getTime() - videoDate.getTime()) / 86400000
-              );
-              const hours = Math.trunc(
-                (currentDate.getTime() - videoDate.getTime()) / 3600000
-              );
-              const seconds = Math.trunc(
-                (currentDate.getTime() - videoDate.getTime()) / 1000
-              );
-              const minutes = Math.trunc(
-                (currentDate.getTime() - videoDate.getTime()) / 60000
-              );
-              const months = Math.trunc(
-                (currentDate.getTime() - videoDate.getTime()) / 2629746000
-              );
-              const years = Math.trunc(
-                (currentDate.getTime() - videoDate.getTime()) / 31556952000
-              );
-
-              return (
-                <div
-                  key={item.etag}
-                  className="w-[343.5px] rounded-[11px] mb-[42px] cursor-pointer"
-                  onMouseOver={handleMouseOver}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="relative">
-                    <img
-                      src={item.snippet.thumbnails.medium.url}
-                      alt="youtube thumbnail image"
-                      className="w-full rounded-[12px]"
-                    />
-                    <div className="absolute bottom-[4px] right-1 bg-[#191C23] text-white font-medium text-[13px] px-[3px] rounded-[3px]">
-                      <p>{extractVideoLength(item.snippet.videoLength)}</p>
-                    </div>
+                })}
+                {videoCategoryArr.length !== 0 ? (
+                  <div>
+                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none">
+                      Recently uploaded
+                    </button>
+                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none">
+                      Watched
+                    </button>
                   </div>
-                  <div className="flex relative">
-                    <img
-                      src={item.snippet.channelImg}
-                      alt="youtube channel image"
-                      className="h-[36px] w-[36px] rounded-full mr-[10px] mt-[11px]"
-                    />
-                    <div>
-                      <p className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[10px] pr-[25px] overflow-hidden line-clamp-2">
-                        {decodeEntity(item.snippet.title)}
-                      </p>
-                      <div className="mt-[3px]">
-                        <p className="text-[14px] text-[#626262] overflow-hidden line-clamp-1">
-                          {item.snippet.channelTitle}
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+            <div
+              className="h-[32px] w-[75px] flex justify-end absolute right-0 top-[12px]"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,255,255,0.1) 10%, rgba(255,255,255,1) 50%)",
+              }}
+            ></div>
+            <div
+              className="w-[38px] h-[38px] flex justify-center absolute right-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer"
+              onClick={handleRightScrollVideoCategory}
+              ref={rightScrollVideoCategory}
+            >
+              <NavigateNextIcon />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        <div
+          className={`flex flex-wrap justify-between ${
+            videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"
+          }`}
+        >
+          {videoData.length !== 0
+            ? videoData.map((item) => {
+                const videoDate = new Date(item.snippet.publishedAt);
+                const currentDate = new Date(Date.now());
+                const days = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 86400000
+                );
+                const hours = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 3600000
+                );
+                const seconds = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 1000
+                );
+                const minutes = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 60000
+                );
+                const months = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 2629746000
+                );
+                const years = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 31556952000
+                );
+
+                return (
+                  <div
+                    key={item.etag}
+                    className="w-[343.4px] rounded-[11px] mb-[42px] cursor-pointer"
+                    onMouseOver={handleMouseOver}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="relative">
+                      <img
+                        src={item.snippet.thumbnails.medium.url}
+                        alt="youtube thumbnail image"
+                        className="w-full rounded-[12px]"
+                      />
+                      <div className="absolute bottom-[4px] right-[5px] bg-[#191C23] text-white font-medium text-[13px] px-[3px] rounded-[3px]">
+                        <p>{extractVideoLength(item.snippet.videoLength)}</p>
+                      </div>
+                    </div>
+                    <div className="flex relative">
+                      <img
+                        src={item.snippet.channelImg}
+                        alt="youtube channel image"
+                        className="h-[36px] w-[36px] rounded-full mr-[10px] mt-[11px]"
+                      />
+                      <div>
+                        <p className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[10px] pr-[25px] overflow-hidden line-clamp-2">
+                          {decodeEntity(item.snippet.title)}
                         </p>
+                        <div className="mt-[3px]">
+                          <p className="text-[14px] text-[#626262] overflow-hidden line-clamp-1">
+                            {item.snippet.channelTitle}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-[14px] text-[#626262] leading-[19px]">
+                            {item.snippet.videoViewCount.length < 7
+                              ? (
+                                  Number(item.snippet.videoViewCount) / 1000
+                                ).toFixed(1) + "k views"
+                              : item.snippet.videoViewCount.length >= 7
+                              ? (
+                                  Number(item.snippet.videoViewCount) / 1000000
+                                ).toFixed(1) + "M views"
+                              : item.snippet.videoViewCount.length >= 10
+                              ? (
+                                  Number(item.snippet.videoViewCount) /
+                                  1000000000
+                                ).toFixed(1) + "B views"
+                              : item.snippet.videoViewCount + "views"}
+                            &nbsp;&#x2022;&nbsp;
+                            {years != 0
+                              ? years + " years ago"
+                              : months != 0
+                              ? months + " months ago"
+                              : days != 0
+                              ? days + " days ago"
+                              : hours != 0
+                              ? hours + " hours ago"
+                              : minutes != 0
+                              ? minutes + " minutes ago"
+                              : seconds != 0
+                              ? seconds + " seconds ago"
+                              : ""}
+                          </p>
+                        </div>
                       </div>
                       <div>
-                        <p className="text-[14px] text-[#626262] leading-[19px]">
-                          {item.snippet.videoViewCount.length < 7
-                            ? (
-                                Number(item.snippet.videoViewCount) / 1000
-                              ).toFixed(1) + "k views"
-                            : item.snippet.videoViewCount.length >= 7
-                            ? (
-                                Number(item.snippet.videoViewCount) / 1000000
-                              ).toFixed(1) + "M views"
-                            : item.snippet.videoViewCount.length >= 10
-                            ? (
-                                Number(item.snippet.videoViewCount) / 1000000000
-                              ).toFixed(1) + "B views"
-                            : item.snippet.videoViewCount + "views"}
-                          &nbsp;&#x2022;&nbsp;
-                          {years != 0
-                            ? years + " years ago"
-                            : months != 0
-                            ? months + " months ago"
-                            : days != 0
-                            ? days + " days ago"
-                            : hours != 0
-                            ? hours + " hours ago"
-                            : minutes != 0
-                            ? minutes + " minutes ago"
-                            : seconds != 0
-                            ? seconds + " seconds ago"
-                            : ""}
-                        </p>
+                        <MoreVertIcon
+                          className="text-[20px] absolute top-[10px] right-0"
+                          style={{ display: "none" }}
+                        />
                       </div>
                     </div>
-                    <div>
-                      <MoreVertIcon
-                        className="text-[20px] absolute top-[10px] right-0"
-                        style={{ display: "none" }}
-                      />
+                  </div>
+                );
+              })
+            : [...Array(12).keys()].map(() => {
+                return (
+                  <div className="w-[343.4px] rounded-[9px] mb-[50px]">
+                    <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
+                    <div className="flex mt-[12px]">
+                      <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>
+                      <div className="ml-[12px]">
+                        <div className="w-[266px] h-[20px] bg-[#e3e3e3] mt-[-2px]"></div>
+                        <div className="w-[177px] h-[20px] bg-[#e3e3e3] mt-[10px]"></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          : "test2"}
+                );
+              })}
+        </div>
       </div>
     </div>
   );
