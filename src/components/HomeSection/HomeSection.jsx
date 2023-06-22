@@ -171,7 +171,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
     }
 
     if (
-      videoCategoryScroll.current.scrollLeft ===
+      videoCategoryScroll.current.scrollLeft + 1 >=
       videoCategoryScroll.current.scrollWidth -
         videoCategoryScroll.current.clientWidth
     ) {
