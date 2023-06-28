@@ -63,6 +63,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
             sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
           }`}
           href="/"
+          title="Home"
         >
           <div
             className={`${
@@ -114,6 +115,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
             sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
           }`}
           href="/"
+          title="Shorts"
         >
           <div
             className={`${
@@ -160,6 +162,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
             sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
           }`}
           href="/"
+          title="Subscriptions"
         >
           <div
             className={`${
@@ -212,6 +215,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
             sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
           }`}
           href="/"
+          title="Library"
         >
           <div
             className={`${
@@ -247,6 +251,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
             sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
           }`}
           href="/"
+          title="History"
         >
           <div
             className={`${
@@ -306,6 +311,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Trending"
           >
             <WhatshotOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -321,6 +327,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Music"
           >
             <MusicNoteOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -336,6 +343,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Gaming"
           >
             <VideogameAssetOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -351,6 +359,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="News"
           >
             <FeedOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -366,6 +375,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Sports"
           >
             <EmojiEventsOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -382,6 +392,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Browse channels"
           >
             <AddCircleOutlineIcon
               className="ml-[16px] text-[20px]"
@@ -398,6 +409,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Settings"
           >
             <SettingsOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -413,6 +425,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Report history"
           >
             <FlagOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -428,6 +441,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Help"
           >
             <HelpOutlineOutlinedIcon
               className="ml-[16px] text-[20px]"
@@ -443,6 +457,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
             href="/"
+            title="Send feedback"
           >
             <FeedbackOutlinedIcon
               className="ml-[16px] text-[20px]"

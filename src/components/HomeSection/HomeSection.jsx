@@ -267,19 +267,21 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         clickedId === index ? "bg-black" : "bg-[#f2f2f2]"
                       } text-[14px] ${
                         clickedId === index ? "text-white" : ""
-                      } mr-[12px] px-[12px] rounded-[8px] select-none`}
+                      } mr-[12px] px-[12px] rounded-[8px] select-none ${
+                        clickedId === index ? "" : "hover:bg-[#eaeaea]"
+                      } transition-all duration-300`}
                       onClick={() => setClickedId(index)}
                     >
-                      {item}
+                      <p title={`${item}`}>{item}</p>
                     </button>
                   );
                 })}
                 {videoCategoryArr.length !== 0 ? (
                   <div>
-                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none">
+                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
                       Recently uploaded
                     </button>
-                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none">
+                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
                       Watched
                     </button>
                   </div>
@@ -358,7 +360,10 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         className="h-[36px] w-[36px] rounded-full mr-[10px] mt-[11px]"
                       />
                       <div>
-                        <p className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[10px] pr-[25px] overflow-hidden line-clamp-2">
+                        <p
+                          className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[10px] pr-[25px] overflow-hidden line-clamp-2"
+                          title={`${decodeEntity(item.snippet.title)}`}
+                        >
                           {decodeEntity(item.snippet.title)}
                         </p>
                         <div className="mt-[3px]">
