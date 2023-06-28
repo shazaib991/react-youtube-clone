@@ -19,7 +19,7 @@ export const Header = ({
 
   const handleClearSearch = () => {
     setSearchText("");
-    searchBox.current.parentElement.children[0].focus();
+    searchBox.current.focus();
   };
 
   const handleMoreIconMouseDown = () => {
@@ -76,7 +76,8 @@ export const Header = ({
               placeholder="Search"
               onChange={handleSearch}
               value={searchText}
-              className="w-[95%] h-full border border-[#d6d6d6] rounded-tl-[40px] rounded-bl-[40px] outline-none pl-[17px] focus:border-[blue] focus:w-full peer focus:pl-[45px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)]"
+              ref={searchBox}
+              className="w-[95%] h-full border border-[#d6d6d6] rounded-tl-[40px] rounded-bl-[40px] outline-none pl-[17px] pr-[25px] focus:border-[blue] focus:w-full peer focus:pl-[45px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)]"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
