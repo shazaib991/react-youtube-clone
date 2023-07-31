@@ -9,7 +9,12 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
-export const HeaderPopOvers = ({ moreIconActive, moreIconHover }) => {
+export const HeaderPopOvers = ({
+  moreIconActive,
+  moreIconHover,
+  micIconHover,
+  searchIconHover,
+}) => {
   return (
     <>
       <div
@@ -68,6 +73,24 @@ export const HeaderPopOvers = ({ moreIconActive, moreIconHover }) => {
           <FeedbackOutlinedIcon />
           <p className="ml-[18px] text-[14px]">Send feedback</p>
         </div>
+      </div>
+      <div
+        className={`fixed top-[64px] right-[412px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+          searchIconHover ? "opacity-100" : "opacity-0"
+        } ${
+          searchIconHover ? "visible" : "invisible"
+        } transition-all z-[200] cursor-default`}
+      >
+        Search
+      </div>
+      <div
+        className={`fixed top-[64px] right-[305px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+          micIconHover ? "opacity-100" : "opacity-0"
+        } ${
+          micIconHover ? "visible" : "invisible"
+        } transition-all z-[200] cursor-default`}
+      >
+        Search with your voice
       </div>
       <div
         className={`fixed top-[64px] right-[133px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${

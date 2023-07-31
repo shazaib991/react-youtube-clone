@@ -9,8 +9,8 @@ export const Header = ({
   handleMoreIconClickDisable,
   moreIconActive,
   setSidebarBurgerMenuClick,
-  handleMoreIconMouseEnter,
-  handleMoreIconMouseLeave,
+  handleHeaderTooltipMouseEnter,
+  handleHeaderTooltipMouseLeave,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
@@ -109,7 +109,15 @@ export const Header = ({
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
             </svg>
           </div>
-          <div className="w-[65px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] border-l-0 rounded-tr-[40px] rounded-br-[40px] cursor-pointer hover:bg-[#e8e8e8]">
+          <div
+            className="w-[65px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] border-l-0 rounded-tr-[40px] rounded-br-[40px] cursor-pointer hover:bg-[#e8e8e8]"
+            onMouseEnter={() =>
+              handleHeaderTooltipMouseEnter("searchIconTooltip")
+            }
+            onMouseLeave={() =>
+              handleHeaderTooltipMouseLeave("searchIconTooltip")
+            }
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -122,8 +130,9 @@ export const Header = ({
             </svg>
           </div>
           <div
-            title="tooltip"
             className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] hover:bg-black/10 ml-[10px] cursor-pointer"
+            onMouseEnter={() => handleHeaderTooltipMouseEnter("micIconTooltip")}
+            onMouseLeave={() => handleHeaderTooltipMouseLeave("micIconTooltip")}
           >
             <MicIcon sx={{ fontSize: "22px" }} />
           </div>
@@ -135,8 +144,8 @@ export const Header = ({
           onMouseDown={handleMoreIconMouseDown}
           onMouseUp={handleMoreIconMouseUp}
           onClick={handleMoreIconClick}
-          onMouseEnter={handleMoreIconMouseEnter}
-          onMouseLeave={handleMoreIconMouseLeave}
+          onMouseEnter={() => handleHeaderTooltipMouseEnter("moreIconTooltip")}
+          onMouseLeave={() => handleHeaderTooltipMouseLeave("moreIconTooltip")}
           ref={moreIcon}
         >
           <MoreVertIcon />

@@ -7,6 +7,8 @@ import { HeaderPopOvers } from "./components/HeaderPopOvers/HeaderPopOvers";
 export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
   const [moreIconHover, setMoreIconHover] = useState(false);
+  const [micIconHover, setMicIconHover] = useState(false);
+  const [searchIconHover, setSearchIconHover] = useState(false);
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
   const disableScroll = useRef();
 
@@ -21,12 +23,28 @@ export default function App() {
     e.preventDefault();
   }, []);
 
-  const handleMoreIconMouseEnter = () => {
-    setMoreIconHover(true);
+  const handleHeaderTooltipMouseEnter = (TargetTooltip) => {
+    if (TargetTooltip === "moreIconTooltip") {
+      setMoreIconHover(true);
+    }
+    if (TargetTooltip === "micIconTooltip") {
+      setMicIconHover(true);
+    }
+    if (TargetTooltip === "searchIconTooltip") {
+      setSearchIconHover(true);
+    }
   };
 
-  const handleMoreIconMouseLeave = () => {
-    setMoreIconHover(false);
+  const handleHeaderTooltipMouseLeave = (TargetTooltip) => {
+    if (TargetTooltip === "moreIconTooltip") {
+      setMoreIconHover(false);
+    }
+    if (TargetTooltip === "micIconTooltip") {
+      setMicIconHover(false);
+    }
+    if (TargetTooltip === "searchIconTooltip") {
+      setSearchIconHover(false);
+    }
   };
 
   useEffect(() => {
@@ -51,6 +69,8 @@ export default function App() {
       <HeaderPopOvers
         moreIconActive={moreIconActive}
         moreIconHover={moreIconHover}
+        micIconHover={micIconHover}
+        searchIconHover={searchIconHover}
       />
       <div className="visible">
         <Header
@@ -58,8 +78,8 @@ export default function App() {
           handleMoreIconClickDisable={handleMoreIconClickDisable}
           moreIconActive={moreIconActive}
           setSidebarBurgerMenuClick={setSidebarBurgerMenuClick}
-          handleMoreIconMouseEnter={handleMoreIconMouseEnter}
-          handleMoreIconMouseLeave={handleMoreIconMouseLeave}
+          handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
+          handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
         />
         <div className="flex" onClick={handleMoreIconClickDisable}>
           <Sidebar
