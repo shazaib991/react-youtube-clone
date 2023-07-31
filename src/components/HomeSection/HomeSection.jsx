@@ -28,7 +28,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
     const videoResponse = await axios(
       `https://www.googleapis.com/youtube/v3/search?key=${
         import.meta.env.VITE_API_KEY
-      }&part=snippet&maxResults=12&regionCode=${countryCode}`
+      }&part=snippet&maxResults=12&type=video&regionCode=${countryCode}`
     );
 
     const videoFilterData = await videoFilterResponse.data.items;
@@ -53,14 +53,17 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
       );
 
       const channelDataArray = await channelResponse.data.items;
+
       videoData[i].snippet.channelImg = await channelDataArray[0].snippet
         .thumbnails.default.url;
 
       const videoDetailsArray = await videoDetailsResponse.data.items;
-      videoData[i].snippet.videoViewCount = await videoDetailsArray[0]
-        .statistics.viewCount;
-      videoData[i].snippet.videoLength = await videoDetailsArray[0]
-        .contentDetails.duration;
+      if (videoDetailsArray[0] !== undefined) {
+        videoData[i].snippet.videoViewCount = await videoDetailsArray[0]
+          .statistics.viewCount;
+        videoData[i].snippet.videoLength = await videoDetailsArray[0]
+          .contentDetails.duration;
+      }
     }
 
     setVideoCategoryArr(videoCategoryArr);
@@ -71,7 +74,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
     getData();
   }, []);
 
-  const handleMouseOver = (e) => {
+  const handleMouseEnter = (e) => {
     e.currentTarget.children[1].children[2].children[0].style.display = "";
   };
 
@@ -340,7 +343,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                   <div
                     key={item.etag}
                     className="w-[343.4px] rounded-[11px] mb-[42px] cursor-pointer"
-                    onMouseOver={handleMouseOver}
+                    onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
                     <div className="relative">

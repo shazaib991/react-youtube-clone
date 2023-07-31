@@ -1,6 +1,7 @@
 import MicIcon from "@mui/icons-material/Mic";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
+import React from "react";
 import { useRef, useState } from "react";
 
 export const Header = ({
@@ -8,6 +9,8 @@ export const Header = ({
   handleMoreIconClickDisable,
   moreIconActive,
   setSidebarBurgerMenuClick,
+  handleMoreIconMouseEnter,
+  handleMoreIconMouseLeave,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
@@ -63,12 +66,15 @@ export const Header = ({
               <div className="w-full h-[1px] bg-black"></div>
             </div>
           </div>
-          <div className="flex items-center ml-[17px]">
+          <div
+            title="YouTube Home"
+            className="flex items-center ml-[17px] cursor-pointer"
+          >
             <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
         </div>
         <div className="flex items-center ml-[168px]">
-          <div className="w-[563px] h-[40px] flex items-center justify-end relative">
+          <div className="w-[560px] h-[40px] flex items-center justify-end relative">
             <input
               type="text"
               name="youtube-search"
@@ -115,7 +121,10 @@ export const Header = ({
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
           </div>
-          <div className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] hover:bg-black/10 ml-[8px] cursor-pointer">
+          <div
+            title="tooltip"
+            className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] hover:bg-black/10 ml-[10px] cursor-pointer"
+          >
             <MicIcon sx={{ fontSize: "22px" }} />
           </div>
         </div>
@@ -126,6 +135,8 @@ export const Header = ({
           onMouseDown={handleMoreIconMouseDown}
           onMouseUp={handleMoreIconMouseUp}
           onClick={handleMoreIconClick}
+          onMouseEnter={handleMoreIconMouseEnter}
+          onMouseLeave={handleMoreIconMouseLeave}
           ref={moreIcon}
         >
           <MoreVertIcon />
