@@ -1,7 +1,6 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { decode } from "html-entities";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
@@ -82,18 +81,12 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
     e.currentTarget.children[1].children[2].children[0].style.display = "none";
   };
 
-  //fix multiple entity in one string
   const decodeEntity = (str) => {
-    let firstEntity = str.search("&");
-    let SecondEntity = str.search(";");
+    let txt = document.createElement("textarea");
 
-    if (firstEntity != -1 && SecondEntity != -1) {
-      let slicedEntity = str.slice(firstEntity, SecondEntity + 1);
+    txt.innerHTML = str;
 
-      return str.replace(slicedEntity, decode(slicedEntity));
-    }
-
-    return str;
+    return txt.value;
   };
 
   const extractVideoLength = (videoLength) => {
