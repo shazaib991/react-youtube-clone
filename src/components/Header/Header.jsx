@@ -73,8 +73,8 @@ export const Header = ({
             <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
         </div>
-        <div className="flex items-center ml-[168px]">
-          <div className="w-[560px] h-[40px] flex items-center justify-end relative">
+        <div className="flex items-center ml-[164px]">
+          <div className="w-[561px] h-[40px] flex items-center justify-end relative">
             <input
               type="text"
               name="youtube-search"
@@ -110,7 +110,7 @@ export const Header = ({
             </svg>
           </div>
           <div
-            className="w-[65px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] border-l-0 rounded-tr-[40px] rounded-br-[40px] cursor-pointer hover:bg-[#e8e8e8]"
+            className="w-[65px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] border-l-0 rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer hover:bg-[#e8e8e8]"
             onMouseEnter={() =>
               handleHeaderTooltipMouseEnter("searchIconTooltip")
             }
@@ -123,18 +123,18 @@ export const Header = ({
               width="18"
               height="18"
               fill="currentColor"
-              className="bi bi-search ml-[20px]"
+              className="bi bi-search ml-[22px]"
               viewBox="0 0 16 16"
             >
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
           </div>
           <div
-            className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] hover:bg-black/10 ml-[10px] cursor-pointer"
+            className="w-[40px] h-[40px] flex justify-center items-center bg-[#f2f2f2] rounded-[50%] hover:bg-black/10 ml-[13px] cursor-pointer"
             onMouseEnter={() => handleHeaderTooltipMouseEnter("micIconTooltip")}
             onMouseLeave={() => handleHeaderTooltipMouseLeave("micIconTooltip")}
           >
-            <MicIcon sx={{ fontSize: "22px" }} />
+            <MicIcon sx={{ fontSize: "23px" }} />
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@ export const Header = ({
               />
             </svg>
           </div>
-          <p className="text-[15px] font-[500] text-[blue]">Sign in</p>
+          <p className="text-[14px] font-[500] text-[blue]">Sign in</p>
         </div>
       </div>
     </div>

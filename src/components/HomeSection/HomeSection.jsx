@@ -235,7 +235,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
         {videoCategoryArr.length !== 0 ? (
           <div
             className={`h-[56px] ${
-              sidebarBurgerMenuClick ? "w-[90.35%]" : "w-[78%]"
+              sidebarBurgerMenuClick ? "w-[90.1%]" : "w-[77.6%]"
             } bg-white fixed z-[100]`}
           >
             <div
@@ -342,7 +342,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                 return (
                   <div
                     key={item.etag}
-                    className="w-[343.4px] rounded-[11px] mb-[42px] cursor-pointer"
+                    className="w-[341px] rounded-[11px] mb-[42px] cursor-pointer"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -376,7 +376,11 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         </div>
                         <div>
                           <p className="text-[14px] text-[#626262] leading-[19px]">
-                            {item.snippet.videoViewCount.length < 7
+                            {item.snippet.videoViewCount.length <= 5
+                              ? (
+                                  Number(item.snippet.videoViewCount) / 100
+                                ).toFixed(1) + " views"
+                              : item.snippet.videoViewCount.length <= 6
                               ? (
                                   Number(item.snippet.videoViewCount) / 1000
                                 ).toFixed(1) + "k views"
@@ -419,7 +423,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
               })
             : [...Array(12).keys()].map(() => {
                 return (
-                  <div className="w-[343.4px] rounded-[9px] mb-[50px]">
+                  <div className="w-[341px] rounded-[9px] mb-[50px]">
                     <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
                     <div className="flex mt-[12px]">
                       <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>
