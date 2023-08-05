@@ -1,4 +1,3 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useEffect, useRef, useState } from "react";
@@ -74,11 +73,13 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   }, []);
 
   const handleMouseEnter = (e) => {
-    e.currentTarget.children[1].children[2].children[0].style.display = "";
+    e.currentTarget.children[1].children[2].children[0].classList.remove(
+      "hidden"
+    );
   };
 
   const handleMouseLeave = (e) => {
-    e.currentTarget.children[1].children[2].children[0].style.display = "none";
+    e.currentTarget.children[1].children[2].children[0].classList.add("hidden");
   };
 
   const decodeEntity = (str) => {
@@ -332,6 +333,8 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                   (currentDate.getTime() - videoDate.getTime()) / 31556952000
                 );
 
+                console.log(item.snippet.videoViewCount);
+
                 return (
                   <div
                     key={item.etag}
@@ -345,7 +348,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         alt="youtube thumbnail image"
                         className="w-full rounded-[12px]"
                       />
-                      <div className="absolute bottom-[4px] right-[5px] bg-[#191C23] text-white font-medium text-[13px] px-[3px] rounded-[3px]">
+                      <div className="absolute bottom-[4px] right-[5px] bg-[#191C23] text-white font-medium text-[12px] px-[3px] rounded-[3px]">
                         <p>{extractVideoLength(item.snippet.videoLength)}</p>
                       </div>
                     </div>
@@ -353,11 +356,11 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                       <img
                         src={item.snippet.channelImg}
                         alt="youtube channel image"
-                        className="h-[36px] w-[36px] rounded-full mr-[10px] mt-[11px]"
+                        className="h-[36px] w-[36px] rounded-full mr-[11px] mt-[11px]"
                       />
                       <div>
                         <p
-                          className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[10px] pr-[25px] overflow-hidden line-clamp-2"
+                          className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] pr-[25px] overflow-hidden line-clamp-2"
                           title={`${decodeEntity(item.snippet.title)}`}
                         >
                           {decodeEntity(item.snippet.title)}
@@ -369,24 +372,22 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         </div>
                         <div>
                           <p className="text-[14px] text-[#626262] leading-[19px]">
-                            {item.snippet.videoViewCount.length <= 5
-                              ? (
-                                  Number(item.snippet.videoViewCount) / 100
-                                ).toFixed(1) + " views"
+                            {item.snippet.videoViewCount.length <= 3
+                              ? item.snippet.videoViewCount + " views"
                               : item.snippet.videoViewCount.length <= 6
                               ? (
                                   Number(item.snippet.videoViewCount) / 1000
                                 ).toFixed(1) + "k views"
-                              : item.snippet.videoViewCount.length >= 7
+                              : item.snippet.videoViewCount.length <= 9
                               ? (
                                   Number(item.snippet.videoViewCount) / 1000000
                                 ).toFixed(1) + "M views"
-                              : item.snippet.videoViewCount.length >= 10
+                              : item.snippet.videoViewCount.length <= 12
                               ? (
                                   Number(item.snippet.videoViewCount) /
                                   1000000000
                                 ).toFixed(1) + "B views"
-                              : item.snippet.videoViewCount + "views"}
+                              : item.snippet.videoViewCount + " views"}
                             &nbsp;&#x2022;&nbsp;
                             {years != 0
                               ? years + " years ago"
@@ -405,10 +406,16 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         </div>
                       </div>
                       <div>
-                        <MoreVertIcon
-                          className="text-[20px] absolute top-[10px] right-0"
-                          style={{ display: "none" }}
-                        />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          fill="currentColor"
+                          class="bi bi-three-dots-vertical absolute top-[12px] right-0 hidden"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                        </svg>
                       </div>
                     </div>
                   </div>
