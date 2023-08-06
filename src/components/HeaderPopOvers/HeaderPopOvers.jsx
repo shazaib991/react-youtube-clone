@@ -93,7 +93,7 @@ export const HeaderPopOvers = ({
         Search with your voice
       </div>
       <div
-        className={`fixed top-[64px] right-[133px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+        className={`fixed top-[64px] right-[130px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
           moreIconHover ? "opacity-100" : "opacity-0"
         } ${
           moreIconHover ? "visible" : "invisible"

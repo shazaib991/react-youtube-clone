@@ -329,11 +329,12 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                 const months = Math.trunc(
                   (currentDate.getTime() - videoDate.getTime()) / 2629746000
                 );
+                const weeks = Math.trunc(
+                  (currentDate.getTime() - videoDate.getTime()) / 604800000
+                );
                 const years = Math.trunc(
                   (currentDate.getTime() - videoDate.getTime()) / 31556952000
                 );
-
-                console.log(item.snippet.videoViewCount);
 
                 return (
                   <div
@@ -372,35 +373,58 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         </div>
                         <div>
                           <p className="text-[14px] text-[#626262] leading-[19px]">
-                            {item.snippet.videoViewCount.length <= 3
+                            {Number(item.snippet.videoViewCount) === 1
+                              ? item.snippet.videoViewCount + " view"
+                              : item.snippet.videoViewCount.length <= 3
                               ? item.snippet.videoViewCount + " views"
-                              : item.snippet.videoViewCount.length <= 6
+                              : item.snippet.videoViewCount.length <= 4
                               ? (
                                   Number(item.snippet.videoViewCount) / 1000
                                 ).toFixed(1) + "k views"
-                              : item.snippet.videoViewCount.length <= 9
+                              : item.snippet.videoViewCount.length <= 6
+                              ? (
+                                  Number(item.snippet.videoViewCount) / 1000
+                                ).toFixed(0) + "k views"
+                              : item.snippet.videoViewCount.length <= 7
                               ? (
                                   Number(item.snippet.videoViewCount) / 1000000
                                 ).toFixed(1) + "M views"
-                              : item.snippet.videoViewCount.length <= 12
+                              : item.snippet.videoViewCount.length <= 9
+                              ? (
+                                  Number(item.snippet.videoViewCount) / 1000000
+                                ).toFixed(0) + "M views"
+                              : item.snippet.videoViewCount.length <= 10
                               ? (
                                   Number(item.snippet.videoViewCount) /
                                   1000000000
                                 ).toFixed(1) + "B views"
+                              : item.snippet.videoViewCount.length <= 12
+                              ? (
+                                  Number(item.snippet.videoViewCount) /
+                                  1000000000
+                                ).toFixed(0) + "B views"
                               : item.snippet.videoViewCount + " views"}
                             &nbsp;&#x2022;&nbsp;
                             {years != 0
-                              ? years + " years ago"
+                              ? years +
+                                `${years === 1 ? " year" : " years"} ago`
                               : months != 0
-                              ? months + " months ago"
+                              ? months +
+                                `${months === 1 ? " month" : " months"} ago`
+                              : weeks != 0
+                              ? weeks +
+                                `${weeks === 1 ? " week" : " weeks"} ago`
                               : days != 0
-                              ? days + " days ago"
+                              ? days + `${days === 1 ? " day" : " days"} ago`
                               : hours != 0
-                              ? hours + " hours ago"
+                              ? hours +
+                                `${hours === 1 ? " hour" : " hours"} ago`
                               : minutes != 0
-                              ? minutes + " minutes ago"
+                              ? minutes +
+                                `${minutes === 1 ? " minute" : " minutes"} ago`
                               : seconds != 0
-                              ? seconds + " seconds ago"
+                              ? seconds +
+                                `${seconds === 1 ? " second" : " seconds"} ago`
                               : ""}
                           </p>
                         </div>
