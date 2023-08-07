@@ -15,7 +15,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   let currentPos;
 
   const getData = async () => {
-    const countryCode = "UK";
+    const countryCode = "US";
     const videoCategoryArr = [];
 
     const videoFilterResponse = await axios(
@@ -209,6 +209,12 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
     }
   };
 
+  const ParseFloat = (str, val) => {
+    str = str.toString();
+    str = str.slice(0, str.indexOf(".") + val);
+    return Number(str);
+  };
+
   return (
     <div className="w-full">
       {videoCategoryArr.length !== 0 ? (
@@ -378,31 +384,37 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                               : item.snippet.videoViewCount.length <= 3
                               ? item.snippet.videoViewCount + " views"
                               : item.snippet.videoViewCount.length <= 4
-                              ? (
-                                  Number(item.snippet.videoViewCount) / 1000
-                                ).toFixed(1) + "k views"
+                              ? ParseFloat(
+                                  (Number(item.snippet.videoViewCount) / 1000,
+                                  2)
+                                ) + "k views"
                               : item.snippet.videoViewCount.length <= 6
-                              ? (
-                                  Number(item.snippet.videoViewCount) / 1000
-                                ).toFixed(0) + "k views"
+                              ? ParseFloat(
+                                  Number(item.snippet.videoViewCount) / 1000,
+                                  0
+                                ) + "k views"
                               : item.snippet.videoViewCount.length <= 7
-                              ? (
-                                  Number(item.snippet.videoViewCount) / 1000000
-                                ).toFixed(1) + "M views"
+                              ? ParseFloat(
+                                  Number(item.snippet.videoViewCount) / 1000000,
+                                  2
+                                ) + "M views"
                               : item.snippet.videoViewCount.length <= 9
-                              ? (
-                                  Number(item.snippet.videoViewCount) / 1000000
-                                ).toFixed(0) + "M views"
+                              ? ParseFloat(
+                                  Number(item.snippet.videoViewCount) / 1000000,
+                                  0
+                                ) + "M views"
                               : item.snippet.videoViewCount.length <= 10
-                              ? (
+                              ? ParseFloat(
                                   Number(item.snippet.videoViewCount) /
-                                  1000000000
-                                ).toFixed(1) + "B views"
+                                    1000000000,
+                                  2
+                                ) + "B views"
                               : item.snippet.videoViewCount.length <= 12
-                              ? (
+                              ? ParseFloat(
                                   Number(item.snippet.videoViewCount) /
-                                  1000000000
-                                ).toFixed(0) + "B views"
+                                    1000000000,
+                                  0
+                                ) + "B views"
                               : item.snippet.videoViewCount + " views"}
                             &nbsp;&#x2022;&nbsp;
                             {years != 0
