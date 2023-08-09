@@ -7,6 +7,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   const [clickedId, setClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
+  const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
   const videoCategoryScroll = useRef();
   const leftScrollVideoCategory = useRef();
   const rightScrollVideoCategory = useRef();
@@ -212,6 +213,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   const ParseFloat = (str, val) => {
     str = str.toString();
     str = str.slice(0, str.indexOf(".") + val);
+
     return Number(str);
   };
 
@@ -317,7 +319,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
           }`}
         >
           {videoData.length !== 0
-            ? videoData.map((item) => {
+            ? videoData.map((item, index) => {
                 const videoDate = new Date(item.snippet.publishedAt);
                 const currentDate = new Date(Date.now());
                 const days = Math.trunc(
@@ -341,6 +343,14 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                 const years = Math.trunc(
                   (currentDate.getTime() - videoDate.getTime()) / 31556952000
                 );
+
+                const channelHoverMouseEnter = (indexId) => {
+                  setChannelHover({ status: true, id: indexId });
+                };
+
+                const channelHoverMouseLeave = () => {
+                  setChannelHover({ status: false, id: 0 });
+                };
 
                 return (
                   <div
@@ -372,8 +382,25 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         >
                           {decodeEntity(item.snippet.title)}
                         </p>
-                        <div className="mt-[3px]">
-                          <p className="text-[14px] text-[#626262] overflow-hidden line-clamp-1">
+                        <div className="mt-[3px] relative">
+                          <div
+                            className={`absolute top-[-52px] left-[-3px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+                              channelHover.status && channelHover.id === index
+                                ? "opacity-100"
+                                : "opacity-0"
+                            } ${
+                              channelHover.status && channelHover.id === index
+                                ? "visible"
+                                : "invisible"
+                            } transition-all cursor-default`}
+                          >
+                            {item.snippet.channelTitle}
+                          </div>
+                          <p
+                            className="inline text-[14px] text-[#626262] overflow-hidden line-clamp-1"
+                            onMouseEnter={() => channelHoverMouseEnter(index)}
+                            onMouseLeave={() => channelHoverMouseLeave(index)}
+                          >
                             {item.snippet.channelTitle}
                           </p>
                         </div>
