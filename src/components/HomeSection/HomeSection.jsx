@@ -210,6 +210,14 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
     }
   };
 
+  const channelHoverMouseEnter = (indexId) => {
+    setChannelHover({ status: true, id: indexId });
+  };
+
+  const channelHoverMouseLeave = () => {
+    setChannelHover({ status: false, id: 0 });
+  };
+
   const ParseFloat = (str, val) => {
     str = str.toString();
     str = str.slice(0, str.indexOf(".") + val);
@@ -343,14 +351,6 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                 const years = Math.trunc(
                   (currentDate.getTime() - videoDate.getTime()) / 31556952000
                 );
-
-                const channelHoverMouseEnter = (indexId) => {
-                  setChannelHover({ status: true, id: indexId });
-                };
-
-                const channelHoverMouseLeave = () => {
-                  setChannelHover({ status: false, id: 0 });
-                };
 
                 return (
                   <div

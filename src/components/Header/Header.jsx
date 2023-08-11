@@ -14,6 +14,7 @@ export const Header = ({
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
+  const burgerIcon = useRef();
   const searchBox = useRef();
 
   const handleSearch = (e) => {
@@ -23,22 +24,6 @@ export const Header = ({
   const handleClearSearch = () => {
     setSearchText("");
     searchBox.current.focus();
-  };
-
-  const handleMoreIconMouseDown = () => {
-    moreIcon.current.classList.add("bg-black/10");
-    moreIcon.current.classList.add("border-bg-black");
-    moreIcon.current.classList.add("border-[8px]");
-    moreIcon.current.classList.remove("transition-all");
-    moreIcon.current.classList.remove("duration-300");
-  };
-
-  const handleMoreIconMouseUp = () => {
-    moreIcon.current.classList.remove("bg-black/10");
-    moreIcon.current.classList.remove("border-bg-black");
-    moreIcon.current.classList.remove("border-[8px]");
-    moreIcon.current.classList.add("transition-all");
-    moreIcon.current.classList.add("duration-300");
   };
 
   const handleMoreIconClick = () => {
@@ -57,8 +42,9 @@ export const Header = ({
       <div className="flex">
         <div className="flex items-center">
           <div
-            className="w-[38px] h-[38px] flex justify-center items-center rounded-[50%] hover:bg-black/10 cursor-pointer"
+            className="w-[38px] h-[38px] flex justify-center mb-[2px] items-center rounded-[50%] cursor-pointer transition-[border] duration-300 active:transition-none hover:bg-black/10 active:border-[#00000026] active:border-[1px] active:bg-black/20"
             onClick={handleSidebarBurgerMenuClick}
+            ref={burgerIcon}
           >
             <div className="w-[18px] h-[13px] flex flex-col justify-between">
               <div className="w-full h-[1px] bg-black"></div>
@@ -73,17 +59,18 @@ export const Header = ({
             <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
         </div>
-        <div className="flex items-center ml-[164px]">
-          <div className="w-[561px] h-[40px] flex items-center justify-end relative">
+        <div className="flex items-center ml-[159px]">
+          <div className="w-[567px] h-[40px] flex items-center justify-end relative">
             <input
               type="text"
               name="youtube-search"
               id="youtube-search"
               placeholder="Search"
+              spellcheck="false"
               onChange={handleSearch}
               value={searchText}
               ref={searchBox}
-              className="w-[95%] h-full border border-[#d6d6d6] rounded-tl-[40px] rounded-bl-[40px] outline-none pl-[17px] pr-[25px] focus:border-[blue] focus:w-full peer focus:pl-[45px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)]"
+              className="w-[94.5%] h-full border border-[#00000033] rounded-tl-[40px] border-r-0 rounded-bl-[40px] placeholder:text-[#888A88] outline-none pl-[17px] pr-[25px] focus:border-[#002db3] focus:border-r-[1px] focus:w-full peer focus:pl-[48.2px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)]"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -95,22 +82,26 @@ export const Header = ({
             >
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="29"
-              height="29"
-              fill="currentColor"
-              className={`bi bi-x absolute cursor-pointer ${
+            <div
+              className={`flex justify-center items-center h-[40px] w-[40px] hover:bg-black/10 rounded-[50%] absolute right-[-4px] cursor-pointer ${
                 searchText.length > 0 ? "" : "hidden"
-              }`}
-              onClick={handleClearSearch}
-              viewBox="0 0 16 16"
+              } active:border-[#00000026] active:border-[1px] active:bg-black/20 transition-[border] duration-300 active:transition-none`}
             >
-              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="38"
+                height="38"
+                fill="currentColor"
+                className={`bi bi-x`}
+                onClick={handleClearSearch}
+                viewBox="0 0 16 16"
+              >
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </div>
           </div>
           <div
-            className="w-[65px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] border-l-0 rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer hover:bg-[#e8e8e8]"
+            className="w-[63px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer hover:bg-[#0000000f] active:bg-[#0000001a] hover:border-[#0000002e] hover:shadow-[0_1px_1px_rgba(50,50,50,0.12)]"
             onMouseEnter={() =>
               handleHeaderTooltipMouseEnter("searchIconTooltip")
             }
@@ -130,7 +121,7 @@ export const Header = ({
             </svg>
           </div>
           <div
-            className="w-[40px] h-[40px] flex justify-center items-center bg-[#f2f2f2] rounded-[50%] hover:bg-black/10 ml-[13px] cursor-pointer"
+            className="w-[40px] h-[40px] flex justify-center items-center bg-[#f2f2f2] rounded-[50%] hover:bg-black/10 ml-[14px] cursor-pointer active:border-[#00000026] active:border-[1px] active:bg-black/20 transition-[border] duration-300 active:transition-none"
             onMouseEnter={() => handleHeaderTooltipMouseEnter("micIconTooltip")}
             onMouseLeave={() => handleHeaderTooltipMouseLeave("micIconTooltip")}
           >
@@ -140,9 +131,7 @@ export const Header = ({
       </div>
       <div className="flex items-center">
         <div
-          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer transition-all duration-300 z-[300]"
-          onMouseDown={handleMoreIconMouseDown}
-          onMouseUp={handleMoreIconMouseUp}
+          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px]"
           onClick={handleMoreIconClick}
           onMouseEnter={() => handleHeaderTooltipMouseEnter("moreIconTooltip")}
           onMouseLeave={() => handleHeaderTooltipMouseLeave("moreIconTooltip")}
@@ -150,7 +139,7 @@ export const Header = ({
         >
           <MoreVertIcon />
         </div>
-        <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer">
+        <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
