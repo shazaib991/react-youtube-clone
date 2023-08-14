@@ -11,6 +11,7 @@ export const Header = ({
   setSidebarBurgerMenuClick,
   handleHeaderTooltipMouseEnter,
   handleHeaderTooltipMouseLeave,
+  handleMicListenClick,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
@@ -124,6 +125,7 @@ export const Header = ({
             className="w-[40px] h-[40px] flex justify-center items-center bg-[#f2f2f2] rounded-[50%] hover:bg-black/10 ml-[14px] cursor-pointer active:border-[#00000026] active:border-[1px] active:bg-black/20 transition-[border] duration-300 active:transition-none"
             onMouseEnter={() => handleHeaderTooltipMouseEnter("micIconTooltip")}
             onMouseLeave={() => handleHeaderTooltipMouseLeave("micIconTooltip")}
+            onClick={handleMicListenClick}
           >
             <MicIcon sx={{ fontSize: "23px" }} />
           </div>
