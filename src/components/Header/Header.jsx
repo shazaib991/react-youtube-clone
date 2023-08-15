@@ -133,13 +133,22 @@ export const Header = ({
       </div>
       <div className="flex items-center">
         <div
-          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7px] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px]"
+          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7.5px] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px]"
           onClick={handleMoreIconClick}
           onMouseEnter={() => handleHeaderTooltipMouseEnter("moreIconTooltip")}
           onMouseLeave={() => handleHeaderTooltipMouseLeave("moreIconTooltip")}
           ref={moreIcon}
         >
-          <MoreVertIcon />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="currentColor"
+            class="bi bi-three-dots-vertical"
+            viewBox="0 0 16 16"
+          >
+            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+          </svg>
         </div>
         <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]">
           <div>

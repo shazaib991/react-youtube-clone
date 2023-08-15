@@ -74,13 +74,15 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
   }, []);
 
   const handleMouseEnter = (e) => {
-    e.currentTarget.children[1].children[2].children[0].classList.remove(
-      "hidden"
-    );
+    e.currentTarget.children[1].children[2].classList.remove("hidden");
   };
 
   const handleMouseLeave = (e) => {
-    e.currentTarget.children[1].children[2].children[0].classList.add("hidden");
+    e.currentTarget.children[1].children[2].classList.add("hidden");
+  };
+
+  const handleVideoMoreIconClick = (e) => {
+    console.log(e.currentTarget.getBoundingClientRect());
   };
 
   const decodeEntity = (str) => {
@@ -365,7 +367,7 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                         alt="youtube thumbnail image"
                         className="w-full rounded-[12px]"
                       />
-                      <div className="absolute bottom-[4px] right-[5px] bg-[#191C23] text-white font-medium text-[12px] px-[3px] rounded-[3px]">
+                      <div className="absolute bottom-[4px] right-[6px] bg-[#191C23] text-white font-medium text-[12px] px-[3px] rounded-[3px]">
                         <p>{extractVideoLength(item.snippet.videoLength)}</p>
                       </div>
                     </div>
@@ -468,13 +470,16 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
                           </p>
                         </div>
                       </div>
-                      <div>
+                      <div
+                        className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px] absolute top-[2px] right-[-12px] hidden"
+                        onClick={handleVideoMoreIconClick}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="18"
                           height="18"
                           fill="currentColor"
-                          class="bi bi-three-dots-vertical absolute top-[12px] right-0 hidden"
+                          class="bi bi-three-dots-vertical"
                           viewBox="0 0 16 16"
                         >
                           <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
