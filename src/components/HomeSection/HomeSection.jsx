@@ -3,7 +3,10 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-export const HomeSection = ({ sidebarBurgerMenuClick }) => {
+export const HomeSection = ({
+  sidebarBurgerMenuClick,
+  handleVideoMoreIconClick,
+}) => {
   const [clickedId, setClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
@@ -79,10 +82,6 @@ export const HomeSection = ({ sidebarBurgerMenuClick }) => {
 
   const handleMouseLeave = (e) => {
     e.currentTarget.children[1].children[2].classList.add("hidden");
-  };
-
-  const handleVideoMoreIconClick = (e) => {
-    console.log(e.currentTarget.getBoundingClientRect());
   };
 
   const decodeEntity = (str) => {

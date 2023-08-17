@@ -7,10 +7,12 @@ import MicIcon from "@mui/icons-material/Mic";
 
 export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
+  const [videoMoreIconActive, setVideoMoreIconActive] = useState(false);
   const [moreIconHover, setMoreIconHover] = useState(false);
   const [micIconHover, setMicIconHover] = useState(false);
   const [searchIconHover, setSearchIconHover] = useState(false);
   const [isMicListening, setIsMicListening] = useState(false);
+  const [videoMoreIconPos, setVideoMoreIconPos] = useState(Object);
   const [
     isMouseInsideMicListeningPopover,
     setIsMouseInsideMicListeningPopover,
@@ -68,6 +70,11 @@ export default function App() {
       setShowMicListeningPopover(false);
     }
     return;
+  };
+
+  const handleVideoMoreIconClick = (e) => {
+    setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
+    setVideoMoreIconActive((prev) => !prev);
   };
 
   useEffect(() => {
@@ -162,6 +169,8 @@ export default function App() {
         moreIconHover={moreIconHover}
         micIconHover={micIconHover}
         searchIconHover={searchIconHover}
+        videoMoreIconPos={videoMoreIconPos}
+        videoMoreIconActive={videoMoreIconActive}
       />
       <div className="visible">
         <Header
@@ -178,7 +187,10 @@ export default function App() {
             moreIconActive={moreIconActive}
             sidebarBurgerMenuClick={sidebarBurgerMenuClick}
           />
-          <HomeSection sidebarBurgerMenuClick={sidebarBurgerMenuClick} />
+          <HomeSection
+            sidebarBurgerMenuClick={sidebarBurgerMenuClick}
+            handleVideoMoreIconClick={handleVideoMoreIconClick}
+          />
         </div>
       </div>
     </div>
