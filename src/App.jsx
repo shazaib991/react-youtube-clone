@@ -21,11 +21,15 @@ export default function App() {
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
   const disableScroll = useRef();
 
-  const handleMoreIconClickDisable = () => {
-    if (!moreIconActive) {
+  const handlePopoverDisable = () => {
+    if (!moreIconActive && !videoMoreIconActive) {
       return;
     }
-    setMoreIconActive(false);
+    if (moreIconActive) {
+      setMoreIconActive(false);
+      return;
+    }
+    setVideoMoreIconActive(false);
   };
 
   let handleEvent = useCallback((e) => {
@@ -78,7 +82,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (moreIconActive) {
+    if (moreIconActive || videoMoreIconActive) {
       disableScroll.current.addEventListener("scroll", handleEvent);
       disableScroll.current.addEventListener("mousewheel", handleEvent);
       disableScroll.current.addEventListener("touchmove", handleEvent);
@@ -87,12 +91,12 @@ export default function App() {
       disableScroll.current.removeEventListener("mousewheel", handleEvent);
       disableScroll.current.removeEventListener("touchmove", handleEvent);
     }
-  }, [moreIconActive]);
+  }, [moreIconActive, videoMoreIconActive]);
 
   return (
     <div
       className={`h-[100vh] overflow-y-scroll relative ${
-        moreIconActive ? "invisible" : ""
+        moreIconActive || videoMoreIconActive ? "invisible" : ""
       } scroll-smooth`}
       ref={disableScroll}
     >
@@ -175,16 +179,18 @@ export default function App() {
       <div className="visible">
         <Header
           setMoreIconActive={setMoreIconActive}
-          handleMoreIconClickDisable={handleMoreIconClickDisable}
+          videoMoreIconActive={videoMoreIconActive}
+          handlePopoverDisable={handlePopoverDisable}
           moreIconActive={moreIconActive}
           setSidebarBurgerMenuClick={setSidebarBurgerMenuClick}
           handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
           handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
           handleMicListenClick={handleMicListenClick}
         />
-        <div className="flex" onClick={handleMoreIconClickDisable}>
+        <div className="flex" onClick={handlePopoverDisable}>
           <Sidebar
             moreIconActive={moreIconActive}
+            videoMoreIconActive={videoMoreIconActive}
             sidebarBurgerMenuClick={sidebarBurgerMenuClick}
           />
           <HomeSection

@@ -79,31 +79,29 @@ export const HeaderPopOvers = ({
           <p className="ml-[18px] text-[14px]">Send feedback</p>
         </div>
       </div>
-      {videoMoreIconActive ? (
-        <div
-          className={`rounded-[10px] py-[8px] visible bg-white z-[300] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)]`}
-          style={{
-            position: "fixed",
-            top: `${String(Math.trunc(videoMoreIconPos.y + 42))}px`,
-            left: `${String(Math.trunc(videoMoreIconPos.x))}px`,
-          }}
-        >
-          <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
-            <VideoLibraryOutlinedIcon sx={{ fontSize: "20px" }} />
-            <p className="ml-[18px] text-[14px]">Add to queue</p>
-          </div>
-          <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
-            <FileDownloadOutlinedIcon sx={{ fontSize: "20px" }} />
-            <p className="ml-[18px] text-[14px]">Download</p>
-          </div>
-          <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
-            <ShareOutlinedIcon sx={{ fontSize: "20px" }} />
-            <p className="ml-[18px] text-[14px]">Share</p>
-          </div>
+      <div
+        className={`rounded-[10px] py-[8px] visible bg-white z-[300] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+          videoMoreIconActive ? "" : "hidden"
+        }`}
+        style={{
+          position: "fixed",
+          top: `${String(Math.trunc(videoMoreIconPos.y + 42))}px`,
+          left: `${String(Math.trunc(videoMoreIconPos.x))}px`,
+        }}
+      >
+        <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
+          <VideoLibraryOutlinedIcon sx={{ fontSize: "20px" }} />
+          <p className="ml-[18px] text-[14px]">Add to queue</p>
         </div>
-      ) : (
-        ""
-      )}
+        <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
+          <FileDownloadOutlinedIcon sx={{ fontSize: "20px" }} />
+          <p className="ml-[18px] text-[14px]">Download</p>
+        </div>
+        <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
+          <ShareOutlinedIcon sx={{ fontSize: "20px" }} />
+          <p className="ml-[18px] text-[14px]">Share</p>
+        </div>
+      </div>
       <div
         className={`fixed top-[64px] right-[412px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
           searchIconHover ? "opacity-100" : "opacity-0"

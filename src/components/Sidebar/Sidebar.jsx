@@ -24,7 +24,11 @@ import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import { useCallback, useEffect, useRef } from "react";
 
-export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
+export const Sidebar = ({
+  moreIconActive,
+  sidebarBurgerMenuClick,
+  videoMoreIconActive,
+}) => {
   const date = new Date();
   const disableScroll = useRef();
 
@@ -33,7 +37,7 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
   }, []);
 
   useEffect(() => {
-    if (moreIconActive) {
+    if ((moreIconActive, videoMoreIconActive)) {
       disableScroll.current.addEventListener("scroll", handleEvent);
       disableScroll.current.addEventListener("mousewheel", handleEvent);
       disableScroll.current.addEventListener("touchmove", handleEvent);
@@ -42,14 +46,14 @@ export const Sidebar = ({ moreIconActive, sidebarBurgerMenuClick }) => {
       disableScroll.current.removeEventListener("mousewheel", handleEvent);
       disableScroll.current.removeEventListener("touchmove", handleEvent);
     }
-  }, [moreIconActive]);
+  }, [moreIconActive, videoMoreIconActive]);
 
   return (
     <div
       className={`${
         sidebarBurgerMenuClick ? "w-[83px]" : "w-[240px]"
       } h-[100vh] fixed overflow-y-scroll invisible ${
-        moreIconActive ? "" : "hover:visible"
+        moreIconActive || videoMoreIconActive ? "" : "hover:visible"
       } overscroll-contain scroll-smooth`}
       ref={disableScroll}
     >

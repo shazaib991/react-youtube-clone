@@ -6,12 +6,13 @@ import { useRef, useState } from "react";
 
 export const Header = ({
   setMoreIconActive,
-  handleMoreIconClickDisable,
+  handlePopoverDisable,
   moreIconActive,
   setSidebarBurgerMenuClick,
   handleHeaderTooltipMouseEnter,
   handleHeaderTooltipMouseLeave,
   handleMicListenClick,
+  videoMoreIconActive,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
@@ -38,7 +39,9 @@ export const Header = ({
   return (
     <div
       className="w-full h-[56px] flex items-center sticky top-0 justify-between px-[18px] z-10 bg-white"
-      onClick={moreIconActive ? handleMoreIconClickDisable : ""}
+      onClick={
+        moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""
+      }
     >
       <div className="flex">
         <div className="flex items-center">
