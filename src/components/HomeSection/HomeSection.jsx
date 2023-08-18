@@ -6,8 +6,10 @@ import axios from "axios";
 export const HomeSection = ({
   sidebarBurgerMenuClick,
   handleVideoMoreIconClick,
+  videoMoreIconActive,
+  videoMoreIconClickId,
 }) => {
-  const [clickedId, setClickedId] = useState(0);
+  const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
   const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
@@ -75,14 +77,6 @@ export const HomeSection = ({
   useEffect(() => {
     getData();
   }, []);
-
-  const handleMouseEnter = (e) => {
-    e.currentTarget.children[1].children[2].classList.remove("hidden");
-  };
-
-  const handleMouseLeave = (e) => {
-    e.currentTarget.children[1].children[2].classList.add("hidden");
-  };
 
   const decodeEntity = (str) => {
     let txt = document.createElement("textarea");
@@ -278,13 +272,17 @@ export const HomeSection = ({
                     <button
                       key={index}
                       className={`h-[32px] ${
-                        clickedId === index ? "bg-black" : "bg-[#f2f2f2]"
+                        videoCategoryClickedId === index
+                          ? "bg-black"
+                          : "bg-[#f2f2f2]"
                       } text-[14px] ${
-                        clickedId === index ? "text-white" : ""
+                        videoCategoryClickedId === index ? "text-white" : ""
                       } mr-[12px] px-[12px] rounded-[8px] select-none ${
-                        clickedId === index ? "" : "hover:bg-[#eaeaea]"
+                        videoCategoryClickedId === index
+                          ? ""
+                          : "hover:bg-[#eaeaea]"
                       } transition-all duration-300`}
-                      onClick={() => setClickedId(index)}
+                      onClick={() => setVideoCategoryClickedId(index)}
                     >
                       <p title={`${item}`}>{item}</p>
                     </button>
@@ -356,9 +354,7 @@ export const HomeSection = ({
                 return (
                   <div
                     key={item.etag}
-                    className="w-[341px] rounded-[11px] mb-[42px] cursor-pointer"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    className="w-[341px] rounded-[11px] mb-[42px] cursor-pointer group"
                   >
                     <div className="relative">
                       <img
@@ -470,8 +466,12 @@ export const HomeSection = ({
                         </div>
                       </div>
                       <div
-                        className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px] absolute top-[2px] right-[-12px] hidden"
-                        onClick={handleVideoMoreIconClick}
+                        className={`w-[40px] h-[40px] flex justify-center items-center rounded-[50%] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px] absolute top-[2px] right-[-12px] ${
+                          videoMoreIconActive && videoMoreIconClickId === index
+                            ? ""
+                            : "hidden"
+                        } group-hover:flex`}
+                        onClick={(e) => handleVideoMoreIconClick(e, index)}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

@@ -12,6 +12,7 @@ export default function App() {
   const [micIconHover, setMicIconHover] = useState(false);
   const [searchIconHover, setSearchIconHover] = useState(false);
   const [isMicListening, setIsMicListening] = useState(false);
+  const [videoMoreIconClickId, setVideoMoreIconClickId] = useState(0);
   const [videoMoreIconPos, setVideoMoreIconPos] = useState(Object);
   const [
     isMouseInsideMicListeningPopover,
@@ -76,7 +77,8 @@ export default function App() {
     return;
   };
 
-  const handleVideoMoreIconClick = (e) => {
+  const handleVideoMoreIconClick = (e, index) => {
+    setVideoMoreIconClickId(index);
     setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
     setVideoMoreIconActive((prev) => !prev);
   };
@@ -196,6 +198,8 @@ export default function App() {
           <HomeSection
             sidebarBurgerMenuClick={sidebarBurgerMenuClick}
             handleVideoMoreIconClick={handleVideoMoreIconClick}
+            videoMoreIconActive={videoMoreIconActive}
+            videoMoreIconClickId={videoMoreIconClickId}
           />
         </div>
       </div>
