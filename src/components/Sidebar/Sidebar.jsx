@@ -37,7 +37,7 @@ export const Sidebar = ({
   }, []);
 
   useEffect(() => {
-    if ((moreIconActive, videoMoreIconActive)) {
+    if ((moreIconActive, videoMoreIconActive.staus)) {
       disableScroll.current.addEventListener("scroll", handleEvent);
       disableScroll.current.addEventListener("mousewheel", handleEvent);
       disableScroll.current.addEventListener("touchmove", handleEvent);
@@ -46,14 +46,14 @@ export const Sidebar = ({
       disableScroll.current.removeEventListener("mousewheel", handleEvent);
       disableScroll.current.removeEventListener("touchmove", handleEvent);
     }
-  }, [moreIconActive, videoMoreIconActive]);
+  }, [moreIconActive, videoMoreIconActive.status]);
 
   return (
     <div
       className={`${
         sidebarBurgerMenuClick ? "w-[83px]" : "w-[240px]"
       } h-[100vh] fixed overflow-y-scroll invisible ${
-        moreIconActive || videoMoreIconActive ? "" : "hover:visible"
+        moreIconActive || videoMoreIconActive.status ? "" : "hover:visible"
       } overscroll-contain scroll-smooth`}
       ref={disableScroll}
     >

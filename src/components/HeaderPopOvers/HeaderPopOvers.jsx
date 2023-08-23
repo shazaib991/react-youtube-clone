@@ -19,6 +19,7 @@ export const HeaderPopOvers = ({
   searchIconHover,
   videoMoreIconPos,
   videoMoreIconActive,
+  videoMoreIconClickId,
 }) => {
   return (
     <>
@@ -81,7 +82,7 @@ export const HeaderPopOvers = ({
       </div>
       <div
         className={`rounded-[10px] py-[8px] visible bg-white z-[300] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
-          videoMoreIconActive ? "" : "hidden"
+          videoMoreIconActive.status ? "" : "hidden"
         }`}
         style={{
           position: "fixed",

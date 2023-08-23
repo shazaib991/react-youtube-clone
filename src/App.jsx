@@ -7,7 +7,10 @@ import MicIcon from "@mui/icons-material/Mic";
 
 export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
-  const [videoMoreIconActive, setVideoMoreIconActive] = useState(false);
+  const [videoMoreIconActive, setVideoMoreIconActive] = useState({
+    status: false,
+    id: 0,
+  });
   const [moreIconHover, setMoreIconHover] = useState(false);
   const [micIconHover, setMicIconHover] = useState(false);
   const [searchIconHover, setSearchIconHover] = useState(false);
@@ -21,16 +24,20 @@ export default function App() {
   const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
   const disableScroll = useRef();
+  let videoMoreIconClickActive = false;
 
   const handlePopoverDisable = () => {
-    if (!moreIconActive && !videoMoreIconActive) {
+    if (!moreIconActive && !videoMoreIconActive.status) {
       return;
     }
     if (moreIconActive) {
       setMoreIconActive(false);
       return;
     }
-    setVideoMoreIconActive(false);
+    if (videoMoreIconClickActive) {
+      return;
+    }
+    setVideoMoreIconActive({ ...videoMoreIconActive, status: false });
   };
 
   let handleEvent = useCallback((e) => {
@@ -77,14 +84,27 @@ export default function App() {
     return;
   };
 
+  const handleVideoMouseEnter = (index) => {
+    setVideoMoreIconActive({ ...videoMoreIconActive, id: index });
+  };
+
   const handleVideoMoreIconClick = (e, index) => {
+    videoMoreIconClickActive = true;
     setVideoMoreIconClickId(index);
     setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
-    setVideoMoreIconActive((prev) => !prev);
+    console.log(videoMoreIconActive.id + " " + videoMoreIconClickId);
+    if (videoMoreIconActive.id === videoMoreIconClickId) {
+      setVideoMoreIconActive({
+        ...videoMoreIconActive,
+        status: !videoMoreIconActive.status,
+      });
+      return;
+    }
+    setVideoMoreIconActive({ ...videoMoreIconActive, status: true });
   };
 
   useEffect(() => {
-    if (moreIconActive || videoMoreIconActive) {
+    if (moreIconActive || videoMoreIconActive.status) {
       disableScroll.current.addEventListener("scroll", handleEvent);
       disableScroll.current.addEventListener("mousewheel", handleEvent);
       disableScroll.current.addEventListener("touchmove", handleEvent);
@@ -93,12 +113,12 @@ export default function App() {
       disableScroll.current.removeEventListener("mousewheel", handleEvent);
       disableScroll.current.removeEventListener("touchmove", handleEvent);
     }
-  }, [moreIconActive, videoMoreIconActive]);
+  }, [moreIconActive, videoMoreIconActive.status]);
 
   return (
     <div
       className={`h-[100vh] overflow-y-scroll relative ${
-        moreIconActive || videoMoreIconActive ? "invisible" : ""
+        moreIconActive || videoMoreIconActive.status ? "invisible" : ""
       } scroll-smooth`}
       ref={disableScroll}
     >
@@ -177,6 +197,7 @@ export default function App() {
         searchIconHover={searchIconHover}
         videoMoreIconPos={videoMoreIconPos}
         videoMoreIconActive={videoMoreIconActive}
+        videoMoreIconClickId={videoMoreIconClickId}
       />
       <div className="visible">
         <Header
@@ -200,6 +221,7 @@ export default function App() {
             handleVideoMoreIconClick={handleVideoMoreIconClick}
             videoMoreIconActive={videoMoreIconActive}
             videoMoreIconClickId={videoMoreIconClickId}
+            handleVideoMouseEnter={handleVideoMouseEnter}
           />
         </div>
       </div>

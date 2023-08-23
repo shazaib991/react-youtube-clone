@@ -8,6 +8,7 @@ export const HomeSection = ({
   handleVideoMoreIconClick,
   videoMoreIconActive,
   videoMoreIconClickId,
+  handleVideoMouseEnter,
 }) => {
   const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
@@ -355,6 +356,7 @@ export const HomeSection = ({
                   <div
                     key={item.etag}
                     className="w-[341px] rounded-[11px] mb-[42px] cursor-pointer group"
+                    onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
                     <div className="relative">
                       <img
@@ -467,7 +469,8 @@ export const HomeSection = ({
                       </div>
                       <div
                         className={`w-[40px] h-[40px] flex justify-center items-center rounded-[50%] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px] absolute top-[2px] right-[-12px] ${
-                          videoMoreIconActive && videoMoreIconClickId === index
+                          videoMoreIconActive.status &&
+                          videoMoreIconClickId === index
                             ? ""
                             : "hidden"
                         } group-hover:flex`}
