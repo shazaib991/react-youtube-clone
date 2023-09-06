@@ -117,7 +117,7 @@ export default function App() {
 
   return (
     <div
-      className={`h-[100vh] overflow-y-scroll relative ${
+      className={`h-[100vh] relative ${
         moreIconActive || videoMoreIconActive.status ? "invisible" : ""
       } scroll-smooth`}
       ref={disableScroll}
@@ -210,7 +210,7 @@ export default function App() {
           handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
           handleMicListenClick={handleMicListenClick}
         />
-        <div className="flex" onClick={handlePopoverDisable}>
+        <div className="flex mt-[56px]" onClick={handlePopoverDisable}>
           <Sidebar
             moreIconActive={moreIconActive}
             videoMoreIconActive={videoMoreIconActive}

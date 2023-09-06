@@ -241,7 +241,7 @@ export const HomeSection = ({
         {videoCategoryArr.length !== 0 ? (
           <div
             className={`h-[56px] ${
-              sidebarBurgerMenuClick ? "w-[90.1%]" : "w-[77.6%]"
+              sidebarBurgerMenuClick ? "w-[90.1%]" : "w-[78.5%]"
             } bg-white fixed z-[100]`}
           >
             <div

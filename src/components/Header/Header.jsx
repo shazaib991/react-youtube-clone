@@ -38,7 +38,7 @@ export const Header = ({
 
   return (
     <div
-      className="w-full h-[56px] flex items-center sticky top-0 justify-between px-[18px] z-10 bg-white"
+      className="w-[100%] h-[56px] flex items-center fixed top-0 justify-between px-[18px] z-10 bg-white"
       onClick={
         moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""
       }
