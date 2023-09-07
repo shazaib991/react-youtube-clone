@@ -51,7 +51,7 @@ export const Sidebar = ({
   return (
     <div
       className={`${
-        sidebarBurgerMenuClick ? "w-[83px]" : "w-[240px]"
+        sidebarBurgerMenuClick ? "w-[70px]" : "w-[240px]"
       } h-[100vh] fixed overflow-y-auto invisible hover:visible overscroll-contain scroll-smooth`}
       ref={disableScroll}
     >
@@ -153,7 +153,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[18px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
-              }`}
+              } text-[#353535]`}
             >
               Shorts
             </p>
@@ -201,7 +201,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[1px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
-              }`}
+              } text-[#353535]`}
             >
               Subscriptions
             </p>
@@ -224,7 +224,7 @@ export const Sidebar = ({
               sidebarBurgerMenuClick ? "flex-col" : "flex"
             } items-center hover:bg-[#f2f2f2] rounded-[11px] ${
               sidebarBurgerMenuClick ? "pb-[14px]" : "py-[9px]"
-            } ${sidebarBurgerMenuClick ? "pt-[18px]" : ""}`}
+            } ${sidebarBurgerMenuClick ? "pt-[18px]" : ""} text-[20px]`}
           >
             <VideoLibraryOutlinedIcon
               className={`${
@@ -233,7 +233,7 @@ export const Sidebar = ({
               fontSize="inherit"
             />
             <VideoLibraryIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
@@ -242,7 +242,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[17px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[3px]" : ""
-              }`}
+              } text-[#353535]`}
             >
               Library
             </p>
@@ -260,16 +260,16 @@ export const Sidebar = ({
               sidebarBurgerMenuClick ? "flex-col" : "flex"
             } items-center hover:bg-[#f2f2f2] rounded-[11px] ${
               sidebarBurgerMenuClick ? "pb-[14px]" : "py-[9px]"
-            } ${sidebarBurgerMenuClick ? "pt-[18px]" : ""}`}
+            } ${sidebarBurgerMenuClick ? "pt-[18px]" : ""} text-[20px]`}
           >
             <AccessTimeIcon
               className={`${
                 sidebarBurgerMenuClick ? "ml-[23px]" : "ml-[16px]"
-              } text-[20px]`}
+              }`}
               fontSize="inherit"
             />
             <WatchLaterIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
@@ -278,7 +278,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[16px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[3px]" : ""
-              }`}
+              } text-[#353535]`}
             >
               History
             </p>
@@ -311,166 +311,145 @@ export const Sidebar = ({
           <hr className="mt-[16px] mb-[16px]" />
           <p className="ml-[25px] mb-[5px]">Explore</p>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Trending"
           >
-            <WhatshotOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <WhatshotOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <WhatshotIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Trending</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">Trending</p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Music"
           >
-            <MusicNoteOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <MusicNoteOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <MusicNoteIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Music</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">Music</p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Gaming"
           >
             <VideogameAssetOutlinedIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               fontSize="inherit"
             />
             <VideogameAssetIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Gaming</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">Gaming</p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="News"
           >
-            <FeedOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <FeedOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <FeedIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">News</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">News</p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Sports"
           >
-            <EmojiEventsOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <EmojiEventsOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <EmojiEventsIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Sports</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">Sports</p>
           </a>
           <hr className="mt-[14px] mb-[13px]" />
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Browse channels"
           >
-            <AddCircleOutlineIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <AddCircleOutlineIcon className="ml-[16px]" fontSize="inherit" />
             <AddCircleIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Browse channels</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">
+              Browse channels
+            </p>
           </a>
           <hr className="mt-[14px] mb-[13px]" />
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Settings"
           >
-            <SettingsOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <SettingsOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <SettingsIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Settings</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">Settings</p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Report history"
           >
-            <FlagOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <FlagOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <FlagIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Report history</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">
+              Report history
+            </p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Help"
           >
-            <HelpOutlineOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <HelpOutlineOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <HelpIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Help</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">Help</p>
           </a>
           <a
-            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px]"
+            className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
             href="/"
             title="Send feedback"
           >
-            <FeedbackOutlinedIcon
-              className="ml-[16px] text-[20px]"
-              fontSize="inherit"
-            />
+            <FeedbackOutlinedIcon className="ml-[16px]" fontSize="inherit" />
             <FeedbackIcon
-              className="ml-[16px] text-[20px]"
+              className="ml-[16px]"
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px]">Send feedback</p>
+            <p className="text-[14px] ml-[26px] text-[#353535]">
+              Send feedback
+            </p>
           </a>
           <hr className="mt-[14px] mb-[13px]" />
           <div className="mx-[26px] leading-[18px]">

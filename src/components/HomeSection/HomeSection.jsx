@@ -241,8 +241,8 @@ export const HomeSection = ({
         {videoCategoryArr.length !== 0 ? (
           <div
             className={`h-[56px] ${
-              sidebarBurgerMenuClick ? "w-[90.1%]" : "w-[78.5%]"
-            } bg-white fixed z-[100]`}
+              sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"
+            } bg-white fixed z-[900]`}
           >
             <div
               className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
@@ -355,7 +355,7 @@ export const HomeSection = ({
                 return (
                   <div
                     key={item.etag}
-                    className="w-[341px] rounded-[11px] mb-[42px] cursor-pointer group"
+                    className="w-[343px] rounded-[11px] mb-[42px] cursor-pointer group"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
                     <div className="relative">
@@ -493,7 +493,7 @@ export const HomeSection = ({
               })
             : [...Array(12).keys()].map(() => {
                 return (
-                  <div className="w-[341px] rounded-[9px] mb-[50px]">
+                  <div className="w-[343px] rounded-[9px] mb-[50px]">
                     <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
                     <div className="flex mt-[12px]">
                       <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>

@@ -38,7 +38,7 @@ export const Header = ({
 
   return (
     <div
-      className="w-[100%] h-[56px] flex items-center fixed top-0 justify-between px-[18px] z-10 bg-white"
+      className="w-[100%] h-[56px] flex items-center fixed top-0 justify-between px-[18px] z-[1000] bg-white"
       onClick={
         moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""
       }
@@ -63,7 +63,7 @@ export const Header = ({
             <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
         </div>
-        <div className="flex items-center ml-[159px]">
+        <div className="flex items-center ml-[165px]">
           <div className="w-[567px] h-[40px] flex items-center justify-end relative">
             <input
               type="text"

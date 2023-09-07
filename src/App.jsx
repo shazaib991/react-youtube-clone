@@ -123,7 +123,7 @@ export default function App() {
       ref={disableScroll}
     >
       <div
-        className={`h-full w-full fixed bg-[#0000004d] z-[300] ${
+        className={`h-[100vh] w-full fixed bg-[#0000004d] z-[1200] ${
           showMicListeningPopover ? "visible" : "invisible"
         } ${
           showMicListeningPopover ? "opacity-100" : "opacity-0"
@@ -197,7 +197,6 @@ export default function App() {
         searchIconHover={searchIconHover}
         videoMoreIconPos={videoMoreIconPos}
         videoMoreIconActive={videoMoreIconActive}
-        videoMoreIconClickId={videoMoreIconClickId}
       />
       <div className="visible">
         <Header

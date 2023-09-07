@@ -19,12 +19,11 @@ export const HeaderPopOvers = ({
   searchIconHover,
   videoMoreIconPos,
   videoMoreIconActive,
-  videoMoreIconClickId,
 }) => {
   return (
     <>
       <div
-        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] visible bg-white z-[300] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] visible bg-white z-[1000] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
           moreIconActive ? "" : "hidden"
         }`}
       >
@@ -104,29 +103,29 @@ export const HeaderPopOvers = ({
         </div>
       </div>
       <div
-        className={`fixed top-[64px] right-[412px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+        className={`fixed top-[64px] right-[398px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
           searchIconHover ? "opacity-100" : "opacity-0"
         } ${
           searchIconHover ? "visible" : "invisible"
-        } transition-all z-[200] cursor-default`}
+        } transition-all z-[1000] cursor-default`}
       >
         Search
       </div>
       <div
-        className={`fixed top-[64px] right-[305px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+        className={`fixed top-[64px] right-[290px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
           micIconHover ? "opacity-100" : "opacity-0"
         } ${
           micIconHover ? "visible" : "invisible"
-        } transition-all z-[200] cursor-default`}
+        } transition-all z-[1000] cursor-default`}
       >
         Search with your voice
       </div>
       <div
-        className={`fixed top-[64px] right-[130px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+        className={`fixed top-[64px] right-[115px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
           moreIconHover ? "opacity-100" : "opacity-0"
         } ${
           moreIconHover ? "visible" : "invisible"
-        } transition-all z-[200] cursor-default`}
+        } transition-all z-[1000] cursor-default`}
       >
         Settings
       </div>
