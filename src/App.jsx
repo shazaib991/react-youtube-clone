@@ -209,7 +209,7 @@ export default function App() {
           handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
           handleMicListenClick={handleMicListenClick}
         />
-        <div className="flex mt-[56px]" onClick={handlePopoverDisable}>
+        <div className="flex pt-[56px]" onClick={handlePopoverDisable}>
           <Sidebar
             moreIconActive={moreIconActive}
             videoMoreIconActive={videoMoreIconActive}

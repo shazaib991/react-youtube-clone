@@ -23,7 +23,7 @@ export const HeaderPopOvers = ({
   return (
     <>
       <div
-        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] visible bg-white z-[1000] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
           moreIconActive ? "" : "hidden"
         }`}
       >
