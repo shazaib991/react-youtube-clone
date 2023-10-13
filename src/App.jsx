@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Header } from "./components/Header/Header";
 import { HomeSection } from "./components/HomeSection/HomeSection";
 import { Sidebar } from "./components/Sidebar/Sidebar";
-import { HeaderPopOvers } from "./components/HeaderPopOvers/HeaderPopOvers";
+import { PopOvers } from "./components/PopOvers/PopOvers";
 import MicIcon from "@mui/icons-material/Mic";
 
 export default function App() {
@@ -24,6 +24,7 @@ export default function App() {
   const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
   const disableScroll = useRef();
+  const sizeHomeSection = useRef();
   let videoMoreIconClickActive = false;
 
   const handlePopoverDisable = () => {
@@ -81,7 +82,6 @@ export default function App() {
     if (status === "outside") {
       setShowMicListeningPopover(false);
     }
-    return;
   };
 
   const handleVideoMouseEnter = (index) => {
@@ -92,7 +92,9 @@ export default function App() {
     videoMoreIconClickActive = true;
     setVideoMoreIconClickId(index);
     setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
-    console.log(videoMoreIconActive.id + " " + videoMoreIconClickId);
+    console.log(sizeHomeSection.current.offsetHeight);
+    console.log(e.currentTarget.getBoundingClientRect());
+
     if (videoMoreIconActive.id === videoMoreIconClickId) {
       setVideoMoreIconActive({
         ...videoMoreIconActive,
@@ -190,7 +192,7 @@ export default function App() {
           </div>
         </div>
       </div>
-      <HeaderPopOvers
+      <PopOvers
         moreIconActive={moreIconActive}
         moreIconHover={moreIconHover}
         micIconHover={micIconHover}
@@ -209,7 +211,11 @@ export default function App() {
           handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
           handleMicListenClick={handleMicListenClick}
         />
-        <div className="flex pt-[56px]" onClick={handlePopoverDisable}>
+        <div
+          className="flex pt-[56px]"
+          onClick={handlePopoverDisable}
+          ref={sizeHomeSection}
+        >
           <Sidebar
             moreIconActive={moreIconActive}
             videoMoreIconActive={videoMoreIconActive}

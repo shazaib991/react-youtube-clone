@@ -12,7 +12,7 @@ import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
-export const HeaderPopOvers = ({
+export const PopOvers = ({
   moreIconActive,
   moreIconHover,
   micIconHover,

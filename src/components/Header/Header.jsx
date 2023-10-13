@@ -1,7 +1,5 @@
 import MicIcon from "@mui/icons-material/Mic";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
-import React from "react";
 import { useRef, useState } from "react";
 
 export const Header = ({
@@ -43,7 +41,7 @@ export const Header = ({
         moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""
       }
     >
-      <div className="flex">
+      <div className="w-full flex justify-between">
         <div className="flex items-center">
           <div
             className="w-[38px] h-[38px] flex justify-center mb-[2px] items-center rounded-[50%] cursor-pointer transition-[border] duration-300 active:transition-none hover:bg-black/10 active:border-[#00000026] active:border-[1px] active:bg-black/20"
@@ -63,14 +61,14 @@ export const Header = ({
             <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
         </div>
-        <div className="flex items-center ml-[165px]">
+        <div className="w-[53%] flex">
           <div className="w-[567px] h-[40px] flex items-center justify-end relative">
             <input
               type="text"
               name="youtube-search"
               id="youtube-search"
               placeholder="Search"
-              spellcheck="false"
+              spellCheck="false"
               onChange={handleSearch}
               value={searchText}
               ref={searchBox}
@@ -133,44 +131,48 @@ export const Header = ({
             <MicIcon sx={{ fontSize: "23px" }} />
           </div>
         </div>
-      </div>
-      <div className="flex items-center">
-        <div
-          className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7.5px] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px]"
-          onClick={handleMoreIconClick}
-          onMouseEnter={() => handleHeaderTooltipMouseEnter("moreIconTooltip")}
-          onMouseLeave={() => handleHeaderTooltipMouseLeave("moreIconTooltip")}
-          ref={moreIcon}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            fill="currentColor"
-            class="bi bi-three-dots-vertical"
-            viewBox="0 0 16 16"
+        <div className="flex items-center">
+          <div
+            className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7.5px] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px]"
+            onClick={handleMoreIconClick}
+            onMouseEnter={() =>
+              handleHeaderTooltipMouseEnter("moreIconTooltip")
+            }
+            onMouseLeave={() =>
+              handleHeaderTooltipMouseLeave("moreIconTooltip")
+            }
+            ref={moreIcon}
           >
-            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-          </svg>
-        </div>
-        <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]">
-          <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="21"
-              height="21"
-              fill="blue"
-              className="bi bi-person-circle mr-[8px]"
+              width="18"
+              height="18"
+              fill="currentColor"
+              className="bi bi-three-dots-vertical"
               viewBox="0 0 16 16"
             >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path
-                fillRule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-              />
+              <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
             </svg>
           </div>
-          <p className="text-[14px] font-[500] text-[blue]">Sign in</p>
+          <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                fill="blue"
+                className="bi bi-person-circle mr-[8px]"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path
+                  fillRule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                />
+              </svg>
+            </div>
+            <p className="text-[14px] font-[500] text-[blue]">Sign in</p>
+          </div>
         </div>
       </div>
     </div>

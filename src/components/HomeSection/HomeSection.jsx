@@ -59,10 +59,15 @@ export const HomeSection = ({
 
       const channelDataArray = await channelResponse.data.items;
 
-      videoData[i].snippet.channelImg = await channelDataArray[0].snippet
-        .thumbnails.default.url;
+      if (channelDataArray !== undefined) {
+        videoData[i].snippet.channelImg = await channelDataArray[0].snippet
+          .thumbnails.default.url;
+      } else {
+        videoData[i].snippet.channelImg = "";
+      }
 
       const videoDetailsArray = await videoDetailsResponse.data.items;
+
       if (videoDetailsArray[0] !== undefined) {
         videoData[i].snippet.videoViewCount = await videoDetailsArray[0]
           .statistics.viewCount;
@@ -202,7 +207,6 @@ export const HomeSection = ({
     if (isMouseDown) {
       videoCategoryScroll.current.classList.add("scroll-smooth");
       isMouseDown = false;
-      return;
     }
   };
 
@@ -405,43 +409,47 @@ export const HomeSection = ({
                         </div>
                         <div>
                           <p className="text-[14px] text-[#626262] leading-[19px]">
-                            {Number(item.snippet.videoViewCount) === 1
-                              ? item.snippet.videoViewCount + " view"
-                              : item.snippet.videoViewCount.length <= 3
-                              ? item.snippet.videoViewCount + " views"
-                              : item.snippet.videoViewCount.length <= 4
-                              ? ParseFloat(
-                                  (Number(item.snippet.videoViewCount) / 1000,
-                                  2)
-                                ) + "k views"
-                              : item.snippet.videoViewCount.length <= 6
-                              ? ParseFloat(
-                                  Number(item.snippet.videoViewCount) / 1000,
-                                  0
-                                ) + "k views"
-                              : item.snippet.videoViewCount.length <= 7
-                              ? ParseFloat(
-                                  Number(item.snippet.videoViewCount) / 1000000,
-                                  2
-                                ) + "M views"
-                              : item.snippet.videoViewCount.length <= 9
-                              ? ParseFloat(
-                                  Number(item.snippet.videoViewCount) / 1000000,
-                                  0
-                                ) + "M views"
-                              : item.snippet.videoViewCount.length <= 10
-                              ? ParseFloat(
-                                  Number(item.snippet.videoViewCount) /
-                                    1000000000,
-                                  2
-                                ) + "B views"
-                              : item.snippet.videoViewCount.length <= 12
-                              ? ParseFloat(
-                                  Number(item.snippet.videoViewCount) /
-                                    1000000000,
-                                  0
-                                ) + "B views"
-                              : item.snippet.videoViewCount + " views"}
+                            {item.snippet.videoViewCount !== undefined
+                              ? Number(item.snippet.videoViewCount) === 1
+                                ? item.snippet.videoViewCount + " view"
+                                : item.snippet.videoViewCount.length <= 3
+                                ? item.snippet.videoViewCount + " views"
+                                : item.snippet.videoViewCount.length <= 4
+                                ? ParseFloat(
+                                    (Number(item.snippet.videoViewCount) / 1000,
+                                    2)
+                                  ) + "k views"
+                                : item.snippet.videoViewCount.length <= 6
+                                ? ParseFloat(
+                                    Number(item.snippet.videoViewCount) / 1000,
+                                    0
+                                  ) + "k views"
+                                : item.snippet.videoViewCount.length <= 7
+                                ? ParseFloat(
+                                    Number(item.snippet.videoViewCount) /
+                                      1000000,
+                                    2
+                                  ) + "M views"
+                                : item.snippet.videoViewCount.length <= 9
+                                ? ParseFloat(
+                                    Number(item.snippet.videoViewCount) /
+                                      1000000,
+                                    0
+                                  ) + "M views"
+                                : item.snippet.videoViewCount.length <= 10
+                                ? ParseFloat(
+                                    Number(item.snippet.videoViewCount) /
+                                      1000000000,
+                                    2
+                                  ) + "B views"
+                                : item.snippet.videoViewCount.length <= 12
+                                ? ParseFloat(
+                                    Number(item.snippet.videoViewCount) /
+                                      1000000000,
+                                    0
+                                  ) + "B views"
+                                : item.snippet.videoViewCount + " views"
+                              : "? views"}
                             &nbsp;&#x2022;&nbsp;
                             {years != 0
                               ? years +
@@ -481,7 +489,7 @@ export const HomeSection = ({
                           width="18"
                           height="18"
                           fill="currentColor"
-                          class="bi bi-three-dots-vertical"
+                          className="bi bi-three-dots-vertical"
                           viewBox="0 0 16 16"
                         >
                           <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />

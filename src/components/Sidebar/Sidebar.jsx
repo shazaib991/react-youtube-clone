@@ -106,7 +106,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[19px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
-              }`}
+              } font-medium`}
             >
               Home
             </p>
@@ -153,7 +153,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[18px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
-              } text-[#353535]`}
+              }`}
             >
               Shorts
             </p>
@@ -201,7 +201,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[1px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
-              } text-[#353535]`}
+              }`}
             >
               Subscriptions
             </p>
@@ -242,7 +242,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[17px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[3px]" : ""
-              } text-[#353535]`}
+              }`}
             >
               Library
             </p>
@@ -278,7 +278,7 @@ export const Sidebar = ({
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
               } ${sidebarBurgerMenuClick ? "ml-[16px]" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[3px]" : ""
-              } text-[#353535]`}
+              }`}
             >
               History
             </p>
@@ -321,7 +321,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">Trending</p>
+            <p className="text-[14px] ml-[26px]">Trending</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -334,7 +334,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">Music</p>
+            <p className="text-[14px] ml-[26px]">Music</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -350,7 +350,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">Gaming</p>
+            <p className="text-[14px] ml-[26px]">Gaming</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -363,7 +363,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">News</p>
+            <p className="text-[14px] ml-[26px]">News</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -376,7 +376,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">Sports</p>
+            <p className="text-[14px] ml-[26px]">Sports</p>
           </a>
           <hr className="mt-[14px] mb-[13px]" />
           <a
@@ -390,9 +390,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">
-              Browse channels
-            </p>
+            <p className="text-[14px] ml-[26px]">Browse channels</p>
           </a>
           <hr className="mt-[14px] mb-[13px]" />
           <a
@@ -406,7 +404,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">Settings</p>
+            <p className="text-[14px] ml-[26px]">Settings</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -419,9 +417,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">
-              Report history
-            </p>
+            <p className="text-[14px] ml-[26px]">Report history</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -434,7 +430,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">Help</p>
+            <p className="text-[14px] ml-[26px]">Help</p>
           </a>
           <a
             className="flex items-center hover:bg-[#f2f2f2] mx-[11px] text-[20px] py-[9px] rounded-[11px] text-[20px]"
@@ -447,9 +443,7 @@ export const Sidebar = ({
               style={{ display: "none" }}
               fontSize="inherit"
             />
-            <p className="text-[14px] ml-[26px] text-[#353535]">
-              Send feedback
-            </p>
+            <p className="text-[14px] ml-[26px]">Send feedback</p>
           </a>
           <hr className="mt-[14px] mb-[13px]" />
           <div className="mx-[26px] leading-[18px]">
