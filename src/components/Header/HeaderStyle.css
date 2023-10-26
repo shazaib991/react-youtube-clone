@@ -1,0 +1,19 @@
+.headerMoreIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    margin-right: 7.5px;
+    cursor: pointer;
+    transition: background-color 0.3s cubic-bezier(.4, 0, .2, 1), border 1.3s cubic-bezier(.4, 0, .2, 1);
+    z-index: 300;
+}
+
+.headerMoreIcon:active {
+    transition: none;
+    border: 1px solid #e5e5e5;
+    background-color: #e5e5e5;
+}

@@ -1,6 +1,7 @@
 import MicIcon from "@mui/icons-material/Mic";
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
 import { useRef, useState } from "react";
+import "./HeaderStyle.css";
 
 export const Header = ({
   setMoreIconActive,
@@ -133,7 +134,7 @@ export const Header = ({
         </div>
         <div className="flex items-center">
           <div
-            className="w-[40px] h-[40px] flex justify-center items-center rounded-[50%] mr-[7.5px] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px]"
+            className="headerMoreIcon"
             onClick={handleMoreIconClick}
             onMouseEnter={() =>
               handleHeaderTooltipMouseEnter("moreIconTooltip")
