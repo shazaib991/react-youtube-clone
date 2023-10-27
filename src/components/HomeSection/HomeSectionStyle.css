@@ -1,7 +1,10 @@
-.headerMoreIcon {
+.videoMoreIcon {
     width: 40px;
     height: 40px;
     display: flex;
+    position: absolute;
+    top: 2px;
+    right: -19px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -12,8 +15,16 @@
     z-index: 300;
 }
 
-.headerMoreIcon:active {
+.videoMoreIcon:active {
     transition: none;
     border: 2px solid #e5e5e5;
     background-color: #e5e5e5;
+}
+
+.videoMoreIconHidden {
+    display: none;
+}
+
+.videoCard:hover .videoMoreIcon {
+    display: flex;
 }

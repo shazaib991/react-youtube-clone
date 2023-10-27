@@ -2,6 +2,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import "./HomeSectionStyle.css";
 
 export const HomeSection = ({
   sidebarBurgerMenuClick,
@@ -359,7 +360,7 @@ export const HomeSection = ({
                 return (
                   <div
                     key={item.etag}
-                    className="w-[343px] rounded-[11px] mb-[42px] cursor-pointer group"
+                    className="w-[343px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
                     <div className="relative">
@@ -368,7 +369,7 @@ export const HomeSection = ({
                         alt="youtube thumbnail image"
                         className="w-full rounded-[12px]"
                       />
-                      <div className="absolute bottom-[4px] right-[6px] bg-[#191C23] text-white font-medium text-[12px] px-[3px] rounded-[3px]">
+                      <div className="absolute bottom-[4px] right-[4px] bg-[#191C23] text-white font-medium text-[12px] px-[5px] rounded-[3px]">
                         <p>{extractVideoLength(item.snippet.videoLength)}</p>
                       </div>
                     </div>
@@ -476,12 +477,12 @@ export const HomeSection = ({
                         </div>
                       </div>
                       <div
-                        className={`w-[40px] h-[40px] flex justify-center items-center rounded-[50%] cursor-pointer active:transition-none transition-[background,border] duration-300 z-[300] active:bg-black/10 active:border-[2px] absolute top-[2px] right-[-12px] ${
+                        className={`videoMoreIcon ${
                           videoMoreIconActive.status &&
                           videoMoreIconClickId === index
                             ? ""
-                            : "hidden"
-                        } group-hover:flex`}
+                            : "videoMoreIconHidden"
+                        }`}
                         onClick={(e) => handleVideoMoreIconClick(e, index)}
                       >
                         <svg
