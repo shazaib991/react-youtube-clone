@@ -25,6 +25,7 @@ export default function App() {
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
   const disableScroll = useRef();
   const sizeHomeSection = useRef();
+  const burgerIcon = useRef();
   let videoMoreIconClickActive = false;
 
   const handlePopoverDisable = () => {
@@ -123,6 +124,12 @@ export default function App() {
         moreIconActive || videoMoreIconActive.status ? "invisible" : ""
       } scroll-smooth`}
       ref={disableScroll}
+      onMouseUp={() => {
+        burgerIcon.current.classList.remove("burgerMenuIconActive");
+        burgerIcon.current.classList.remove("burgerMenuIconActive2");
+        burgerIcon.current.classList.remove("burgerMenuIconHover");
+        burgerIcon.current.classList.remove("burgerMenuIconMouseDown");
+      }}
     >
       <div
         className={`h-[100vh] w-full fixed bg-[#0000004d] z-[1200] ${
@@ -210,6 +217,7 @@ export default function App() {
           handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
           handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
           handleMicListenClick={handleMicListenClick}
+          burgerIcon={burgerIcon}
         />
         <div
           className="flex pt-[56px]"

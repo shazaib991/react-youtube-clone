@@ -12,10 +12,10 @@ export const Header = ({
   handleHeaderTooltipMouseLeave,
   handleMicListenClick,
   videoMoreIconActive,
+  burgerIcon,
 }) => {
   const [searchText, setSearchText] = useState("");
   const moreIcon = useRef();
-  const burgerIcon = useRef();
   const searchBox = useRef();
 
   const handleSearch = (e) => {
@@ -27,7 +27,7 @@ export const Header = ({
     searchBox.current.focus();
   };
 
-  const handleMoreIconClick = () => {
+  const handleMoreIconClick = (e) => {
     setMoreIconActive((prevState) => !prevState);
   };
 
@@ -45,8 +45,44 @@ export const Header = ({
       <div className="w-full flex justify-between">
         <div className="flex items-center">
           <div
-            className="w-[38px] h-[38px] flex justify-center mb-[2px] items-center rounded-[50%] cursor-pointer transition-[border] duration-300 active:transition-none hover:bg-black/10 active:border-[#00000026] active:border-[1px] active:bg-black/20"
+            className="burgerMenuIcon"
             onClick={handleSidebarBurgerMenuClick}
+            onMouseLeave={(e) => {
+              e.currentTarget.classList.remove("burgerMenuTransitionActive");
+
+              if (
+                e.currentTarget.classList.contains("burgerMenuIconMouseDown")
+              ) {
+                e.currentTarget.classList.add("burgerMenuIconHover");
+                e.currentTarget.classList.remove("burgerMenuIconActive");
+                e.currentTarget.classList.add("burgerMenuIconActive2");
+                return;
+              }
+              e.currentTarget.classList.remove("burgerMenuIconHover");
+            }}
+            onMouseDown={(e) => {
+              if (e.button === 0) {
+                e.currentTarget.classList.add("burgerMenuIconActive");
+                e.currentTarget.classList.add("burgerMenuIconMouseDown");
+                e.currentTarget.classList.remove("burgerMenuIconHover");
+              }
+              return;
+            }}
+            onMouseEnter={(e) => {
+              if (
+                e.currentTarget.classList.contains("burgerMenuIconMouseDown")
+              ) {
+                e.currentTarget.classList.remove("burgerMenuIconHover");
+                e.currentTarget.classList.add("burgerMenuIconActive");
+                e.currentTarget.classList.remove("burgerMenuIconActive2");
+                return;
+              }
+              e.currentTarget.classList.add("burgerMenuIconHover");
+            }}
+            onMouseUp={(e) => {
+              e.currentTarget.classList.remove("burgerMenuIconActive");
+              e.currentTarget.classList.add("burgerMenuTransitionActive");
+            }}
             ref={burgerIcon}
           >
             <div className="w-[18px] h-[13px] flex flex-col justify-between">
