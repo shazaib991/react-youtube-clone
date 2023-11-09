@@ -500,9 +500,12 @@ export const HomeSection = ({
                   </div>
                 );
               })
-            : [...Array(12).keys()].map(() => {
+            : [...Array(12).keys()].map((index) => {
                 return (
-                  <div className="w-[343px] rounded-[9px] mb-[50px]">
+                  <div
+                    className="w-[343px] rounded-[9px] mb-[50px]"
+                    key={index}
+                  >
                     <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
                     <div className="flex mt-[12px]">
                       <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>

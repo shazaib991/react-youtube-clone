@@ -9,8 +9,8 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
-import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import { useRef, useState } from "react";
 
 export const PopOvers = ({
   moreIconActive,
@@ -20,6 +20,28 @@ export const PopOvers = ({
   videoMoreIconPos,
   videoMoreIconActive,
 }) => {
+  const [windowSize, setWindowSize] = useState(0);
+  const videoMoreIconPopOver = useRef();
+
+  const windowResize = () => {
+    // console.log("window: " + window.innerHeight);
+    // console.log(
+    //   "first: " +
+    //     Math.trunc(
+    //       videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 42)
+    //     )
+    // );
+    // console.log(
+    //   "second: " +
+    //     Math.trunc(
+    //       videoMoreIconPos.y + videoMoreIconPopOver.current.clientHeight
+    //     )
+    // );
+    setWindowSize(window.innerHeight);
+  };
+
+  window.onresize = windowResize;
+
   return (
     <>
       <div
@@ -80,22 +102,47 @@ export const PopOvers = ({
         </div>
       </div>
       <div
-        className={`rounded-[10px] py-[8px] visible bg-white z-[300] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+        className={`rounded-[10px] py-[8px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
           videoMoreIconActive.status ? "" : "hidden"
         }`}
+        ref={videoMoreIconPopOver}
         style={{
           position: "fixed",
-          top: `${String(Math.trunc(videoMoreIconPos.y + 42))}px`,
-          left: `${String(Math.trunc(videoMoreIconPos.x))}px`,
+          top: `${
+            windowSize <=
+            Math.trunc(
+              videoMoreIconPos.y +
+                (videoMoreIconPopOver.current.clientHeight + 2)
+            )
+              ? String(Math.trunc(videoMoreIconPos.y - 85))
+              : windowSize <=
+                Math.trunc(
+                  videoMoreIconPos.y +
+                    (videoMoreIconPopOver.current.clientHeight + 42)
+                )
+              ? String(Math.trunc(videoMoreIconPos.y + 2))
+              : String(Math.trunc(videoMoreIconPos.y + 42))
+          }px`,
+          left: `${
+            windowSize <=
+            Math.trunc(
+              videoMoreIconPos.y +
+                (videoMoreIconPopOver.current.clientHeight + 2)
+            )
+              ? String(Math.trunc(videoMoreIconPos.x))
+              : windowSize <=
+                Math.trunc(
+                  videoMoreIconPos.y +
+                    (videoMoreIconPopOver.current.clientHeight + 42)
+                )
+              ? String(Math.trunc(videoMoreIconPos.x + 40))
+              : String(Math.trunc(videoMoreIconPos.x))
+          }px`,
         }}
       >
         <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
           <VideoLibraryOutlinedIcon sx={{ fontSize: "20px" }} />
           <p className="ml-[18px] text-[14px]">Add to queue</p>
-        </div>
-        <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
-          <FileDownloadOutlinedIcon sx={{ fontSize: "20px" }} />
-          <p className="ml-[18px] text-[14px]">Download</p>
         </div>
         <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
           <ShareOutlinedIcon sx={{ fontSize: "20px" }} />
