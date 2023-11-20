@@ -10,7 +10,7 @@ import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const PopOvers = ({
   moreIconActive,
@@ -24,21 +24,13 @@ export const PopOvers = ({
   const videoMoreIconPopOver = useRef();
 
   const windowResize = () => {
-    // console.log("window: " + window.innerHeight);
-    // console.log(
-    //   "first: " +
-    //     Math.trunc(
-    //       videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 42)
-    //     )
-    // );
-    // console.log(
-    //   "second: " +
-    //     Math.trunc(
-    //       videoMoreIconPos.y + videoMoreIconPopOver.current.clientHeight
-    //     )
-    // );
     setWindowSize(window.innerHeight);
   };
+
+  useEffect(() => {
+    console.log("test");
+    setWindowSize(window.innerHeight);
+  }, []);
 
   window.onresize = windowResize;
 
@@ -106,39 +98,43 @@ export const PopOvers = ({
           videoMoreIconActive.status ? "" : "hidden"
         }`}
         ref={videoMoreIconPopOver}
-        style={{
-          position: "fixed",
-          top: `${
-            windowSize <=
-            Math.trunc(
-              videoMoreIconPos.y +
-                (videoMoreIconPopOver.current.clientHeight + 2)
-            )
-              ? String(Math.trunc(videoMoreIconPos.y - 85))
-              : windowSize <=
-                Math.trunc(
-                  videoMoreIconPos.y +
-                    (videoMoreIconPopOver.current.clientHeight + 42)
-                )
-              ? String(Math.trunc(videoMoreIconPos.y + 2))
-              : String(Math.trunc(videoMoreIconPos.y + 42))
-          }px`,
-          left: `${
-            windowSize <=
-            Math.trunc(
-              videoMoreIconPos.y +
-                (videoMoreIconPopOver.current.clientHeight + 2)
-            )
-              ? String(Math.trunc(videoMoreIconPos.x))
-              : windowSize <=
-                Math.trunc(
-                  videoMoreIconPos.y +
-                    (videoMoreIconPopOver.current.clientHeight + 42)
-                )
-              ? String(Math.trunc(videoMoreIconPos.x + 40))
-              : String(Math.trunc(videoMoreIconPos.x))
-          }px`,
-        }}
+        style={
+          videoMoreIconActive.status
+            ? {
+                position: "fixed",
+                top: `${
+                  windowSize <=
+                  Math.trunc(
+                    videoMoreIconPos.y +
+                      (videoMoreIconPopOver.current.clientHeight + 2)
+                  )
+                    ? String(Math.trunc(videoMoreIconPos.y - 85))
+                    : windowSize <=
+                      Math.trunc(
+                        videoMoreIconPos.y +
+                          (videoMoreIconPopOver.current.clientHeight + 42)
+                      )
+                    ? String(Math.trunc(videoMoreIconPos.y + 2))
+                    : String(Math.trunc(videoMoreIconPos.y + 42))
+                }px`,
+                left: `${
+                  windowSize <=
+                  Math.trunc(
+                    videoMoreIconPos.y +
+                      (videoMoreIconPopOver.current.clientHeight + 2)
+                  )
+                    ? String(Math.trunc(videoMoreIconPos.x))
+                    : windowSize <=
+                      Math.trunc(
+                        videoMoreIconPos.y +
+                          (videoMoreIconPopOver.current.clientHeight + 42)
+                      )
+                    ? String(Math.trunc(videoMoreIconPos.x + 40))
+                    : String(Math.trunc(videoMoreIconPos.x))
+                }px`,
+              }
+            : {}
+        }
       >
         <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
           <VideoLibraryOutlinedIcon sx={{ fontSize: "20px" }} />

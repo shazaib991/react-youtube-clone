@@ -287,7 +287,7 @@ export const HomeSection = ({
                         videoCategoryClickedId === index
                           ? ""
                           : "hover:bg-[#eaeaea]"
-                      } transition-all duration-300`}
+                      } transition-all duration-300 font-medium`}
                       onClick={() => setVideoCategoryClickedId(index)}
                     >
                       <p title={`${item}`}>{item}</p>
@@ -379,9 +379,9 @@ export const HomeSection = ({
                         alt="youtube channel image"
                         className="h-[36px] w-[36px] rounded-full mr-[11px] mt-[11px]"
                       />
-                      <div>
+                      <div className="w-[80%]">
                         <p
-                          className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] pr-[25px] overflow-hidden line-clamp-2"
+                          className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
                           title={`${decodeEntity(item.snippet.title)}`}
                         >
                           {decodeEntity(item.snippet.title)}
@@ -400,16 +400,18 @@ export const HomeSection = ({
                           >
                             {item.snippet.channelTitle}
                           </div>
-                          <p
-                            className="inline text-[14px] text-[#626262] overflow-hidden line-clamp-1"
-                            onMouseEnter={() => channelHoverMouseEnter(index)}
-                            onMouseLeave={() => channelHoverMouseLeave(index)}
-                          >
-                            {item.snippet.channelTitle}
-                          </p>
+                          <div className="overflow-hidden text-ellipsis">
+                            <p
+                              className="inline text-[14px] text-[#626262]"
+                              onMouseEnter={() => channelHoverMouseEnter(index)}
+                              onMouseLeave={() => channelHoverMouseLeave(index)}
+                            >
+                              {item.snippet.channelTitle}
+                            </p>
+                          </div>
                         </div>
                         <div>
-                          <p className="text-[14px] text-[#626262] leading-[19px]">
+                          <p className="text-[14px] text-[#626262] leading-[17px]">
                             {item.snippet.videoViewCount !== undefined
                               ? Number(item.snippet.videoViewCount) === 1
                                 ? item.snippet.videoViewCount + " view"
