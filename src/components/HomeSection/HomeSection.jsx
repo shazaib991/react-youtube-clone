@@ -379,7 +379,7 @@ export const HomeSection = ({
                         alt="youtube channel image"
                         className="h-[36px] w-[36px] rounded-full mr-[11px] mt-[11px]"
                       />
-                      <div className="w-[80%]">
+                      <div className="w-[78%]">
                         <p
                           className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
                           title={`${decodeEntity(item.snippet.title)}`}
@@ -400,7 +400,7 @@ export const HomeSection = ({
                           >
                             {item.snippet.channelTitle}
                           </div>
-                          <div className="overflow-hidden text-ellipsis">
+                          <div className="overflow-hidden text-ellipsis line-clamp-1">
                             <p
                               className="inline text-[14px] text-[#626262]"
                               onMouseEnter={() => channelHoverMouseEnter(index)}

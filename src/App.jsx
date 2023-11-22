@@ -23,8 +23,10 @@ export default function App() {
   ] = useState(false);
   const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
+  const [windowSize, setWindowSize] = useState(0);
   const disableScroll = useRef();
   const burgerIcon = useRef();
+  const videoMoreIconPopOver = useRef();
   let videoMoreIconClickActive = false;
 
   const handlePopoverDisable = () => {
@@ -92,7 +94,6 @@ export default function App() {
     videoMoreIconClickActive = true;
     setVideoMoreIconClickId(index);
 
-    //TODO fix this whenever click should account for window size
     setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
 
     if (videoMoreIconActive.id === videoMoreIconClickId) {
@@ -116,6 +117,10 @@ export default function App() {
       disableScroll.current.removeEventListener("touchmove", handleEvent);
     }
   }, [moreIconActive, videoMoreIconActive.status]);
+
+  useEffect(() => {
+    setWindowSize(window.innerHeight);
+  }, []);
 
   return (
     <div
@@ -205,6 +210,7 @@ export default function App() {
         searchIconHover={searchIconHover}
         videoMoreIconPos={videoMoreIconPos}
         videoMoreIconActive={videoMoreIconActive}
+        videoMoreIconPopOver={videoMoreIconPopOver}
       />
       <div className="visible">
         <Header

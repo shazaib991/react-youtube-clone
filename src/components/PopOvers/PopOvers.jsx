@@ -10,7 +10,7 @@ import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const PopOvers = ({
   moreIconActive,
@@ -19,16 +19,15 @@ export const PopOvers = ({
   searchIconHover,
   videoMoreIconPos,
   videoMoreIconActive,
+  videoMoreIconPopOver,
 }) => {
   const [windowSize, setWindowSize] = useState(0);
-  const videoMoreIconPopOver = useRef();
 
   const windowResize = () => {
     setWindowSize(window.innerHeight);
   };
 
   useEffect(() => {
-    console.log("test");
     setWindowSize(window.innerHeight);
   }, []);
 
@@ -94,14 +93,13 @@ export const PopOvers = ({
         </div>
       </div>
       <div
-        className={`rounded-[10px] py-[8px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
-          videoMoreIconActive.status ? "" : "hidden"
+        className={`fixed rounded-[10px] py-[8px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+          videoMoreIconActive.status ? "" : "invisible"
         }`}
         ref={videoMoreIconPopOver}
         style={
           videoMoreIconActive.status
             ? {
-                position: "fixed",
                 top: `${
                   windowSize <=
                   Math.trunc(
