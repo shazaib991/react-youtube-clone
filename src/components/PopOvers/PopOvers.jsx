@@ -116,11 +116,39 @@ export const PopOvers = ({
                     : String(Math.trunc(videoMoreIconPos.y + 42))
                 }px`,
                 left: `${
+                  window.innerWidth <=
+                    Math.trunc(
+                      videoMoreIconPos.x +
+                        (videoMoreIconPopOver.current.clientWidth + 2)
+                    ) &&
                   windowSize <=
-                  Math.trunc(
-                    videoMoreIconPos.y +
-                      (videoMoreIconPopOver.current.clientHeight + 2)
-                  )
+                    Math.trunc(
+                      videoMoreIconPos.y +
+                        (videoMoreIconPopOver.current.clientHeight + 2)
+                    )
+                    ? String(Math.trunc(videoMoreIconPos.x - 132))
+                    : window.innerWidth <=
+                        Math.trunc(
+                          videoMoreIconPos.x +
+                            (videoMoreIconPopOver.current.clientWidth + 2)
+                        ) &&
+                      windowSize <=
+                        Math.trunc(
+                          videoMoreIconPos.y +
+                            (videoMoreIconPopOver.current.clientHeight + 42)
+                        )
+                    ? String(Math.trunc(videoMoreIconPos.x - 170))
+                    : window.innerWidth <=
+                      Math.trunc(
+                        videoMoreIconPos.x +
+                          (videoMoreIconPopOver.current.clientWidth + 2)
+                      )
+                    ? String(Math.trunc(videoMoreIconPos.x - 132))
+                    : windowSize <=
+                      Math.trunc(
+                        videoMoreIconPos.y +
+                          (videoMoreIconPopOver.current.clientHeight + 2)
+                      )
                     ? String(Math.trunc(videoMoreIconPos.x))
                     : windowSize <=
                       Math.trunc(
