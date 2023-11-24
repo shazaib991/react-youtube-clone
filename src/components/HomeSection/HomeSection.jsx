@@ -1,5 +1,7 @@
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
@@ -52,6 +54,11 @@ export const HomeSection = ({
           import.meta.env.VITE_API_KEY
         }&part=snippet&id=${videoData[i].snippet.channelId}`
       );
+      const channelStatisticsResponse = await axios(
+        `https://www.googleapis.com/youtube/v3/channels?key=${
+          import.meta.env.VITE_API_KEY
+        }&part=statistics&id=${videoData[i].snippet.channelId}`
+      );
       const videoDetailsResponse = await axios(
         `https://www.googleapis.com/youtube/v3/videos?key=${
           import.meta.env.VITE_API_KEY
@@ -59,12 +66,17 @@ export const HomeSection = ({
       );
 
       const channelDataArray = await channelResponse.data.items;
+      const channelStatisticsDataArray = await channelStatisticsResponse.data
+        .items;
 
       if (channelDataArray !== undefined) {
         videoData[i].snippet.channelImg = await channelDataArray[0].snippet
           .thumbnails.default.url;
+        videoData[i].snippet.channelSubscriberCount =
+          await channelStatisticsDataArray[0].statistics.subscriberCount;
       } else {
         videoData[i].snippet.channelImg = "";
+        videoData[i].snippet.channelSubscriberCount = "";
       }
 
       const videoDetailsArray = await videoDetailsResponse.data.items;
@@ -400,14 +412,30 @@ export const HomeSection = ({
                           >
                             {item.snippet.channelTitle}
                           </div>
-                          <div className="overflow-hidden text-ellipsis line-clamp-1">
-                            <p
-                              className="inline text-[14px] text-[#626262]"
-                              onMouseEnter={() => channelHoverMouseEnter(index)}
-                              onMouseLeave={() => channelHoverMouseLeave(index)}
-                            >
-                              {item.snippet.channelTitle}
-                            </p>
+                          <div className="flex items-center">
+                            <div className="overflow-hidden text-ellipsis line-clamp-1">
+                              <p
+                                className="inline text-[14px] text-[#626262]"
+                                onMouseEnter={() =>
+                                  channelHoverMouseEnter(index)
+                                }
+                                onMouseLeave={() =>
+                                  channelHoverMouseLeave(index)
+                                }
+                              >
+                                {item.snippet.channelTitle}
+                              </p>
+                            </div>
+                            {item.snippet.channelSubscriberCount >= 100000 ? (
+                              <div className="w-[11.5px] h-[11.5px] rounded-[50%] bg-[#5e5e5e] flex justify-center items-center ml-[5px]">
+                                <FontAwesomeIcon
+                                  icon={faCheck}
+                                  className="text-[9px] text-white mt-[1px]"
+                                />
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                         <div>
