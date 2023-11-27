@@ -427,11 +427,29 @@ export const HomeSection = ({
                               </p>
                             </div>
                             {item.snippet.channelSubscriberCount >= 100000 ? (
-                              <div className="w-[11.5px] h-[11.5px] rounded-[50%] bg-[#5e5e5e] flex justify-center items-center ml-[5px]">
-                                <FontAwesomeIcon
+                              <div className="w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] ml-[5px] pt-[1px] pl-[1px]">
+                                {/* <FontAwesomeIcon
                                   icon={faCheck}
-                                  className="text-[9px] text-white mt-[1px]"
-                                />
+                                  className="text-[8px] text-white mt-[1px]"
+                                /> */}
+                                <svg
+                                  width="10px"
+                                  height="10.5px"
+                                  stroke-width="2.5"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  // className="absolute top-[1px] right-[0px]"
+                                  color="#ffffff"
+                                >
+                                  <path
+                                    d="M5 13L9 17L19 7"
+                                    stroke="#ffffff"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  ></path>
+                                </svg>
                               </div>
                             ) : (
                               ""

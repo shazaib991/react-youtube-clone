@@ -93,7 +93,7 @@ export const Header = ({
           </div>
           <div
             title="YouTube Home"
-            className="flex items-center ml-[17px] cursor-pointer"
+            className="flex items-center ml-[14px] cursor-pointer"
           >
             <img src={youtubeLogo} width={90} height={20} alt="youtube logo" />
           </div>
