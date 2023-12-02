@@ -1,9 +1,8 @@
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./HomeSectionStyle.css";
 
 export const HomeSection = ({
@@ -391,14 +390,14 @@ export const HomeSection = ({
                         alt="youtube channel image"
                         className="h-[36px] w-[36px] rounded-full mr-[11px] mt-[11px]"
                       />
-                      <div className="w-[78%]">
+                      <div className="w-full">
                         <p
-                          className="text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
+                          className="w-[90%] text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
                           title={`${decodeEntity(item.snippet.title)}`}
                         >
                           {decodeEntity(item.snippet.title)}
                         </p>
-                        <div className="mt-[3px] relative">
+                        <div className="w-full mt-[2px] relative">
                           <div
                             className={`absolute top-[-52px] left-[-3px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
                               channelHover.status && channelHover.id === index
@@ -413,41 +412,37 @@ export const HomeSection = ({
                             {item.snippet.channelTitle}
                           </div>
                           <div className="flex items-center">
-                            <div className="overflow-hidden text-ellipsis line-clamp-1">
-                              <p
-                                className="inline text-[14px] text-[#626262]"
+                            <div className="max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap">
+                              <a
+                                className="inline text-[14px] text-[#626262] mr-[5px]"
                                 onMouseEnter={() =>
                                   channelHoverMouseEnter(index)
                                 }
                                 onMouseLeave={() =>
                                   channelHoverMouseLeave(index)
                                 }
+                                href="#"
                               >
                                 {item.snippet.channelTitle}
-                              </p>
+                              </a>
                             </div>
                             {item.snippet.channelSubscriberCount >= 100000 ? (
-                              <div className="w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] ml-[5px] pt-[1px] pl-[1px]">
-                                {/* <FontAwesomeIcon
-                                  icon={faCheck}
-                                  className="text-[8px] text-white mt-[1px]"
-                                /> */}
+                              <div className="w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px]">
                                 <svg
-                                  width="10px"
-                                  height="10.5px"
-                                  stroke-width="2.5"
+                                  width="10.5px"
+                                  height="10.8px"
+                                  strokeWidth="2.5"
                                   viewBox="0 0 24 24"
                                   fill="none"
                                   xmlns="http://www.w3.org/2000/svg"
-                                  // className="absolute top-[1px] right-[0px]"
                                   color="#ffffff"
                                 >
                                   <path
                                     d="M5 13L9 17L19 7"
                                     stroke="#ffffff"
-                                    stroke-width="2.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="2.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                   ></path>
                                 </svg>
                               </div>
@@ -457,7 +452,7 @@ export const HomeSection = ({
                           </div>
                         </div>
                         <div>
-                          <p className="text-[14px] text-[#626262] leading-[17px]">
+                          <p className="text-[14px] text-[#626262] leading-[16px]">
                             {item.snippet.videoViewCount !== undefined
                               ? Number(item.snippet.videoViewCount) === 1
                                 ? item.snippet.videoViewCount + " view"
