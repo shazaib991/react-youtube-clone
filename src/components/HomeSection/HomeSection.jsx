@@ -16,6 +16,10 @@ export const HomeSection = ({
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
   const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
+  const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
+    status: false,
+    id: 0,
+  });
   const videoCategoryScroll = useRef();
   const leftScrollVideoCategory = useRef();
   const rightScrollVideoCategory = useRef();
@@ -230,6 +234,14 @@ export const HomeSection = ({
     setChannelHover({ status: false, id: 0 });
   };
 
+  const verifiedBadgeHoverEnter = (indexId) => {
+    setVerifiedBadgeHover({ status: true, id: indexId });
+  };
+
+  const verifiedBadgeHoverLeave = () => {
+    setVerifiedBadgeHover({ status: false, id: 0 });
+  };
+
   const ParseFloat = (str, val) => {
     str = str.toString();
     str = str.slice(0, str.indexOf(".") + val);
@@ -413,7 +425,7 @@ export const HomeSection = ({
                           </div>
                           <div className="flex items-center">
                             <div className="max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap">
-                              <a
+                              <p
                                 className="inline text-[14px] text-[#626262] mr-[5px]"
                                 onMouseEnter={() =>
                                   channelHoverMouseEnter(index)
@@ -421,30 +433,55 @@ export const HomeSection = ({
                                 onMouseLeave={() =>
                                   channelHoverMouseLeave(index)
                                 }
-                                href="#"
+                                title={item.snippet.channelTitle}
                               >
                                 {item.snippet.channelTitle}
-                              </a>
+                              </p>
                             </div>
                             {item.snippet.channelSubscriberCount >= 100000 ? (
-                              <div className="w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px]">
-                                <svg
-                                  width="10.5px"
-                                  height="10.8px"
-                                  strokeWidth="2.5"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  color="#ffffff"
+                              <div className="relative">
+                                <div
+                                  className={`absolute top-[-55px] left-[-24px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
+                                    verifiedBadgeHover.status &&
+                                    verifiedBadgeHover.id === index
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  } ${
+                                    verifiedBadgeHover.status &&
+                                    verifiedBadgeHover.id === index
+                                      ? "visible"
+                                      : "invisible"
+                                  } transition-all cursor-default`}
                                 >
-                                  <path
-                                    d="M5 13L9 17L19 7"
-                                    stroke="#ffffff"
+                                  Verified
+                                </div>
+                                <div
+                                  className="w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px]"
+                                  onMouseEnter={() =>
+                                    verifiedBadgeHoverEnter(index)
+                                  }
+                                  onMouseLeave={() =>
+                                    verifiedBadgeHoverLeave(index)
+                                  }
+                                >
+                                  <svg
+                                    width="10.5px"
+                                    height="10.8px"
                                     strokeWidth="2.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  ></path>
-                                </svg>
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    color="#ffffff"
+                                  >
+                                    <path
+                                      d="M5 13L9 17L19 7"
+                                      stroke="#ffffff"
+                                      strokeWidth="2.5"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    ></path>
+                                  </svg>
+                                </div>
                               </div>
                             ) : (
                               ""
