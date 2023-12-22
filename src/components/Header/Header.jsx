@@ -60,14 +60,6 @@ export const Header = ({
               }
               e.currentTarget.classList.remove("burgerMenuIconHover");
             }}
-            onMouseDown={(e) => {
-              if (e.button === 0) {
-                e.currentTarget.classList.add("burgerMenuIconActive");
-                e.currentTarget.classList.add("burgerMenuIconMouseDown");
-                e.currentTarget.classList.remove("burgerMenuIconHover");
-              }
-              return;
-            }}
             onMouseEnter={(e) => {
               if (
                 e.currentTarget.classList.contains("burgerMenuIconMouseDown")
@@ -79,9 +71,18 @@ export const Header = ({
               }
               e.currentTarget.classList.add("burgerMenuIconHover");
             }}
+            onMouseDown={(e) => {
+              if (e.button === 0) {
+                e.currentTarget.classList.add("burgerMenuIconActive");
+                e.currentTarget.classList.add("burgerMenuIconMouseDown");
+                e.currentTarget.classList.remove("burgerMenuIconHover");
+              }
+              return;
+            }}
             onMouseUp={(e) => {
               e.currentTarget.classList.remove("burgerMenuIconActive");
               e.currentTarget.classList.add("burgerMenuTransitionActive");
+              e.currentTarget.classList.remove("burgerMenuIconMouseDown");
             }}
             ref={burgerIcon}
           >

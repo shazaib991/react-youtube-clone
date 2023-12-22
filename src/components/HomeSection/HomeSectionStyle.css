@@ -28,3 +28,80 @@
 .videoCard:hover .videoMoreIcon {
     display: flex;
 }
+
+.videoCategoryNavigateBeforeIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: -11px;
+    top: 9px;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.4s ease-in-out;
+}
+
+.videoCategoryNavigateNextIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: -11px;
+    top: 9px;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.4s ease-in-out;
+}
+
+.videoCategoryNavigateIconTransitionActive {
+    background-color: #e5e5e5;
+    transition: border 0.4s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.videoCategoryNavigateIconAnimationActive {
+    animation: 0.4s ease-in-out videoCategoryNavigateIconBorder, 0.1s ease-in-out videoCategoryNavigateIconBackground;
+}
+
+.videoCategoryNavigateIconActive {
+    transition: none;
+    border: 2px solid #cecece;
+    background-color: #cecece;
+}
+
+.videoCategoryNavigateIconActive2 {
+    transition: none;
+    border: transparent;
+    background-color: transparent;
+}
+
+.videoCategoryNavigateBeforeIconHover {
+    background-color: #e5e5e5;
+}
+
+.videoCategoryNavigateNextIconHover {
+    background-color: #e5e5e5;
+}
+
+@keyframes videoCategoryNavigateIconBorder{
+    from {
+        border: 2px solid #cecece;
+    }
+    to {
+        border: 2px solid transparent;
+    }
+}
+
+@keyframes videoCategoryNavigateIconBackground{
+    from {
+        background-color: #cecece;
+    }
+    to {
+        background-color: #e5e5e5;
+    }
+}

@@ -23,9 +23,9 @@ export default function App() {
   ] = useState(false);
   const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
   const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
-  const [windowSize, setWindowSize] = useState(0);
   const disableScroll = useRef();
   const burgerIcon = useRef();
+  const leftScrollVideoCategory = useRef();
   const videoMoreIconPopOver = useRef();
   let videoMoreIconClickActive = false;
 
@@ -118,10 +118,6 @@ export default function App() {
     }
   }, [moreIconActive, videoMoreIconActive.status]);
 
-  useEffect(() => {
-    setWindowSize(window.innerHeight);
-  }, []);
-
   return (
     <div
       className={`h-[100vh] relative ${
@@ -129,10 +125,27 @@ export default function App() {
       } scroll-smooth`}
       ref={disableScroll}
       onMouseUp={() => {
-        burgerIcon.current.classList.remove("burgerMenuIconActive");
-        burgerIcon.current.classList.remove("burgerMenuIconActive2");
-        burgerIcon.current.classList.remove("burgerMenuIconHover");
-        burgerIcon.current.classList.remove("burgerMenuIconMouseDown");
+        if (
+          leftScrollVideoCategory.current.classList.contains(
+            "videoCategoryNavigateIconActive2"
+          )
+        ) {
+          leftScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconActive2"
+          );
+          leftScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconActive3"
+          );
+          leftScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconMouseDown"
+          );
+        }
+        if (burgerIcon.current.classList.contains("burgerMenuIconActive2")) {
+          burgerIcon.current.classList.remove("burgerMenuIconActive");
+          burgerIcon.current.classList.remove("burgerMenuIconActive2");
+          burgerIcon.current.classList.remove("burgerMenuIconHover");
+          burgerIcon.current.classList.remove("burgerMenuIconMouseDown");
+        }
       }}
     >
       <div
@@ -234,6 +247,7 @@ export default function App() {
             sidebarBurgerMenuClick={sidebarBurgerMenuClick}
             handleVideoMoreIconClick={handleVideoMoreIconClick}
             videoMoreIconActive={videoMoreIconActive}
+            leftScrollVideoCategory={leftScrollVideoCategory}
             videoMoreIconClickId={videoMoreIconClickId}
             handleVideoMouseEnter={handleVideoMouseEnter}
           />

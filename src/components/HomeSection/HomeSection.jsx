@@ -2,7 +2,6 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./HomeSectionStyle.css";
 
 export const HomeSection = ({
@@ -10,6 +9,7 @@ export const HomeSection = ({
   handleVideoMoreIconClick,
   videoMoreIconActive,
   videoMoreIconClickId,
+  leftScrollVideoCategory,
   handleVideoMouseEnter,
 }) => {
   const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
@@ -21,7 +21,6 @@ export const HomeSection = ({
     id: 0,
   });
   const videoCategoryScroll = useRef();
-  const leftScrollVideoCategory = useRef();
   const rightScrollVideoCategory = useRef();
   let isMouseDown = false;
   let startX;
@@ -95,10 +94,6 @@ export const HomeSection = ({
     setVideoCategoryArr(videoCategoryArr);
     setVideoData(videoData);
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const decodeEntity = (str) => {
     let txt = document.createElement("textarea");
@@ -249,6 +244,10 @@ export const HomeSection = ({
     return Number(str);
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="w-full">
       {videoCategoryArr.length !== 0 ? (
@@ -267,83 +266,286 @@ export const HomeSection = ({
         } mr-[25px] flex justify-center`}
       >
         {videoCategoryArr.length !== 0 ? (
-          <div
-            className={`h-[56px] ${
-              sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"
-            } bg-white fixed z-[900]`}
-          >
+          <div className="flex justify-center w-full h-[56px] bg-white fixed z-[900]">
             <div
-              className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,255,255,1) 48%, rgba(255,255,255,0.1) 75%",
-              }}
-            ></div>
-            <div
-              className="w-[38px] h-[38px] flex justify-center absolute left-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer hidden"
-              onClick={handleLeftScrollVideoCategory}
-              ref={leftScrollVideoCategory}
+              className={`relative h-full ${
+                sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"
+              }`}
             >
-              <NavigateBeforeIcon />
-            </div>
-            <div
-              className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
-              onScroll={handleScrollVideoCategory}
-              onMouseDown={handleMouseDownVideoCategory}
-              onMouseLeave={handleScrollVideoCategoryMouseLeave}
-              onMouseUp={handleScrollVideoCategoryMouseUp}
-              onMouseMove={handleMouseMoveVideoCategory}
-              ref={videoCategoryScroll}
-            >
-              <div className="w-max flex mt-[12px] mb-[12px]">
-                {videoCategoryArr.map((item, index) => {
-                  return (
-                    <button
-                      key={index}
-                      className={`h-[32px] ${
-                        videoCategoryClickedId === index
-                          ? "bg-black"
-                          : "bg-[#f2f2f2]"
-                      } text-[14px] ${
-                        videoCategoryClickedId === index ? "text-white" : ""
-                      } mr-[12px] px-[12px] rounded-[8px] select-none ${
-                        videoCategoryClickedId === index
-                          ? ""
-                          : "hover:bg-[#eaeaea]"
-                      } transition-all duration-300 font-medium`}
-                      onClick={() => setVideoCategoryClickedId(index)}
-                    >
-                      <p title={`${item}`}>{item}</p>
-                    </button>
+              <div
+                className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,1) 48%, rgba(255,255,255,0.1) 75%",
+                }}
+              ></div>
+              <div
+                className="videoCategoryNavigateBeforeIcon"
+                onClick={handleLeftScrollVideoCategory}
+                onMouseLeave={(e) => {
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconTransitionActive"
                   );
-                })}
-                {videoCategoryArr.length !== 0 ? (
-                  <div>
-                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
-                      Recently uploaded
-                    </button>
-                    <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
-                      Watched
-                    </button>
-                  </div>
-                ) : (
-                  ""
-                )}
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconAnimationActive"
+                  );
+
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateIconMouseDown"
+                    )
+                  ) {
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateBeforeIconHover"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconMouseOut"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconActive"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconActive2"
+                    );
+                    return;
+                  }
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateBeforeIconHover"
+                  );
+                }}
+                onMouseEnter={(e) => {
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateNextIconMouseDown"
+                    )
+                  ) {
+                    return;
+                  }
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateIconMouseDown"
+                    )
+                  ) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateBeforeIconHover"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconActive2"
+                    );
+                    return;
+                  }
+                  e.currentTarget.classList.add(
+                    "videoCategoryNavigateBeforeIconHover"
+                  );
+                }}
+                onMouseUp={(e) => {
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateIconMouseOut"
+                    )
+                  ) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconAnimationActive"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconMouseDown"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconMouseOut"
+                    );
+                    return;
+                  }
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconActive"
+                  );
+                  e.currentTarget.classList.add(
+                    "videoCategoryNavigateIconTransitionActive"
+                  );
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconMouseDown"
+                  );
+                }}
+                onMouseDown={(e) => {
+                  if (e.button === 0) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconActive"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateBeforeIconHover"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconMouseDown"
+                    );
+                  }
+                  return;
+                }}
+                ref={leftScrollVideoCategory}
+              >
+                <NavigateBeforeIcon />
               </div>
-            </div>
-            <div
-              className="h-[32px] w-[75px] flex justify-end absolute right-0 top-[12px]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,255,255,0.1) 10%, rgba(255,255,255,1) 50%)",
-              }}
-            ></div>
-            <div
-              className="w-[38px] h-[38px] flex justify-center absolute right-[-11px] top-[9px] items-center rounded-[50%] hover:bg-black/10 cursor-pointer"
-              onClick={handleRightScrollVideoCategory}
-              ref={rightScrollVideoCategory}
-            >
-              <NavigateNextIcon />
+              <div
+                className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
+                onScroll={handleScrollVideoCategory}
+                onMouseDown={handleMouseDownVideoCategory}
+                onMouseLeave={handleScrollVideoCategoryMouseLeave}
+                onMouseUp={handleScrollVideoCategoryMouseUp}
+                onMouseMove={handleMouseMoveVideoCategory}
+                ref={videoCategoryScroll}
+              >
+                <div className="w-max flex mt-[12px] mb-[12px]">
+                  {videoCategoryArr.map((item, index) => {
+                    return (
+                      <button
+                        key={index}
+                        className={`h-[32px] ${
+                          videoCategoryClickedId === index
+                            ? "bg-black"
+                            : "bg-[#f2f2f2]"
+                        } text-[14px] ${
+                          videoCategoryClickedId === index ? "text-white" : ""
+                        } mr-[12px] px-[12px] rounded-[8px] select-none ${
+                          videoCategoryClickedId === index
+                            ? ""
+                            : "hover:bg-[#eaeaea]"
+                        } transition-all duration-300 font-medium`}
+                        onClick={() => setVideoCategoryClickedId(index)}
+                      >
+                        <p title={`${item}`}>{item}</p>
+                      </button>
+                    );
+                  })}
+                  {/* TODO:  click active*/}
+                  {videoCategoryArr.length !== 0 ? (
+                    <div>
+                      <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
+                        Recently uploaded
+                      </button>
+                      <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
+                        Watched
+                      </button>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div
+                className="h-[32px] w-[75px] flex justify-end absolute right-0 top-[12px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,0.1) 10%, rgba(255,255,255,1) 50%)",
+                }}
+              ></div>
+              <div
+                className="videoCategoryNavigateNextIcon"
+                onClick={handleRightScrollVideoCategory}
+                onMouseLeave={(e) => {
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconTransitionActive"
+                  );
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconAnimationActive"
+                  );
+
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateIconMouseDown"
+                    )
+                  ) {
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateNextIconHover"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconMouseOut"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconActive"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconActive2"
+                    );
+                    return;
+                  }
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateNextIconHover"
+                  );
+                }}
+                onMouseEnter={(e) => {
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateBeforeIconMouseDown"
+                    )
+                  ) {
+                    return;
+                  }
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateIconMouseDown"
+                    )
+                  ) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateNextIconHover"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconActive2"
+                    );
+                    return;
+                  }
+                  e.currentTarget.classList.add(
+                    "videoCategoryNavigateNextIconHover"
+                  );
+                }}
+                onMouseUp={(e) => {
+                  if (
+                    e.currentTarget.classList.contains(
+                      "videoCategoryNavigateIconMouseOut"
+                    )
+                  ) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconAnimationActive"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconMouseDown"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateIconMouseOut"
+                    );
+                    return;
+                  }
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconActive"
+                  );
+                  e.currentTarget.classList.add(
+                    "videoCategoryNavigateIconTransitionActive"
+                  );
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateIconMouseDown"
+                  );
+                  e.currentTarget.classList.remove(
+                    "videoCategoryNavigateNextIconMouseDown"
+                  );
+                }}
+                onMouseDown={(e) => {
+                  if (e.button === 0) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateNextIconMouseDown"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconActive"
+                    );
+                    e.currentTarget.classList.remove(
+                      "videoCategoryNavigateNextIconHover"
+                    );
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconMouseDown"
+                    );
+                  }
+                  return;
+                }}
+                ref={rightScrollVideoCategory}
+              >
+                <NavigateNextIcon />
+              </div>
             </div>
           </div>
         ) : (

@@ -52,7 +52,7 @@ export const Sidebar = ({
     <div
       className={`${
         sidebarBurgerMenuClick ? "w-[70px]" : "w-[240px]"
-      } h-[100vh] fixed overflow-y-auto invisible hover:visible overscroll-contain scroll-smooth`}
+      } h-[100vh] fixed overflow-y-auto invisible hover:visible overscroll-contain scroll-smooth z-[1200]`}
       ref={disableScroll}
     >
       <div
