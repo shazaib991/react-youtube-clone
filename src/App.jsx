@@ -26,6 +26,7 @@ export default function App() {
   const disableScroll = useRef();
   const burgerIcon = useRef();
   const leftScrollVideoCategory = useRef();
+  const rightScrollVideoCategory = useRef();
   const videoMoreIconPopOver = useRef();
   let videoMoreIconClickActive = false;
 
@@ -134,11 +135,28 @@ export default function App() {
             "videoCategoryNavigateIconActive2"
           );
           leftScrollVideoCategory.current.classList.remove(
-            "videoCategoryNavigateIconActive3"
-          );
-          leftScrollVideoCategory.current.classList.remove(
             "videoCategoryNavigateIconMouseDown"
           );
+          leftScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconMouseOut"
+          );
+          return;
+        }
+        if (
+          rightScrollVideoCategory.current.classList.contains(
+            "videoCategoryNavigateIconActive2"
+          )
+        ) {
+          rightScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconActive2"
+          );
+          rightScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconMouseDown"
+          );
+          rightScrollVideoCategory.current.classList.remove(
+            "videoCategoryNavigateIconMouseOut"
+          );
+          return;
         }
         if (burgerIcon.current.classList.contains("burgerMenuIconActive2")) {
           burgerIcon.current.classList.remove("burgerMenuIconActive");
@@ -248,6 +266,7 @@ export default function App() {
             handleVideoMoreIconClick={handleVideoMoreIconClick}
             videoMoreIconActive={videoMoreIconActive}
             leftScrollVideoCategory={leftScrollVideoCategory}
+            rightScrollVideoCategory={rightScrollVideoCategory}
             videoMoreIconClickId={videoMoreIconClickId}
             handleVideoMouseEnter={handleVideoMouseEnter}
           />

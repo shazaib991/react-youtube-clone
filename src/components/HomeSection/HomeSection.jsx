@@ -10,6 +10,7 @@ export const HomeSection = ({
   videoMoreIconActive,
   videoMoreIconClickId,
   leftScrollVideoCategory,
+  rightScrollVideoCategory,
   handleVideoMouseEnter,
 }) => {
   const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
@@ -21,7 +22,6 @@ export const HomeSection = ({
     id: 0,
   });
   const videoCategoryScroll = useRef();
-  const rightScrollVideoCategory = useRef();
   let isMouseDown = false;
   let startX;
   let currentPos;
@@ -316,13 +316,6 @@ export const HomeSection = ({
                 onMouseEnter={(e) => {
                   if (
                     e.currentTarget.classList.contains(
-                      "videoCategoryNavigateNextIconMouseDown"
-                    )
-                  ) {
-                    return;
-                  }
-                  if (
-                    e.currentTarget.classList.contains(
                       "videoCategoryNavigateIconMouseDown"
                     )
                   ) {
@@ -340,6 +333,31 @@ export const HomeSection = ({
                 }}
                 onMouseUp={(e) => {
                   if (
+                    leftScrollVideoCategory.current.classList.contains(
+                      "videoCategoryNavigateNextIconMouseDown"
+                    )
+                  ) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconAnimationActive"
+                    );
+                    leftScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateNextIconMouseDown"
+                    );
+                    rightScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateIconActive2"
+                    );
+                    rightScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateIconMouseOut"
+                    );
+                    rightScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateIconMouseDown"
+                    );
+                    rightScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateBeforeIconMouseDown"
+                    );
+                    return;
+                  }
+                  if (
                     e.currentTarget.classList.contains(
                       "videoCategoryNavigateIconMouseOut"
                     )
@@ -353,6 +371,9 @@ export const HomeSection = ({
                     e.currentTarget.classList.remove(
                       "videoCategoryNavigateIconMouseOut"
                     );
+                    rightScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateBeforeIconMouseDown"
+                    );
                     return;
                   }
                   e.currentTarget.classList.remove(
@@ -364,9 +385,15 @@ export const HomeSection = ({
                   e.currentTarget.classList.remove(
                     "videoCategoryNavigateIconMouseDown"
                   );
+                  rightScrollVideoCategory.current.classList.remove(
+                    "videoCategoryNavigateBeforeIconMouseDown"
+                  );
                 }}
                 onMouseDown={(e) => {
                   if (e.button === 0) {
+                    rightScrollVideoCategory.current.classList.add(
+                      "videoCategoryNavigateBeforeIconMouseDown"
+                    );
                     e.currentTarget.classList.add(
                       "videoCategoryNavigateIconActive"
                     );
@@ -473,13 +500,6 @@ export const HomeSection = ({
                 onMouseEnter={(e) => {
                   if (
                     e.currentTarget.classList.contains(
-                      "videoCategoryNavigateBeforeIconMouseDown"
-                    )
-                  ) {
-                    return;
-                  }
-                  if (
-                    e.currentTarget.classList.contains(
                       "videoCategoryNavigateIconMouseDown"
                     )
                   ) {
@@ -497,6 +517,31 @@ export const HomeSection = ({
                 }}
                 onMouseUp={(e) => {
                   if (
+                    rightScrollVideoCategory.current.classList.contains(
+                      "videoCategoryNavigateBeforeIconMouseDown"
+                    )
+                  ) {
+                    e.currentTarget.classList.add(
+                      "videoCategoryNavigateIconAnimationActive"
+                    );
+                    rightScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateBeforeIconMouseDown"
+                    );
+                    leftScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateIconActive2"
+                    );
+                    leftScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateIconMouseDown"
+                    );
+                    leftScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateIconMouseOut"
+                    );
+                    leftScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateNextIconMouseDown"
+                    );
+                    return;
+                  }
+                  if (
                     e.currentTarget.classList.contains(
                       "videoCategoryNavigateIconMouseOut"
                     )
@@ -510,6 +555,9 @@ export const HomeSection = ({
                     e.currentTarget.classList.remove(
                       "videoCategoryNavigateIconMouseOut"
                     );
+                    leftScrollVideoCategory.current.classList.remove(
+                      "videoCategoryNavigateNextIconMouseDown"
+                    );
                     return;
                   }
                   e.currentTarget.classList.remove(
@@ -521,13 +569,13 @@ export const HomeSection = ({
                   e.currentTarget.classList.remove(
                     "videoCategoryNavigateIconMouseDown"
                   );
-                  e.currentTarget.classList.remove(
+                  leftScrollVideoCategory.current.classList.remove(
                     "videoCategoryNavigateNextIconMouseDown"
                   );
                 }}
                 onMouseDown={(e) => {
                   if (e.button === 0) {
-                    e.currentTarget.classList.add(
+                    leftScrollVideoCategory.current.classList.add(
                       "videoCategoryNavigateNextIconMouseDown"
                     );
                     e.currentTarget.classList.add(
