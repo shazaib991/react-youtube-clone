@@ -50,6 +50,9 @@ export const HomeSection = ({
       videoCategoryArr.push(item.snippet.title);
     });
 
+    videoCategoryArr.push("Recently uploaded");
+    videoCategoryArr.push("Watched");
+
     for (let i = 0; i < videoData.length; i++) {
       const channelResponse = await axios(
         `https://www.googleapis.com/youtube/v3/channels?key=${
@@ -441,19 +444,6 @@ export const HomeSection = ({
                       </button>
                     );
                   })}
-                  {/* TODO:  click active*/}
-                  {videoCategoryArr.length !== 0 ? (
-                    <div>
-                      <button className="h-[32px] bg-[#f2f2f2] text-[14px] mr-[10px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
-                        Recently uploaded
-                      </button>
-                      <button className="h-[32px] bg-[#f2f2f2] text-[14px] px-[12px] rounded-[8px] select-none hover:bg-[#eaeaea] transition-all">
-                        Watched
-                      </button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
                 </div>
               </div>
               <div

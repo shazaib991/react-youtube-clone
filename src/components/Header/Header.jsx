@@ -27,7 +27,7 @@ export const Header = ({
     searchBox.current.focus();
   };
 
-  const handleMoreIconClick = (e) => {
+  const handleMoreIconClick = () => {
     setMoreIconActive((prevState) => !prevState);
   };
 
