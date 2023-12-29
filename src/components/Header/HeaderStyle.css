@@ -46,6 +46,7 @@
     cursor: pointer;
     transition: background-color 0.1s ease-in-out, border 0.4s ease-in-out;
     z-index: 300;
+    font-size: 18px;
 }
 
 .headerMoreIcon:active {

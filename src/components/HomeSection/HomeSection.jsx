@@ -1,5 +1,7 @@
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
@@ -411,7 +413,7 @@ export const HomeSection = ({
                 }}
                 ref={leftScrollVideoCategory}
               >
-                <NavigateBeforeIcon />
+                <FontAwesomeIcon icon={faChevronLeft} color="black" />
               </div>
               <div
                 className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
@@ -582,7 +584,7 @@ export const HomeSection = ({
                 }}
                 ref={rightScrollVideoCategory}
               >
-                <NavigateNextIcon />
+                <FontAwesomeIcon icon={faChevronRight} color="black" />
               </div>
             </div>
           </div>
@@ -623,7 +625,7 @@ export const HomeSection = ({
                 return (
                   <div
                     key={item.etag}
-                    className="w-[343px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
+                    className="w-[340px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
                     <div className="relative">
@@ -805,16 +807,10 @@ export const HomeSection = ({
                         }`}
                         onClick={(e) => handleVideoMoreIconClick(e, index)}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          fill="currentColor"
-                          className="bi bi-three-dots-vertical"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                        </svg>
+                        <FontAwesomeIcon
+                          icon={faEllipsisVertical}
+                          color="black"
+                        />
                       </div>
                     </div>
                   </div>
@@ -823,7 +819,7 @@ export const HomeSection = ({
             : [...Array(12).keys()].map((index) => {
                 return (
                   <div
-                    className="w-[343px] rounded-[9px] mb-[50px]"
+                    className="w-[340px] rounded-[9px] mb-[50px]"
                     key={index}
                   >
                     <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
