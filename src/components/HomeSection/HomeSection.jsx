@@ -1,7 +1,7 @@
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { ThreeDotsVertical } from "react-bootstrap-icons";
+import { ChevronLeft } from "react-bootstrap-icons";
+import { ChevronRight } from "react-bootstrap-icons";
+import { Check2 } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
@@ -178,7 +178,9 @@ export const HomeSection = ({
       videoCategoryScroll.current.nextSibling.nextSibling.classList.remove(
         "hidden"
       );
-    } else if (videoCategoryScroll.current.scrollLeft === 0) {
+    }
+
+    if (videoCategoryScroll.current.scrollLeft === 0) {
       videoCategoryScroll.current.previousSibling.classList.add("hidden");
       videoCategoryScroll.current.previousSibling.previousSibling.classList.add(
         "hidden"
@@ -285,7 +287,7 @@ export const HomeSection = ({
                 }}
               ></div>
               <div
-                className="videoCategoryNavigateBeforeIcon"
+                className="videoCategoryNavigateBeforeIcon hidden"
                 onClick={handleLeftScrollVideoCategory}
                 onMouseLeave={(e) => {
                   e.currentTarget.classList.remove(
@@ -413,7 +415,7 @@ export const HomeSection = ({
                 }}
                 ref={leftScrollVideoCategory}
               >
-                <FontAwesomeIcon icon={faChevronLeft} color="black" />
+                <ChevronLeft color="black" size={16} />
               </div>
               <div
                 className="h-full w-full overflow-scroll scrollbar-hide bg-white scroll-smooth"
@@ -584,7 +586,7 @@ export const HomeSection = ({
                 }}
                 ref={rightScrollVideoCategory}
               >
-                <FontAwesomeIcon icon={faChevronRight} color="black" />
+                <ChevronRight color="black" size={16} />
               </div>
             </div>
           </div>
@@ -646,7 +648,7 @@ export const HomeSection = ({
                       />
                       <div className="w-full">
                         <p
-                          className="w-[90%] text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
+                          className="w-[86%] text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
                           title={`${decodeEntity(item.snippet.title)}`}
                         >
                           {decodeEntity(item.snippet.title)}
@@ -666,6 +668,7 @@ export const HomeSection = ({
                             {item.snippet.channelTitle}
                           </div>
                           <div className="flex items-center">
+                            {/* TODO: fix overflow width  */}
                             <div className="max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap">
                               <p
                                 className="inline text-[14px] text-[#626262] mr-[5px]"
@@ -698,7 +701,7 @@ export const HomeSection = ({
                                   Verified
                                 </div>
                                 <div
-                                  className="w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px]"
+                                  className="relative w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px]"
                                   onMouseEnter={() =>
                                     verifiedBadgeHoverEnter(index)
                                   }
@@ -706,23 +709,17 @@ export const HomeSection = ({
                                     verifiedBadgeHoverLeave(index)
                                   }
                                 >
-                                  <svg
-                                    width="10.5px"
-                                    height="10.8px"
-                                    strokeWidth="2.5"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    color="#ffffff"
-                                  >
-                                    <path
-                                      d="M5 13L9 17L19 7"
-                                      stroke="#ffffff"
-                                      strokeWidth="2.5"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    ></path>
-                                  </svg>
+                                  <Check2
+                                    height={10.8}
+                                    width={10.5}
+                                    color="white"
+                                  />
+                                  <Check2
+                                    className="absolute left-[1px] top-[1px]"
+                                    height={10.8}
+                                    width={10.5}
+                                    color="white"
+                                  />
                                 </div>
                               </div>
                             ) : (
@@ -807,10 +804,7 @@ export const HomeSection = ({
                         }`}
                         onClick={(e) => handleVideoMoreIconClick(e, index)}
                       >
-                        <FontAwesomeIcon
-                          icon={faEllipsisVertical}
-                          color="black"
-                        />
+                        <ThreeDotsVertical color="black" size={18} />
                       </div>
                     </div>
                   </div>

@@ -1,15 +1,18 @@
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
-import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import KeyboardOutlinedIcon from "@mui/icons-material/KeyboardOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+
+import { PersonVcard } from "react-bootstrap-icons";
+import { Moon } from "react-bootstrap-icons";
+import { Translate } from "react-bootstrap-icons";
+import { ShieldLock } from "react-bootstrap-icons";
+import { Globe } from "react-bootstrap-icons";
+import { Keyboard } from "react-bootstrap-icons";
+import { Gear } from "react-bootstrap-icons";
+import { QuestionCircle } from "react-bootstrap-icons";
+import { SendExclamation } from "react-bootstrap-icons";
+import { ChevronRight } from "react-bootstrap-icons";
+import { CollectionPlay } from "react-bootstrap-icons";
+import { Share } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 
 export const PopOvers = ({
@@ -36,59 +39,58 @@ export const PopOvers = ({
   return (
     <>
       <div
-        className={`w-[296px] rounded-[10px] fixed py-[8px] top-[48px] right-[140px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
+        className={`w-[300px] rounded-[12px] fixed pt-[8px] pb-[10px] top-[48px] right-[125px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
           moreIconActive ? "" : "hidden"
         }`}
       >
-        <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-          <AdminPanelSettingsOutlinedIcon />
+        <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+          <PersonVcard size={20} />
           <p className="ml-[18px] text-[14px]">Your data in YouTube</p>
         </div>
-        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
-        <div className="flex items-center justify-between px-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
+        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
           <div className="flex items-center">
-            <ModeNightOutlinedIcon />
+            <Moon size={20} />
             <p className="ml-[18px] text-[14px]">Appearance: Light</p>
           </div>
-          <NavigateNextIcon />
+          <ChevronRight size={16} />
         </div>
-        <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
           <div className="flex items-center">
-            <TranslateOutlinedIcon />
+            <Translate size={20} />
             <p className="ml-[18px] text-[14px]">Language: English</p>
           </div>
-          <NavigateNextIcon />
+          <ChevronRight size={16} />
         </div>
-        <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
           <div className="flex items-center">
-            <GppMaybeOutlinedIcon />
+            <ShieldLock size={20} />
             <p className="ml-[18px] text-[14px]">Restricted Mode: Off</p>
           </div>
-          <NavigateNextIcon />
+          <ChevronRight size={16} />
         </div>
-        <div className="flex items-center justify-between px-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
+        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
           <div className="flex items-center">
-            <LanguageOutlinedIcon />
+            <Globe size={20} />
             <p className="ml-[18px] text-[14px]">Location: United Kingdom</p>
           </div>
-          <NavigateNextIcon />
+          <ChevronRight size={16} />
         </div>
-        <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-          <KeyboardOutlinedIcon />
+        <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+          <Keyboard size={20} />
           <p className="ml-[18px] text-[14px]">Keyboard shortcuts</p>
         </div>
-        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
-        <div className="flex items-center pl-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
-          <SettingsOutlinedIcon />
+        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[9px]"></div>
+        <div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+          <Gear size={20} />
           <p className="ml-[18px] text-[14px]">Settings</p>
         </div>
-        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[8px]"></div>
-        <div className="flex items-center pl-[15px] mt-[8px] hover:bg-black/5 py-[8px] cursor-pointer">
-          <HelpOutlineOutlinedIcon />
+        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[9px]"></div>
+        <div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+          <QuestionCircle size={20} />
           <p className="ml-[18px] text-[14px]">Help</p>
         </div>
-        <div className="flex items-center pl-[15px] hover:bg-black/5 py-[8px] cursor-pointer">
-          <FeedbackOutlinedIcon />
+        <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+          <SendExclamation size={20} />
           <p className="ml-[18px] text-[14px]">Send feedback</p>
         </div>
       </div>
@@ -163,11 +165,11 @@ export const PopOvers = ({
         }
       >
         <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
-          <VideoLibraryOutlinedIcon sx={{ fontSize: "20px" }} />
+          <CollectionPlay size={20} />
           <p className="ml-[18px] text-[14px]">Add to queue</p>
         </div>
         <div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
-          <ShareOutlinedIcon sx={{ fontSize: "20px" }} />
+          <Share size={20} />
           <p className="ml-[18px] text-[14px]">Share</p>
         </div>
       </div>
