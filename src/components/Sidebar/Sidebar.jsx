@@ -73,12 +73,22 @@ export const Sidebar = ({
               sidebarBurgerMenuClick ? "pb-[14px]" : "py-[9.3px]"
             } ${sidebarBurgerMenuClick ? "pt-[18px]" : ""}`}
           >
-            <HouseDoorFill className="ml-[15px]" size={20} />
-            <HouseDoor className="ml-[15px] hidden" size={20} />
+            <HouseDoorFill
+              className={`${
+                sidebarBurgerMenuClick ? "ml-[23px]" : "ml-[15px]"
+              }`}
+              size={20}
+            />
+            <HouseDoor
+              className={`${
+                sidebarBurgerMenuClick ? "ml-[23px]" : "ml-[15px]"
+              } hidden`}
+              size={20}
+            />
             <p
               className={`${
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
-              } ${sidebarBurgerMenuClick ? "ml-[19px]" : "ml-[26px]"} ${
+              } ${sidebarBurgerMenuClick ? "text-center" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
               } font-medium`}
             >
@@ -115,7 +125,7 @@ export const Sidebar = ({
             <p
               className={`${
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
-              } ${sidebarBurgerMenuClick ? "ml-[18px]" : "ml-[26px]"} ${
+              } ${sidebarBurgerMenuClick ? "text-center" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
               }`}
             >
@@ -152,7 +162,7 @@ export const Sidebar = ({
             <p
               className={`${
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
-              } ${sidebarBurgerMenuClick ? "ml-[1px]" : "ml-[26px]"} ${
+              } ${sidebarBurgerMenuClick ? "text-center" : "ml-[26px]"} ${
                 sidebarBurgerMenuClick ? "mt-[7px]" : ""
               }`}
             >
@@ -194,8 +204,8 @@ export const Sidebar = ({
             <p
               className={`${
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
-              } ${sidebarBurgerMenuClick ? "ml-[17px]" : "ml-[26px]"} ${
-                sidebarBurgerMenuClick ? "mt-[3px]" : ""
+              } ${sidebarBurgerMenuClick ? "text-center" : "ml-[26px]"} ${
+                sidebarBurgerMenuClick ? "mt-[7px]" : ""
               }`}
             >
               You
@@ -231,8 +241,8 @@ export const Sidebar = ({
             <p
               className={`${
                 sidebarBurgerMenuClick ? "text-[10px]" : "text-[14px]"
-              } ${sidebarBurgerMenuClick ? "ml-[16px]" : "ml-[26px]"} ${
-                sidebarBurgerMenuClick ? "mt-[3px]" : ""
+              } ${sidebarBurgerMenuClick ? "text-center" : "ml-[26px]"} ${
+                sidebarBurgerMenuClick ? "mt-[7px]" : ""
               }`}
             >
               History

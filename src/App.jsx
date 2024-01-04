@@ -3,7 +3,8 @@ import { Header } from "./components/Header/Header";
 import { HomeSection } from "./components/HomeSection/HomeSection";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { PopOvers } from "./components/PopOvers/PopOvers";
-import MicIcon from "@mui/icons-material/Mic";
+import { MicFill } from "react-bootstrap-icons";
+import { XLg } from "react-bootstrap-icons";
 
 export default function App() {
   const [moreIconActive, setMoreIconActive] = useState(false);
@@ -190,16 +191,7 @@ export default function App() {
               className={`flex justify-center items-center h-[40px] w-[40px] hover:bg-black/10 rounded-[50%] absolute right-[6px] top-[8px] cursor-pointer active:border-[#00000026] active:border-[1px] active:bg-black/20 transition-[border] duration-300 active:transition-none`}
               onClick={() => handleMicListenPopoverCancelClick("outside")}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="38"
-                height="38"
-                fill="currentColor"
-                className={`bi bi-x`}
-                viewBox="0 0 16 16"
-              >
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-              </svg>
+              <XLg size={20} />
             </div>
             <div className={`h-full flex flex-col justify-between mt-[46px]`}>
               <h1 className="text-[24px] ml-[33px]">
@@ -214,12 +206,10 @@ export default function App() {
                   }`}
                   onClick={handleMicListenPopoverClick}
                 >
-                  <MicIcon
-                    sx={{
-                      fontSize: "38px",
-                      color: `${isMicListening ? "white" : "black"}`,
-                    }}
+                  <MicFill
                     className="mt-[2px]"
+                    size={38}
+                    color={`${isMicListening ? "white" : "black"}`}
                   />
                 </div>
                 <p

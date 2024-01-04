@@ -1,6 +1,3 @@
-import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-
 import { PersonVcard } from "react-bootstrap-icons";
 import { Moon } from "react-bootstrap-icons";
 import { Translate } from "react-bootstrap-icons";
