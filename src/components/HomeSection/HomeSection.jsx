@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import { ThreeDotsVertical } from "react-bootstrap-icons";
 import { ChevronLeft } from "react-bootstrap-icons";
 import { ChevronRight } from "react-bootstrap-icons";
 import { Check2 } from "react-bootstrap-icons";
-import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
 
@@ -254,6 +254,40 @@ export const HomeSection = ({
   useEffect(() => {
     getData();
   }, []);
+
+  const loadImages = (image) => {
+    image.src = image.dataset.src;
+  };
+
+  const config = {
+    rootMargin: "0px 0px 0px 0px",
+    threshold: 0,
+  };
+
+  useEffect(() => {
+    if (videoData.length === 0) {
+      return;
+    }
+
+    let observer = new window.IntersectionObserver((entries, self) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadImages(entry.target);
+          self.unobserve(entry.target);
+        }
+      });
+    }, config);
+
+    const imgs = document.querySelectorAll("[data-src]");
+    imgs.forEach((img) => {
+      observer.observe(img);
+    });
+    return () => {
+      imgs.forEach((img) => {
+        observer.unobserve(img);
+      });
+    };
+  }, [videoData]);
 
   return (
     <div className="w-full">
@@ -630,25 +664,53 @@ export const HomeSection = ({
                     className="w-[340px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
-                    <div className="relative">
-                      <img
-                        src={item.snippet.thumbnails.medium.url}
-                        alt="youtube thumbnail image"
-                        className="w-full rounded-[12px]"
-                      />
+                    <div className="w-[340px] h-[190px] relative">
+                      <div
+                        className={`h-full w-full absolute left-0 top-0 bg-[#cccccc] rounded-[12px] z-[100]`}
+                      ></div>
+                      {item.snippet.thumbnails.medium.url ? (
+                        <img
+                          src=""
+                          alt="youtube thumbnail image"
+                          className="w-full h-full rounded-[12px]"
+                          data-src={item.snippet.thumbnails.medium.url}
+                          onLoad={(e) =>
+                            e.currentTarget.previousSibling.classList.add(
+                              "hidden"
+                            )
+                          }
+                          height={190}
+                          width={340}
+                        />
+                      ) : (
+                        <div className="w-full rounded-[12px] bg-[#cccccc]"></div>
+                      )}
                       <div className="absolute bottom-[4px] right-[4px] bg-[#191C23] text-white font-medium text-[12px] px-[5px] rounded-[3px]">
                         <p>{extractVideoLength(item.snippet.videoLength)}</p>
                       </div>
                     </div>
                     <div className="flex relative">
-                      <img
-                        src={item.snippet.channelImg}
-                        alt="youtube channel image"
-                        className="h-[36px] w-[36px] rounded-full mr-[11px] mt-[11px]"
-                      />
+                      <div className="w-[16%] relative mt-[12px]">
+                        <div
+                          className={`w-[36px] h-[36px] absolute left-0 top-0 bg-[#cccccc] rounded-full z-[100]`}
+                        ></div>
+                        <img
+                          src=""
+                          alt="youtube thumbnail image"
+                          className="w-[36px] h-[36px] absolute left-0 top-0 rounded-full"
+                          data-src={item.snippet.channelImg}
+                          onLoad={(e) =>
+                            e.currentTarget.previousSibling.classList.add(
+                              "hidden"
+                            )
+                          }
+                          width={36}
+                          height={36}
+                        />
+                      </div>
                       <div className="w-full">
                         <p
-                          className="w-[86%] text-[16px] font-medium text-ellipsis leading-[22px] mt-[11px] overflow-hidden line-clamp-2"
+                          className="w-[86%] text-[16px] font-medium text-ellipsis leading-[22px] mt-[12px] overflow-hidden line-clamp-2"
                           title={`${decodeEntity(item.snippet.title)}`}
                         >
                           {decodeEntity(item.snippet.title)}
@@ -710,14 +772,20 @@ export const HomeSection = ({
                                   }
                                 >
                                   <Check2
-                                    height={10.8}
-                                    width={10.5}
+                                    height={10.5}
+                                    width={10.3}
                                     color="white"
                                   />
                                   <Check2
                                     className="absolute left-[1px] top-[1px]"
-                                    height={10.8}
-                                    width={10.5}
+                                    height={10.5}
+                                    width={10.3}
+                                    color="white"
+                                  />
+                                  <Check2
+                                    className="absolute left-[1px] top-[1px]"
+                                    height={10.5}
+                                    width={10.3}
                                     color="white"
                                   />
                                 </div>
