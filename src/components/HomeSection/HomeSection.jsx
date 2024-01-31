@@ -24,36 +24,20 @@ export const HomeSection = ({
     id: 0,
   });
   const videoCategoryScroll = useRef();
+  const countryCode = "US";
   let isMouseDown = false;
   let startX;
   let currentPos;
 
-  const getData = async () => {
-    const countryCode = "US";
-    const videoCategoryArr = [];
-
-    const videoFilterResponse = await axios(
-      `https://www.googleapis.com/youtube/v3/videoCategories?key=${
-        import.meta.env.VITE_API_KEY
-      }&part=snippet&regionCode=${countryCode}`
-    );
+  const addVideosArray = async () => {
+    const videoDataArray = [];
     const videoResponse = await axios(
       `https://www.googleapis.com/youtube/v3/search?key=${
         import.meta.env.VITE_API_KEY
       }&part=snippet&maxResults=12&type=video&regionCode=${countryCode}`
     );
 
-    const videoFilterData = await videoFilterResponse.data.items;
     const videoData = await videoResponse.data.items;
-
-    videoCategoryArr.push("All");
-
-    videoFilterData.forEach((item) => {
-      videoCategoryArr.push(item.snippet.title);
-    });
-
-    videoCategoryArr.push("Recently uploaded");
-    videoCategoryArr.push("Watched");
 
     for (let i = 0; i < videoData.length; i++) {
       const channelResponse = await axios(
@@ -94,10 +78,36 @@ export const HomeSection = ({
         videoData[i].snippet.videoLength = await videoDetailsArray[0]
           .contentDetails.duration;
       }
+
+      videoDataArray.push(videoData[i]);
     }
 
+    setVideoData(videoDataArray);
+  };
+
+  const getData = async () => {
+    const videoCategoryArr = [];
+
+    const videoFilterResponse = await axios(
+      `https://www.googleapis.com/youtube/v3/videoCategories?key=${
+        import.meta.env.VITE_API_KEY
+      }&part=snippet&regionCode=${countryCode}`
+    );
+
+    const videoFilterData = await videoFilterResponse.data.items;
+
+    videoCategoryArr.push("All");
+
+    videoFilterData.forEach((item) => {
+      videoCategoryArr.push(item.snippet.title);
+    });
+
+    videoCategoryArr.push("Recently uploaded");
+    videoCategoryArr.push("Watched");
+
+    addVideosArray();
+
     setVideoCategoryArr(videoCategoryArr);
-    setVideoData(videoData);
   };
 
   const decodeEntity = (str) => {
@@ -291,7 +301,7 @@ export const HomeSection = ({
 
   return (
     <div className="w-full">
-      {videoCategoryArr.length !== 0 ? (
+      {videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
         ""
       ) : (
         <div
@@ -306,7 +316,7 @@ export const HomeSection = ({
           sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"
         } mr-[25px] flex justify-center`}
       >
-        {videoCategoryArr.length !== 0 ? (
+        {videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
           <div className="flex justify-center w-full h-[56px] bg-white fixed z-[900]">
             <div
               className={`relative h-full ${
