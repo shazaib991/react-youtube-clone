@@ -269,9 +269,14 @@ export const HomeSection = ({
     image.src = image.dataset.src;
   };
 
-  const config = {
+  const configImgLazyLoad = {
     rootMargin: "0px 0px 0px 0px",
     threshold: 0,
+  };
+
+  const configInfiniteScroll = {
+    rootMargin: "0px 0px 0px 0px",
+    threshold: 1,
   };
 
   useEffect(() => {
@@ -286,17 +291,22 @@ export const HomeSection = ({
           self.unobserve(entry.target);
         }
       });
-    }, config);
+    }, configImgLazyLoad);
 
     const imgs = document.querySelectorAll("[data-src]");
     imgs.forEach((img) => {
       observer.observe(img);
     });
-    return () => {
-      imgs.forEach((img) => {
-        observer.unobserve(img);
-      });
-    };
+
+    let observerVideoCardObserver = new window.IntersectionObserver((entry, self) => {
+        if (entry[0].isIntersecting) {
+          addVideosArray();
+          self.unobserve(entry[0].target);
+        };
+    }, configInfiniteScroll);
+
+    const videoCardDiv = document.querySelector(".videoCardParent");
+    observerVideoCardObserver.observe(videoCardDiv.lastElementChild);
   }, [videoData]);
 
   return (
@@ -640,7 +650,7 @@ export const HomeSection = ({
         <div
           className={`flex flex-wrap justify-between ${
             videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"
-          }`}
+          } videoCardParent`}
         >
           {videoData.length !== 0
             ? videoData.map((item, index) => {

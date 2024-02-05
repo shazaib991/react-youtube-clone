@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tippyjs/react": "^4.2.6",
     "axios": "^1.4.0",
     "body-scroll-lock": "^4.0.0-beta.0",
     "dotenv": "^16.0.3",
