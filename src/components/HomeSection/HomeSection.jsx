@@ -19,6 +19,7 @@ export const HomeSection = ({
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
   const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
+  const [nextPageToken, setNextPageToken] = useState("");
   const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
     status: false,
     id: 0,
@@ -30,30 +31,32 @@ export const HomeSection = ({
   let currentPos;
 
   const addVideosArray = async () => {
-    const videoDataArray = [];
+    const videoDataArray = [...videoData];
     const videoResponse = await axios(
       `https://www.googleapis.com/youtube/v3/search?key=${
         import.meta.env.VITE_API_KEY
-      }&part=snippet&maxResults=12&type=video&regionCode=${countryCode}`
+      }&part=snippet&maxResults=12&type=video&regionCode=${countryCode}&pageToken=${nextPageToken}`
     );
 
-    const videoData = await videoResponse.data.items;
+    setNextPageToken(await videoResponse.data.nextPageToken);
 
-    for (let i = 0; i < videoData.length; i++) {
+    const videoDataItems = await videoResponse.data.items;
+
+    for (let i = 0; i < videoDataItems.length; i++) {
       const channelResponse = await axios(
         `https://www.googleapis.com/youtube/v3/channels?key=${
           import.meta.env.VITE_API_KEY
-        }&part=snippet&id=${videoData[i].snippet.channelId}`
+        }&part=snippet&id=${videoDataItems[i].snippet.channelId}`
       );
       const channelStatisticsResponse = await axios(
         `https://www.googleapis.com/youtube/v3/channels?key=${
           import.meta.env.VITE_API_KEY
-        }&part=statistics&id=${videoData[i].snippet.channelId}`
+        }&part=statistics&id=${videoDataItems[i].snippet.channelId}`
       );
       const videoDetailsResponse = await axios(
         `https://www.googleapis.com/youtube/v3/videos?key=${
           import.meta.env.VITE_API_KEY
-        }&part=statistics&part=contentDetails&id=${videoData[i].id.videoId}`
+        }&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
       );
 
       const channelDataArray = await channelResponse.data.items;
@@ -61,25 +64,25 @@ export const HomeSection = ({
         .items;
 
       if (channelDataArray !== undefined) {
-        videoData[i].snippet.channelImg = await channelDataArray[0].snippet
+        videoDataItems[i].snippet.channelImg = await channelDataArray[0].snippet
           .thumbnails.default.url;
-        videoData[i].snippet.channelSubscriberCount =
+        videoDataItems[i].snippet.channelSubscriberCount =
           await channelStatisticsDataArray[0].statistics.subscriberCount;
       } else {
-        videoData[i].snippet.channelImg = "";
-        videoData[i].snippet.channelSubscriberCount = "";
+        videoDataItems[i].snippet.channelImg = "";
+        videoDataItems[i].snippet.channelSubscriberCount = "";
       }
 
       const videoDetailsArray = await videoDetailsResponse.data.items;
 
       if (videoDetailsArray[0] !== undefined) {
-        videoData[i].snippet.videoViewCount = await videoDetailsArray[0]
+        videoDataItems[i].snippet.videoViewCount = await videoDetailsArray[0]
           .statistics.viewCount;
-        videoData[i].snippet.videoLength = await videoDetailsArray[0]
+        videoDataItems[i].snippet.videoLength = await videoDetailsArray[0]
           .contentDetails.duration;
       }
 
-      videoDataArray.push(videoData[i]);
+      videoDataArray.push(videoDataItems[i]);
     }
 
     setVideoData(videoDataArray);
