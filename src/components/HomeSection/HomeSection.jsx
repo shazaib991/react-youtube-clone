@@ -18,6 +18,7 @@ export const HomeSection = ({
   const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
+  const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] = useState(false);
   const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
   const [nextPageToken, setNextPageToken] = useState("");
   const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
@@ -86,6 +87,7 @@ export const HomeSection = ({
     }
 
     setVideoData(videoDataArray);
+    setAreNewVideosAtScrollDownLoading(false);
   };
 
   const getData = async () => {
@@ -109,7 +111,6 @@ export const HomeSection = ({
     videoCategoryArr.push("Watched");
 
     addVideosArray();
-
     setVideoCategoryArr(videoCategoryArr);
   };
 
@@ -303,12 +304,17 @@ export const HomeSection = ({
 
     let observerVideoCardObserver = new window.IntersectionObserver((entry, self) => {
         if (entry[0].isIntersecting) {
+          setAreNewVideosAtScrollDownLoading(true);
           addVideosArray();
           self.unobserve(entry[0].target);
         };
     }, configInfiniteScroll);
 
     const videoCardDiv = document.querySelector(".videoCardParent");
+
+    if(!videoCardDiv.lastElementChild.classList.contains("videoCard")) {
+      return;
+    }
     observerVideoCardObserver.observe(videoCardDiv.lastElementChild);
   }, [videoData]);
 
@@ -657,6 +663,7 @@ export const HomeSection = ({
         >
           {videoData.length !== 0
             ? videoData.map((item, index) => {
+              // const uniqueVideoId = Math.random().toString(16).slice(2);
                 const videoDate = new Date(item.snippet.publishedAt);
                 const currentDate = new Date(Date.now());
                 const days = Math.trunc(
@@ -683,7 +690,7 @@ export const HomeSection = ({
 
                 return (
                   <div
-                    key={item.etag}
+                    key={index}
                     className="w-[340px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
@@ -918,6 +925,23 @@ export const HomeSection = ({
                   </div>
                 );
               })}
+              {areNewVideosAtScrollDownLoading ? <div className="flex flex-wrap justify-between">{[...Array(6).keys()].map((index) => {
+                return (
+                  <div
+                    className="w-[340px] rounded-[9px] mb-[50px]"
+                    key={index}
+                  >
+                    <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
+                    <div className="flex mt-[12px]">
+                      <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>
+                      <div className="ml-[12px]">
+                        <div className="w-[266px] h-[20px] bg-[#e3e3e3] mt-[-2px]"></div>
+                        <div className="w-[177px] h-[20px] bg-[#e3e3e3] mt-[10px]"></div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}</div> : ""}
         </div>
       </div>
     </div>
