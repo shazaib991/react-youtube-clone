@@ -44,6 +44,7 @@ export const HomeSection = ({
     const videoDataItems = await videoResponse.data.items;
 
     for (let i = 0; i < videoDataItems.length; i++) {
+      const uniqueVideoId = Math.random().toString(16).slice(2);
       const channelResponse = await axios(
         `https://www.googleapis.com/youtube/v3/channels?key=${
           import.meta.env.VITE_API_KEY
@@ -59,6 +60,7 @@ export const HomeSection = ({
           import.meta.env.VITE_API_KEY
         }&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
       );
+      videoDataItems[i].customId = uniqueVideoId;
 
       const channelDataArray = await channelResponse.data.items;
       const channelStatisticsDataArray = await channelStatisticsResponse.data
@@ -663,7 +665,6 @@ export const HomeSection = ({
         >
           {videoData.length !== 0
             ? videoData.map((item, index) => {
-              // const uniqueVideoId = Math.random().toString(16).slice(2);
                 const videoDate = new Date(item.snippet.publishedAt);
                 const currentDate = new Date(Date.now());
                 const days = Math.trunc(
@@ -690,7 +691,7 @@ export const HomeSection = ({
 
                 return (
                   <div
-                    key={index}
+                    key={item.customId}
                     className="w-[340px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                   >
