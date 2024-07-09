@@ -18,14 +18,19 @@ export const HomeSection = ({
   const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
   const [videoCategoryArr, setVideoCategoryArr] = useState([]);
   const [videoData, setVideoData] = useState([]);
-  const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] = useState(false);
+  const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] =
+    useState(false);
   const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
   const [nextPageToken, setNextPageToken] = useState("");
+  const [loaderInterval1, setLoaderInterval1] = useState(0);
+  const [loaderInterval2, setLoaderInterval2] = useState(0);
   const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
     status: false,
     id: 0,
   });
   const videoCategoryScroll = useRef();
+  const loader1 = useRef();
+  const loader2 = useRef();
   const countryCode = "US";
   let isMouseDown = false;
   let startX;
@@ -58,7 +63,9 @@ export const HomeSection = ({
       const videoDetailsResponse = await axios(
         `https://www.googleapis.com/youtube/v3/videos?key=${
           import.meta.env.VITE_API_KEY
-        }&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
+        }&part=statistics&part=contentDetails&id=${
+          videoDataItems[i].id.videoId
+        }`
       );
       videoDataItems[i].customId = uniqueVideoId;
 
@@ -304,21 +311,47 @@ export const HomeSection = ({
       observer.observe(img);
     });
 
-    let observerVideoCardObserver = new window.IntersectionObserver((entry, self) => {
+    let observerVideoCardObserver = new window.IntersectionObserver(
+      (entry, self) => {
         if (entry[0].isIntersecting) {
           setAreNewVideosAtScrollDownLoading(true);
           addVideosArray();
           self.unobserve(entry[0].target);
-        };
-    }, configInfiniteScroll);
+        }
+      },
+      configInfiniteScroll
+    );
 
     const videoCardDiv = document.querySelector(".videoCardParent");
 
-    if(!videoCardDiv.lastElementChild.classList.contains("videoCard")) {
+    if (!videoCardDiv.lastElementChild.classList.contains("videoCard")) {
       return;
     }
     observerVideoCardObserver.observe(videoCardDiv.lastElementChild);
   }, [videoData]);
+
+  useEffect(() => {
+    if (areNewVideosAtScrollDownLoading) {
+      setLoaderInterval1(
+        setInterval(() => {
+          loader1.current.classList.remove("loader-animation");
+          loader2.current.classList.add("loader2-animation");
+        }, 900)
+      );
+
+      setLoaderInterval2(
+        setInterval(() => {
+          loader1.current.classList.add("loader-animation");
+          loader2.current.classList.remove("loader2-animation");
+        }, 1800)
+      );
+
+      return;
+    }
+
+    clearInterval(loaderInterval1);
+    clearInterval(loaderInterval2);
+  }, [areNewVideosAtScrollDownLoading]);
 
   return (
     <div className="w-full">
@@ -926,23 +959,40 @@ export const HomeSection = ({
                   </div>
                 );
               })}
-              {areNewVideosAtScrollDownLoading ? <div className="flex flex-wrap justify-between">{[...Array(6).keys()].map((index) => {
-                return (
-                  <div
-                    className="w-[340px] rounded-[9px] mb-[50px]"
-                    key={index}
-                  >
-                    <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
-                    <div className="flex mt-[12px]">
-                      <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>
-                      <div className="ml-[12px]">
-                        <div className="w-[266px] h-[20px] bg-[#e3e3e3] mt-[-2px]"></div>
-                        <div className="w-[177px] h-[20px] bg-[#e3e3e3] mt-[10px]"></div>
+          {areNewVideosAtScrollDownLoading ? (
+            <div className="flex flex-col items-center">
+              <div className="flex flex-wrap justify-between">
+                {[...Array(6).keys()].map((index) => {
+                  return (
+                    <div
+                      className="w-[340px] rounded-[9px] mb-[50px]"
+                      key={index}
+                    >
+                      <div className="w-full h-[193px] bg-[#cccccc] rounded-[9px]"></div>
+                      <div className="flex mt-[12px]">
+                        <div className="w-[36px] h-[36px] rounded-full bg-[#e3e3e3]"></div>
+                        <div className="ml-[12px]">
+                          <div className="w-[266px] h-[20px] bg-[#e3e3e3] mt-[-2px]"></div>
+                          <div className="w-[177px] h-[20px] bg-[#e3e3e3] mt-[10px]"></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}</div> : ""}
+                  );
+                })}
+              </div>
+              <div className="loader-container mb-[10px]">
+                <div className="loader-dot"></div>
+                <div className="loader loader-animation" ref={loader1}>
+                  <div className="loader-hole"></div>
+                </div>
+                <div className="loader2" ref={loader2}>
+                  <div className="loader-hole"></div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
