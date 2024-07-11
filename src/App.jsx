@@ -12,6 +12,7 @@ export default function App() {
     status: false,
     id: 0,
   });
+  const [themeMode, setThemeMode] = useState("");
   const [moreIconHover, setMoreIconHover] = useState(false);
   const [micIconHover, setMicIconHover] = useState(false);
   const [searchIconHover, setSearchIconHover] = useState(false);
@@ -120,6 +121,14 @@ export default function App() {
     }
   }, [moreIconActive, videoMoreIconActive.status]);
 
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setThemeMode("systemDark");
+      return;
+    }
+    setThemeMode("systemLight");
+  }, []);
+
   return (
     <div
       className={`h-[100vh] relative ${
@@ -127,7 +136,9 @@ export default function App() {
       } scroll-smooth`}
       ref={disableScroll}
       onMouseUp={() => {
+        // TODO check all logic related to div that can be hidden
         if (
+          leftScrollVideoCategory &&
           leftScrollVideoCategory.current.classList.contains(
             "videoCategoryNavigateIconActive2"
           )
@@ -144,6 +155,7 @@ export default function App() {
           return;
         }
         if (
+          rightScrollVideoCategory &&
           rightScrollVideoCategory.current.classList.contains(
             "videoCategoryNavigateIconActive2"
           )
@@ -228,6 +240,8 @@ export default function App() {
         moreIconActive={moreIconActive}
         moreIconHover={moreIconHover}
         micIconHover={micIconHover}
+        themeMode={themeMode}
+        setThemeMode={setThemeMode}
         searchIconHover={searchIconHover}
         videoMoreIconPos={videoMoreIconPos}
         videoMoreIconActive={videoMoreIconActive}

@@ -377,6 +377,7 @@ export const HomeSection = ({
                 sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"
               }`}
             >
+              {/* TODO fix this warning */}
               <div
                 className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
                 style={{
@@ -794,7 +795,7 @@ export const HomeSection = ({
                             {item.snippet.channelTitle}
                           </div>
                           <div className="flex items-center">
-                            {/* TODO: fix overflow width  */}
+                            {/* TODO fix overflow width  */}
                             <div className="max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap">
                               <p
                                 className="inline text-[14px] text-[#626262] mr-[5px]"

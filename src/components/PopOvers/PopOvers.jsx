@@ -9,6 +9,8 @@ import { QuestionCircle } from "react-bootstrap-icons";
 import { SendExclamation } from "react-bootstrap-icons";
 import { ChevronRight } from "react-bootstrap-icons";
 import { CollectionPlay } from "react-bootstrap-icons";
+import { ArrowLeftShort } from "react-bootstrap-icons";
+import { Check2 } from "react-bootstrap-icons";
 import { Share } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 
@@ -17,11 +19,14 @@ export const PopOvers = ({
   moreIconHover,
   micIconHover,
   searchIconHover,
+  themeMode,
+  setThemeMode,
   videoMoreIconPos,
   videoMoreIconActive,
   videoMoreIconPopOver,
 }) => {
   const [windowSize, setWindowSize] = useState(0);
+  const [navigateToThemeOptions, setNavigateToThemeOptions] = useState(false);
 
   const windowResize = () => {
     setWindowSize(window.innerHeight);
@@ -40,56 +45,135 @@ export const PopOvers = ({
           moreIconActive ? "" : "hidden"
         }`}
       >
-        <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <PersonVcard size={20} />
-          <p className="ml-[18px] text-[14px]">Your data in YouTube</p>
-        </div>
-        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <div className="flex items-center">
-            <Moon size={20} />
-            <p className="ml-[18px] text-[14px]">Appearance: Light</p>
+        {navigateToThemeOptions ? (
+          <div>
+            <div className="flex ml-[7px] items-center">
+              <ArrowLeftShort
+                size={32}
+                className="cursor-pointer"
+                onClick={() => setNavigateToThemeOptions(false)}
+              />
+              <p className="ml-[10px]">Appearance</p>
+            </div>
+            <hr className="mt-[8px]" />
+            <p className="ml-[16px] mt-[19px] text-[12px] text-[#646464e6]">
+              Setting applies to this browser only
+            </p>
+            <div
+              className="flex pl-[14px] mt-[10px] py-[7px] items-center hover:bg-black/5 cursor-pointer"
+              onClick={() => setThemeMode("systemDark")}
+            >
+              <Check2
+                size={25}
+                className={
+                  themeMode === "dark" || themeMode === "light"
+                    ? "invisible"
+                    : ""
+                }
+              />
+              <p className="ml-[17px] text-[15px]">Use device theme</p>
+            </div>
+            <div
+              className="flex pl-[14px] py-[7px] items-center hover:bg-black/5 cursor-pointer"
+              onClick={() => setThemeMode("dark")}
+            >
+              <Check2
+                size={25}
+                className={
+                  themeMode === "systemDark" ||
+                  themeMode === "systemLight" ||
+                  themeMode === "light"
+                    ? "invisible"
+                    : ""
+                }
+              />
+              <p className="ml-[17px] text-[15px]">Dark theme</p>
+            </div>
+            <div
+              className="flex pl-[14px] py-[7px] items-center hover:bg-black/5 cursor-pointer"
+              onClick={() => setThemeMode("light")}
+            >
+              <Check2
+                size={25}
+                className={
+                  themeMode === "systemDark" ||
+                  themeMode === "systemLight" ||
+                  themeMode === "dark"
+                    ? "invisible"
+                    : ""
+                }
+              />
+              <p className="ml-[17px] text-[15px]">Light theme</p>
+            </div>
           </div>
-          <ChevronRight size={16} />
-        </div>
-        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <div className="flex items-center">
-            <Translate size={20} />
-            <p className="ml-[18px] text-[14px]">Language: English</p>
-          </div>
-          <ChevronRight size={16} />
-        </div>
-        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <div className="flex items-center">
-            <ShieldLock size={20} />
-            <p className="ml-[18px] text-[14px]">Restricted Mode: Off</p>
-          </div>
-          <ChevronRight size={16} />
-        </div>
-        <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <div className="flex items-center">
-            <Globe size={20} />
-            <p className="ml-[18px] text-[14px]">Location: United Kingdom</p>
-          </div>
-          <ChevronRight size={16} />
-        </div>
-        <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <Keyboard size={20} />
-          <p className="ml-[18px] text-[14px]">Keyboard shortcuts</p>
-        </div>
-        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[9px]"></div>
-        <div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <Gear size={20} />
-          <p className="ml-[18px] text-[14px]">Settings</p>
-        </div>
-        <div className="w-full h-[1px] bg-[#e5e5e5] mt-[9px]"></div>
-        <div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <QuestionCircle size={20} />
-          <p className="ml-[18px] text-[14px]">Help</p>
-        </div>
-        <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
-          <SendExclamation size={20} />
-          <p className="ml-[18px] text-[14px]">Send feedback</p>
-        </div>
+        ) : (
+          <>
+            <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <PersonVcard size={20} />
+              <p className="ml-[18px] text-[14px]">Your data in YouTube</p>
+            </div>
+            <div
+              className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer"
+              onClick={() => setNavigateToThemeOptions(true)}
+            >
+              <div className="flex items-center">
+                <Moon size={20} />
+                <p className="ml-[18px] text-[14px]">
+                  Appearance:{" "}
+                  {themeMode === "systemDark" || themeMode === "systemLight"
+                    ? "Device theme"
+                    : themeMode === "light"
+                    ? "Light"
+                    : themeMode === "dark"
+                    ? "Dark"
+                    : ""}
+                </p>
+              </div>
+              <ChevronRight size={16} />
+            </div>
+            <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <div className="flex items-center">
+                <Translate size={20} />
+                <p className="ml-[18px] text-[14px]">Language: English</p>
+              </div>
+              <ChevronRight size={16} />
+            </div>
+            <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <div className="flex items-center">
+                <ShieldLock size={20} />
+                <p className="ml-[18px] text-[14px]">Restricted Mode: Off</p>
+              </div>
+              <ChevronRight size={16} />
+            </div>
+            <div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <div className="flex items-center">
+                <Globe size={20} />
+                <p className="ml-[18px] text-[14px]">
+                  Location: United Kingdom
+                </p>
+              </div>
+              <ChevronRight size={16} />
+            </div>
+            <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <Keyboard size={20} />
+              <p className="ml-[18px] text-[14px]">Keyboard shortcuts</p>
+            </div>
+            <div className="w-full h-[1px] bg-[#e5e5e5] mt-[9px]"></div>
+            <div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <Gear size={20} />
+              <p className="ml-[18px] text-[14px]">Settings</p>
+            </div>
+            <div className="w-full h-[1px] bg-[#e5e5e5] mt-[9px]"></div>
+            <div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <QuestionCircle size={20} />
+              <p className="ml-[18px] text-[14px]">Help</p>
+            </div>
+            <div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+              <SendExclamation size={20} />
+              <p className="ml-[18px] text-[14px]">Send feedback</p>
+            </div>
+          </>
+        )}
       </div>
       <div
         className={`fixed rounded-[10px] py-[8px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
