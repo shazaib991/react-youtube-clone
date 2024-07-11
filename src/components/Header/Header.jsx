@@ -1,10 +1,11 @@
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
+import youtubeLogoDark from "../../assets/images/yt_logo_rgb_dark.png";
 import { Search } from "react-bootstrap-icons";
 import { XLg } from "react-bootstrap-icons";
 import { ThreeDotsVertical } from "react-bootstrap-icons";
 import { PersonCircle } from "react-bootstrap-icons";
 import { MicFill } from "react-bootstrap-icons";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./HeaderStyle.css";
 
 export const Header = ({
@@ -22,6 +23,7 @@ export const Header = ({
    const [searchText, setSearchText] = useState("");
    const moreIcon = useRef();
    const searchBox = useRef();
+   const youtubeLogoImage = useRef();
 
    const handleSearch = (e) => {
       setSearchText(e.currentTarget.value);
@@ -39,6 +41,13 @@ export const Header = ({
    const handleSidebarBurgerMenuClick = () => {
       setSidebarBurgerMenuClick((prevState) => !prevState);
    };
+
+   useEffect(() => {
+      youtubeLogoImage.current.classList.add("opacity-0");
+      setInterval(() => {
+         youtubeLogoImage.current.classList.remove("opacity-0");
+      }, [150]);
+   }, [themeMode]);
 
    return (
       <div
@@ -215,10 +224,16 @@ export const Header = ({
                   className="flex items-center ml-[14px] cursor-pointer"
                >
                   <img
-                     src={youtubeLogo}
+                     src={
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? youtubeLogoDark
+                           : youtubeLogo
+                     }
                      width={90}
                      height={20}
+                     ref={youtubeLogoImage}
                      alt="youtube logo"
+                     className="transition-[opacity]"
                   />
                </div>
             </div>
