@@ -70,8 +70,29 @@
    font-size: 18px;
 }
 
+.headerMoreIconDark {
+   width: 40px;
+   height: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50%;
+   border: 2px solid transparent;
+   margin-right: 7.5px;
+   cursor: pointer;
+   transition: background-color 0.1s ease-in-out, border 0.4s ease-in-out;
+   z-index: 300;
+   font-size: 18px;
+}
+
 .headerMoreIcon:active {
    transition: none;
    border: 2px solid #e5e5e5;
    background-color: #e5e5e5;
+}
+
+.headerMoreIconDark:active {
+   transition: none;
+   border: 2px solid #272727;
+   background-color: #272727;
 }

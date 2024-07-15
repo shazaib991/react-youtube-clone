@@ -24,6 +24,9 @@ export const Header = ({
    const moreIcon = useRef();
    const searchBox = useRef();
    const youtubeLogoImage = useRef();
+   const micIcon = useRef();
+   const signInBtn = useRef();
+   const searchBtn = useRef();
 
    const handleSearch = (e) => {
       setSearchText(e.currentTarget.value);
@@ -43,10 +46,20 @@ export const Header = ({
    };
 
    useEffect(() => {
-      youtubeLogoImage.current.classList.add("opacity-0");
+      console.log("test");
+      youtubeLogoImage.current.classList.replace("opacity-100", "opacity-0");
+      micIcon.current.classList.replace("duration-0", "duration-300");
+      searchBtn.current.classList.replace("duration-0", "duration-300");
+      signInBtn.current.classList.replace("duration-0", "duration-300");
       setInterval(() => {
-         youtubeLogoImage.current.classList.remove("opacity-0");
-      }, [150]);
+         if (youtubeLogoImage.current === undefined) {
+            return;
+         }
+         youtubeLogoImage.current.classList.replace("opacity-0", "opacity-100");
+         micIcon.current.classList.replace("duration-300", "duration-0");
+         searchBtn.current.classList.replace("duration-300", "duration-0");
+         signInBtn.current.classList.replace("duration-300", "duration-0");
+      }, [300]);
    }, [themeMode]);
 
    return (
@@ -55,7 +68,7 @@ export const Header = ({
             themeMode === "systemDark" || themeMode === "dark"
                ? "bg-[#0f0f0f]"
                : "bg-[#ffffff]"
-         } transition-[background]`}
+         } transition-[background] duration-300`}
          onClick={
             moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""
          }
@@ -201,21 +214,21 @@ export const Header = ({
                            themeMode === "systemDark" || themeMode === "dark"
                               ? "bg-[#ffffff]"
                               : "bg-[#000000]"
-                        } transition-[background]`}
+                        } transition-[background] duration-300`}
                      ></div>
                      <div
                         className={`w-full h-[1px] ${
                            themeMode === "systemDark" || themeMode === "dark"
                               ? "bg-[#ffffff]"
                               : "bg-[#000000]"
-                        } transition-[background]`}
+                        } transition-[background] duration-300`}
                      ></div>
                      <div
                         className={`w-full h-[1px] ${
                            themeMode === "systemDark" || themeMode === "dark"
                               ? "bg-[#ffffff]"
                               : "bg-[#000000]"
-                        } transition-[background]`}
+                        } transition-[background] duration-300`}
                      ></div>
                   </div>
                </div>
@@ -233,7 +246,7 @@ export const Header = ({
                      height={20}
                      ref={youtubeLogoImage}
                      alt="youtube logo"
-                     className="transition-[opacity]"
+                     className="transition-[opacity] duration-300 opacity-100"
                   />
                </div>
             </div>
@@ -248,35 +261,71 @@ export const Header = ({
                      onChange={handleSearch}
                      value={searchText}
                      ref={searchBox}
-                     className="w-[94.5%] h-full border border-[#00000033] rounded-tl-[40px] border-r-0 rounded-bl-[40px] placeholder:text-[#888A88] outline-none pl-[17px] pr-[25px] focus:border-[#002db3] focus:border-r-[1px] focus:w-full peer focus:pl-[48.2px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)]"
+                     className={`w-[94.5%] h-full border ${
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? "bg-[#121212] border-[#313131] text-[#ffffff]"
+                           : "bg-[#ffffff] border-[#00000033] text-[#000000]"
+                     } rounded-tl-[40px] border-r-0 rounded-bl-[40px] placeholder:text-[#888A88] outline-none pl-[17px] pr-[25px] focus:border-[#244abe] focus:border-r-[1px] focus:w-full peer focus:pl-[48.2px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)] transition-[background,border,text] duration-300`}
                   />
                   <Search
                      className="absolute ml-[20px] left-0 hidden peer-focus:block"
                      size={14}
-                     color="black"
+                     color={`${
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? "#ffffff"
+                           : "#000000"
+                     }`}
                   />
                   <div
-                     className={`flex justify-center items-center h-[40px] w-[40px] hover:bg-black/10 rounded-[50%] absolute right-[-4px] cursor-pointer ${
+                     className={`flex justify-center items-center h-[40px] w-[40px] ${
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? "hover:bg-[#4e4e4e] active:border-[#606060] active:bg-[#606060]"
+                           : "hover:bg-black/10 active:border-[#00000026] active:bg-black/20"
+                     } rounded-[50%] absolute right-[-4px] cursor-pointer ${
                         searchText.length > 0 ? "" : "hidden"
-                     } active:border-[#00000026] active:border-[1px] active:bg-black/20 transition-[border] duration-300 active:transition-none`}
+                     }`}
                      onClick={handleClearSearch}
                   >
-                     <XLg size={20} />
+                     <XLg
+                        size={20}
+                        color={`${
+                           themeMode === "systemDark" || themeMode === "dark"
+                              ? "#ffffff"
+                              : "#000000"
+                        }`}
+                     />
                   </div>
                </div>
                <div
-                  className="w-[63px] h-[40px] flex items-center bg-[#f8f8f8] border border-[#d6d6d6] rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer hover:bg-[#0000000f] active:bg-[#0000001a] hover:border-[#0000002e] hover:shadow-[0_1px_1px_rgba(50,50,50,0.12)]"
+                  className={`w-[63px] h-[40px] flex items-center ${
+                     themeMode === "systemDark" || themeMode === "dark"
+                        ? "bg-[#222222] border-[#313131]"
+                        : "bg-[#f8f8f8] border-[#d6d6d6] hover:bg-[#0000000f] hover:border-[#0000002e] hover:shadow-[0_1px_1px_rgba(50,50,50,0.12)] active:bg-[#0000001a]"
+                  } border rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer transition-[background,border] duration-0`}
                   onMouseEnter={() =>
                      handleHeaderTooltipMouseEnter("searchIconTooltip")
                   }
                   onMouseLeave={() =>
                      handleHeaderTooltipMouseLeave("searchIconTooltip")
                   }
+                  ref={searchBtn}
                >
-                  <Search className="ml-[22px]" size={18} color="black" />
+                  <Search
+                     className="ml-[22px]"
+                     size={18}
+                     color={`${
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? "#ffffff"
+                           : "#000000"
+                     }`}
+                  />
                </div>
                <div
-                  className="w-[40px] h-[40px] flex justify-center items-center bg-[#f2f2f2] rounded-[50%] hover:bg-black/10 ml-[14px] cursor-pointer active:border-[#00000026] active:border-[1px] active:bg-black/20 transition-[border] duration-300 active:transition-none"
+                  className={`w-[40px] h-[40px] flex justify-center items-center ${
+                     themeMode === "systemDark" || themeMode === "dark"
+                        ? "bg-[#272727] hover:bg-[#3d3d3d] active:border-[#272727] active:bg-[#515151]"
+                        : "bg-[#f2f2f2] hover:bg-black/10 active:border-[#00000026] active:bg-black/20"
+                  }  rounded-[50%] ml-[14px] cursor-pointer active:border-[1px] transition-[background] duration-0`}
                   onMouseEnter={() =>
                      handleHeaderTooltipMouseEnter("micIconTooltip")
                   }
@@ -284,13 +333,25 @@ export const Header = ({
                      handleHeaderTooltipMouseLeave("micIconTooltip")
                   }
                   onClick={handleMicListenClick}
+                  ref={micIcon}
                >
-                  <MicFill color="black" size={18} />
+                  <MicFill
+                     size={18}
+                     color={`${
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? "#ffffff"
+                           : "#000000"
+                     }`}
+                  />
                </div>
             </div>
             <div className="flex items-center">
                <div
-                  className="headerMoreIcon"
+                  className={
+                     themeMode === "systemDark" || themeMode === "dark"
+                        ? "headerMoreIconDark"
+                        : "headerMoreIcon"
+                  }
                   onClick={handleMoreIconClick}
                   onMouseEnter={() =>
                      handleHeaderTooltipMouseEnter("moreIconTooltip")
@@ -300,11 +361,27 @@ export const Header = ({
                   }
                   ref={moreIcon}
                >
-                  <ThreeDotsVertical color="black" size={18} />
+                  <ThreeDotsVertical
+                     size={18}
+                     color={`${
+                        themeMode === "systemDark" || themeMode === "dark"
+                           ? "#ffffff"
+                           : "#000000"
+                     }`}
+                  />
                </div>
-               <div className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]">
+               <div
+                  className={`h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer ${
+                     themeMode === "dark" || themeMode === "systemDark"
+                        ? "border-[#4d4d4d] hover:bg-[#263850]"
+                        : "hover:bg-[#def1ff]"
+                  } transition-[background,border] duration-0`}
+                  ref={signInBtn}
+               >
                   <PersonCircle className="mr-[8px]" size={21} color="blue" />
-                  <p className="text-[14px] font-[500] text-[blue]">Sign in</p>
+                  <p className="text-[14px] font-[500] text-[#5353ff]">
+                     Sign in
+                  </p>
                </div>
             </div>
          </div>
