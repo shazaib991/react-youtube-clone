@@ -27,6 +27,8 @@ export const Sidebar = ({
 }) => {
 	const date = new Date();
 	const disableScroll = useRef();
+	const signInBtn = useRef();
+	const homeBtn = useRef();
 
 	let handleEvent = useCallback((e) => {
 		e.preventDefault();
@@ -43,6 +45,15 @@ export const Sidebar = ({
 			disableScroll.current.removeEventListener("touchmove", handleEvent);
 		}
 	}, [moreIconActive, videoMoreIconActive.status]);
+
+	useEffect(() => {
+		homeBtn.current.classList.replace("duration-0", "duration-300");
+		signInBtn.current.classList.replace("duration-0", "duration-300");
+		setInterval(() => {
+			homeBtn.current.classList.replace("duration-300", "duration-0");
+			signInBtn.current.classList.replace("duration-300", "duration-0");
+		}, [300]);
+	}, [themeMode]);
 
 	return (
 		<div
@@ -87,7 +98,10 @@ export const Sidebar = ({
 								  }`
 						} rounded-[9px] ${
 							sidebarBurgerMenuClick ? "pb-[14px]" : "py-[9.3px]"
-						} ${sidebarBurgerMenuClick ? "pt-[18px]" : ""}`}
+						} ${
+							sidebarBurgerMenuClick ? "pt-[18px]" : ""
+						} transition-[background] duration-0`}
+						ref={homeBtn}
 					>
 						<HouseDoorFill
 							className={`${
@@ -241,7 +255,7 @@ export const Sidebar = ({
 						themeMode === "dark" || themeMode === "systemDark"
 							? "border-[#4d4d4d]"
 							: ""
-					} mt-[12px] mb-[12px]`}
+					} mt-[12px] mb-[12px] transition-[border] duration-300`}
 				/>
 				<a
 					className={`block ${
@@ -359,7 +373,7 @@ export const Sidebar = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} mt-[13px] mb-[15px]`}
+						} mt-[13px] mb-[15px] transition-[border] duration-300`}
 					/>
 					<p
 						className={`${
@@ -376,6 +390,7 @@ export const Sidebar = ({
 								? "border-[#4d4d4d] hover:bg-[#263850]"
 								: "hover:bg-[#def1ff]"
 						} transition-[background,border] duration-0`}
+						ref={signInBtn}
 					>
 						<div>
 							<PersonCircle
@@ -393,7 +408,7 @@ export const Sidebar = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} mt-[16px] mb-[17px]`}
+						} mt-[16px] mb-[17px] transition-[border] duration-300`}
 					/>
 					<p
 						className={`${
@@ -559,7 +574,7 @@ export const Sidebar = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} mt-[14px] mb-[13px]`}
+						} mt-[14px] mb-[13px] transition-[border] duration-300`}
 					/>
 					<a
 						className={`flex items-center ${
@@ -596,7 +611,7 @@ export const Sidebar = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} mt-[14px] mb-[13px]`}
+						} mt-[14px] mb-[13px] transition-[border] duration-300`}
 					/>
 					<a
 						className={`flex items-center ${
@@ -723,7 +738,7 @@ export const Sidebar = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} mt-[14px] mb-[13px]`}
+						} mt-[14px] mb-[13px] transition-[border] duration-300`}
 					/>
 					<div className="mx-[26px] leading-[18px]">
 						<a

@@ -46,7 +46,6 @@ export const Header = ({
 	};
 
 	useEffect(() => {
-		console.log("test");
 		youtubeLogoImage.current.classList.replace("opacity-100", "opacity-0");
 		micIcon.current.classList.replace("duration-0", "duration-300");
 		searchBtn.current.classList.replace("duration-0", "duration-300");
