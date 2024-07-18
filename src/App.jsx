@@ -12,7 +12,7 @@ export default function App() {
 		status: false,
 		id: 0,
 	});
-	const [themeMode, setThemeMode] = useState("");
+	const [themeMode, setThemeMode] = useState("dark");
 	const [moreIconHover, setMoreIconHover] = useState(false);
 	const [micIconHover, setMicIconHover] = useState(false);
 	const [searchIconHover, setSearchIconHover] = useState(false);
@@ -294,6 +294,7 @@ export default function App() {
 						handleVideoMoreIconClick={handleVideoMoreIconClick}
 						videoMoreIconActive={videoMoreIconActive}
 						leftScrollVideoCategory={leftScrollVideoCategory}
+						themeMode={themeMode}
 						rightScrollVideoCategory={rightScrollVideoCategory}
 						videoMoreIconClickId={videoMoreIconClickId}
 						handleVideoMouseEnter={handleVideoMouseEnter}

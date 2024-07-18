@@ -23,7 +23,6 @@ export const Header = ({
 	const [searchText, setSearchText] = useState("");
 	const moreIcon = useRef();
 	const searchBox = useRef();
-	const youtubeLogoImage = useRef();
 	const micIcon = useRef();
 	const signInBtn = useRef();
 	const searchBtn = useRef();
@@ -46,15 +45,10 @@ export const Header = ({
 	};
 
 	useEffect(() => {
-		youtubeLogoImage.current.classList.replace("opacity-100", "opacity-0");
 		micIcon.current.classList.replace("duration-0", "duration-300");
 		searchBtn.current.classList.replace("duration-0", "duration-300");
 		signInBtn.current.classList.replace("duration-0", "duration-300");
 		setInterval(() => {
-			if (youtubeLogoImage.current === undefined) {
-				return;
-			}
-			youtubeLogoImage.current.classList.replace("opacity-0", "opacity-100");
 			micIcon.current.classList.replace("duration-300", "duration-0");
 			searchBtn.current.classList.replace("duration-300", "duration-0");
 			signInBtn.current.classList.replace("duration-300", "duration-0");
@@ -243,9 +237,8 @@ export const Header = ({
 							}
 							width={90}
 							height={20}
-							ref={youtubeLogoImage}
 							alt="youtube logo"
-							className="transition-[opacity] duration-300 opacity-100"
+							className=""
 						/>
 					</div>
 				</div>
