@@ -20,6 +20,7 @@ export const PopOvers = ({
 	micIconHover,
 	searchIconHover,
 	themeMode,
+	setIsMouseOutsideMoreIconActive,
 	setThemeMode,
 	videoMoreIconPos,
 	videoMoreIconActive,
@@ -45,9 +46,8 @@ export const PopOvers = ({
 					themeMode === "systemDark" || themeMode === "dark"
 						? "bg-[#282828]"
 						: "bg-[#ffffff] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)]"
-				} z-[1200] ${
-					moreIconActive ? "" : "hidden"
-				} transition-[background,box-shadow] duration-300`}
+				} z-[1200] ${moreIconActive ? "" : "hidden"}`}
+				onMouseLeave={() => setIsMouseOutsideMoreIconActive(true)}
 			>
 				{navigateToThemeOptions ? (
 					<div>
@@ -77,7 +77,7 @@ export const PopOvers = ({
 								themeMode === "dark" || themeMode === "systemDark"
 									? "border-[#4d4d4d]"
 									: ""
-							} transition-[border] duration-300`}
+							}`}
 						/>
 						<p
 							className={`ml-[16px] mt-[19px] text-[12px] text-[#646464e6] ${
@@ -89,8 +89,15 @@ export const PopOvers = ({
 							Setting applies to this browser only
 						</p>
 						<div
-							className="flex pl-[14px] mt-[10px] py-[7px] items-center hover:bg-black/5 cursor-pointer"
-							onClick={() => setThemeMode("systemDark")}
+							className={`flex pl-[14px] mt-[10px] py-[7px] items-center ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} cursor-pointer`}
+							onClick={() => {
+								setThemeMode("systemDark");
+								setIsMouseOutsideMoreIconActive(false);
+							}}
 						>
 							<Check2
 								size={25}
@@ -116,8 +123,15 @@ export const PopOvers = ({
 							</p>
 						</div>
 						<div
-							className="flex pl-[14px] py-[7px] items-center hover:bg-black/5 cursor-pointer"
-							onClick={() => setThemeMode("dark")}
+							className={`flex pl-[14px] py-[7px] items-center ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} cursor-pointer`}
+							onClick={() => {
+								setThemeMode("dark");
+								setIsMouseOutsideMoreIconActive(false);
+							}}
 						>
 							<Check2
 								size={25}
@@ -145,8 +159,15 @@ export const PopOvers = ({
 							</p>
 						</div>
 						<div
-							className="flex pl-[14px] py-[7px] items-center hover:bg-black/5 cursor-pointer"
-							onClick={() => setThemeMode("light")}
+							className={`flex pl-[14px] py-[7px] items-center ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} cursor-pointer`}
+							onClick={() => {
+								setThemeMode("light");
+								setIsMouseOutsideMoreIconActive(false);
+							}}
 						>
 							<Check2
 								size={25}
@@ -176,7 +197,13 @@ export const PopOvers = ({
 					</div>
 				) : (
 					<>
-						<div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center pl-[18px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<PersonVcard
 								size={20}
 								color={`${
@@ -196,7 +223,11 @@ export const PopOvers = ({
 							</p>
 						</div>
 						<div
-							className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer"
+							className={`flex items-center justify-between pl-[18px] pr-[20px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
 							onClick={() => setNavigateToThemeOptions(true)}
 						>
 							<div className="flex items-center">
@@ -235,7 +266,13 @@ export const PopOvers = ({
 								}`}
 							/>
 						</div>
-						<div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center justify-between pl-[18px] pr-[20px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<div className="flex items-center">
 								<Translate
 									size={20}
@@ -264,7 +301,13 @@ export const PopOvers = ({
 								}`}
 							/>
 						</div>
-						<div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center justify-between pl-[18px] pr-[20px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<div className="flex items-center">
 								<ShieldLock
 									size={20}
@@ -293,7 +336,13 @@ export const PopOvers = ({
 								}`}
 							/>
 						</div>
-						<div className="flex items-center justify-between pl-[18px] pr-[20px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center justify-between pl-[18px] pr-[20px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<div className="flex items-center">
 								<Globe
 									size={20}
@@ -322,7 +371,13 @@ export const PopOvers = ({
 								}`}
 							/>
 						</div>
-						<div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center pl-[18px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<Keyboard
 								size={20}
 								color={`${
@@ -346,9 +401,15 @@ export const PopOvers = ({
 								themeMode === "dark" || themeMode === "systemDark"
 									? "border-[#4d4d4d]"
 									: ""
-							} transition-[border] duration-300 mt-[9px]`}
+							} mt-[9px]`}
 						></hr>
-						<div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center pl-[18px] mt-[8px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<Gear
 								size={20}
 								color={`${
@@ -372,9 +433,15 @@ export const PopOvers = ({
 								themeMode === "dark" || themeMode === "systemDark"
 									? "border-[#4d4d4d]"
 									: ""
-							} transition-[border] duration-300 mt-[9px]`}
+							} mt-[9px]`}
 						></hr>
-						<div className="flex items-center pl-[18px] mt-[8px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center pl-[18px] mt-[8px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<QuestionCircle
 								size={20}
 								color={`${
@@ -393,7 +460,13 @@ export const PopOvers = ({
 								Help
 							</p>
 						</div>
-						<div className="flex items-center pl-[18px] hover:bg-black/5 py-[9.3px] cursor-pointer">
+						<div
+							className={`flex items-center pl-[18px] ${
+								themeMode === "dark" || themeMode === "systemDark"
+									? "hover:bg-[#3e3e3e]"
+									: "hover:bg-[#f2f2f2]"
+							} py-[9.3px] cursor-pointer`}
+						>
 							<SendExclamation
 								size={20}
 								color={`${
@@ -416,9 +489,11 @@ export const PopOvers = ({
 				)}
 			</div>
 			<div
-				className={`fixed rounded-[10px] py-[8px] visible bg-white z-[1200] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)] ${
-					videoMoreIconActive.status ? "" : "invisible"
-				}`}
+				className={`fixed rounded-[10px] py-[8px] visible ${
+					themeMode === "systemDark" || themeMode === "dark"
+						? "bg-[#282828]"
+						: "bg-[#ffffff] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)]"
+				} ${videoMoreIconActive.status ? "" : "invisible"} z-[1200]`}
 				ref={videoMoreIconPopOver}
 				style={
 					videoMoreIconActive.status
@@ -499,7 +574,13 @@ export const PopOvers = ({
 						: {}
 				}
 			>
-				<div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
+				<div
+					className={`flex items-center ${
+						themeMode === "dark" || themeMode === "systemDark"
+							? "hover:bg-[#535353]"
+							: "hover:bg-[#e5e5e5]"
+					} py-[7.5px] cursor-pointer pl-[17px] pr-[35px]`}
+				>
 					<CollectionPlay
 						size={20}
 						color={`${
@@ -518,7 +599,13 @@ export const PopOvers = ({
 						Add to queue
 					</p>
 				</div>
-				<div className="flex items-center hover:bg-black/5 py-[7.5px] cursor-pointer pl-[17px] pr-[35px]">
+				<div
+					className={`flex items-center ${
+						themeMode === "dark" || themeMode === "systemDark"
+							? "hover:bg-[#535353]"
+							: "hover:bg-[#e5e5e5]"
+					} py-[7.5px] cursor-pointer pl-[17px] pr-[35px]`}
+				>
 					<Share
 						size={20}
 						color={`${

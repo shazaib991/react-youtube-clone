@@ -23,9 +23,6 @@ export const Header = ({
 	const [searchText, setSearchText] = useState("");
 	const moreIcon = useRef();
 	const searchBox = useRef();
-	const micIcon = useRef();
-	const signInBtn = useRef();
-	const searchBtn = useRef();
 
 	const handleSearch = (e) => {
 		setSearchText(e.currentTarget.value);
@@ -44,24 +41,13 @@ export const Header = ({
 		setSidebarBurgerMenuClick((prevState) => !prevState);
 	};
 
-	useEffect(() => {
-		micIcon.current.classList.replace("duration-0", "duration-300");
-		searchBtn.current.classList.replace("duration-0", "duration-300");
-		signInBtn.current.classList.replace("duration-0", "duration-300");
-		setInterval(() => {
-			micIcon.current.classList.replace("duration-300", "duration-0");
-			searchBtn.current.classList.replace("duration-300", "duration-0");
-			signInBtn.current.classList.replace("duration-300", "duration-0");
-		}, [300]);
-	}, [themeMode]);
-
 	return (
 		<div
 			className={`w-[100%] h-[56px] flex items-center fixed top-0 justify-between pr-[18px] pl-[16px] z-[1000] ${
 				themeMode === "systemDark" || themeMode === "dark"
 					? "bg-[#0f0f0f]"
 					: "bg-[#ffffff]"
-			} transition-[background] duration-300`}
+			}`}
 			onClick={
 				moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""
 			}
@@ -207,21 +193,21 @@ export const Header = ({
 									themeMode === "systemDark" || themeMode === "dark"
 										? "bg-[#ffffff]"
 										: "bg-[#000000]"
-								} transition-[background] duration-300`}
+								}`}
 							></div>
 							<div
 								className={`w-full h-[1px] ${
 									themeMode === "systemDark" || themeMode === "dark"
 										? "bg-[#ffffff]"
 										: "bg-[#000000]"
-								} transition-[background] duration-300`}
+								}`}
 							></div>
 							<div
 								className={`w-full h-[1px] ${
 									themeMode === "systemDark" || themeMode === "dark"
 										? "bg-[#ffffff]"
 										: "bg-[#000000]"
-								} transition-[background] duration-300`}
+								}`}
 							></div>
 						</div>
 					</div>
@@ -257,7 +243,7 @@ export const Header = ({
 								themeMode === "systemDark" || themeMode === "dark"
 									? "bg-[#121212] border-[#313131] text-[#ffffff]"
 									: "bg-[#ffffff] border-[#00000033] text-[#000000]"
-							} rounded-tl-[40px] border-r-0 rounded-bl-[40px] placeholder:text-[#888A88] outline-none pl-[17px] pr-[25px] focus:border-[#244abe] focus:border-r-[1px] focus:w-full peer focus:pl-[48.2px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)] transition-[background,border,text] duration-300`}
+							} rounded-tl-[40px] border-r-0 rounded-bl-[40px] placeholder:text-[#888A88] outline-none pl-[17px] pr-[25px] focus:border-[#244abe] focus:border-r-[1px] focus:w-full peer focus:pl-[48.2px] shadow-[inset_0_1px_1px_rgba(50,50,50,0.1)] focus:shadow-[inset_0_1px_2px_rgba(50,50,50,0.4)]`}
 						/>
 						<Search
 							className="absolute ml-[20px] left-0 hidden peer-focus:block"
@@ -293,14 +279,13 @@ export const Header = ({
 							themeMode === "systemDark" || themeMode === "dark"
 								? "bg-[#222222] border-[#313131]"
 								: "bg-[#f8f8f8] border-[#d6d6d6] hover:bg-[#0000000f] hover:border-[#0000002e] hover:shadow-[0_1px_1px_rgba(50,50,50,0.12)] active:bg-[#0000001a]"
-						} border rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer transition-[background,border] duration-0`}
+						} border rounded-tr-[40px] mr-[2px] rounded-br-[40px] cursor-pointer`}
 						onMouseEnter={() =>
 							handleHeaderTooltipMouseEnter("searchIconTooltip")
 						}
 						onMouseLeave={() =>
 							handleHeaderTooltipMouseLeave("searchIconTooltip")
 						}
-						ref={searchBtn}
 					>
 						<Search
 							className="ml-[22px]"
@@ -317,7 +302,7 @@ export const Header = ({
 							themeMode === "systemDark" || themeMode === "dark"
 								? "bg-[#272727] hover:bg-[#3d3d3d] active:border-[#272727] active:bg-[#515151]"
 								: "bg-[#f2f2f2] hover:bg-black/10 active:border-[#00000026] active:bg-black/20"
-						}  rounded-[50%] ml-[14px] cursor-pointer active:border-[1px] transition-[background] duration-0`}
+						}  rounded-[50%] ml-[14px] cursor-pointer active:border-[1px]`}
 						onMouseEnter={() =>
 							handleHeaderTooltipMouseEnter("micIconTooltip")
 						}
@@ -325,7 +310,6 @@ export const Header = ({
 							handleHeaderTooltipMouseLeave("micIconTooltip")
 						}
 						onClick={handleMicListenClick}
-						ref={micIcon}
 					>
 						<MicFill
 							size={18}
@@ -367,8 +351,7 @@ export const Header = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d] hover:bg-[#263850]"
 								: "hover:bg-[#def1ff]"
-						} transition-[background,border] duration-0`}
-						ref={signInBtn}
+						}`}
 					>
 						<PersonCircle
 							className="mr-[8px]"

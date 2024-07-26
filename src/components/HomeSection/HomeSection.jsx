@@ -9,7 +9,9 @@ import "./HomeSectionStyle.css";
 export const HomeSection = ({
 	sidebarBurgerMenuClick,
 	handleVideoMoreIconClick,
+	moreIconActive,
 	videoMoreIconActive,
+	isMouseOutsideMoreIconActive,
 	videoMoreIconClickId,
 	themeMode,
 	leftScrollVideoCategory,
@@ -22,6 +24,10 @@ export const HomeSection = ({
 	const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] =
 		useState(false);
 	const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
+	const [isVideoImageLoading, setIsVideoImageLoading] = useState({
+		status: false,
+		indexNum: 0,
+	});
 	const [nextPageToken, setNextPageToken] = useState("");
 	const [loaderInterval1, setLoaderInterval1] = useState(0);
 	const [loaderInterval2, setLoaderInterval2] = useState(0);
@@ -32,7 +38,6 @@ export const HomeSection = ({
 	const videoCategoryScroll = useRef();
 	const loader1 = useRef();
 	const loader2 = useRef();
-	const videoCategoryNavigateNext = useRef();
 	const countryCode = "US";
 	let isMouseDown = false;
 	let startX;
@@ -355,22 +360,6 @@ export const HomeSection = ({
 		clearInterval(loaderInterval2);
 	}, [areNewVideosAtScrollDownLoading]);
 
-	useEffect(() => {
-		if (videoCategoryNavigateNext.current === undefined) {
-			return;
-		}
-		videoCategoryNavigateNext.current.classList.replace(
-			"opacity-100",
-			"opacity-0"
-		);
-		setInterval(() => {
-			videoCategoryNavigateNext.current.classList.replace(
-				"opacity-0",
-				"opacity-100"
-			);
-		}, [600]);
-	}, [themeMode]);
-
 	return (
 		<div className="w-full">
 			{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
@@ -386,14 +375,14 @@ export const HomeSection = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} mb-[68px] transition-[border] duration-300`}
+						} mb-[68px]`}
 					></hr>
 					<hr
 						className={`${
 							themeMode === "dark" || themeMode === "systemDark"
 								? "border-[#4d4d4d]"
 								: ""
-						} transition-[border] duration-300`}
+						}`}
 					></hr>
 				</div>
 			)}
@@ -408,7 +397,7 @@ export const HomeSection = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "bg-[#0f0f0f]"
 								: "bg-[#ffffff]"
-						} fixed z-[900] transition-[background] duration-300`}
+						} fixed z-[900]`}
 					>
 						<div
 							className={`relative h-full ${
@@ -566,7 +555,7 @@ export const HomeSection = ({
 									themeMode === "dark" || themeMode === "systemDark"
 										? "bg-[#0f0f0f]"
 										: "bg-[#ffffff]"
-								} scroll-smooth transition-[background] duration-300`}
+								} scroll-smooth`}
 								onScroll={handleScrollVideoCategory}
 								onMouseDown={handleMouseDownVideoCategory}
 								onMouseLeave={handleScrollVideoCategoryMouseLeave}
@@ -606,7 +595,12 @@ export const HomeSection = ({
 														  themeMode === "systemDark"
 														? "hover:bg-[#3f3f3f]"
 														: "hover:bg-[#e5e5e5]"
-												} transition-all duration-300 font-medium`}
+												} ${
+													moreIconActive &&
+													!isMouseOutsideMoreIconActive
+														? "duration-0"
+														: "duration-300"
+												} transition-all font-medium`}
 												onClick={() =>
 													setVideoCategoryClickedId(index)
 												}
@@ -618,8 +612,7 @@ export const HomeSection = ({
 								</div>
 							</div>
 							<div
-								className="h-[32px] w-[75px] flex justify-end absolute right-0 top-[12px] opacity-100 transition-[opacity] duration-300"
-								ref={videoCategoryNavigateNext}
+								className="h-[32px] w-[75px] flex justify-end absolute right-0 top-[12px]"
 								style={{
 									background: `linear-gradient(90deg, ${
 										themeMode === "dark" || themeMode === "systemDark"
@@ -819,7 +812,12 @@ export const HomeSection = ({
 									>
 										<div className="w-[340px] h-[190px] relative">
 											<div
-												className={`h-full w-full absolute left-0 top-0 bg-[#cccccc] rounded-[12px] z-[100]`}
+												className={`h-full w-full absolute left-0 top-0 ${
+													themeMode === "dark" ||
+													themeMode === "systemDark"
+														? "bg-[#3f3f3f]"
+														: "bg-[#e5e5e5]"
+												} rounded-[12px] z-[100]`}
 											></div>
 											{item.snippet.thumbnails.medium.url ? (
 												<img
@@ -830,7 +828,7 @@ export const HomeSection = ({
 														item.snippet.thumbnails.medium.url
 													}
 													onLoad={(e) =>
-														e.currentTarget.previousSibling.classList.add(
+														e.currentTarget.previousElementSibling.classList.add(
 															"hidden"
 														)
 													}
@@ -1108,18 +1106,28 @@ export const HomeSection = ({
 												</div>
 											</div>
 											<div
-												className={`videoMoreIcon ${
+												className={`${
 													videoMoreIconActive.status &&
 													videoMoreIconClickId === index
 														? ""
 														: "videoMoreIconHidden"
+												} ${
+													themeMode === "dark" ||
+													themeMode === "systemDark"
+														? "videoMoreIconDark"
+														: "videoMoreIcon"
 												}`}
 												onClick={(e) =>
 													handleVideoMoreIconClick(e, index)
 												}
 											>
 												<ThreeDotsVertical
-													color="black"
+													color={`${
+														themeMode === "systemDark" ||
+														themeMode === "dark"
+															? "#ffffff"
+															: "#000000"
+													}`}
 													size={18}
 												/>
 											</div>
@@ -1139,7 +1147,7 @@ export const HomeSection = ({
 												themeMode === "systemDark"
 													? "bg-[#3f3f3f]"
 													: "bg-[#e5e5e5]"
-											} transition-[background] duration-300 rounded-[9px]`}
+											} rounded-[9px]`}
 										></div>
 										<div className="flex mt-[12px]">
 											<div
@@ -1148,7 +1156,7 @@ export const HomeSection = ({
 													themeMode === "systemDark"
 														? "bg-[#3f3f3f]"
 														: "bg-[#e5e5e5]"
-												} transition-[background] duration-300`}
+												}`}
 											></div>
 											<div className="ml-[12px]">
 												<div
@@ -1157,7 +1165,7 @@ export const HomeSection = ({
 														themeMode === "systemDark"
 															? "bg-[#3f3f3f]"
 															: "bg-[#e5e5e5]"
-													} transition-[background] duration-300 mt-[-2px]`}
+													} mt-[-2px]`}
 												></div>
 												<div
 													className={`w-[177px] h-[20px] ${
@@ -1165,7 +1173,7 @@ export const HomeSection = ({
 														themeMode === "systemDark"
 															? "bg-[#3f3f3f]"
 															: "bg-[#e5e5e5]"
-													} transition-[background] duration-300 mt-[10px]`}
+													} mt-[10px]`}
 												></div>
 											</div>
 										</div>
@@ -1187,7 +1195,7 @@ export const HomeSection = ({
 													themeMode === "systemDark"
 														? "bg-[#3f3f3f]"
 														: "bg-[#e5e5e5]"
-												} transition-[background] duration-300 rounded-[9px]`}
+												} rounded-[9px]`}
 											></div>
 											<div className="flex mt-[12px]">
 												<div
@@ -1196,7 +1204,7 @@ export const HomeSection = ({
 														themeMode === "systemDark"
 															? "bg-[#3f3f3f]"
 															: "bg-[#e5e5e5]"
-													} transition-[background] duration-300`}
+													}`}
 												></div>
 												<div className="ml-[12px]">
 													<div
@@ -1205,7 +1213,7 @@ export const HomeSection = ({
 															themeMode === "systemDark"
 																? "bg-[#3f3f3f]"
 																: "bg-[#e5e5e5]"
-														} transition-[background] duration-300 mt-[-2px]`}
+														} mt-[-2px]`}
 													></div>
 													<div
 														className={`w-[177px] h-[20px] ${
@@ -1213,7 +1221,7 @@ export const HomeSection = ({
 															themeMode === "systemDark"
 																? "bg-[#3f3f3f]"
 																: "bg-[#e5e5e5]"
-														} transition-[background] duration-300 mt-[10px]`}
+														} mt-[10px]`}
 													></div>
 												</div>
 											</div>

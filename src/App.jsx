@@ -12,6 +12,8 @@ export default function App() {
 		status: false,
 		id: 0,
 	});
+	const [isMouseOutsideMoreIconActive, setIsMouseOutsideMoreIconActive] =
+		useState(false);
 	const [themeMode, setThemeMode] = useState("dark");
 	const [moreIconHover, setMoreIconHover] = useState(false);
 	const [micIconHover, setMicIconHover] = useState(false);
@@ -255,13 +257,13 @@ export default function App() {
 				moreIconHover={moreIconHover}
 				micIconHover={micIconHover}
 				themeMode={themeMode}
+				setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
 				setThemeMode={setThemeMode}
 				searchIconHover={searchIconHover}
 				videoMoreIconPos={videoMoreIconPos}
 				videoMoreIconActive={videoMoreIconActive}
 				videoMoreIconPopOver={videoMoreIconPopOver}
 			/>
-			{/* TODO hide it when loading first time with useeffect*/}
 			<div className="visible">
 				<Header
 					setMoreIconActive={setMoreIconActive}
@@ -276,7 +278,7 @@ export default function App() {
 					burgerIcon={burgerIcon}
 				/>
 				<div
-					className={`flex pt-[56px] transition-[background] duration-300 ${
+					className={`flex pt-[56px] ${
 						themeMode === "dark" || themeMode === "systemDark"
 							? "bg-[#0f0f0f]"
 							: "bg-[#ffffff]"
@@ -293,6 +295,8 @@ export default function App() {
 						sidebarBurgerMenuClick={sidebarBurgerMenuClick}
 						handleVideoMoreIconClick={handleVideoMoreIconClick}
 						videoMoreIconActive={videoMoreIconActive}
+						isMouseOutsideMoreIconActive={isMouseOutsideMoreIconActive}
+						moreIconActive={moreIconActive}
 						leftScrollVideoCategory={leftScrollVideoCategory}
 						themeMode={themeMode}
 						rightScrollVideoCategory={rightScrollVideoCategory}

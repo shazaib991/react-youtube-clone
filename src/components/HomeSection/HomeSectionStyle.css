@@ -1,215 +1,242 @@
 .videoMoreIcon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  position: absolute;
-  top: 2px;
-  right: -19px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  margin-right: 7.5px;
-  cursor: pointer;
-  transition: background-color 0.1s ease-in-out, border 0.4s ease-in-out;
-  z-index: 300;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	position: absolute;
+	top: 2px;
+	right: -19px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	border: 2px solid transparent;
+	margin-right: 7.5px;
+	cursor: pointer;
+	transition: background-color 0.1s ease-in-out, border 0.4s ease-in-out;
+	z-index: 300;
+}
+
+.videoMoreIconDark {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	position: absolute;
+	top: 2px;
+	right: -19px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	border: 2px solid transparent;
+	margin-right: 7.5px;
+	cursor: pointer;
+	transition: background-color 0.1s ease-in-out, border 0.4s ease-in-out;
+	z-index: 300;
 }
 
 .videoMoreIcon:active {
-  transition: none;
-  border: 2px solid #e5e5e5;
-  background-color: #e5e5e5;
+	transition: none;
+	border: 2px solid #e5e5e5;
+	background-color: #e5e5e5;
+}
+
+.videoMoreIconDark:active {
+	transition: none;
+	border: 2px solid #272727;
+	background-color: #272727;
 }
 
 .videoMoreIconHidden {
-  display: none;
+	display: none;
 }
 
 .videoCard:hover .videoMoreIcon {
-  display: flex;
+	display: flex;
+}
+
+.videoCard:hover .videoMoreIconDark {
+	display: flex;
 }
 
 .videoCategoryNavigateBeforeIcon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  left: -15px;
-  top: 9px;
-  align-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border 0.4s ease-in-out;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	left: -15px;
+	top: 9px;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: border 0.4s ease-in-out;
 }
 
 .videoCategoryNavigateNextIcon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  right: -15px;
-  top: 9px;
-  align-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border 0.4s ease-in-out;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	right: -15px;
+	top: 9px;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: border 0.4s ease-in-out;
 }
 
 .videoCategoryNavigateIconTransitionActive {
-  background-color: #e5e5e5;
-  transition: border 0.4s ease-in-out, background-color 0.1s ease-in-out;
+	background-color: #e5e5e5;
+	transition: border 0.4s ease-in-out, background-color 0.1s ease-in-out;
 }
 
 .videoCategoryNavigateIconAnimationActive {
-  animation: 0.4s ease-in-out videoCategoryNavigateIconBorder,
-    0.1s ease-in-out videoCategoryNavigateIconBackground;
+	animation: 0.4s ease-in-out videoCategoryNavigateIconBorder,
+		0.1s ease-in-out videoCategoryNavigateIconBackground;
 }
 
 .videoCategoryNavigateIconActive {
-  transition: none;
-  border: 2px solid #cecece;
-  background-color: #cecece;
+	transition: none;
+	border: 2px solid #cecece;
+	background-color: #cecece;
 }
 
 .videoCategoryNavigateIconActive2 {
-  transition: none;
-  border: transparent;
-  background-color: transparent;
+	transition: none;
+	border: transparent;
+	background-color: transparent;
 }
 
 .videoCategoryNavigateBeforeIconHover {
-  background-color: #e5e5e5;
+	background-color: #e5e5e5;
 }
 
 .videoCategoryNavigateNextIconHover {
-  background-color: #e5e5e5;
+	background-color: #e5e5e5;
 }
 
 @keyframes videoCategoryNavigateIconBorder {
-  from {
-    border: 2px solid #cecece;
-  }
-  to {
-    border: 2px solid transparent;
-  }
+	from {
+		border: 2px solid #cecece;
+	}
+	to {
+		border: 2px solid transparent;
+	}
 }
 
 @keyframes videoCategoryNavigateIconBackground {
-  from {
-    background-color: #cecece;
-  }
-  to {
-    background-color: #e5e5e5;
-  }
+	from {
+		background-color: #cecece;
+	}
+	to {
+		background-color: #e5e5e5;
+	}
 }
 
 /* loader css */
 @property --a {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 0%;
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 0%;
 }
 
 .loader-container {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  animation: 2s linear infinite loader-rotate;
+	width: 30px;
+	height: 30px;
+	position: relative;
+	animation: 2s linear infinite loader-rotate;
 }
 
 @keyframes loader-rotate {
-  from {
-    transform: rotate(0deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
 
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .loader-dot {
-  height: 3px;
-  width: 5px;
-  background: rgb(110, 110, 110);
-  position: absolute;
-  top: 0;
-  left: 10px;
-  z-index: 50;
-  border-radius: 50%;
+	height: 3px;
+	width: 5px;
+	background: rgb(110, 110, 110);
+	position: absolute;
+	top: 0;
+	left: 10px;
+	z-index: 50;
+	border-radius: 50%;
 }
 
 .loader {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: conic-gradient(
-    rgba(0, 0, 0, 0.6) var(--a),
-    rgba(255, 255, 255, 1) 0deg
-  );
-  opacity: 0;
-  border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: conic-gradient(
+		rgba(0, 0, 0, 0.6) var(--a),
+		rgba(255, 255, 255, 1) 0deg
+	);
+	opacity: 0;
+	border-radius: 50%;
 }
 
 .loader-animation {
-  opacity: 100;
-  animation: 0.9s cubic-bezier(0.4, 0, 0.2, 1) loader-spin;
+	opacity: 100;
+	animation: 0.9s cubic-bezier(0.4, 0, 0.2, 1) loader-spin;
 }
 
 @keyframes loader-spin {
-  0% {
-    --a: 0%;
-  }
+	0% {
+		--a: 0%;
+	}
 
-  100% {
-    --a: 100%;
-  }
+	100% {
+		--a: 100%;
+	}
 }
 
 .loader2 {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: conic-gradient(
-    rgba(255, 255, 255, 1) var(--a),
-    rgba(0, 0, 0, 0.6) 0%
-  );
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: conic-gradient(
+		rgba(255, 255, 255, 1) var(--a),
+		rgba(0, 0, 0, 0.6) 0%
+	);
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	border-radius: 50%;
 }
 
 .loader2-animation {
-  opacity: 100;
-  animation: 0.9s cubic-bezier(0.4, 0, 0.2, 1) loader-spin2;
+	opacity: 100;
+	animation: 0.9s cubic-bezier(0.4, 0, 0.2, 1) loader-spin2;
 }
 
 @keyframes loader-spin2 {
-  0% {
-    --a: 0%;
-  }
+	0% {
+		--a: 0%;
+	}
 
-  100% {
-    --a: 100%;
-  }
+	100% {
+		--a: 100%;
+	}
 }
 
 .loader-hole {
-  height: calc(100% - 5.5px);
-  width: calc(100% - 5.5px);
-  position: absolute;
-  top: 2.5px;
-  right: 3px;
-  background-color: white;
-  border-radius: 50%;
-  z-index: 100;
+	height: calc(100% - 5.5px);
+	width: calc(100% - 5.5px);
+	position: absolute;
+	top: 2.5px;
+	right: 3px;
+	background-color: white;
+	border-radius: 50%;
+	z-index: 100;
 }
