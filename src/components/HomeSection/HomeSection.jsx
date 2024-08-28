@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ThreeDotsVertical } from "react-bootstrap-icons";
+import { Display, ThreeDotsVertical } from "react-bootstrap-icons";
 import { ChevronLeft } from "react-bootstrap-icons";
 import { ChevronRight } from "react-bootstrap-icons";
 import { Check2 } from "react-bootstrap-icons";
@@ -24,10 +24,6 @@ export const HomeSection = ({
 	const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] =
 		useState(false);
 	const [channelHover, setChannelHover] = useState({ status: false, id: 0 });
-	const [isVideoImageLoading, setIsVideoImageLoading] = useState({
-		status: false,
-		indexNum: 0,
-	});
 	const [nextPageToken, setNextPageToken] = useState("");
 	const [loaderInterval1, setLoaderInterval1] = useState(0);
 	const [loaderInterval2, setLoaderInterval2] = useState(0);
@@ -818,6 +814,7 @@ export const HomeSection = ({
 														? "bg-[#3f3f3f]"
 														: "bg-[#e5e5e5]"
 												} rounded-[12px] z-[100]`}
+												style={{ display: "block" }}
 											></div>
 											{item.snippet.thumbnails.medium.url ? (
 												<img
@@ -827,11 +824,10 @@ export const HomeSection = ({
 													data-src={
 														item.snippet.thumbnails.medium.url
 													}
-													onLoad={(e) =>
-														e.currentTarget.previousElementSibling.classList.add(
-															"hidden"
-														)
-													}
+													onLoad={(e) => {
+														e.currentTarget.previousElementSibling.style.display =
+															"none";
+													}}
 													height={190}
 													width={340}
 												/>
