@@ -18,6 +18,7 @@ import { Flag } from "react-bootstrap-icons";
 import { QuestionCircle } from "react-bootstrap-icons";
 import { SendExclamation } from "react-bootstrap-icons";
 import { useCallback, useEffect, useRef } from "react";
+import "./Sidebar.css";
 
 export const Sidebar = ({
 	moreIconActive,
@@ -33,7 +34,7 @@ export const Sidebar = ({
 	}, []);
 
 	useEffect(() => {
-		if ((moreIconActive, videoMoreIconActive.staus)) {
+		if ((moreIconActive, videoMoreIconActive.status)) {
 			disableScroll.current.addEventListener("scroll", handleEvent);
 			disableScroll.current.addEventListener("mousewheel", handleEvent);
 			disableScroll.current.addEventListener("touchmove", handleEvent);
@@ -46,10 +47,13 @@ export const Sidebar = ({
 
 	return (
 		<div
-			//TODO: fix hover on scroll should be visible
 			className={`${
 				sidebarBurgerMenuClick ? "w-[70px]" : "w-[240px]"
-			} h-[100vh] fixed overflow-y-auto invisible hover:visible overscroll-contain scroll-smooth z-[1200]`}
+			} h-[100vh] fixed overflow-y-auto invisible hover:visible overscroll-contain scroll-smooth z-[1200] ${
+				themeMode === "dark" || themeMode === "systemDark"
+					? "sidebarDark"
+					: "sidebar"
+			}`}
 			ref={disableScroll}
 		>
 			<div
@@ -366,7 +370,7 @@ export const Sidebar = ({
 							themeMode === "dark" || themeMode === "systemDark"
 								? "text-[#ffffff]"
 								: "text-[#000000]"
-						} ml-[34px] text-[14px] mb-[12px]`}
+						} ml-[34px] mr-[5px] text-[14px] mb-[12px]`}
 					>
 						Sign in to like videos, comment and subscribe.
 					</p>

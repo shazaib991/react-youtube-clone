@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Display, ThreeDotsVertical } from "react-bootstrap-icons";
+import { ThreeDotsVertical } from "react-bootstrap-icons";
 import { ChevronLeft } from "react-bootstrap-icons";
 import { ChevronRight } from "react-bootstrap-icons";
 import { Check2 } from "react-bootstrap-icons";
@@ -400,12 +400,18 @@ export const HomeSection = ({
 								sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"
 							}`}
 						>
-							{/* TODO fix this warning */}
 							<div
 								className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
 								style={{
-									background:
-										"linear-gradient(90deg, rgba(255,255,255,1) 48%, rgba(255,255,255,0.1) 75%",
+									background: `linear-gradient(90deg, ${
+										themeMode === "dark" || themeMode === "systemDark"
+											? "rgba(15,15,15,1)"
+											: "rgba(255,255,255,1)"
+									} 48%, ${
+										themeMode === "dark" || themeMode === "systemDark"
+											? "rgba(0,0,0,0.1)"
+											: "rgba(255,255,255,0.1)"
+									} 75%`,
 								}}
 							></div>
 							<div
@@ -413,10 +419,14 @@ export const HomeSection = ({
 								onClick={handleLeftScrollVideoCategory}
 								onMouseLeave={(e) => {
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateIconTransitionActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconTransitionActiveDark"
+											: "videoCategoryNavigateIconTransitionActive"
 									);
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateIconAnimationActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconAnimationActiveDark"
+											: "videoCategoryNavigateIconAnimationActive"
 									);
 
 									if (
@@ -431,7 +441,10 @@ export const HomeSection = ({
 											"videoCategoryNavigateIconMouseOut"
 										);
 										e.currentTarget.classList.remove(
-											"videoCategoryNavigateIconActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconActiveDark"
+												: "videoCategoryNavigateIconActive"
 										);
 										e.currentTarget.classList.add(
 											"videoCategoryNavigateIconActive2"
@@ -439,7 +452,9 @@ export const HomeSection = ({
 										return;
 									}
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateBeforeIconHover"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateBeforeIconHoverDark"
+											: "videoCategoryNavigateBeforeIconHover"
 									);
 								}}
 								onMouseEnter={(e) => {
@@ -449,7 +464,10 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateBeforeIconHover"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateBeforeIconHoverDark"
+												: "videoCategoryNavigateBeforeIconHover"
 										);
 										e.currentTarget.classList.remove(
 											"videoCategoryNavigateIconActive2"
@@ -457,7 +475,9 @@ export const HomeSection = ({
 										return;
 									}
 									e.currentTarget.classList.add(
-										"videoCategoryNavigateBeforeIconHover"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateBeforeIconHoverDark"
+											: "videoCategoryNavigateBeforeIconHover"
 									);
 								}}
 								onMouseUp={(e) => {
@@ -467,7 +487,10 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateIconAnimationActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconAnimationActiveDark"
+												: "videoCategoryNavigateIconAnimationActive"
 										);
 										leftScrollVideoCategory.current.classList.remove(
 											"videoCategoryNavigateNextIconMouseDown"
@@ -492,7 +515,10 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateIconAnimationActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconAnimationActiveDark"
+												: "videoCategoryNavigateIconAnimationActive"
 										);
 										e.currentTarget.classList.remove(
 											"videoCategoryNavigateIconMouseDown"
@@ -506,10 +532,14 @@ export const HomeSection = ({
 										return;
 									}
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateIconActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconActiveDark"
+											: "videoCategoryNavigateIconActive"
 									);
 									e.currentTarget.classList.add(
-										"videoCategoryNavigateIconTransitionActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconTransitionActiveDark"
+											: "videoCategoryNavigateIconTransitionActive"
 									);
 									e.currentTarget.classList.remove(
 										"videoCategoryNavigateIconMouseDown"
@@ -524,10 +554,16 @@ export const HomeSection = ({
 											"videoCategoryNavigateBeforeIconMouseDown"
 										);
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateIconActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconActiveDark"
+												: "videoCategoryNavigateIconActive"
 										);
 										e.currentTarget.classList.remove(
-											"videoCategoryNavigateBeforeIconHover"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateBeforeIconHoverDark"
+												: "videoCategoryNavigateBeforeIconHover"
 										);
 										e.currentTarget.classList.add(
 											"videoCategoryNavigateIconMouseDown"
@@ -626,10 +662,14 @@ export const HomeSection = ({
 								onClick={handleRightScrollVideoCategory}
 								onMouseLeave={(e) => {
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateIconTransitionActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconTransitionActiveDark"
+											: "videoCategoryNavigateIconTransitionActive"
 									);
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateIconAnimationActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconAnimationActiveDark"
+											: "videoCategoryNavigateIconAnimationActive"
 									);
 
 									if (
@@ -638,13 +678,19 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.remove(
-											"videoCategoryNavigateNextIconHover"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateNextIconHoverDark"
+												: "videoCategoryNavigateNextIconHover"
 										);
 										e.currentTarget.classList.add(
 											"videoCategoryNavigateIconMouseOut"
 										);
 										e.currentTarget.classList.remove(
-											"videoCategoryNavigateIconActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconActiveDark"
+												: "videoCategoryNavigateIconActive"
 										);
 										e.currentTarget.classList.add(
 											"videoCategoryNavigateIconActive2"
@@ -652,7 +698,9 @@ export const HomeSection = ({
 										return;
 									}
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateNextIconHover"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateNextIconHoverDark"
+											: "videoCategoryNavigateNextIconHover"
 									);
 								}}
 								onMouseEnter={(e) => {
@@ -662,7 +710,10 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateNextIconHover"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateNextIconHoverDark"
+												: "videoCategoryNavigateNextIconHover"
 										);
 										e.currentTarget.classList.remove(
 											"videoCategoryNavigateIconActive2"
@@ -670,7 +721,9 @@ export const HomeSection = ({
 										return;
 									}
 									e.currentTarget.classList.add(
-										"videoCategoryNavigateNextIconHover"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateNextIconHoverDark"
+											: "videoCategoryNavigateNextIconHover"
 									);
 								}}
 								onMouseUp={(e) => {
@@ -680,7 +733,10 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateIconAnimationActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconAnimationActiveDark"
+												: "videoCategoryNavigateIconAnimationActive"
 										);
 										rightScrollVideoCategory.current.classList.remove(
 											"videoCategoryNavigateBeforeIconMouseDown"
@@ -705,7 +761,10 @@ export const HomeSection = ({
 										)
 									) {
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateIconAnimationActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconAnimationActiveDark"
+												: "videoCategoryNavigateIconAnimationActive"
 										);
 										e.currentTarget.classList.remove(
 											"videoCategoryNavigateIconMouseDown"
@@ -719,10 +778,14 @@ export const HomeSection = ({
 										return;
 									}
 									e.currentTarget.classList.remove(
-										"videoCategoryNavigateIconActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconActiveDark"
+											: "videoCategoryNavigateIconActive"
 									);
 									e.currentTarget.classList.add(
-										"videoCategoryNavigateIconTransitionActive"
+										themeMode === "dark" || themeMode === "systemDark"
+											? "videoCategoryNavigateIconTransitionActiveDark"
+											: "videoCategoryNavigateIconTransitionActive"
 									);
 									e.currentTarget.classList.remove(
 										"videoCategoryNavigateIconMouseDown"
@@ -737,10 +800,16 @@ export const HomeSection = ({
 											"videoCategoryNavigateNextIconMouseDown"
 										);
 										e.currentTarget.classList.add(
-											"videoCategoryNavigateIconActive"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateIconActiveDark"
+												: "videoCategoryNavigateIconActive"
 										);
 										e.currentTarget.classList.remove(
-											"videoCategoryNavigateNextIconHover"
+											themeMode === "dark" ||
+												themeMode === "systemDark"
+												? "videoCategoryNavigateNextIconHoverDark"
+												: "videoCategoryNavigateNextIconHover"
 										);
 										e.currentTarget.classList.add(
 											"videoCategoryNavigateIconMouseDown"
@@ -819,7 +888,6 @@ export const HomeSection = ({
 											{item.snippet.thumbnails.medium.url ? (
 												<img
 													src=""
-													alt="youtube thumbnail image"
 													className="w-full h-full rounded-[12px]"
 													data-src={
 														item.snippet.thumbnails.medium.url
@@ -849,7 +917,6 @@ export const HomeSection = ({
 												></div>
 												<img
 													src=""
-													alt="youtube thumbnail image"
 													className="w-[36px] h-[36px] absolute left-0 top-0 rounded-full"
 													data-src={item.snippet.channelImg}
 													onLoad={(e) =>
@@ -1227,11 +1294,39 @@ export const HomeSection = ({
 							</div>
 							<div className="loader-container mb-[10px]">
 								<div className="loader-dot"></div>
-								<div className="loader loader-animation" ref={loader1}>
-									<div className="loader-hole"></div>
+								<div
+									className={`${
+										themeMode === "dark" || themeMode === "systemDark"
+											? "loader-dark"
+											: "loader"
+									} loader-animation`}
+									ref={loader1}
+								>
+									<div
+										className={`${
+											themeMode === "dark" ||
+											themeMode === "systemDark"
+												? "loader-hole-dark"
+												: "loader-hole"
+										}`}
+									></div>
 								</div>
-								<div className="loader2" ref={loader2}>
-									<div className="loader-hole"></div>
+								<div
+									className={`${
+										themeMode === "dark" || themeMode === "systemDark"
+											? "loader2-dark"
+											: "loader2"
+									}`}
+									ref={loader2}
+								>
+									<div
+										className={`${
+											themeMode === "dark" ||
+											themeMode === "systemDark"
+												? "loader-hole-dark"
+												: "loader-hole"
+										}`}
+									></div>
 								</div>
 							</div>
 						</div>

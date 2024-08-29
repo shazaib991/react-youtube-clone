@@ -5,6 +5,7 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import { PopOvers } from "./components/PopOvers/PopOvers";
 import { MicFill } from "react-bootstrap-icons";
 import { XLg } from "react-bootstrap-icons";
+import "./index.css";
 
 export default function App() {
 	const [moreIconActive, setMoreIconActive] = useState(false);
