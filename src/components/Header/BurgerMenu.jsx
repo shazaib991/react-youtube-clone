@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const BurgerMenu = ({
 	handleSidebarBurgerMenuClick,
 	themeMode,
@@ -105,4 +107,10 @@ export const BurgerMenu = ({
 			</div>
 		</div>
 	);
+};
+
+BurgerMenu.propTypes = {
+	handleSidebarBurgerMenuClick: PropTypes.func,
+	themeMode: PropTypes.string,
+	burgerIcon: PropTypes.object,
 };

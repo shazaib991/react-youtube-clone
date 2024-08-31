@@ -6,7 +6,7 @@ import { BurgerMenu } from "./BurgerMenu";
 import { SearchInput } from "./SearchInput";
 import { SearchAndMicButton } from "./SearchAndMicButton";
 import { MoreAndLoginButton } from "./MoreAndLoginButton";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export const Header = ({
 	setMoreIconActive,
@@ -105,6 +105,15 @@ export const Header = ({
 	);
 };
 
-// Header.propTypes = {
-// 	setMoreIconActive: PropTypes.,
-// };
+Header.propTypes = {
+	setMoreIconActive: PropTypes.func,
+	handlePopoverDisable: PropTypes.func,
+	moreIconActive: PropTypes.bool,
+	setSidebarBurgerMenuClick: PropTypes.func,
+	themeMode: PropTypes.string,
+	handleHeaderTooltipMouseEnter: PropTypes.func,
+	handleHeaderTooltipMouseLeave: PropTypes.func,
+	handleMicListenClick: PropTypes.func,
+	videoMoreIconActive: PropTypes.object,
+	burgerIcon: PropTypes.object,
+};

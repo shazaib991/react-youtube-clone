@@ -1,5 +1,6 @@
 import { Search } from "react-bootstrap-icons";
 import { XLg } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const SearchInput = ({
 	handleSearch,
@@ -55,4 +56,12 @@ export const SearchInput = ({
 			</div>
 		</div>
 	);
+};
+
+SearchInput.propTypes = {
+	handleSearch: PropTypes.func,
+	handleClearSearch: PropTypes.func,
+	searchText: PropTypes.string,
+	searchBox: PropTypes.object,
+	themeMode: PropTypes.string,
 };

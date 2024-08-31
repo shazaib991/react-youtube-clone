@@ -1,4 +1,5 @@
 import { MicFill, Search } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const SearchAndMicButton = ({
 	themeMode,
@@ -52,4 +53,11 @@ export const SearchAndMicButton = ({
 			</div>
 		</>
 	);
+};
+
+SearchAndMicButton.propTypes = {
+	themeMode: PropTypes.string,
+	handleHeaderTooltipMouseEnter: PropTypes.func,
+	handleHeaderTooltipMouseLeave: PropTypes.func,
+	handleMicListenClick: PropTypes.func,
 };

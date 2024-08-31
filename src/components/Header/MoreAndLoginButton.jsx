@@ -1,5 +1,6 @@
 import { ThreeDotsVertical } from "react-bootstrap-icons";
 import { PersonCircle } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const MoreAndLoginButton = ({
 	themeMode,
@@ -46,4 +47,13 @@ export const MoreAndLoginButton = ({
 			</div>
 		</>
 	);
+};
+
+MoreAndLoginButton.propTypes = {
+	themeMode: PropTypes.string,
+	handleHeaderTooltipMouseEnter: PropTypes.func,
+	handleHeaderTooltipMouseLeave: PropTypes.func,
+	handleMoreIconClick: PropTypes.func,
+	videoMoreIconActive: PropTypes.object,
+	moreIcon: PropTypes.object,
 };
