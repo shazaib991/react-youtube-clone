@@ -189,7 +189,7 @@ export const Sidebar = ({
 					className={`block ${
 						sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
 					}`}
-					href="/"
+					href="#"
 					title="Subscriptions"
 				>
 					<div
@@ -251,7 +251,7 @@ export const Sidebar = ({
 					className={`block ${
 						sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
 					}`}
-					href="/"
+					href="#"
 					title="You"
 				>
 					<div
@@ -306,7 +306,7 @@ export const Sidebar = ({
 					className={`block ${
 						sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"
 					}`}
-					href="/"
+					href="#"
 					title="History"
 				>
 					<div
@@ -414,7 +414,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Trending"
 					>
 						<BarChart
@@ -444,7 +444,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Music"
 					>
 						<MusicNote
@@ -474,7 +474,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Gaming"
 					>
 						<Controller
@@ -504,7 +504,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="News"
 					>
 						<Newspaper
@@ -534,7 +534,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Sports"
 					>
 						<Trophy
@@ -571,7 +571,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Browse channels"
 					>
 						<PlusCircle
@@ -608,7 +608,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Settings"
 					>
 						<Gear
@@ -638,7 +638,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Report history"
 					>
 						<Flag
@@ -668,7 +668,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Help"
 					>
 						<QuestionCircle
@@ -698,7 +698,7 @@ export const Sidebar = ({
 								? "hover:bg-[#272727]"
 								: "hover:bg-[#f2f2f2]"
 						} mx-[11px] py-[9.3px] rounded-[9px]`}
-						href="/"
+						href="#"
 						title="Send feedback"
 					>
 						<SendExclamation
