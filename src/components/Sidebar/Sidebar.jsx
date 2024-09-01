@@ -1,9 +1,10 @@
 import {useCallback, useEffect, useRef} from "react";
-import "./Sidebar.css";
 import {SidebarFirstHalf} from "./SidebarFirstHalf";
 import {SidebarSecondHalf} from "./SidebarSecondHalf";
 import {SidebarThirdHalf} from "./SidebarThirdHalf";
 import {SiteLinks} from "./SiteLinks";
+import PropTypes from "prop-types";
+import "./Sidebar.css";
 
 export const Sidebar = ({moreIconActive, sidebarBurgerMenuClick, videoMoreIconActive, themeMode}) => {
 	const disableScroll = useRef();
@@ -22,7 +23,7 @@ export const Sidebar = ({moreIconActive, sidebarBurgerMenuClick, videoMoreIconAc
 			disableScroll.current.removeEventListener("mousewheel", handleEvent);
 			disableScroll.current.removeEventListener("touchmove", handleEvent);
 		}
-	}, [moreIconActive, videoMoreIconActive.status]);
+	}, [moreIconActive, videoMoreIconActive.status, handleEvent]);
 
 	return (
 		<div
@@ -43,4 +44,11 @@ export const Sidebar = ({moreIconActive, sidebarBurgerMenuClick, videoMoreIconAc
 			</div>
 		</div>
 	);
+};
+
+Sidebar.propTypes = {
+	moreIconActive: PropTypes.bool,
+	sidebarBurgerMenuClick: PropTypes.bool,
+	videoMoreIconActive: PropTypes.object,
+	themeMode: PropTypes.string,
 };

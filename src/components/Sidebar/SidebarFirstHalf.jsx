@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import {HouseDoor} from "react-bootstrap-icons";
 import {HouseDoorFill} from "react-bootstrap-icons";
 import {Play} from "react-bootstrap-icons";
@@ -6,6 +7,7 @@ import {CollectionPlay} from "react-bootstrap-icons";
 import {CollectionPlayFill} from "react-bootstrap-icons";
 import {Clock} from "react-bootstrap-icons";
 import {ClockFill} from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const SidebarFirstHalf = ({sidebarBurgerMenuClick, themeMode}) => {
 	return (
@@ -170,4 +172,9 @@ export const SidebarFirstHalf = ({sidebarBurgerMenuClick, themeMode}) => {
 			</a>
 		</>
 	);
+};
+
+SidebarFirstHalf.propTypes = {
+	sidebarBurgerMenuClick: PropTypes.bool,
+	themeMode: PropTypes.string,
 };

@@ -5,6 +5,7 @@ import {Controller} from "react-bootstrap-icons";
 import {Newspaper} from "react-bootstrap-icons";
 import {Trophy} from "react-bootstrap-icons";
 import {PlusCircle} from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const SidebarSecondHalf = ({themeMode, sidebarBurgerMenuClick}) => {
 	return (
@@ -166,4 +167,9 @@ export const SidebarSecondHalf = ({themeMode, sidebarBurgerMenuClick}) => {
 			</a>
 		</>
 	);
+};
+
+SidebarSecondHalf.propTypes = {
+	sidebarBurgerMenuClick: PropTypes.bool,
+	themeMode: PropTypes.string,
 };

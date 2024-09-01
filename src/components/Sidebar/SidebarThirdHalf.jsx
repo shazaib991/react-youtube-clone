@@ -2,6 +2,7 @@ import {Gear} from "react-bootstrap-icons";
 import {Flag} from "react-bootstrap-icons";
 import {QuestionCircle} from "react-bootstrap-icons";
 import {SendExclamation} from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const SidebarThirdHalf = ({themeMode, sidebarBurgerMenuClick}) => {
 	return (
@@ -94,4 +95,9 @@ export const SidebarThirdHalf = ({themeMode, sidebarBurgerMenuClick}) => {
 			/>
 		</>
 	);
+};
+
+SidebarThirdHalf.propTypes = {
+	sidebarBurgerMenuClick: PropTypes.bool,
+	themeMode: PropTypes.string,
 };
