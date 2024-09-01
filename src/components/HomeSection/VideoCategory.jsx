@@ -1,4 +1,5 @@
 import {useRef} from "react";
+import PropTypes from "prop-types";
 
 export const VideoCategory = ({
 	videoCategoryArr,
@@ -114,4 +115,13 @@ export const VideoCategory = ({
 			</div>
 		</div>
 	);
+};
+
+VideoCategory.propTypes = {
+	moreIconActive: PropTypes.bool,
+	isMouseOutsideMoreIconActive: PropTypes.bool,
+	themeMode: PropTypes.string,
+	setVideoCategoryClickedId: PropTypes.func,
+	videoCategoryClickedId: PropTypes.number,
+	videoCategoryArr: PropTypes.array,
 };

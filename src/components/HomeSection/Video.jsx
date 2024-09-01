@@ -2,6 +2,8 @@
 import {ThreeDotsVertical} from "react-bootstrap-icons";
 import {Check2} from "react-bootstrap-icons";
 import {useState} from "react";
+import {NewVideosAtScroll} from "./NewVideosAtScroll";
+import PropTypes from "prop-types";
 
 export const Video = ({
 	videoData,
@@ -10,6 +12,7 @@ export const Video = ({
 	handleVideoMoreIconClick,
 	videoMoreIconClickId,
 	videoMoreIconActive,
+	areNewVideosAtScrollDownLoading,
 }) => {
 	const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
 		status: false,
@@ -332,6 +335,17 @@ export const Video = ({
 							</div>
 						);
 				  })}
+			<NewVideosAtScroll themeMode={themeMode} areNewVideosAtScrollDownLoading={areNewVideosAtScrollDownLoading} />
 		</div>
 	);
+};
+
+Video.propTypes = {
+	handleVideoMoreIconClick: PropTypes.func,
+	videoMoreIconActive: PropTypes.object,
+	areNewVideosAtScrollDownLoading: PropTypes.bool,
+	videoMoreIconClickId: PropTypes.number,
+	themeMode: PropTypes.string,
+	handleVideoMouseEnter: PropTypes.func,
+	videoData: PropTypes.array,
 };

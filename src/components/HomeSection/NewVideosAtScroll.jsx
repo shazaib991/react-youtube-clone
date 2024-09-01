@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from "react";
+import PropTypes from "prop-types";
 
 export const NewVideosAtScroll = ({areNewVideosAtScrollDownLoading, themeMode}) => {
 	{
@@ -97,4 +98,9 @@ export const NewVideosAtScroll = ({areNewVideosAtScrollDownLoading, themeMode}) 
 			""
 		);
 	}
+};
+
+NewVideosAtScroll.propTypes = {
+	themeMode: PropTypes.string,
+	areNewVideosAtScrollDownLoading: PropTypes.bool,
 };

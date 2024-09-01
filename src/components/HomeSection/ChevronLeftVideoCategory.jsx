@@ -1,4 +1,5 @@
 import {ChevronLeft} from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const ChevronLeftVideoCategory = ({
 	handleLeftScrollVideoCategory,
@@ -115,4 +116,11 @@ export const ChevronLeftVideoCategory = ({
 			<ChevronLeft color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`} size={16} />
 		</div>
 	);
+};
+
+ChevronLeftVideoCategory.propTypes = {
+	themeMode: PropTypes.string,
+	leftScrollVideoCategory: PropTypes.object,
+	rightScrollVideoCategory: PropTypes.object,
+	handleLeftScrollVideoCategory: PropTypes.func,
 };

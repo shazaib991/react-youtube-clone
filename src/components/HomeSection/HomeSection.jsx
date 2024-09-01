@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
 import {ChevronLeftVideoCategory} from "./ChevronLeftVideoCategory";
 import {VideoCategory} from "./VideoCategory";
 import {ChevronRightVideoCategory} from "./ChevronRightVideoCategory";
 import {Video} from "./Video";
-import {NewVideosAtScroll} from "./NewVideosAtScroll";
+import PropTypes from "prop-types";
 
 export const HomeSection = ({
 	sidebarBurgerMenuClick,
@@ -26,7 +26,7 @@ export const HomeSection = ({
 	const [nextPageToken, setNextPageToken] = useState("");
 	const countryCode = "US";
 
-	const addVideosArray = async () => {
+	const addVideosArray = useCallback(async () => {
 		const videoDataArray = [...videoData];
 		const videoResponse = await axios(
 			`https://www.googleapis.com/youtube/v3/search?key=${
@@ -80,9 +80,9 @@ export const HomeSection = ({
 
 		setVideoData(videoDataArray);
 		setAreNewVideosAtScrollDownLoading(false);
-	};
+	}, [nextPageToken, videoData]);
 
-	const getData = async () => {
+	const getData = useCallback(async () => {
 		const videoCategoryArr = [];
 
 		const videoFilterResponse = await axios(
@@ -104,7 +104,7 @@ export const HomeSection = ({
 
 		addVideosArray();
 		setVideoCategoryArr(videoCategoryArr);
-	};
+	}, [addVideosArray]);
 
 	const handleRightScrollVideoCategory = () => {
 		rightScrollVideoCategory.current.parentElement.children[2].scrollLeft += 400;
@@ -116,7 +116,7 @@ export const HomeSection = ({
 
 	useEffect(() => {
 		getData();
-	}, []);
+	}, [getData]);
 
 	const loadImages = (image) => {
 		image.src = image.dataset.src;
@@ -247,9 +247,22 @@ export const HomeSection = ({
 					handleVideoMoreIconClick={handleVideoMoreIconClick}
 					videoMoreIconClickId={videoMoreIconClickId}
 					videoMoreIconActive={videoMoreIconActive}
+					areNewVideosAtScrollDownLoading={areNewVideosAtScrollDownLoading}
 				/>
-				<NewVideosAtScroll themeMode={themeMode} areNewVideosAtScrollDownLoading={areNewVideosAtScrollDownLoading} />
 			</div>
 		</div>
 	);
+};
+
+HomeSection.propTypes = {
+	sidebarBurgerMenuClick: PropTypes.bool,
+	handleVideoMoreIconClick: PropTypes.func,
+	moreIconActive: PropTypes.bool,
+	videoMoreIconActive: PropTypes.object,
+	isMouseOutsideMoreIconActive: PropTypes.bool,
+	videoMoreIconClickId: PropTypes.number,
+	themeMode: PropTypes.string,
+	leftScrollVideoCategory: PropTypes.object,
+	rightScrollVideoCategory: PropTypes.object,
+	handleVideoMouseEnter: PropTypes.func,
 };
