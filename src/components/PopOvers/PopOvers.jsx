@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { ThemeSettings } from "./ThemeSettings";
-import { PopOversTopHalf } from "./PopOversTopHalf";
-import { PopOversBottomHalf } from "./PopOversBottomHalf";
-import { VideoMoreIconPopOver } from "./VideoMoreIconPopOver";
+import {useEffect, useState} from "react";
+import {ThemeSettings} from "./ThemeSettings";
+import {PopOversTopHalf} from "./PopOversTopHalf";
+import {PopOversBottomHalf} from "./PopOversBottomHalf";
+import {VideoMoreIconPopOver} from "./VideoMoreIconPopOver";
+import PropTypes from "prop-types";
 
 export const PopOvers = ({
 	moreIconActive,
@@ -44,16 +45,11 @@ export const PopOvers = ({
 						themeMode={themeMode}
 						setNavigateToThemeOptions={setNavigateToThemeOptions}
 						setThemeMode={setThemeMode}
-						setIsMouseOutsideMoreIconActive={
-							setIsMouseOutsideMoreIconActive
-						}
+						setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
 					/>
 				) : (
 					<>
-						<PopOversTopHalf
-							themeMode={themeMode}
-							setNavigateToThemeOptions={setNavigateToThemeOptions}
-						/>
+						<PopOversTopHalf themeMode={themeMode} setNavigateToThemeOptions={setNavigateToThemeOptions} />
 						<PopOversBottomHalf themeMode={themeMode} />
 					</>
 				)}
@@ -68,30 +64,37 @@ export const PopOvers = ({
 			<div
 				className={`fixed top-[64px] right-[398px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
 					searchIconHover ? "opacity-100" : "opacity-0"
-				} ${
-					searchIconHover ? "visible" : "invisible"
-				} transition-all z-[1000] cursor-default`}
+				} ${searchIconHover ? "visible" : "invisible"} transition-all z-[1000] cursor-default`}
 			>
 				Search
 			</div>
 			<div
 				className={`fixed top-[64px] right-[290px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
 					micIconHover ? "opacity-100" : "opacity-0"
-				} ${
-					micIconHover ? "visible" : "invisible"
-				} transition-all z-[1000] cursor-default`}
+				} ${micIconHover ? "visible" : "invisible"} transition-all z-[1000] cursor-default`}
 			>
 				Search with your voice
 			</div>
 			<div
 				className={`fixed top-[64px] right-[115px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
 					moreIconHover ? "opacity-100" : "opacity-0"
-				} ${
-					moreIconHover ? "visible" : "invisible"
-				} transition-all z-[1000] cursor-default`}
+				} ${moreIconHover ? "visible" : "invisible"} transition-all z-[1000] cursor-default`}
 			>
 				Settings
 			</div>
 		</>
 	);
+};
+
+PopOvers.propTypes = {
+	moreIconActive: PropTypes.bool,
+	moreIconHover: PropTypes.bool,
+	micIconHover: PropTypes.bool,
+	searchIconHover: PropTypes.bool,
+	themeMode: PropTypes.string,
+	setIsMouseOutsideMoreIconActive: PropTypes.func,
+	setThemeMode: PropTypes.func,
+	videoMoreIconPos: PropTypes.object,
+	videoMoreIconActive: PropTypes.object,
+	videoMoreIconPopOver: PropTypes.object,
 };

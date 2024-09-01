@@ -1,5 +1,6 @@
 import { ArrowLeftShort } from "react-bootstrap-icons";
 import { Check2 } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const ThemeSettings = ({
 	themeMode,
@@ -154,4 +155,11 @@ export const ThemeSettings = ({
 			</div>
 		</div>
 	);
+};
+
+ThemeSettings.propTypes = {
+	themeMode: PropTypes.string,
+	setIsMouseOutsideMoreIconActive: PropTypes.func,
+	setThemeMode: PropTypes.func,
+	setNavigateToThemeOptions: PropTypes.func,
 };

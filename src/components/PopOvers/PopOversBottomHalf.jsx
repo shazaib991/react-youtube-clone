@@ -4,6 +4,7 @@ import { Gear } from "react-bootstrap-icons";
 import { QuestionCircle } from "react-bootstrap-icons";
 import { SendExclamation } from "react-bootstrap-icons";
 import { ChevronRight } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const PopOversBottomHalf = ({ themeMode }) => {
 	return (
@@ -159,4 +160,8 @@ export const PopOversBottomHalf = ({ themeMode }) => {
 			</div>
 		</>
 	);
+};
+
+PopOversBottomHalf.propTypes = {
+	themeMode: PropTypes.string,
 };

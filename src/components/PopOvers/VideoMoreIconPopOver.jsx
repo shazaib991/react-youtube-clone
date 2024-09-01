@@ -1,13 +1,9 @@
-import { CollectionPlay } from "react-bootstrap-icons";
-import { Share } from "react-bootstrap-icons";
+/* eslint-disable no-mixed-spaces-and-tabs */
+import {CollectionPlay} from "react-bootstrap-icons";
+import {Share} from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
-export const VideoMoreIconPopOver = ({
-	themeMode,
-	videoMoreIconActive,
-	videoMoreIconPopOver,
-	videoMoreIconPos,
-	windowSize,
-}) => {
+export const VideoMoreIconPopOver = ({themeMode, videoMoreIconActive, videoMoreIconPopOver, videoMoreIconPos, windowSize}) => {
 	return (
 		<div
 			className={`fixed rounded-[10px] py-[8px] visible ${
@@ -20,68 +16,31 @@ export const VideoMoreIconPopOver = ({
 				videoMoreIconActive.status
 					? {
 							top: `${
-								windowSize <=
-								Math.trunc(
-									videoMoreIconPos.y +
-										(videoMoreIconPopOver.current.clientHeight + 2)
-								)
+								windowSize <= Math.trunc(videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 2))
 									? String(Math.trunc(videoMoreIconPos.y - 85))
 									: windowSize <=
-									  Math.trunc(
-											videoMoreIconPos.y +
-												(videoMoreIconPopOver.current.clientHeight +
-													42)
-									  )
+									  Math.trunc(videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 42))
 									? String(Math.trunc(videoMoreIconPos.y + 2))
 									: String(Math.trunc(videoMoreIconPos.y + 42))
 							}px`,
 							left: `${
 								window.innerWidth <=
-									Math.trunc(
-										videoMoreIconPos.x +
-											(videoMoreIconPopOver.current.clientWidth + 2)
-									) &&
-								windowSize <=
-									Math.trunc(
-										videoMoreIconPos.y +
-											(videoMoreIconPopOver.current.clientHeight + 2)
-									)
+									Math.trunc(videoMoreIconPos.x + (videoMoreIconPopOver.current.clientWidth + 2)) &&
+								windowSize <= Math.trunc(videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 2))
 									? String(Math.trunc(videoMoreIconPos.x - 132))
 									: window.innerWidth <=
-											Math.trunc(
-												videoMoreIconPos.x +
-													(videoMoreIconPopOver.current
-														.clientWidth +
-														2)
-											) &&
+											Math.trunc(videoMoreIconPos.x + (videoMoreIconPopOver.current.clientWidth + 2)) &&
 									  windowSize <=
-											Math.trunc(
-												videoMoreIconPos.y +
-													(videoMoreIconPopOver.current
-														.clientHeight +
-														42)
-											)
+											Math.trunc(videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 42))
 									? String(Math.trunc(videoMoreIconPos.x - 170))
 									: window.innerWidth <=
-									  Math.trunc(
-											videoMoreIconPos.x +
-												(videoMoreIconPopOver.current.clientWidth +
-													2)
-									  )
+									  Math.trunc(videoMoreIconPos.x + (videoMoreIconPopOver.current.clientWidth + 2))
 									? String(Math.trunc(videoMoreIconPos.x - 132))
 									: windowSize <=
-									  Math.trunc(
-											videoMoreIconPos.y +
-												(videoMoreIconPopOver.current.clientHeight +
-													2)
-									  )
+									  Math.trunc(videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 2))
 									? String(Math.trunc(videoMoreIconPos.x))
 									: windowSize <=
-									  Math.trunc(
-											videoMoreIconPos.y +
-												(videoMoreIconPopOver.current.clientHeight +
-													42)
-									  )
+									  Math.trunc(videoMoreIconPos.y + (videoMoreIconPopOver.current.clientHeight + 42))
 									? String(Math.trunc(videoMoreIconPos.x + 40))
 									: String(Math.trunc(videoMoreIconPos.x))
 							}px`,
@@ -91,24 +50,16 @@ export const VideoMoreIconPopOver = ({
 		>
 			<div
 				className={`flex items-center ${
-					themeMode === "dark" || themeMode === "systemDark"
-						? "hover:bg-[#535353]"
-						: "hover:bg-[#e5e5e5]"
+					themeMode === "dark" || themeMode === "systemDark" ? "hover:bg-[#535353]" : "hover:bg-[#e5e5e5]"
 				} py-[7.5px] cursor-pointer pl-[17px] pr-[35px]`}
 			>
 				<CollectionPlay
 					size={20}
-					color={`${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "#ffffff"
-							: "#000000"
-					}`}
+					color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`}
 				/>
 				<p
 					className={`ml-[18px] text-[14px] ${
-						themeMode === "dark" || themeMode === "systemDark"
-							? "text-[#ffffff]"
-							: "text-[#000000]"
+						themeMode === "dark" || themeMode === "systemDark" ? "text-[#ffffff]" : "text-[#000000]"
 					}`}
 				>
 					Add to queue
@@ -116,24 +67,13 @@ export const VideoMoreIconPopOver = ({
 			</div>
 			<div
 				className={`flex items-center ${
-					themeMode === "dark" || themeMode === "systemDark"
-						? "hover:bg-[#535353]"
-						: "hover:bg-[#e5e5e5]"
+					themeMode === "dark" || themeMode === "systemDark" ? "hover:bg-[#535353]" : "hover:bg-[#e5e5e5]"
 				} py-[7.5px] cursor-pointer pl-[17px] pr-[35px]`}
 			>
-				<Share
-					size={20}
-					color={`${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "#ffffff"
-							: "#000000"
-					}`}
-				/>
+				<Share size={20} color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`} />
 				<p
 					className={`ml-[18px] text-[14px] ${
-						themeMode === "dark" || themeMode === "systemDark"
-							? "text-[#ffffff]"
-							: "text-[#000000]"
+						themeMode === "dark" || themeMode === "systemDark" ? "text-[#ffffff]" : "text-[#000000]"
 					}`}
 				>
 					Share
@@ -141,4 +81,12 @@ export const VideoMoreIconPopOver = ({
 			</div>
 		</div>
 	);
+};
+
+VideoMoreIconPopOver.propTypes = {
+	themeMode: PropTypes.string,
+	videoMoreIconPos: PropTypes.object,
+	videoMoreIconActive: PropTypes.object,
+	videoMoreIconPopOver: PropTypes.object,
+	windowSize: PropTypes.number,
 };

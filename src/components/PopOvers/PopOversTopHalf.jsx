@@ -3,6 +3,7 @@ import { Moon } from "react-bootstrap-icons";
 import { Translate } from "react-bootstrap-icons";
 import { ShieldLock } from "react-bootstrap-icons";
 import { ChevronRight } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 
 export const PopOversTopHalf = ({ themeMode, setNavigateToThemeOptions }) => {
 	return (
@@ -147,4 +148,9 @@ export const PopOversTopHalf = ({ themeMode, setNavigateToThemeOptions }) => {
 			</div>
 		</>
 	);
+};
+
+PopOversTopHalf.propTypes = {
+	themeMode: PropTypes.string,
+	setNavigateToThemeOptions: PropTypes.bool,
 };
