@@ -6,9 +6,11 @@ import {VideoCategory} from "./VideoCategory";
 import {ChevronRightVideoCategory} from "./ChevronRightVideoCategory";
 import {Video} from "./Video";
 import PropTypes from "prop-types";
+import {countries, zones} from "moment-timezone/data/meta/latest.json";
 
 export const HomeSection = ({
 	sidebarBurgerMenuClick,
+	setUserLocation,
 	handleVideoMoreIconClick,
 	moreIconActive,
 	videoMoreIconActive,
@@ -24,87 +26,99 @@ export const HomeSection = ({
 	const [videoData, setVideoData] = useState([]);
 	const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] = useState(false);
 	const [nextPageToken, setNextPageToken] = useState("");
-	const countryCode = "US";
+	// const countryCode = "US";
+	const timeZoneCityToCountry = {};
+	// let userRegion;
+	let userCity;
+	// let userCountry;
+	let userTimeZone;
 
-	const addVideosArray = useCallback(async () => {
-		const videoDataArray = [...videoData];
-		const videoResponse = await axios(
-			`https://www.googleapis.com/youtube/v3/search?key=${
-				import.meta.env.VITE_API_KEY
-			}&part=snippet&maxResults=12&type=video&regionCode=${countryCode}&pageToken=${nextPageToken}`
-		);
-
-		setNextPageToken(await videoResponse.data.nextPageToken);
-
-		const videoDataItems = await videoResponse.data.items;
-
-		for (let i = 0; i < videoDataItems.length; i++) {
-			const uniqueVideoId = Math.random().toString(16).slice(2);
-			const channelResponse = await axios(
-				`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=snippet&id=${
-					videoDataItems[i].snippet.channelId
-				}`
-			);
-			const channelStatisticsResponse = await axios(
-				`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=statistics&id=${
-					videoDataItems[i].snippet.channelId
-				}`
-			);
-			const videoDetailsResponse = await axios(
-				`https://www.googleapis.com/youtube/v3/videos?key=${
+	const addVideosArray = useCallback(
+		async (countryCode) => {
+			const videoDataArray = [...videoData];
+			const videoResponse = await axios(
+				`https://www.googleapis.com/youtube/v3/search?key=${
 					import.meta.env.VITE_API_KEY
-				}&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
+				}&part=snippet&maxResults=12&type=video&regionCode=${countryCode}&pageToken=${nextPageToken}`
 			);
-			videoDataItems[i].customId = uniqueVideoId;
 
-			const channelDataArray = await channelResponse.data.items;
-			const channelStatisticsDataArray = await channelStatisticsResponse.data.items;
+			setNextPageToken(await videoResponse.data.nextPageToken);
 
-			if (channelDataArray !== undefined) {
-				videoDataItems[i].snippet.channelImg = await channelDataArray[0].snippet.thumbnails.default.url;
-				videoDataItems[i].snippet.channelSubscriberCount = await channelStatisticsDataArray[0].statistics.subscriberCount;
-			} else {
-				videoDataItems[i].snippet.channelImg = "";
-				videoDataItems[i].snippet.channelSubscriberCount = "";
+			const videoDataItems = await videoResponse.data.items;
+
+			for (let i = 0; i < videoDataItems.length; i++) {
+				const uniqueVideoId = Math.random().toString(16).slice(2);
+				const channelResponse = await axios(
+					`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=snippet&id=${
+						videoDataItems[i].snippet.channelId
+					}`
+				);
+				const channelStatisticsResponse = await axios(
+					`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=statistics&id=${
+						videoDataItems[i].snippet.channelId
+					}`
+				);
+				const videoDetailsResponse = await axios(
+					`https://www.googleapis.com/youtube/v3/videos?key=${
+						import.meta.env.VITE_API_KEY
+					}&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
+				);
+				videoDataItems[i].customId = uniqueVideoId;
+
+				const channelDataArray = await channelResponse.data.items;
+				const channelStatisticsDataArray = await channelStatisticsResponse.data.items;
+
+				if (channelDataArray !== undefined) {
+					videoDataItems[i].snippet.channelImg = await channelDataArray[0].snippet.thumbnails.default.url;
+					videoDataItems[i].snippet.channelSubscriberCount = await channelStatisticsDataArray[0].statistics
+						.subscriberCount;
+				} else {
+					videoDataItems[i].snippet.channelImg = "";
+					videoDataItems[i].snippet.channelSubscriberCount = "";
+				}
+
+				const videoDetailsArray = await videoDetailsResponse.data.items;
+
+				if (videoDetailsArray[0] !== undefined) {
+					videoDataItems[i].snippet.videoViewCount = await videoDetailsArray[0].statistics.viewCount;
+					videoDataItems[i].snippet.videoLength = await videoDetailsArray[0].contentDetails.duration;
+				}
+
+				videoDataArray.push(videoDataItems[i]);
 			}
 
-			const videoDetailsArray = await videoDetailsResponse.data.items;
+			setVideoData(videoDataArray);
+			setAreNewVideosAtScrollDownLoading(false);
+		},
+		[nextPageToken, videoData]
+	);
 
-			if (videoDetailsArray[0] !== undefined) {
-				videoDataItems[i].snippet.videoViewCount = await videoDetailsArray[0].statistics.viewCount;
-				videoDataItems[i].snippet.videoLength = await videoDetailsArray[0].contentDetails.duration;
-			}
+	const getData = useCallback(
+		async (countryCode) => {
+			const videoCategoryArr = [];
 
-			videoDataArray.push(videoDataItems[i]);
-		}
+			const videoFilterResponse = await axios(
+				`https://www.googleapis.com/youtube/v3/videoCategories?key=${
+					import.meta.env.VITE_API_KEY
+				}&part=snippet&regionCode=${countryCode}`
+			);
 
-		setVideoData(videoDataArray);
-		setAreNewVideosAtScrollDownLoading(false);
-	}, [nextPageToken, videoData]);
+			const videoFilterData = await videoFilterResponse.data.items;
 
-	const getData = useCallback(async () => {
-		const videoCategoryArr = [];
+			videoCategoryArr.push("All");
 
-		const videoFilterResponse = await axios(
-			`https://www.googleapis.com/youtube/v3/videoCategories?key=${
-				import.meta.env.VITE_API_KEY
-			}&part=snippet&regionCode=${countryCode}`
-		);
+			videoFilterData.forEach((item) => {
+				videoCategoryArr.push(item.snippet.title);
+			});
 
-		const videoFilterData = await videoFilterResponse.data.items;
+			videoCategoryArr.push("Recently uploaded");
+			videoCategoryArr.push("Watched");
 
-		videoCategoryArr.push("All");
-
-		videoFilterData.forEach((item) => {
-			videoCategoryArr.push(item.snippet.title);
-		});
-
-		videoCategoryArr.push("Recently uploaded");
-		videoCategoryArr.push("Watched");
-
-		addVideosArray();
-		setVideoCategoryArr(videoCategoryArr);
-	}, [addVideosArray]);
+			addVideosArray(countryCode);
+			setVideoCategoryArr(videoCategoryArr);
+		},
+		[addVideosArray]
+	);
 
 	const handleRightScrollVideoCategory = () => {
 		rightScrollVideoCategory.current.parentElement.children[2].scrollLeft += 400;
@@ -115,8 +129,25 @@ export const HomeSection = ({
 	};
 
 	useEffect(() => {
-		getData();
-	}, [getData]);
+		//https://www.techighness.com/post/get-user-country-and-region-on-browser-with-javascript-only/
+		Object.keys(zones).forEach((z) => {
+			const cityArr = z.split("/");
+			const city = cityArr[cityArr.length - 1];
+			timeZoneCityToCountry[city] = countries[zones[z].countries[0]];
+		});
+
+		if (Intl) {
+			userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			var tzArr = userTimeZone.split("/");
+			// userRegion = tzArr[0];
+			userCity = tzArr[tzArr.length - 1];
+			setUserLocation(timeZoneCityToCountry[userCity]["abbr"]);
+			// userCountry = timeZoneCityToCountry[userCity];
+
+			// console.log(JSON.stringify(timeZoneCityToCountry[userCity]["abbr"], null, 2));
+		}
+		getData(timeZoneCityToCountry[userCity]["abbr"]);
+	}, []);
 
 	const loadImages = (image) => {
 		image.src = image.dataset.src;
@@ -256,6 +287,7 @@ export const HomeSection = ({
 
 HomeSection.propTypes = {
 	sidebarBurgerMenuClick: PropTypes.bool,
+	setUserLocation: PropTypes.func,
 	handleVideoMoreIconClick: PropTypes.func,
 	moreIconActive: PropTypes.bool,
 	videoMoreIconActive: PropTypes.object,
