@@ -203,21 +203,25 @@ export const HomeSection = ({
 			{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
 				""
 			) : (
-				<div className={`${sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"}`}>
+				<div className={`${sidebarBurgerMenuClick ? "ml-[96px]" : `ml-[265px]`} max-md:ml-[29px]`}>
 					<hr
 						className={`${themeMode === "dark" || themeMode === "systemDark" ? "border-[#4d4d4d]" : ""} mb-[68px]`}
 					></hr>
 					<hr className={`${themeMode === "dark" || themeMode === "systemDark" ? "border-[#4d4d4d]" : ""}`}></hr>
 				</div>
 			)}
-			<div className={`${sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"} mr-[25px] flex justify-center`}>
+			<div
+				className={`${
+					sidebarBurgerMenuClick ? "ml-[96px]" : "ml-[265px]"
+				} mr-[25px] flex justify-center max-md:ml-[29px]`}
+			>
 				{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
 					<div
 						className={`flex justify-center w-full h-[56px] ${
 							themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
 						} fixed z-[900]`}
 					>
-						<div className={`relative h-full ${sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"}`}>
+						<div className={`relative h-full ${sidebarBurgerMenuClick ? "w-[91%]" : "w-[78.5%]"} max-md:w-[92.8vw]`}>
 							<div
 								className="h-[32px] w-[75px] flex justify-end absolute left-0 top-[12px] hidden"
 								style={{

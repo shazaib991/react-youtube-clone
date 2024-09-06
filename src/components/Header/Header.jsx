@@ -73,7 +73,7 @@ export const Header = ({
 						</p>
 					</div>
 				</div>
-				<div className="w-[53%] flex mt-[1px]">
+				<div className="w-[53%] flex mt-[1px] max-md:hidden">
 					<SearchInput
 						handleSearch={handleSearch}
 						searchText={searchText}
@@ -88,7 +88,7 @@ export const Header = ({
 						handleMicListenClick={handleMicListenClick}
 					/>
 				</div>
-				<div className="flex items-center">
+				<div className="flex items-center max-md:hidden">
 					<MoreAndLoginButton
 						themeMode={themeMode}
 						handleMoreIconClick={handleMoreIconClick}

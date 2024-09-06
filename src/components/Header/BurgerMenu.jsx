@@ -1,19 +1,13 @@
 import PropTypes from "prop-types";
 
-export const BurgerMenu = ({
-	handleSidebarBurgerMenuClick,
-	themeMode,
-	burgerIcon,
-}) => {
+export const BurgerMenu = ({handleSidebarBurgerMenuClick, themeMode, burgerIcon}) => {
 	return (
 		<div
-			className="burgerMenuIcon mr-[2px]"
+			className="burgerMenuIcon mr-[2px] max-md:hidden"
 			onClick={handleSidebarBurgerMenuClick}
 			onMouseLeave={(e) => {
 				if (themeMode === "systemDark" || themeMode === "dark") {
-					e.currentTarget.classList.remove(
-						"burgerMenuTransitionActiveDark"
-					);
+					e.currentTarget.classList.remove("burgerMenuTransitionActiveDark");
 				} else {
 					e.currentTarget.classList.remove("burgerMenuTransitionActive");
 				}
@@ -85,23 +79,17 @@ export const BurgerMenu = ({
 			<div className="w-[18px] h-[13px] flex flex-col justify-between">
 				<div
 					className={`w-full h-[1px] ${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "bg-[#ffffff]"
-							: "bg-[#000000]"
+						themeMode === "systemDark" || themeMode === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
 					}`}
 				></div>
 				<div
 					className={`w-full h-[1px] ${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "bg-[#ffffff]"
-							: "bg-[#000000]"
+						themeMode === "systemDark" || themeMode === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
 					}`}
 				></div>
 				<div
 					className={`w-full h-[1px] ${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "bg-[#ffffff]"
-							: "bg-[#000000]"
+						themeMode === "systemDark" || themeMode === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
 					}`}
 				></div>
 			</div>

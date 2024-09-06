@@ -31,7 +31,7 @@ export const Sidebar = ({moreIconActive, sidebarBurgerMenuClick, videoMoreIconAc
 				sidebarBurgerMenuClick ? "w-[70px]" : "w-[240px]"
 			} h-[100vh] fixed overflow-y-auto invisible hover:visible overscroll-contain scroll-smooth z-[1200] ${
 				themeMode === "dark" || themeMode === "systemDark" ? "sidebarDark" : "sidebar"
-			}`}
+			} max-md:hidden`}
 			ref={disableScroll}
 		>
 			<div className={`visible ${sidebarBurgerMenuClick ? "pt-[4px]" : "pt-[12px]"} mb-[70px]`}>
