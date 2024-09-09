@@ -10,6 +10,7 @@ export const PopOvers = ({
 	moreIconHover,
 	micIconHover,
 	searchIconHover,
+	userLocation,
 	themeMode,
 	setIsMouseOutsideMoreIconActive,
 	setThemeMode,
@@ -50,7 +51,7 @@ export const PopOvers = ({
 				) : (
 					<>
 						<PopOversTopHalf themeMode={themeMode} setNavigateToThemeOptions={setNavigateToThemeOptions} />
-						<PopOversBottomHalf themeMode={themeMode} />
+						<PopOversBottomHalf themeMode={themeMode} userLocation={userLocation} />
 					</>
 				)}
 			</div>
@@ -88,6 +89,7 @@ export const PopOvers = ({
 
 PopOvers.propTypes = {
 	moreIconActive: PropTypes.bool,
+	userLocation: PropTypes.string,
 	moreIconHover: PropTypes.bool,
 	micIconHover: PropTypes.bool,
 	searchIconHover: PropTypes.bool,

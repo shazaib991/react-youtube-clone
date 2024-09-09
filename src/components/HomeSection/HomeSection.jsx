@@ -10,6 +10,7 @@ import {countries, zones} from "moment-timezone/data/meta/latest.json";
 
 export const HomeSection = ({
 	sidebarBurgerMenuClick,
+	userLocation,
 	setUserLocation,
 	handleVideoMoreIconClick,
 	moreIconActive,
@@ -36,10 +37,11 @@ export const HomeSection = ({
 	const addVideosArray = useCallback(
 		async (countryCode) => {
 			const videoDataArray = [...videoData];
+
 			const videoResponse = await axios(
 				`https://www.googleapis.com/youtube/v3/search?key=${
 					import.meta.env.VITE_API_KEY
-				}&part=snippet&maxResults=12&type=video&regionCode=${countryCode}&pageToken=${nextPageToken}`
+				}&part=snippet&maxResults=12&type=video&regionCode=${userLocation || countryCode}&pageToken=${nextPageToken}`
 			);
 
 			setNextPageToken(await videoResponse.data.nextPageToken);
@@ -100,7 +102,7 @@ export const HomeSection = ({
 			const videoFilterResponse = await axios(
 				`https://www.googleapis.com/youtube/v3/videoCategories?key=${
 					import.meta.env.VITE_API_KEY
-				}&part=snippet&regionCode=${countryCode}`
+				}&part=snippet&regionCode=${userLocation || countryCode}`
 			);
 
 			const videoFilterData = await videoFilterResponse.data.items;
@@ -114,7 +116,7 @@ export const HomeSection = ({
 			videoCategoryArr.push("Recently uploaded");
 			videoCategoryArr.push("Watched");
 
-			addVideosArray(countryCode);
+			addVideosArray(userLocation || countryCode);
 			setVideoCategoryArr(videoCategoryArr);
 		},
 		[addVideosArray]
@@ -291,6 +293,7 @@ export const HomeSection = ({
 
 HomeSection.propTypes = {
 	sidebarBurgerMenuClick: PropTypes.bool,
+	userLocation: PropTypes.string,
 	setUserLocation: PropTypes.func,
 	handleVideoMoreIconClick: PropTypes.func,
 	moreIconActive: PropTypes.bool,

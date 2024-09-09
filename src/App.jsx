@@ -214,6 +214,7 @@ export default function App() {
 			<PopOvers
 				moreIconActive={moreIconActive}
 				moreIconHover={moreIconHover}
+				userLocation={userLocation}
 				micIconHover={micIconHover}
 				themeMode={themeMode}
 				setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
@@ -251,6 +252,7 @@ export default function App() {
 					/>
 					<HomeSection
 						sidebarBurgerMenuClick={sidebarBurgerMenuClick}
+						userLocation={userLocation}
 						setUserLocation={setUserLocation}
 						handleVideoMoreIconClick={handleVideoMoreIconClick}
 						videoMoreIconActive={videoMoreIconActive}
