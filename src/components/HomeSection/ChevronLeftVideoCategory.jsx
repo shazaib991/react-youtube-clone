@@ -9,7 +9,7 @@ export const ChevronLeftVideoCategory = ({
 }) => {
 	return (
 		<div
-			className="videoCategoryNavigateBeforeIcon hidden"
+			className={`videoCategoryNavigateBeforeIcon hidden ml-[4px]`}
 			onClick={handleLeftScrollVideoCategory}
 			onMouseLeave={(e) => {
 				e.currentTarget.classList.remove(

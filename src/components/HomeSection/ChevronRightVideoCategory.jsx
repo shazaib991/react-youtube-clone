@@ -9,7 +9,7 @@ export const ChevronRightVideoCategory = ({
 }) => {
 	return (
 		<div
-			className="videoCategoryNavigateNextIcon"
+			className={`videoCategoryNavigateNextIcon mr-[4px]`}
 			onClick={handleRightScrollVideoCategory}
 			onMouseLeave={(e) => {
 				e.currentTarget.classList.remove(
