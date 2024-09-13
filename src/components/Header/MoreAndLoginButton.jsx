@@ -1,5 +1,5 @@
-import { ThreeDotsVertical } from "react-bootstrap-icons";
-import { PersonCircle } from "react-bootstrap-icons";
+import {ThreeDotsVertical} from "react-bootstrap-icons";
+import {PersonCircle} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
 
 export const MoreAndLoginButton = ({
@@ -12,27 +12,15 @@ export const MoreAndLoginButton = ({
 	return (
 		<>
 			<div
-				className={
-					themeMode === "systemDark" || themeMode === "dark"
-						? "headerMoreIconDark"
-						: "headerMoreIcon"
-				}
+				className={themeMode === "systemDark" || themeMode === "dark" ? "headerMoreIconDark" : "headerMoreIcon"}
 				onClick={handleMoreIconClick}
-				onMouseEnter={() =>
-					handleHeaderTooltipMouseEnter("moreIconTooltip")
-				}
-				onMouseLeave={() =>
-					handleHeaderTooltipMouseLeave("moreIconTooltip")
-				}
+				onMouseEnter={() => handleHeaderTooltipMouseEnter("moreIconTooltip")}
+				onMouseLeave={() => handleHeaderTooltipMouseLeave("moreIconTooltip")}
 				ref={moreIcon}
 			>
 				<ThreeDotsVertical
 					size={18}
-					color={`${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "#ffffff"
-							: "#000000"
-					}`}
+					color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`}
 				/>
 			</div>
 			<div

@@ -212,10 +212,10 @@ export const HomeSection = ({
 					<hr className={`${themeMode === "dark" || themeMode === "systemDark" ? "border-[#4d4d4d]" : ""}`}></hr>
 				</div>
 			)}
-			<div className={`ml-[29px] mr-[25px] flex justify-center`}>
+			<div className={`ml-[25px] mr-[27px] flex justify-center`}>
 				{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
 					<div
-						className={`flex justify-center w-full h-[56px] ${
+						className={`max-md:ml-0 flex justify-center w-full h-[56px] ${
 							themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
 						} fixed z-[900]`}
 					>

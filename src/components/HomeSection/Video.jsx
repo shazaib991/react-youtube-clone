@@ -97,11 +97,11 @@ export const Video = ({
 		return txt.value;
 	};
 	return (
-		<div className={`flex flex-wrap justify-between ${videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"} videoCardParent`}>
+		<div className={`flex flex-wrap ${videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"} videoCardParent`}>
 			{videoData.length === 0
 				? [...Array(12).keys()].map((index) => {
 						return (
-							<div className="w-[340px] rounded-[9px] mb-[50px]" key={index}>
+							<div className="w-[340px] rounded-[9px] mb-[50px] mr-[25px]" key={index}>
 								<div
 									className={`w-full h-[193px] ${
 										themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
@@ -147,10 +147,10 @@ export const Video = ({
 						return (
 							<div
 								key={item.customId}
-								className="w-[340px] rounded-[11px] mb-[42px] cursor-pointer videoCard"
+								className="flex-[31%] max-md:flex-[100%] rounded-[11px] mb-[42px] cursor-pointer videoCard ml-[15px] max-md:ml-0"
 								onMouseEnter={() => handleVideoMouseEnter(index)}
 							>
-								<div className="w-[340px] h-[190px] relative">
+								<div className="min-w-[300px] max-md:h-auto min-h-[190px] relative">
 									<div
 										className={`h-full w-full absolute left-0 top-0 ${
 											themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
@@ -165,8 +165,6 @@ export const Video = ({
 											onLoad={(e) => {
 												e.currentTarget.previousElementSibling.style.display = "none";
 											}}
-											height={190}
-											width={340}
 										/>
 									) : (
 										<div className="w-full rounded-[12px] bg-[#cccccc]"></div>
@@ -176,20 +174,26 @@ export const Video = ({
 									</div>
 								</div>
 								<div className="flex relative">
-									<div className="w-[16%] relative mt-[12px]">
-										<div
-											className={`w-[36px] h-[36px] absolute left-0 top-0 bg-[#cccccc] rounded-full z-[100]`}
-										></div>
-										<img
-											src=""
-											className="w-[36px] h-[36px] absolute left-0 top-0 rounded-full"
-											data-src={item.snippet.channelImg}
-											onLoad={(e) => e.currentTarget.previousSibling.classList.add("hidden")}
-											width={36}
-											height={36}
-										/>
+									<div className="w-[36px] h-[36px] mt-[12px]">
+										{item.snippet.channelImg ? (
+											""
+										) : (
+											<div className={`w-[36px] h-[36px] bg-[#cccccc] rounded-full z-[100]`}></div>
+										)}
+										{item.snippet.channelImg ? (
+											<img
+												src=""
+												className="w-[36px] h-[36px] rounded-full"
+												data-src={item.snippet.channelImg}
+												onLoad={(e) => e.currentTarget.previousSibling.classList.add("hidden")}
+												width={36}
+												height={36}
+											/>
+										) : (
+											""
+										)}
 									</div>
-									<div className="w-full">
+									<div className="w-full ml-[10px]">
 										<p
 											className={`w-[86%] text-[16px] ${
 												themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
