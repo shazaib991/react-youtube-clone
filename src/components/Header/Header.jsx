@@ -46,7 +46,7 @@ export const Header = ({
 		<div
 			className={`w-[100%] h-[56px] flex items-center fixed top-0 justify-between pr-[18px] pl-[16px] z-[1000] ${
 				themeMode === "systemDark" || themeMode === "dark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
-			}`}
+			} max-md:pr-0 max-md:pl-0`}
 			onClick={moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""}
 		>
 			<div className="w-full flex justify-between">

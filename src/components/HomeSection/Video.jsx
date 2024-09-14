@@ -174,7 +174,7 @@ export const Video = ({
 									</div>
 								</div>
 								<div className="flex relative">
-									<div className="w-[36px] h-[36px] mt-[12px]">
+									<div className="w-[36px] h-[36px] absolute left-0 top-0 mt-[12px]">
 										{item.snippet.channelImg ? (
 											""
 										) : (
@@ -193,7 +193,7 @@ export const Video = ({
 											""
 										)}
 									</div>
-									<div className="w-full ml-[10px]">
+									<div className="w-full ml-[50px]">
 										<p
 											className={`w-[86%] text-[16px] ${
 												themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
@@ -325,7 +325,7 @@ export const Video = ({
 											themeMode === "dark" || themeMode === "systemDark"
 												? "videoMoreIconDark"
 												: "videoMoreIcon"
-										}`}
+										} max-md:right-0`}
 										onClick={(e) => handleVideoMoreIconClick(e, index)}
 									>
 										<ThreeDotsVertical

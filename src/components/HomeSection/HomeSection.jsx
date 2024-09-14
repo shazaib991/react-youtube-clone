@@ -215,7 +215,7 @@ export const HomeSection = ({
 			<div className={`mr-[27px] max-md:mr-0 flex justify-center`}>
 				{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
 					<div
-						className={`max-md:ml-0 ml-[25px] flex justify-center w-full h-[56px] ${
+						className={`max-md:pl-[13px] flex justify-center w-full h-[56px] ${
 							themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
 						} fixed z-[900]`}
 					>
@@ -225,7 +225,7 @@ export const HomeSection = ({
 							} max-md:w-full`}
 						>
 							<div
-								className={`h-[35px] w-[75px] flex justify-end absolute left-[-2px] top-[10px] hidden`}
+								className={`h-[35px] w-[75px] flex justify-end absolute left-[-2px] max-md:left-0 top-[10px] hidden`}
 								style={{
 									background: `linear-gradient(90deg, ${
 										themeMode === "dark" || themeMode === "systemDark"
@@ -255,7 +255,7 @@ export const HomeSection = ({
 								setVideoCategoryClickedId={setVideoCategoryClickedId}
 							/>
 							<div
-								className={`h-[34px] w-[125px] flex justify-end absolute top-[12px] right-[-2px]`}
+								className={`h-[34px] w-[125px] flex justify-end absolute top-[12px] right-[-2px] max-md:right-0`}
 								style={{
 									background: `linear-gradient(90deg, ${
 										themeMode === "dark" || themeMode === "systemDark"
