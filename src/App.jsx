@@ -201,7 +201,7 @@ export default function App() {
 					burgerIcon={burgerIcon}
 				/>
 				<div
-					className={`flex pt-[56px] ${
+					className={`w-full flex pt-[56px] ${
 						themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
 					}`}
 					onClick={handlePopoverDisable}

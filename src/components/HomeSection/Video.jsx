@@ -101,7 +101,7 @@ export const Video = ({
 			{videoData.length === 0
 				? [...Array(12).keys()].map((index) => {
 						return (
-							<div className="w-[340px] rounded-[9px] mb-[50px] mr-[25px]" key={index}>
+							<div className="w-[340px] rounded-[9px] mb-[50px] ml-[25px]" key={index}>
 								<div
 									className={`w-full h-[193px] ${
 										themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"

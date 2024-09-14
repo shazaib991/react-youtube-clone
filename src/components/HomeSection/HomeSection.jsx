@@ -219,11 +219,7 @@ export const HomeSection = ({
 							themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
 						} fixed z-[900]`}
 					>
-						<div
-							className={`relative h-full ${
-								sidebarBurgerMenuClick ? "w-[calc(100%-115px)]" : "w-[calc(100%-258px)]"
-							} max-md:w-full`}
-						>
+						<div className={`relative h-full max-md:w-full`}>
 							<div
 								className={`h-[35px] w-[75px] flex justify-end absolute left-[-2px] max-md:left-0 top-[10px] hidden`}
 								style={{
@@ -255,7 +251,7 @@ export const HomeSection = ({
 								setVideoCategoryClickedId={setVideoCategoryClickedId}
 							/>
 							<div
-								className={`h-[34px] w-[125px] flex justify-end absolute top-[12px] right-[-2px] max-md:right-0`}
+								className={`h-[34px] w-[125px] flex justify-end absolute top-[11px] right-[-2px] max-md:right-0`}
 								style={{
 									background: `linear-gradient(90deg, ${
 										themeMode === "dark" || themeMode === "systemDark"
