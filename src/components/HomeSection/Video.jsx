@@ -185,7 +185,11 @@ export const Video = ({
 												src=""
 												className="w-[36px] h-[36px] rounded-full"
 												data-src={item.snippet.channelImg}
-												onLoad={(e) => e.currentTarget.previousSibling.classList.add("hidden")}
+												onLoad={(e) =>
+													e.currentTarget.previousSibling
+														? e.currentTarget.previousSibling.classList.add("hidden")
+														: ""
+												}
 												width={36}
 												height={36}
 											/>

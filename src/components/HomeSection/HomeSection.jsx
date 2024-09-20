@@ -219,7 +219,11 @@ export const HomeSection = ({
 							themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
 						} fixed z-[900]`}
 					>
-						<div className={`relative h-full max-md:w-full`}>
+						<div
+							className={`relative h-full max-md:w-full ${
+								sidebarBurgerMenuClick ? "w-[calc(100%-124px)]" : "w-[calc(100%-261px)]"
+							}`}
+						>
 							<div
 								className={`h-[35px] w-[75px] flex justify-end absolute left-[-2px] max-md:left-0 top-[10px] hidden`}
 								style={{
