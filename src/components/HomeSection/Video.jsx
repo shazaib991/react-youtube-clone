@@ -150,7 +150,7 @@ export const Video = ({
 								className="flex-[31%] max-md:flex-[100%] rounded-[11px] mb-[42px] cursor-pointer videoCard ml-[15px] max-md:ml-0"
 								onMouseEnter={() => handleVideoMouseEnter(index)}
 							>
-								<div className="min-w-[300px] max-md:h-auto min-h-[190px] relative">
+								<div className="min-w-[300px] max-md:min-h-auto min-h-[190px] relative">
 									<div
 										className={`h-full w-full absolute left-0 top-0 ${
 											themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
@@ -173,8 +173,8 @@ export const Video = ({
 										<p>{extractVideoLength(item.snippet.videoLength)}</p>
 									</div>
 								</div>
-								<div className="flex relative">
-									<div className="w-[36px] h-[36px] absolute left-0 top-0 mt-[12px]">
+								<div className="flex relative max-md:flex-col max-md:items-center">
+									<div className="w-[36px] h-[36px] absolute left-0 top-0 max-md:static mt-[12px]">
 										{item.snippet.channelImg ? (
 											""
 										) : (
@@ -197,9 +197,9 @@ export const Video = ({
 											""
 										)}
 									</div>
-									<div className="w-full ml-[50px]">
+									<div className="w-full ml-[50px] max-md:ml-0 max-md:text-center">
 										<p
-											className={`w-[86%] text-[16px] ${
+											className={`w-[86%] max-md:w-full text-[16px] ${
 												themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
 											} font-medium text-ellipsis leading-[22px] mt-[12px] overflow-hidden line-clamp-2`}
 											title={`${decodeEntity(item.snippet.title)}`}
@@ -207,7 +207,7 @@ export const Video = ({
 											{decodeEntity(item.snippet.title)}
 										</p>
 										<div className="w-full mt-[2px] relative">
-											<div
+											<p
 												className={`absolute top-[-52px] left-[-3px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
 													channelHover.status && channelHover.id === index ? "opacity-100" : "opacity-0"
 												} ${
@@ -215,8 +215,8 @@ export const Video = ({
 												} transition-all cursor-default`}
 											>
 												{item.snippet.channelTitle}
-											</div>
-											<div className="flex items-center">
+											</p>
+											<div className="flex items-center max-md:justify-center">
 												{/* TODO fix overflow width  */}
 												<div className="max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap">
 													<p
