@@ -1,16 +1,10 @@
-import { Search } from "react-bootstrap-icons";
-import { XLg } from "react-bootstrap-icons";
+import {Search} from "react-bootstrap-icons";
+import {XLg} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
 
-export const SearchInput = ({
-	handleSearch,
-	searchText,
-	searchBox,
-	themeMode,
-	handleClearSearch,
-}) => {
+export const SearchInput = ({handleSearch, searchText, searchBox, themeMode, handleClearSearch}) => {
 	return (
-		<div className="w-[567px] h-[40px] flex items-center justify-end relative">
+		<div className="w-[70%] h-[40px] flex items-center justify-end relative">
 			<input
 				type="text"
 				name="youtube-search"
@@ -29,30 +23,17 @@ export const SearchInput = ({
 			<Search
 				className="absolute ml-[20px] left-0 hidden peer-focus:block"
 				size={14}
-				color={`${
-					themeMode === "systemDark" || themeMode === "dark"
-						? "#ffffff"
-						: "#000000"
-				}`}
+				color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`}
 			/>
 			<div
 				className={`flex justify-center items-center h-[40px] w-[40px] ${
 					themeMode === "systemDark" || themeMode === "dark"
 						? "hover:bg-[#4e4e4e] active:border-[#606060] active:bg-[#606060]"
 						: "hover:bg-black/10 active:border-[#00000026] active:bg-black/20"
-				} rounded-[50%] absolute right-[-4px] cursor-pointer ${
-					searchText.length > 0 ? "" : "hidden"
-				}`}
+				} rounded-[50%] absolute right-[-4px] cursor-pointer ${searchText.length > 0 ? "" : "hidden"}`}
 				onClick={handleClearSearch}
 			>
-				<XLg
-					size={20}
-					color={`${
-						themeMode === "systemDark" || themeMode === "dark"
-							? "#ffffff"
-							: "#000000"
-					}`}
-				/>
+				<XLg size={20} color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`} />
 			</div>
 		</div>
 	);

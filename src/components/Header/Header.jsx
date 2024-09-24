@@ -7,6 +7,7 @@ import {SearchInput} from "./SearchInput";
 import {SearchAndMicButton} from "./SearchAndMicButton";
 import {MoreAndLoginButton} from "./MoreAndLoginButton";
 import PropTypes from "prop-types";
+import {Search} from "react-bootstrap-icons";
 
 export const Header = ({
 	setMoreIconActive,
@@ -95,6 +96,13 @@ export const Header = ({
 						handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
 						handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
 						moreIcon={moreIcon}
+					/>
+				</div>
+				<div className="hidden max-md:block max-md:mr-[15px] max-md:mt-[4px]">
+					<Search
+						className=""
+						size={18}
+						color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`}
 					/>
 				</div>
 			</div>

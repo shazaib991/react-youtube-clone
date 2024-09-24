@@ -5,6 +5,7 @@ import {Sidebar} from "./components/Sidebar/Sidebar";
 import {PopOvers} from "./components/PopOvers/PopOvers";
 import "./index.css";
 import {MicListenPopover} from "./components/PopOvers/MicListenPopover";
+import {BottomNavbar} from "./components/bottomNavbar/BottomNavbar";
 
 export default function App() {
 	const [moreIconActive, setMoreIconActive] = useState(false);
@@ -186,7 +187,7 @@ export default function App() {
 				videoMoreIconActive={videoMoreIconActive}
 				videoMoreIconPopOver={videoMoreIconPopOver}
 			/>
-			<div className="visible">
+			<div className="relative visible">
 				<Header
 					setMoreIconActive={setMoreIconActive}
 					videoMoreIconActive={videoMoreIconActive}
@@ -226,6 +227,7 @@ export default function App() {
 						videoMoreIconClickId={videoMoreIconClickId}
 						handleVideoMouseEnter={handleVideoMouseEnter}
 					/>
+					<BottomNavbar />
 				</div>
 			</div>
 		</div>
