@@ -205,7 +205,7 @@ export const HomeSection = ({
 			{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
 				""
 			) : (
-				<div className={`ml-[29px]`}>
+				<div className={`ml-[29px] max-md:ml-0`}>
 					<hr
 						className={`${themeMode === "dark" || themeMode === "systemDark" ? "border-[#4d4d4d]" : ""} mb-[68px]`}
 					></hr>

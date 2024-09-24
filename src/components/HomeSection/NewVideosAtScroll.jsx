@@ -32,22 +32,22 @@ export const NewVideosAtScroll = ({areNewVideosAtScrollDownLoading, themeMode}) 
 
 		return areNewVideosAtScrollDownLoading ? (
 			<div className="flex flex-col items-center">
-				<div className="flex flex-wrap justify-between">
+				<div className="flex flex-wrap justify-between max-md:justify-center">
 					{[...Array(6).keys()].map((index) => {
 						return (
-							<div className="w-[340px] rounded-[9px] mb-[50px]" key={index}>
+							<div className="w-[300px] rounded-[9px] mb-[50px]" key={index}>
 								<div
 									className={`w-full h-[193px] ${
 										themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
 									} rounded-[9px]`}
 								></div>
-								<div className="flex mt-[12px]">
+								<div className="flex mt-[12px] max-md:flex-col max-md:items-center">
 									<div
 										className={`w-[36px] h-[36px] rounded-full ${
 											themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
-										}`}
+										} max-md:mb-[10px]`}
 									></div>
-									<div className="ml-[12px]">
+									<div className="ml-[12px] max-md:ml-0">
 										<div
 											className={`w-[266px] h-[20px] ${
 												themeMode === "dark" || themeMode === "systemDark"

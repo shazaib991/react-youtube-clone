@@ -100,23 +100,27 @@ export const Video = ({
 	};
 
 	return (
-		<div className={`flex flex-wrap ${videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"} videoCardParent`}>
+		<div
+			className={`flex flex-wrap ${
+				videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"
+			} videoCardParent max-md:justify-center`}
+		>
 			{videoData.length === 0
 				? [...Array(12).keys()].map((index) => {
 						return (
-							<div className="w-[340px] rounded-[9px] mb-[50px] ml-[25px]" key={index}>
+							<div className="w-[300px] rounded-[9px] mb-[50px] ml-[25px] max-md:ml-0" key={index}>
 								<div
 									className={`w-full h-[193px] ${
 										themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
 									} rounded-[9px]`}
 								></div>
-								<div className="flex mt-[12px]">
+								<div className="flex mt-[12px] max-md:flex-col max-md:items-center">
 									<div
 										className={`w-[36px] h-[36px] rounded-full ${
 											themeMode === "dark" || themeMode === "systemDark" ? "bg-[#3f3f3f]" : "bg-[#e5e5e5]"
-										}`}
+										} max-md:mb-[10px]`}
 									></div>
-									<div className="ml-[12px]">
+									<div className="ml-[12px] max-md:ml-0">
 										<div
 											className={`w-[266px] h-[20px] ${
 												themeMode === "dark" || themeMode === "systemDark"
@@ -332,7 +336,7 @@ export const Video = ({
 											themeMode === "dark" || themeMode === "systemDark"
 												? "videoMoreIconDark"
 												: "videoMoreIcon"
-										} max-md:right-0`}
+										} max-md:right-0 max-md:flex`}
 										onClick={(e) => handleVideoMoreIconClick(e, index)}
 									>
 										<ThreeDotsVertical
