@@ -42,6 +42,7 @@ export const Video = ({
 
 		return Number(str);
 	};
+
 	const extractVideoLength = (videoLength) => {
 		if (videoLength.includes("H") && videoLength.includes("M") && videoLength.includes("S")) {
 			const hour = videoLength.match(/[0-9]*H/);
@@ -89,6 +90,7 @@ export const Video = ({
 			return `?:?:?`;
 		}
 	};
+
 	const decodeEntity = (str) => {
 		let txt = document.createElement("textarea");
 
@@ -96,6 +98,7 @@ export const Video = ({
 
 		return txt.value;
 	};
+
 	return (
 		<div className={`flex flex-wrap ${videoData.length !== 0 ? "mt-[80px]" : "mt-[18px]"} videoCardParent`}>
 			{videoData.length === 0
@@ -216,7 +219,7 @@ export const Video = ({
 											>
 												{item.snippet.channelTitle}
 											</p>
-											<div className="flex items-center max-md:justify-center">
+											<div className="flex items-center max-md:justify-center max-md:flex-col">
 												{/* TODO fix overflow width  */}
 												<div className="max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap">
 													<p
@@ -224,7 +227,7 @@ export const Video = ({
 															themeMode === "dark" || themeMode === "systemDark"
 																? "text-[#a5a5a5]"
 																: "text-[#777777]"
-														} mr-[5px]`}
+														}`}
 														onMouseEnter={() => channelHoverMouseEnter(index)}
 														onMouseLeave={() => channelHoverMouseLeave(index)}
 														title={item.snippet.channelTitle}
