@@ -187,7 +187,7 @@ export default function App() {
 				videoMoreIconActive={videoMoreIconActive}
 				videoMoreIconPopOver={videoMoreIconPopOver}
 			/>
-			<div className="relative visible">
+			<div className="visible">
 				<Header
 					setMoreIconActive={setMoreIconActive}
 					videoMoreIconActive={videoMoreIconActive}
@@ -227,9 +227,9 @@ export default function App() {
 						videoMoreIconClickId={videoMoreIconClickId}
 						handleVideoMouseEnter={handleVideoMouseEnter}
 					/>
-					<BottomNavbar />
 				</div>
 			</div>
+			<BottomNavbar themeMode={themeMode} />
 		</div>
 	);
 }
