@@ -255,7 +255,7 @@ export const Video = ({
 															Verified
 														</div>
 														<div
-															className="relative w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px]"
+															className="relative w-[12px] h-[12px] rounded-[50%] bg-[#5e5e5e] pt-[1px] pl-[1px] ml-[5px] max-md:ml-0"
 															onMouseEnter={() => verifiedBadgeHoverEnter(index)}
 															onMouseLeave={() => verifiedBadgeHoverLeave(index)}
 														>

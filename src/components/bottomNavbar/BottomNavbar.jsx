@@ -7,9 +7,9 @@ import {PlayFill} from "react-bootstrap-icons";
 export const BottomNavbar = ({themeMode}) => {
 	return (
 		<div
-			className={`flex fixed left-0 bottom-0 w-full h-[50px] ${
+			className={`fixed left-0 bottom-0 w-full h-[50px] ${
 				themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
-			} z-[1200] justify-between items-center px-[10px]`}
+			} z-[1000] justify-between items-center px-[10px] hidden max-md:flex`}
 		>
 			<div className="flex flex-col items-center">
 				<HouseDoorFill

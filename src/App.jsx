@@ -228,8 +228,8 @@ export default function App() {
 						handleVideoMouseEnter={handleVideoMouseEnter}
 					/>
 				</div>
+				<BottomNavbar themeMode={themeMode} />
 			</div>
-			<BottomNavbar themeMode={themeMode} />
 		</div>
 	);
 }
