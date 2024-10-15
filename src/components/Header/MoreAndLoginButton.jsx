@@ -1,14 +1,16 @@
 import {ThreeDotsVertical} from "react-bootstrap-icons";
 import {PersonCircle} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 export const MoreAndLoginButton = ({
-	themeMode,
 	handleMoreIconClick,
 	handleHeaderTooltipMouseEnter,
 	handleHeaderTooltipMouseLeave,
 	moreIcon,
 }) => {
+	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+
 	return (
 		<>
 			<div
@@ -38,7 +40,6 @@ export const MoreAndLoginButton = ({
 };
 
 MoreAndLoginButton.propTypes = {
-	themeMode: PropTypes.string,
 	handleHeaderTooltipMouseEnter: PropTypes.func,
 	handleHeaderTooltipMouseLeave: PropTypes.func,
 	handleMoreIconClick: PropTypes.func,

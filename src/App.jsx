@@ -6,16 +6,19 @@ import {PopOvers} from "./components/PopOvers/PopOvers";
 import "./index.css";
 import {MicListenPopover} from "./components/PopOvers/MicListenPopover";
 import {BottomNavbar} from "./components/bottomNavbar/BottomNavbar";
+import {useSelector} from "react-redux";
+import {changeMoreIconActive} from "./states/NavbarStates";
+import {changeVideoMoreIconActive} from "./states/NavbarStates";
+import {useDispatch} from "react-redux";
 
 export default function App() {
-	const [moreIconActive, setMoreIconActive] = useState(false);
-	const [userLocation, setUserLocation] = useState("");
-	const [videoMoreIconActive, setVideoMoreIconActive] = useState({
-		status: false,
-		id: 0,
-	});
+	const dispatch = useDispatch();
+	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+	const userLocation = useSelector((state) => state.navbar.value.userLocation);
+	const moreIconActive = useSelector((state) => state.navbar.value.moreIconActive);
+	const videoMoreIconActive = useSelector((state) => state.navbar.value.videoMoreIconActive);
+	const sidebarBurgerMenuClick = useSelector((state) => state.navbar.value.sidebarBurgerMenuClick);
 	const [isMouseOutsideMoreIconActive, setIsMouseOutsideMoreIconActive] = useState(false);
-	const [themeMode, setThemeMode] = useState("dark");
 	const [moreIconHover, setMoreIconHover] = useState(false);
 	const [micIconHover, setMicIconHover] = useState(false);
 	const [searchIconHover, setSearchIconHover] = useState(false);
@@ -24,7 +27,6 @@ export default function App() {
 	const [videoMoreIconPos, setVideoMoreIconPos] = useState(Object);
 	const [isMouseInsideMicListeningPopover, setIsMouseInsideMicListeningPopover] = useState(false);
 	const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
-	const [sidebarBurgerMenuClick, setSidebarBurgerMenuClick] = useState(false);
 	const disableScroll = useRef();
 	const burgerIcon = useRef();
 	const leftScrollVideoCategory = useRef();
@@ -37,13 +39,13 @@ export default function App() {
 			return;
 		}
 		if (moreIconActive) {
-			setMoreIconActive(false);
+			dispatch(changeMoreIconActive(false));
 			return;
 		}
 		if (videoMoreIconClickActive) {
 			return;
 		}
-		setVideoMoreIconActive({...videoMoreIconActive, status: false});
+		dispatch(changeVideoMoreIconActive({...videoMoreIconActive, status: false}));
 	};
 
 	let handleEvent = useCallback((e) => {
@@ -90,7 +92,7 @@ export default function App() {
 	};
 
 	const handleVideoMouseEnter = (index) => {
-		setVideoMoreIconActive({...videoMoreIconActive, id: index});
+		dispatch(changeVideoMoreIconActive({...videoMoreIconActive, id: index}));
 	};
 
 	const handleVideoMoreIconClick = (e, index) => {
@@ -100,13 +102,10 @@ export default function App() {
 		setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
 
 		if (videoMoreIconActive.id === videoMoreIconClickId) {
-			setVideoMoreIconActive({
-				...videoMoreIconActive,
-				status: !videoMoreIconActive.status,
-			});
+			dispatch(changeVideoMoreIconActive({...videoMoreIconActive, status: !videoMoreIconActive.status}));
 			return;
 		}
-		setVideoMoreIconActive({...videoMoreIconActive, status: true});
+		dispatch(changeVideoMoreIconActive({...videoMoreIconActive, status: true}));
 	};
 
 	useEffect(() => {
@@ -120,14 +119,6 @@ export default function App() {
 			disableScroll.current.removeEventListener("touchmove", handleEvent);
 		}
 	}, [moreIconActive, videoMoreIconActive.status]);
-
-	useEffect(() => {
-		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-			setThemeMode("systemDark");
-			return;
-		}
-		setThemeMode("systemLight");
-	}, []);
 
 	return (
 		<div
@@ -181,7 +172,6 @@ export default function App() {
 				micIconHover={micIconHover}
 				themeMode={themeMode}
 				setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
-				setThemeMode={setThemeMode}
 				searchIconHover={searchIconHover}
 				videoMoreIconPos={videoMoreIconPos}
 				videoMoreIconActive={videoMoreIconActive}
@@ -189,13 +179,7 @@ export default function App() {
 			/>
 			<div className="visible">
 				<Header
-					setMoreIconActive={setMoreIconActive}
-					videoMoreIconActive={videoMoreIconActive}
 					handlePopoverDisable={handlePopoverDisable}
-					userLocation={userLocation}
-					moreIconActive={moreIconActive}
-					themeMode={themeMode}
-					setSidebarBurgerMenuClick={setSidebarBurgerMenuClick}
 					handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
 					handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
 					handleMicListenClick={handleMicListenClick}
@@ -216,7 +200,6 @@ export default function App() {
 					<HomeSection
 						sidebarBurgerMenuClick={sidebarBurgerMenuClick}
 						userLocation={userLocation}
-						setUserLocation={setUserLocation}
 						handleVideoMoreIconClick={handleVideoMoreIconClick}
 						videoMoreIconActive={videoMoreIconActive}
 						isMouseOutsideMoreIconActive={isMouseOutsideMoreIconActive}

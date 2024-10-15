@@ -7,11 +7,12 @@ import {ChevronRightVideoCategory} from "./ChevronRightVideoCategory";
 import {Video} from "./Video";
 import PropTypes from "prop-types";
 import {countries, zones} from "moment-timezone/data/meta/latest.json";
+import {useDispatch} from "react-redux";
+import {changeLocation} from "../../states/NavbarStates";
 
 export const HomeSection = ({
 	sidebarBurgerMenuClick,
 	userLocation,
-	setUserLocation,
 	handleVideoMoreIconClick,
 	moreIconActive,
 	videoMoreIconActive,
@@ -22,6 +23,7 @@ export const HomeSection = ({
 	rightScrollVideoCategory,
 	handleVideoMouseEnter,
 }) => {
+	const dispatch = useDispatch();
 	const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
 	const [videoCategoryArr, setVideoCategoryArr] = useState([]);
 	const [videoData, setVideoData] = useState([]);
@@ -143,7 +145,7 @@ export const HomeSection = ({
 			var tzArr = userTimeZone.split("/");
 			// userRegion = tzArr[0];
 			userCity = tzArr[tzArr.length - 1];
-			setUserLocation(timeZoneCityToCountry[userCity]["abbr"]);
+			dispatch(changeLocation(timeZoneCityToCountry[userCity]["abbr"]));
 			// userCountry = timeZoneCityToCountry[userCity];
 
 			// console.log(JSON.stringify(timeZoneCityToCountry[userCity]["abbr"], null, 2));
@@ -297,7 +299,6 @@ export const HomeSection = ({
 HomeSection.propTypes = {
 	sidebarBurgerMenuClick: PropTypes.bool,
 	userLocation: PropTypes.string,
-	setUserLocation: PropTypes.func,
 	handleVideoMoreIconClick: PropTypes.func,
 	moreIconActive: PropTypes.bool,
 	videoMoreIconActive: PropTypes.object,

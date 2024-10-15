@@ -13,7 +13,6 @@ export const PopOvers = ({
 	userLocation,
 	themeMode,
 	setIsMouseOutsideMoreIconActive,
-	setThemeMode,
 	videoMoreIconPos,
 	videoMoreIconActive,
 	videoMoreIconPopOver,
@@ -45,7 +44,6 @@ export const PopOvers = ({
 					<ThemeSettings
 						themeMode={themeMode}
 						setNavigateToThemeOptions={setNavigateToThemeOptions}
-						setThemeMode={setThemeMode}
 						setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
 					/>
 				) : (
@@ -95,7 +93,6 @@ PopOvers.propTypes = {
 	searchIconHover: PropTypes.bool,
 	themeMode: PropTypes.string,
 	setIsMouseOutsideMoreIconActive: PropTypes.func,
-	setThemeMode: PropTypes.func,
 	videoMoreIconPos: PropTypes.object,
 	videoMoreIconActive: PropTypes.object,
 	videoMoreIconPopOver: PropTypes.object,

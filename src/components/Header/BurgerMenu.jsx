@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const BurgerMenu = ({handleSidebarBurgerMenuClick, themeMode, burgerIcon}) => {
+export const BurgerMenu = ({handleSidebarBurgerMenuClick, burgerIcon}) => {
+	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+
 	return (
 		<div
 			className="burgerMenuIcon mr-[2px] max-md:hidden"
@@ -99,6 +102,5 @@ export const BurgerMenu = ({handleSidebarBurgerMenuClick, themeMode, burgerIcon}
 
 BurgerMenu.propTypes = {
 	handleSidebarBurgerMenuClick: PropTypes.func,
-	themeMode: PropTypes.string,
 	burgerIcon: PropTypes.object,
 };

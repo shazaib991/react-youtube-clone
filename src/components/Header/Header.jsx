@@ -1,6 +1,6 @@
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
 import youtubeLogoDark from "../../assets/images/yt_logo_rgb_dark.png";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import "./HeaderStyle.css";
 import {BurgerMenu} from "./BurgerMenu";
 import {SearchInput} from "./SearchInput";
@@ -8,20 +8,25 @@ import {SearchAndMicButton} from "./SearchAndMicButton";
 import {MoreAndLoginButton} from "./MoreAndLoginButton";
 import PropTypes from "prop-types";
 import {Search} from "react-bootstrap-icons";
+import {useDispatch} from "react-redux";
+import {changeTheme} from "../../states/NavbarStates";
+import {changeMoreIconActive} from "../../states/NavbarStates";
+import {changeSidebarBurgerMenuClick} from "../../states/NavbarStates";
+import {useSelector} from "react-redux";
 
 export const Header = ({
-	setMoreIconActive,
 	handlePopoverDisable,
-	moreIconActive,
-	setSidebarBurgerMenuClick,
-	themeMode,
-	userLocation,
 	handleHeaderTooltipMouseEnter,
 	handleHeaderTooltipMouseLeave,
 	handleMicListenClick,
-	videoMoreIconActive,
 	burgerIcon,
 }) => {
+	const dispatch = useDispatch();
+	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+	const userLocation = useSelector((state) => state.navbar.value.userLocation);
+	const moreIconActive = useSelector((state) => state.navbar.value.moreIconActive);
+	const videoMoreIconActive = useSelector((state) => state.navbar.value.videoMoreIconActive);
+	const sidebarBurgerMenuClick = useSelector((state) => state.navbar.value.sidebarBurgerMenuClick);
 	const [searchText, setSearchText] = useState("");
 	const moreIcon = useRef();
 	const searchBox = useRef();
@@ -36,12 +41,20 @@ export const Header = ({
 	};
 
 	const handleMoreIconClick = () => {
-		setMoreIconActive((prevState) => !prevState);
+		dispatch(changeMoreIconActive(!moreIconActive));
 	};
 
 	const handleSidebarBurgerMenuClick = () => {
-		setSidebarBurgerMenuClick((prevState) => !prevState);
+		dispatch(changeSidebarBurgerMenuClick(!sidebarBurgerMenuClick));
 	};
+
+	useEffect(() => {
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			dispatch(changeTheme("systemDark"));
+			return;
+		}
+		dispatch(changeTheme("systemLight"));
+	}, []);
 
 	return (
 		<div
@@ -52,11 +65,7 @@ export const Header = ({
 		>
 			<div className="w-full flex justify-between">
 				<div className="flex items-center">
-					<BurgerMenu
-						handleSidebarBurgerMenuClick={handleSidebarBurgerMenuClick}
-						themeMode={themeMode}
-						burgerIcon={burgerIcon}
-					/>
+					<BurgerMenu handleSidebarBurgerMenuClick={handleSidebarBurgerMenuClick} burgerIcon={burgerIcon} />
 					<div title="YouTube Home" className="flex items-center ml-[14px] cursor-pointer">
 						<img
 							src={themeMode === "systemDark" || themeMode === "dark" ? youtubeLogoDark : youtubeLogo}
@@ -79,11 +88,9 @@ export const Header = ({
 						handleSearch={handleSearch}
 						searchText={searchText}
 						searchBox={searchBox}
-						themeMode={themeMode}
 						handleClearSearch={handleClearSearch}
 					/>
 					<SearchAndMicButton
-						themeMode={themeMode}
 						handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
 						handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
 						handleMicListenClick={handleMicListenClick}
@@ -91,7 +98,6 @@ export const Header = ({
 				</div>
 				<div className="flex items-center max-md:hidden">
 					<MoreAndLoginButton
-						themeMode={themeMode}
 						handleMoreIconClick={handleMoreIconClick}
 						handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
 						handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
@@ -111,15 +117,9 @@ export const Header = ({
 };
 
 Header.propTypes = {
-	setMoreIconActive: PropTypes.func,
-	userLocation: PropTypes.string,
 	handlePopoverDisable: PropTypes.func,
-	moreIconActive: PropTypes.bool,
-	setSidebarBurgerMenuClick: PropTypes.func,
-	themeMode: PropTypes.string,
 	handleHeaderTooltipMouseEnter: PropTypes.func,
 	handleHeaderTooltipMouseLeave: PropTypes.func,
 	handleMicListenClick: PropTypes.func,
-	videoMoreIconActive: PropTypes.object,
 	burgerIcon: PropTypes.object,
 };

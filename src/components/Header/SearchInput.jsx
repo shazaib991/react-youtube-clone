@@ -1,8 +1,11 @@
 import {Search} from "react-bootstrap-icons";
 import {XLg} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const SearchInput = ({handleSearch, searchText, searchBox, themeMode, handleClearSearch}) => {
+export const SearchInput = ({handleSearch, searchText, searchBox, handleClearSearch}) => {
+	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+
 	return (
 		<div className="w-[70%] h-[40px] flex items-center justify-end relative">
 			<input
@@ -44,5 +47,4 @@ SearchInput.propTypes = {
 	handleClearSearch: PropTypes.func,
 	searchText: PropTypes.string,
 	searchBox: PropTypes.object,
-	themeMode: PropTypes.string,
 };
