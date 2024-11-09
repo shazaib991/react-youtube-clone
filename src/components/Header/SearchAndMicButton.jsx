@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 
 export const SearchAndMicButton = ({handleHeaderTooltipMouseEnter, handleHeaderTooltipMouseLeave, handleMicListenClick}) => {
-	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
 
 	return (
 		<>

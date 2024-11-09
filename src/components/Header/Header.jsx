@@ -9,9 +9,9 @@ import {MoreAndLoginButton} from "./MoreAndLoginButton";
 import PropTypes from "prop-types";
 import {Search} from "react-bootstrap-icons";
 import {useDispatch} from "react-redux";
-import {changeTheme} from "../../states/NavbarStates";
-import {changeMoreIconActive} from "../../states/NavbarStates";
-import {changeSidebarBurgerMenuClick} from "../../states/NavbarStates";
+import {changeTheme} from "../../states/States1";
+import {changeMoreIconActive} from "../../states/States1";
+import {changeSidebarBurgerMenuClick} from "../../states/States1";
 import {useSelector} from "react-redux";
 
 export const Header = ({
@@ -22,11 +22,11 @@ export const Header = ({
 	burgerIcon,
 }) => {
 	const dispatch = useDispatch();
-	const themeMode = useSelector((state) => state.navbar.value.themeMode);
-	const userLocation = useSelector((state) => state.navbar.value.userLocation);
-	const moreIconActive = useSelector((state) => state.navbar.value.moreIconActive);
-	const videoMoreIconActive = useSelector((state) => state.navbar.value.videoMoreIconActive);
-	const sidebarBurgerMenuClick = useSelector((state) => state.navbar.value.sidebarBurgerMenuClick);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const userLocation = useSelector((state) => state.states.value.userLocation);
+	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
+	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
 	const [searchText, setSearchText] = useState("");
 	const moreIcon = useRef();
 	const searchBox = useRef();

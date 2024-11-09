@@ -1,10 +1,12 @@
-import PropTypes from "prop-types";
 import {Gear, GearFill, HouseDoor} from "react-bootstrap-icons";
 import {HouseDoorFill} from "react-bootstrap-icons";
 import {Play} from "react-bootstrap-icons";
 import {PlayFill} from "react-bootstrap-icons";
+import {useSelector} from "react-redux";
 
-export const BottomNavbar = ({themeMode}) => {
+export const BottomNavbar = () => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+
 	return (
 		<div
 			className={`fixed left-0 bottom-0 w-full h-[50px] ${
@@ -70,8 +72,4 @@ export const BottomNavbar = ({themeMode}) => {
 			</div>
 		</div>
 	);
-};
-
-BottomNavbar.propTypes = {
-	themeMode: PropTypes.string,
 };

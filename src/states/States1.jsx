@@ -11,8 +11,8 @@ const initialState = {
 	sidebarBurgerMenuClick: false,
 };
 
-export const navbarStatesSlice = createSlice({
-	name: "navbarStates",
+export const States1Slice = createSlice({
+	name: "States1",
 	initialState: {value: initialState},
 	reducers: {
 		changeTheme: (state, action) => {
@@ -34,6 +34,6 @@ export const navbarStatesSlice = createSlice({
 });
 
 export const {changeTheme, changeLocation, changeMoreIconActive, changeVideoMoreIconActive, changeSidebarBurgerMenuClick} =
-	navbarStatesSlice.actions;
+	States1Slice.actions;
 
-export default navbarStatesSlice.reducer;
+export default States1Slice.reducer;

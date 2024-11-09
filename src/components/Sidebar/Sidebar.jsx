@@ -3,10 +3,14 @@ import {SidebarFirstHalf} from "./SidebarFirstHalf";
 import {SidebarSecondHalf} from "./SidebarSecondHalf";
 import {SidebarThirdHalf} from "./SidebarThirdHalf";
 import {SiteLinks} from "./SiteLinks";
-import PropTypes from "prop-types";
 import "./Sidebar.css";
+import {useSelector} from "react-redux";
 
-export const Sidebar = ({moreIconActive, sidebarBurgerMenuClick, videoMoreIconActive, themeMode}) => {
+export const Sidebar = () => {
+	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
+	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
 	const disableScroll = useRef();
 
 	let handleEvent = useCallback((e) => {
@@ -44,11 +48,4 @@ export const Sidebar = ({moreIconActive, sidebarBurgerMenuClick, videoMoreIconAc
 			</div>
 		</div>
 	);
-};
-
-Sidebar.propTypes = {
-	moreIconActive: PropTypes.bool,
-	sidebarBurgerMenuClick: PropTypes.bool,
-	videoMoreIconActive: PropTypes.object,
-	themeMode: PropTypes.string,
 };

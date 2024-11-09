@@ -9,7 +9,7 @@ export const MoreAndLoginButton = ({
 	handleHeaderTooltipMouseLeave,
 	moreIcon,
 }) => {
-	const themeMode = useSelector((state) => state.navbar.value.themeMode);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
 
 	return (
 		<>

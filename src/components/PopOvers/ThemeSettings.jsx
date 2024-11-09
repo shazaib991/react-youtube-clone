@@ -2,7 +2,7 @@ import {ArrowLeftShort} from "react-bootstrap-icons";
 import {Check2} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
-import {changeTheme} from "../../states/NavbarStates";
+import {changeTheme} from "../../states/States1";
 
 export const ThemeSettings = ({themeMode, setNavigateToThemeOptions, setIsMouseOutsideMoreIconActive}) => {
 	const dispatch = useDispatch();

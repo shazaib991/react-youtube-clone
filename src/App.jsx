@@ -7,17 +7,17 @@ import "./index.css";
 import {MicListenPopover} from "./components/PopOvers/MicListenPopover";
 import {BottomNavbar} from "./components/bottomNavbar/BottomNavbar";
 import {useSelector} from "react-redux";
-import {changeMoreIconActive} from "./states/NavbarStates";
-import {changeVideoMoreIconActive} from "./states/NavbarStates";
+import {changeMoreIconActive} from "./states/States1";
+import {changeVideoMoreIconActive} from "./states/States1";
 import {useDispatch} from "react-redux";
 
 export default function App() {
 	const dispatch = useDispatch();
-	const themeMode = useSelector((state) => state.navbar.value.themeMode);
-	const userLocation = useSelector((state) => state.navbar.value.userLocation);
-	const moreIconActive = useSelector((state) => state.navbar.value.moreIconActive);
-	const videoMoreIconActive = useSelector((state) => state.navbar.value.videoMoreIconActive);
-	const sidebarBurgerMenuClick = useSelector((state) => state.navbar.value.sidebarBurgerMenuClick);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const userLocation = useSelector((state) => state.states.value.userLocation);
+	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
+	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
 	const [isMouseOutsideMoreIconActive, setIsMouseOutsideMoreIconActive] = useState(false);
 	const [moreIconHover, setMoreIconHover] = useState(false);
 	const [micIconHover, setMicIconHover] = useState(false);
@@ -191,12 +191,7 @@ export default function App() {
 					}`}
 					onClick={handlePopoverDisable}
 				>
-					<Sidebar
-						moreIconActive={moreIconActive}
-						videoMoreIconActive={videoMoreIconActive}
-						themeMode={themeMode}
-						sidebarBurgerMenuClick={sidebarBurgerMenuClick}
-					/>
+					<Sidebar />
 					<HomeSection
 						sidebarBurgerMenuClick={sidebarBurgerMenuClick}
 						userLocation={userLocation}
@@ -211,7 +206,7 @@ export default function App() {
 						handleVideoMouseEnter={handleVideoMouseEnter}
 					/>
 				</div>
-				<BottomNavbar themeMode={themeMode} />
+				<BottomNavbar />
 			</div>
 		</div>
 	);

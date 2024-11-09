@@ -8,7 +8,7 @@ import {Video} from "./Video";
 import PropTypes from "prop-types";
 import {countries, zones} from "moment-timezone/data/meta/latest.json";
 import {useDispatch} from "react-redux";
-import {changeLocation} from "../../states/NavbarStates";
+import {changeLocation} from "../../states/States1";
 
 export const HomeSection = ({
 	sidebarBurgerMenuClick,
