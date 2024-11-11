@@ -4,6 +4,8 @@ import {PopOversTopHalf} from "./PopOversTopHalf";
 import {PopOversBottomHalf} from "./PopOversBottomHalf";
 import {VideoMoreIconPopOver} from "./VideoMoreIconPopOver";
 import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+import {changeIsMouseOutsideMoreIconActive} from "../../states/States2";
 
 export const PopOvers = ({
 	moreIconActive,
@@ -12,11 +14,11 @@ export const PopOvers = ({
 	searchIconHover,
 	userLocation,
 	themeMode,
-	setIsMouseOutsideMoreIconActive,
 	videoMoreIconPos,
 	videoMoreIconActive,
 	videoMoreIconPopOver,
 }) => {
+	const dispatch = useDispatch();
 	const [windowSize, setWindowSize] = useState(0);
 	const [navigateToThemeOptions, setNavigateToThemeOptions] = useState(false);
 
@@ -38,14 +40,10 @@ export const PopOvers = ({
 						? "bg-[#282828]"
 						: "bg-[#ffffff] shadow-[0_0_25px_5px_rgba(212,212,212,0.35)]"
 				} z-[1200] ${moreIconActive ? "" : "hidden"}`}
-				onMouseLeave={() => setIsMouseOutsideMoreIconActive(true)}
+				onMouseLeave={() => dispatch(changeIsMouseOutsideMoreIconActive(true))}
 			>
 				{navigateToThemeOptions ? (
-					<ThemeSettings
-						themeMode={themeMode}
-						setNavigateToThemeOptions={setNavigateToThemeOptions}
-						setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
-					/>
+					<ThemeSettings themeMode={themeMode} setNavigateToThemeOptions={setNavigateToThemeOptions} />
 				) : (
 					<>
 						<PopOversTopHalf themeMode={themeMode} setNavigateToThemeOptions={setNavigateToThemeOptions} />
@@ -92,7 +90,6 @@ PopOvers.propTypes = {
 	micIconHover: PropTypes.bool,
 	searchIconHover: PropTypes.bool,
 	themeMode: PropTypes.string,
-	setIsMouseOutsideMoreIconActive: PropTypes.func,
 	videoMoreIconPos: PropTypes.object,
 	videoMoreIconActive: PropTypes.object,
 	videoMoreIconPopOver: PropTypes.object,

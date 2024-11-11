@@ -7,9 +7,12 @@ import {CollectionPlay} from "react-bootstrap-icons";
 import {CollectionPlayFill} from "react-bootstrap-icons";
 import {Clock} from "react-bootstrap-icons";
 import {ClockFill} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const SidebarFirstHalf = ({sidebarBurgerMenuClick, themeMode}) => {
+export const SidebarFirstHalf = () => {
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+
 	return (
 		<>
 			<a className={`block ${sidebarBurgerMenuClick ? "ml-[4px]" : "mx-[11px]"}`} href="/" title="Home">
@@ -172,9 +175,4 @@ export const SidebarFirstHalf = ({sidebarBurgerMenuClick, themeMode}) => {
 			</a>
 		</>
 	);
-};
-
-SidebarFirstHalf.propTypes = {
-	sidebarBurgerMenuClick: PropTypes.bool,
-	themeMode: PropTypes.string,
 };

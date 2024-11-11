@@ -3,8 +3,9 @@ import {Check2} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
 import {changeTheme} from "../../states/States1";
+import {changeIsMouseOutsideMoreIconActive} from "../../states/States2";
 
-export const ThemeSettings = ({themeMode, setNavigateToThemeOptions, setIsMouseOutsideMoreIconActive}) => {
+export const ThemeSettings = ({themeMode, setNavigateToThemeOptions}) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -38,7 +39,7 @@ export const ThemeSettings = ({themeMode, setNavigateToThemeOptions, setIsMouseO
 				} cursor-pointer`}
 				onClick={() => {
 					dispatch(changeTheme("systemDark"));
-					setIsMouseOutsideMoreIconActive(false);
+					dispatch(changeIsMouseOutsideMoreIconActive(false));
 				}}
 			>
 				<Check2
@@ -60,7 +61,7 @@ export const ThemeSettings = ({themeMode, setNavigateToThemeOptions, setIsMouseO
 				} cursor-pointer`}
 				onClick={() => {
 					dispatch(changeTheme("dark"));
-					setIsMouseOutsideMoreIconActive(false);
+					dispatch(changeIsMouseOutsideMoreIconActive(false));
 				}}
 			>
 				<Check2
@@ -84,7 +85,7 @@ export const ThemeSettings = ({themeMode, setNavigateToThemeOptions, setIsMouseO
 				} cursor-pointer`}
 				onClick={() => {
 					dispatch(changeTheme("light"));
-					setIsMouseOutsideMoreIconActive(false);
+					dispatch(changeIsMouseOutsideMoreIconActive(false));
 				}}
 			>
 				<Check2
@@ -108,6 +109,5 @@ export const ThemeSettings = ({themeMode, setNavigateToThemeOptions, setIsMouseO
 
 ThemeSettings.propTypes = {
 	themeMode: PropTypes.string,
-	setIsMouseOutsideMoreIconActive: PropTypes.func,
 	setNavigateToThemeOptions: PropTypes.func,
 };

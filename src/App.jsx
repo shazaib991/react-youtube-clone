@@ -9,6 +9,7 @@ import {BottomNavbar} from "./components/bottomNavbar/BottomNavbar";
 import {useSelector} from "react-redux";
 import {changeMoreIconActive} from "./states/States1";
 import {changeVideoMoreIconActive} from "./states/States1";
+import {changeVideoMoreIconClickId} from "./states/States2";
 import {useDispatch} from "react-redux";
 
 export default function App() {
@@ -17,13 +18,11 @@ export default function App() {
 	const userLocation = useSelector((state) => state.states.value.userLocation);
 	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
 	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
-	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
-	const [isMouseOutsideMoreIconActive, setIsMouseOutsideMoreIconActive] = useState(false);
+	const videoMoreIconClickId = useSelector((state) => state.states2.value.videoMoreIconClickId);
 	const [moreIconHover, setMoreIconHover] = useState(false);
 	const [micIconHover, setMicIconHover] = useState(false);
 	const [searchIconHover, setSearchIconHover] = useState(false);
 	const [isMicListening, setIsMicListening] = useState(false);
-	const [videoMoreIconClickId, setVideoMoreIconClickId] = useState(0);
 	const [videoMoreIconPos, setVideoMoreIconPos] = useState(Object);
 	const [isMouseInsideMicListeningPopover, setIsMouseInsideMicListeningPopover] = useState(false);
 	const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
@@ -97,7 +96,7 @@ export default function App() {
 
 	const handleVideoMoreIconClick = (e, index) => {
 		videoMoreIconClickActive = true;
-		setVideoMoreIconClickId(index);
+		dispatch(changeVideoMoreIconClickId(index));
 
 		setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
 
@@ -171,7 +170,6 @@ export default function App() {
 				userLocation={userLocation}
 				micIconHover={micIconHover}
 				themeMode={themeMode}
-				setIsMouseOutsideMoreIconActive={setIsMouseOutsideMoreIconActive}
 				searchIconHover={searchIconHover}
 				videoMoreIconPos={videoMoreIconPos}
 				videoMoreIconActive={videoMoreIconActive}
@@ -193,16 +191,9 @@ export default function App() {
 				>
 					<Sidebar />
 					<HomeSection
-						sidebarBurgerMenuClick={sidebarBurgerMenuClick}
-						userLocation={userLocation}
 						handleVideoMoreIconClick={handleVideoMoreIconClick}
-						videoMoreIconActive={videoMoreIconActive}
-						isMouseOutsideMoreIconActive={isMouseOutsideMoreIconActive}
-						moreIconActive={moreIconActive}
 						leftScrollVideoCategory={leftScrollVideoCategory}
-						themeMode={themeMode}
 						rightScrollVideoCategory={rightScrollVideoCategory}
-						videoMoreIconClickId={videoMoreIconClickId}
 						handleVideoMouseEnter={handleVideoMouseEnter}
 					/>
 				</div>

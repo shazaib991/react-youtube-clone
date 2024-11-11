@@ -5,9 +5,12 @@ import {Controller} from "react-bootstrap-icons";
 import {Newspaper} from "react-bootstrap-icons";
 import {Trophy} from "react-bootstrap-icons";
 import {PlusCircle} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const SidebarSecondHalf = ({themeMode, sidebarBurgerMenuClick}) => {
+export const SidebarSecondHalf = () => {
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+
 	return (
 		<>
 			<hr
@@ -167,9 +170,4 @@ export const SidebarSecondHalf = ({themeMode, sidebarBurgerMenuClick}) => {
 			</a>
 		</>
 	);
-};
-
-SidebarSecondHalf.propTypes = {
-	sidebarBurgerMenuClick: PropTypes.bool,
-	themeMode: PropTypes.string,
 };

@@ -1,17 +1,18 @@
 import {useRef} from "react";
-import PropTypes from "prop-types";
+import {useDispatch, useSelector} from "react-redux";
+import {changeVideoCategoryClickedId} from "../../states/States2";
 
-export const VideoCategory = ({
-	videoCategoryArr,
-	videoCategoryClickedId,
-	themeMode,
-	moreIconActive,
-	isMouseOutsideMoreIconActive,
-	setVideoCategoryClickedId,
-}) => {
+export const VideoCategory = () => {
 	let isMouseDown = false;
 	let startX;
 	let currentPos;
+
+	const dispatch = useDispatch();
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
+	const isMouseOutsideMoreIconActive = useSelector((state) => state.states2.value.isMouseOutsideMoreIconActive);
+	const videoCategoryClickedId = useSelector((state) => state.states2.value.videoCategoryClickedId);
+	const videoCategoryArr = useSelector((state) => state.states2.value.videoCategoryArr);
 	const videoCategoryScroll = useRef();
 
 	const handleScrollVideoCategory = () => {
@@ -106,7 +107,7 @@ export const VideoCategory = ({
 							} ${
 								moreIconActive && !isMouseOutsideMoreIconActive ? "duration-0" : "duration-300"
 							} transition-all font-medium`}
-							onClick={() => setVideoCategoryClickedId(index)}
+							onClick={() => dispatch(changeVideoCategoryClickedId(index))}
 						>
 							<p title={`${item}`}>{item}</p>
 						</button>
@@ -115,13 +116,4 @@ export const VideoCategory = ({
 			</div>
 		</div>
 	);
-};
-
-VideoCategory.propTypes = {
-	moreIconActive: PropTypes.bool,
-	isMouseOutsideMoreIconActive: PropTypes.bool,
-	themeMode: PropTypes.string,
-	setVideoCategoryClickedId: PropTypes.func,
-	videoCategoryClickedId: PropTypes.number,
-	videoCategoryArr: PropTypes.array,
 };

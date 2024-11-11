@@ -9,8 +9,8 @@ import {useSelector} from "react-redux";
 export const Sidebar = () => {
 	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
 	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
-	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
 	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
 	const disableScroll = useRef();
 
 	let handleEvent = useCallback((e) => {
@@ -39,10 +39,10 @@ export const Sidebar = () => {
 			ref={disableScroll}
 		>
 			<div className={`visible ${sidebarBurgerMenuClick ? "pt-[4px]" : "pt-[12px]"} mb-[70px]`}>
-				<SidebarFirstHalf sidebarBurgerMenuClick={sidebarBurgerMenuClick} themeMode={themeMode} />
+				<SidebarFirstHalf />
 				<div className={`${sidebarBurgerMenuClick ? "hidden" : ""}`}>
-					<SidebarSecondHalf themeMode={themeMode} sidebarBurgerMenuClick={sidebarBurgerMenuClick} />
-					<SidebarThirdHalf themeMode={themeMode} sidebarBurgerMenuClick={sidebarBurgerMenuClick} />
+					<SidebarSecondHalf />
+					<SidebarThirdHalf />
 					<SiteLinks />
 				</div>
 			</div>

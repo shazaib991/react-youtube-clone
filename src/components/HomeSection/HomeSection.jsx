@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect} from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
 import {ChevronLeftVideoCategory} from "./ChevronLeftVideoCategory";
@@ -7,28 +7,26 @@ import {ChevronRightVideoCategory} from "./ChevronRightVideoCategory";
 import {Video} from "./Video";
 import PropTypes from "prop-types";
 import {countries, zones} from "moment-timezone/data/meta/latest.json";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changeLocation} from "../../states/States1";
+import {changeVideoCategoryArr} from "../../states/States2";
+import {changeVideoData} from "../../states/States2";
+import {changeAreNewVideosAtScrollDownLoading} from "../../states/States3";
+import {changeNextPageToken} from "../../states/States3";
 
 export const HomeSection = ({
-	sidebarBurgerMenuClick,
-	userLocation,
 	handleVideoMoreIconClick,
-	moreIconActive,
-	videoMoreIconActive,
-	isMouseOutsideMoreIconActive,
-	videoMoreIconClickId,
-	themeMode,
 	leftScrollVideoCategory,
 	rightScrollVideoCategory,
 	handleVideoMouseEnter,
 }) => {
 	const dispatch = useDispatch();
-	const [videoCategoryClickedId, setVideoCategoryClickedId] = useState(0);
-	const [videoCategoryArr, setVideoCategoryArr] = useState([]);
-	const [videoData, setVideoData] = useState([]);
-	const [areNewVideosAtScrollDownLoading, setAreNewVideosAtScrollDownLoading] = useState(false);
-	const [nextPageToken, setNextPageToken] = useState("");
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const userLocation = useSelector((state) => state.states.value.userLocation);
+	const videoCategoryArr = useSelector((state) => state.states2.value.videoCategoryArr);
+	const videoData = useSelector((state) => state.states2.value.videoData);
+	const nextPageToken = useSelector((state) => state.states3.value.nextPageToken);
 	// const countryCode = "US";
 	const timeZoneCityToCountry = {};
 	// let userRegion;
@@ -46,7 +44,7 @@ export const HomeSection = ({
 				}&part=snippet&maxResults=12&type=video&regionCode=${userLocation || countryCode}&pageToken=${nextPageToken}`
 			);
 
-			setNextPageToken(await videoResponse.data.nextPageToken);
+			dispatch(changeNextPageToken(await videoResponse.data.nextPageToken));
 
 			const videoDataItems = await videoResponse.data.items;
 
@@ -91,8 +89,8 @@ export const HomeSection = ({
 				videoDataArray.push(videoDataItems[i]);
 			}
 
-			setVideoData(videoDataArray);
-			setAreNewVideosAtScrollDownLoading(false);
+			dispatch(changeVideoData(videoDataArray));
+			dispatch(changeAreNewVideosAtScrollDownLoading(false));
 		},
 		[nextPageToken, videoData]
 	);
@@ -119,7 +117,7 @@ export const HomeSection = ({
 			videoCategoryArr.push("Watched");
 
 			addVideosArray(userLocation || countryCode);
-			setVideoCategoryArr(videoCategoryArr);
+			dispatch(changeVideoCategoryArr(videoCategoryArr));
 		},
 		[addVideosArray]
 	);
@@ -188,7 +186,7 @@ export const HomeSection = ({
 
 		let observerVideoCardObserver = new window.IntersectionObserver((entry, self) => {
 			if (entry[0].isIntersecting) {
-				setAreNewVideosAtScrollDownLoading(true);
+				dispatch(changeAreNewVideosAtScrollDownLoading(true));
 				addVideosArray();
 				self.unobserve(entry[0].target);
 			}
@@ -241,21 +239,11 @@ export const HomeSection = ({
 								}}
 							></div>
 							<ChevronLeftVideoCategory
-								sidebarBurgerMenuClick={sidebarBurgerMenuClick}
 								handleLeftScrollVideoCategory={handleLeftScrollVideoCategory}
-								themeMode={themeMode}
 								leftScrollVideoCategory={leftScrollVideoCategory}
 								rightScrollVideoCategory={rightScrollVideoCategory}
 							/>
-							<VideoCategory
-								videoCategoryArr={videoCategoryArr}
-								videoCategoryClickedId={videoCategoryClickedId}
-								themeMode={themeMode}
-								sidebarBurgerMenuClick={sidebarBurgerMenuClick}
-								moreIconActive={moreIconActive}
-								isMouseOutsideMoreIconActive={isMouseOutsideMoreIconActive}
-								setVideoCategoryClickedId={setVideoCategoryClickedId}
-							/>
+							<VideoCategory />
 							<div
 								className={`h-[34px] w-[125px] flex justify-end absolute top-[11px] right-[-2px] max-md:right-0`}
 								style={{
@@ -272,8 +260,6 @@ export const HomeSection = ({
 							></div>
 							<ChevronRightVideoCategory
 								handleRightScrollVideoCategory={handleRightScrollVideoCategory}
-								themeMode={themeMode}
-								sidebarBurgerMenuClick={sidebarBurgerMenuClick}
 								rightScrollVideoCategory={rightScrollVideoCategory}
 								leftScrollVideoCategory={leftScrollVideoCategory}
 							/>
@@ -282,29 +268,14 @@ export const HomeSection = ({
 				) : (
 					""
 				)}
-				<Video
-					videoData={videoData}
-					handleVideoMouseEnter={handleVideoMouseEnter}
-					themeMode={themeMode}
-					handleVideoMoreIconClick={handleVideoMoreIconClick}
-					videoMoreIconClickId={videoMoreIconClickId}
-					videoMoreIconActive={videoMoreIconActive}
-					areNewVideosAtScrollDownLoading={areNewVideosAtScrollDownLoading}
-				/>
+				<Video handleVideoMouseEnter={handleVideoMouseEnter} handleVideoMoreIconClick={handleVideoMoreIconClick} />
 			</div>
 		</div>
 	);
 };
 
 HomeSection.propTypes = {
-	sidebarBurgerMenuClick: PropTypes.bool,
-	userLocation: PropTypes.string,
 	handleVideoMoreIconClick: PropTypes.func,
-	moreIconActive: PropTypes.bool,
-	videoMoreIconActive: PropTypes.object,
-	isMouseOutsideMoreIconActive: PropTypes.bool,
-	videoMoreIconClickId: PropTypes.number,
-	themeMode: PropTypes.string,
 	leftScrollVideoCategory: PropTypes.object,
 	rightScrollVideoCategory: PropTypes.object,
 	handleVideoMouseEnter: PropTypes.func,

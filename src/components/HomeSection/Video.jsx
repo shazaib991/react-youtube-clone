@@ -4,16 +4,14 @@ import {Check2} from "react-bootstrap-icons";
 import {useState} from "react";
 import {NewVideosAtScroll} from "./NewVideosAtScroll";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const Video = ({
-	videoData,
-	handleVideoMouseEnter,
-	themeMode,
-	handleVideoMoreIconClick,
-	videoMoreIconClickId,
-	videoMoreIconActive,
-	areNewVideosAtScrollDownLoading,
-}) => {
+export const Video = ({handleVideoMouseEnter, handleVideoMoreIconClick}) => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
+	const videoMoreIconClickId = useSelector((state) => state.states2.value.videoMoreIconClickId);
+	const videoData = useSelector((state) => state.states2.value.videoData);
+
 	const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
 		status: false,
 		id: 0,
@@ -350,17 +348,12 @@ export const Video = ({
 							</div>
 						);
 				  })}
-			<NewVideosAtScroll themeMode={themeMode} areNewVideosAtScrollDownLoading={areNewVideosAtScrollDownLoading} />
+			<NewVideosAtScroll />
 		</div>
 	);
 };
 
 Video.propTypes = {
 	handleVideoMoreIconClick: PropTypes.func,
-	videoMoreIconActive: PropTypes.object,
-	areNewVideosAtScrollDownLoading: PropTypes.bool,
-	videoMoreIconClickId: PropTypes.number,
-	themeMode: PropTypes.string,
 	handleVideoMouseEnter: PropTypes.func,
-	videoData: PropTypes.array,
 };

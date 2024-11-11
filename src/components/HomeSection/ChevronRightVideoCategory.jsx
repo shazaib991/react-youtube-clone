@@ -1,12 +1,14 @@
 import {ChevronRight} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 export const ChevronRightVideoCategory = ({
 	handleRightScrollVideoCategory,
-	themeMode,
 	rightScrollVideoCategory,
 	leftScrollVideoCategory,
 }) => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+
 	return (
 		<div
 			className={`videoCategoryNavigateNextIcon max-md:mr-[15px] mr-[-12px]`}
@@ -123,7 +125,6 @@ export const ChevronRightVideoCategory = ({
 };
 
 ChevronRightVideoCategory.propTypes = {
-	themeMode: PropTypes.string,
 	leftScrollVideoCategory: PropTypes.object,
 	rightScrollVideoCategory: PropTypes.object,
 	handleRightScrollVideoCategory: PropTypes.func,

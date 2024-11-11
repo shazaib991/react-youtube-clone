@@ -1,7 +1,10 @@
 import {useEffect, useRef, useState} from "react";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const NewVideosAtScroll = ({areNewVideosAtScrollDownLoading, themeMode}) => {
+export const NewVideosAtScroll = () => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const areNewVideosAtScrollDownLoading = useSelector((state) => state.states3.value.areNewVideosAtScrollDownLoading);
+
 	{
 		const [loaderInterval1, setLoaderInterval1] = useState(0);
 		const [loaderInterval2, setLoaderInterval2] = useState(0);
@@ -98,9 +101,4 @@ export const NewVideosAtScroll = ({areNewVideosAtScrollDownLoading, themeMode}) 
 			""
 		);
 	}
-};
-
-NewVideosAtScroll.propTypes = {
-	themeMode: PropTypes.string,
-	areNewVideosAtScrollDownLoading: PropTypes.bool,
 };
