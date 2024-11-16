@@ -3,9 +3,14 @@ import {Moon} from "react-bootstrap-icons";
 import {Translate} from "react-bootstrap-icons";
 import {ShieldLock} from "react-bootstrap-icons";
 import {ChevronRight} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
+import {changeNavigateToThemeOptions} from "../../states/States4";
+import {useDispatch, useSelector} from "react-redux";
 
-export const PopOversTopHalf = ({themeMode, setNavigateToThemeOptions}) => {
+export const PopOversTopHalf = () => {
+	const dispatch = useDispatch();
+
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+
 	return (
 		<>
 			<div
@@ -26,7 +31,7 @@ export const PopOversTopHalf = ({themeMode, setNavigateToThemeOptions}) => {
 				className={`flex items-center justify-between pl-[18px] pr-[20px] ${
 					themeMode === "dark" || themeMode === "systemDark" ? "hover:bg-[#3e3e3e]" : "hover:bg-[#f2f2f2]"
 				} py-[9.3px] cursor-pointer`}
-				onClick={() => setNavigateToThemeOptions(true)}
+				onClick={() => dispatch(changeNavigateToThemeOptions(true))}
 			>
 				<div className="flex items-center">
 					<Moon size={20} color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`} />
@@ -89,9 +94,4 @@ export const PopOversTopHalf = ({themeMode, setNavigateToThemeOptions}) => {
 			</div>
 		</>
 	);
-};
-
-PopOversTopHalf.propTypes = {
-	themeMode: PropTypes.string,
-	setNavigateToThemeOptions: PropTypes.func,
 };

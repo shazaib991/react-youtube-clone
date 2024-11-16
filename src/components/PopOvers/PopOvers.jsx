@@ -1,33 +1,29 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {ThemeSettings} from "./ThemeSettings";
 import {PopOversTopHalf} from "./PopOversTopHalf";
 import {PopOversBottomHalf} from "./PopOversBottomHalf";
 import {VideoMoreIconPopOver} from "./VideoMoreIconPopOver";
 import PropTypes from "prop-types";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changeIsMouseOutsideMoreIconActive} from "../../states/States2";
+import {changeWindowSize} from "../../states/States4";
 
-export const PopOvers = ({
-	moreIconActive,
-	moreIconHover,
-	micIconHover,
-	searchIconHover,
-	userLocation,
-	themeMode,
-	videoMoreIconPos,
-	videoMoreIconActive,
-	videoMoreIconPopOver,
-}) => {
+export const PopOvers = ({videoMoreIconPopOver}) => {
 	const dispatch = useDispatch();
-	const [windowSize, setWindowSize] = useState(0);
-	const [navigateToThemeOptions, setNavigateToThemeOptions] = useState(false);
+
+	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const moreIconHover = useSelector((state) => state.states3.value.moreIconHover);
+	const micIconHover = useSelector((state) => state.states3.value.micIconHover);
+	const searchIconHover = useSelector((state) => state.states3.value.searchIconHover);
+	const navigateToThemeOptions = useSelector((state) => state.states4.value.navigateToThemeOptions);
 
 	const windowResize = () => {
-		setWindowSize(window.innerHeight);
+		dispatch(changeWindowSize(window.innerHeight));
 	};
 
 	useEffect(() => {
-		setWindowSize(window.innerHeight);
+		dispatch(changeWindowSize(window.innerHeight));
 	}, []);
 
 	window.onresize = windowResize;
@@ -43,21 +39,15 @@ export const PopOvers = ({
 				onMouseLeave={() => dispatch(changeIsMouseOutsideMoreIconActive(true))}
 			>
 				{navigateToThemeOptions ? (
-					<ThemeSettings themeMode={themeMode} setNavigateToThemeOptions={setNavigateToThemeOptions} />
+					<ThemeSettings />
 				) : (
 					<>
-						<PopOversTopHalf themeMode={themeMode} setNavigateToThemeOptions={setNavigateToThemeOptions} />
-						<PopOversBottomHalf themeMode={themeMode} userLocation={userLocation} />
+						<PopOversTopHalf />
+						<PopOversBottomHalf />
 					</>
 				)}
 			</div>
-			<VideoMoreIconPopOver
-				themeMode={themeMode}
-				videoMoreIconActive={videoMoreIconActive}
-				videoMoreIconPopOver={videoMoreIconPopOver}
-				videoMoreIconPos={videoMoreIconPos}
-				windowSize={windowSize}
-			/>
+			<VideoMoreIconPopOver videoMoreIconPopOver={videoMoreIconPopOver} />
 			<div
 				className={`fixed top-[64px] right-[398px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
 					searchIconHover ? "opacity-100" : "opacity-0"
@@ -84,13 +74,5 @@ export const PopOvers = ({
 };
 
 PopOvers.propTypes = {
-	moreIconActive: PropTypes.bool,
-	userLocation: PropTypes.string,
-	moreIconHover: PropTypes.bool,
-	micIconHover: PropTypes.bool,
-	searchIconHover: PropTypes.bool,
-	themeMode: PropTypes.string,
-	videoMoreIconPos: PropTypes.object,
-	videoMoreIconActive: PropTypes.object,
 	videoMoreIconPopOver: PropTypes.object,
 };

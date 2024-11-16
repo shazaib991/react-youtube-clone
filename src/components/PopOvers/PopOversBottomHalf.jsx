@@ -4,9 +4,12 @@ import {Gear} from "react-bootstrap-icons";
 import {QuestionCircle} from "react-bootstrap-icons";
 import {SendExclamation} from "react-bootstrap-icons";
 import {ChevronRight} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const PopOversBottomHalf = ({themeMode, userLocation}) => {
+export const PopOversBottomHalf = () => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const userLocation = useSelector((state) => state.states.value.userLocation);
+
 	return (
 		<>
 			<div
@@ -92,9 +95,4 @@ export const PopOversBottomHalf = ({themeMode, userLocation}) => {
 			</div>
 		</>
 	);
-};
-
-PopOversBottomHalf.propTypes = {
-	themeMode: PropTypes.string,
-	userLocation: PropTypes.string,
 };

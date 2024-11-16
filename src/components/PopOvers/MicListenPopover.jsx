@@ -1,15 +1,16 @@
 import {MicFill} from "react-bootstrap-icons";
 import {XLg} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
+import {useDispatch, useSelector} from "react-redux";
+import {changeIsMouseInsideMicListeningPopover} from "../../states/States4";
 
-export const MicListenPopover = ({
-	showMicListeningPopover,
-	isMouseInsideMicListeningPopover,
-	handleMicListenPopoverCancelClick,
-	setIsMouseInsideMicListeningPopover,
-	isMicListening,
-	handleMicListenPopoverClick,
-}) => {
+export const MicListenPopover = ({handleMicListenPopoverCancelClick, handleMicListenPopoverClick}) => {
+	const dispatch = useDispatch();
+
+	const showMicListeningPopover = useSelector((state) => state.states4.value.showMicListeningPopover);
+	const isMicListening = useSelector((state) => state.states4.value.isMicListening);
+	const isMouseInsideMicListeningPopover = useSelector((state) => state.states4.value.isMouseInsideMicListeningPopover);
+
 	return (
 		<div
 			className={`h-[100vh] w-full fixed bg-[#0000004d] z-[1200] ${showMicListeningPopover ? "visible" : "invisible"} ${
@@ -25,8 +26,8 @@ export const MicListenPopover = ({
 				className={`h-[416px] w-[592px] absolute top-[8px] left-[27.5%] bg-white shadow-[rgba(0,_0,_0,_0.40)_0px_25px_50px_-12px] transition-[opacity,visibility] duration-300 ${
 					showMicListeningPopover ? "opacity-100" : "opacity-0"
 				} ${showMicListeningPopover ? "visible" : "invisible"}`}
-				onMouseEnter={() => setIsMouseInsideMicListeningPopover(true)}
-				onMouseLeave={() => setIsMouseInsideMicListeningPopover(false)}
+				onMouseEnter={() => dispatch(changeIsMouseInsideMicListeningPopover(true))}
+				onMouseLeave={() => dispatch(changeIsMouseInsideMicListeningPopover(false))}
 			>
 				<div className="h-[calc(100%-46px)]">
 					<div
@@ -60,10 +61,6 @@ export const MicListenPopover = ({
 };
 
 MicListenPopover.propTypes = {
-	showMicListeningPopover: PropTypes.bool,
-	isMicListening: PropTypes.bool,
-	isMouseInsideMicListeningPopover: PropTypes.bool,
 	handleMicListenPopoverCancelClick: PropTypes.func,
 	handleMicListenPopoverClick: PropTypes.func,
-	setIsMouseInsideMicListeningPopover: PropTypes.func,
 };

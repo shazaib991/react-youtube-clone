@@ -2,8 +2,14 @@
 import {CollectionPlay} from "react-bootstrap-icons";
 import {Share} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const VideoMoreIconPopOver = ({themeMode, videoMoreIconActive, videoMoreIconPopOver, videoMoreIconPos, windowSize}) => {
+export const VideoMoreIconPopOver = ({videoMoreIconPopOver}) => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
+	const videoMoreIconPos = useSelector((state) => state.states4.value.videoMoreIconPos);
+	const windowSize = useSelector((state) => state.states4.value.windowSize);
+
 	return (
 		<div
 			className={`fixed rounded-[10px] py-[8px] visible ${
@@ -84,9 +90,5 @@ export const VideoMoreIconPopOver = ({themeMode, videoMoreIconActive, videoMoreI
 };
 
 VideoMoreIconPopOver.propTypes = {
-	themeMode: PropTypes.string,
-	videoMoreIconPos: PropTypes.object,
-	videoMoreIconActive: PropTypes.object,
 	videoMoreIconPopOver: PropTypes.object,
-	windowSize: PropTypes.number,
 };

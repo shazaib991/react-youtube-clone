@@ -1,12 +1,14 @@
 import {ArrowLeftShort} from "react-bootstrap-icons";
 import {Check2} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changeTheme} from "../../states/States1";
 import {changeIsMouseOutsideMoreIconActive} from "../../states/States2";
+import {changeNavigateToThemeOptions} from "../../states/States4";
 
-export const ThemeSettings = ({themeMode, setNavigateToThemeOptions}) => {
+export const ThemeSettings = () => {
 	const dispatch = useDispatch();
+
+	const themeMode = useSelector((state) => state.states.value.themeMode);
 
 	return (
 		<div>
@@ -14,7 +16,7 @@ export const ThemeSettings = ({themeMode, setNavigateToThemeOptions}) => {
 				<ArrowLeftShort
 					size={32}
 					className="cursor-pointer"
-					onClick={() => setNavigateToThemeOptions(false)}
+					onClick={() => dispatch(changeNavigateToThemeOptions(false))}
 					color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`}
 				/>
 				<p
@@ -105,9 +107,4 @@ export const ThemeSettings = ({themeMode, setNavigateToThemeOptions}) => {
 			</div>
 		</div>
 	);
-};
-
-ThemeSettings.propTypes = {
-	themeMode: PropTypes.string,
-	setNavigateToThemeOptions: PropTypes.func,
 };

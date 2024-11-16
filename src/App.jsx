@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import {Header} from "./components/Header/Header";
 import {HomeSection} from "./components/HomeSection/HomeSection";
 import {Sidebar} from "./components/Sidebar/Sidebar";
@@ -10,22 +10,21 @@ import {useSelector} from "react-redux";
 import {changeMoreIconActive} from "./states/States1";
 import {changeVideoMoreIconActive} from "./states/States1";
 import {changeVideoMoreIconClickId} from "./states/States2";
+import {changeMoreIconHover} from "./states/States3";
+import {changeMicIconHover} from "./states/States3";
+import {changeSearchIconHover} from "./states/States3";
+import {changeVideoMoreIconPos} from "./states/States4";
+import {changeIsMicListening} from "./states/States4";
+import {changeShowMicListeningPopover} from "./states/States4";
 import {useDispatch} from "react-redux";
 
 export default function App() {
 	const dispatch = useDispatch();
+
 	const themeMode = useSelector((state) => state.states.value.themeMode);
-	const userLocation = useSelector((state) => state.states.value.userLocation);
 	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
 	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
 	const videoMoreIconClickId = useSelector((state) => state.states2.value.videoMoreIconClickId);
-	const [moreIconHover, setMoreIconHover] = useState(false);
-	const [micIconHover, setMicIconHover] = useState(false);
-	const [searchIconHover, setSearchIconHover] = useState(false);
-	const [isMicListening, setIsMicListening] = useState(false);
-	const [videoMoreIconPos, setVideoMoreIconPos] = useState(Object);
-	const [isMouseInsideMicListeningPopover, setIsMouseInsideMicListeningPopover] = useState(false);
-	const [showMicListeningPopover, setShowMicListeningPopover] = useState(false);
 	const disableScroll = useRef();
 	const burgerIcon = useRef();
 	const leftScrollVideoCategory = useRef();
@@ -53,40 +52,40 @@ export default function App() {
 
 	const handleHeaderTooltipMouseEnter = (TargetTooltip) => {
 		if (TargetTooltip === "moreIconTooltip") {
-			setMoreIconHover(true);
+			dispatch(changeMoreIconHover(true));
 		}
 		if (TargetTooltip === "micIconTooltip") {
-			setMicIconHover(true);
+			dispatch(changeMicIconHover(true));
 		}
 		if (TargetTooltip === "searchIconTooltip") {
-			setSearchIconHover(true);
+			dispatch(changeSearchIconHover(true));
 		}
 	};
 
 	const handleHeaderTooltipMouseLeave = (TargetTooltip) => {
 		if (TargetTooltip === "moreIconTooltip") {
-			setMoreIconHover(false);
+			dispatch(changeMoreIconHover(false));
 		}
 		if (TargetTooltip === "micIconTooltip") {
-			setMicIconHover(false);
+			dispatch(changeMicIconHover(false));
 		}
 		if (TargetTooltip === "searchIconTooltip") {
-			setSearchIconHover(false);
+			dispatch(changeSearchIconHover(false));
 		}
 	};
 
 	const handleMicListenPopoverClick = () => {
-		setIsMicListening((prev) => !prev);
+		dispatch(changeIsMicListening((prev) => !prev));
 	};
 
 	const handleMicListenClick = () => {
-		setIsMicListening(true);
-		setShowMicListeningPopover(true);
+		dispatch(changeIsMicListening(true));
+		dispatch(changeShowMicListeningPopover(true));
 	};
 
 	const handleMicListenPopoverCancelClick = (status) => {
 		if (status === "outside") {
-			setShowMicListeningPopover(false);
+			dispatch(changeShowMicListeningPopover(false));
 		}
 	};
 
@@ -98,7 +97,7 @@ export default function App() {
 		videoMoreIconClickActive = true;
 		dispatch(changeVideoMoreIconClickId(index));
 
-		setVideoMoreIconPos(e.currentTarget.getBoundingClientRect());
+		dispatch(changeVideoMoreIconPos(e.currentTarget.getBoundingClientRect()));
 
 		if (videoMoreIconActive.id === videoMoreIconClickId) {
 			dispatch(changeVideoMoreIconActive({...videoMoreIconActive, status: !videoMoreIconActive.status}));
@@ -157,24 +156,10 @@ export default function App() {
 			}}
 		>
 			<MicListenPopover
-				showMicListeningPopover={showMicListeningPopover}
-				isMouseInsideMicListeningPopover={isMouseInsideMicListeningPopover}
 				handleMicListenPopoverCancelClick={handleMicListenPopoverCancelClick}
-				setIsMouseInsideMicListeningPopover={setIsMouseInsideMicListeningPopover}
-				isMicListening={isMicListening}
 				handleMicListenPopoverClick={handleMicListenPopoverClick}
 			/>
-			<PopOvers
-				moreIconActive={moreIconActive}
-				moreIconHover={moreIconHover}
-				userLocation={userLocation}
-				micIconHover={micIconHover}
-				themeMode={themeMode}
-				searchIconHover={searchIconHover}
-				videoMoreIconPos={videoMoreIconPos}
-				videoMoreIconActive={videoMoreIconActive}
-				videoMoreIconPopOver={videoMoreIconPopOver}
-			/>
+			<PopOvers videoMoreIconPopOver={videoMoreIconPopOver} />
 			<div className="visible">
 				<Header
 					handlePopoverDisable={handlePopoverDisable}
