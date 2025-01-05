@@ -1,16 +1,18 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import {ThreeDotsVertical} from "react-bootstrap-icons";
 import {Check2} from "react-bootstrap-icons";
-import {useState} from "react";
+import {useState, useContext} from "react";
 import {NewVideosAtScroll} from "./NewVideosAtScroll";
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {UseContext} from "../../App.jsx";
 
-export const Video = ({handleVideoMouseEnter, handleVideoMoreIconClick}) => {
+export const Video = () => {
 	const themeMode = useSelector((state) => state.states.value.themeMode);
 	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
 	const videoMoreIconClickId = useSelector((state) => state.states2.value.videoMoreIconClickId);
 	const videoData = useSelector((state) => state.states2.value.videoData);
+	const {handleVideoMouseEnter} = useContext(UseContext);
+	const {handleVideoMoreIconClick} = useContext(UseContext);
 
 	const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
 		status: false,
@@ -351,9 +353,4 @@ export const Video = ({handleVideoMouseEnter, handleVideoMoreIconClick}) => {
 			<NewVideosAtScroll />
 		</div>
 	);
-};
-
-Video.propTypes = {
-	handleVideoMoreIconClick: PropTypes.func,
-	handleVideoMouseEnter: PropTypes.func,
 };

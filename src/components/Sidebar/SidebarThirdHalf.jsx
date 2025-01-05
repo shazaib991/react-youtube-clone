@@ -1,10 +1,13 @@
 import {Gear} from "react-bootstrap-icons";
 import {Flag} from "react-bootstrap-icons";
 import {QuestionCircle} from "react-bootstrap-icons";
+import {useSelector} from "react-redux";
 import {SendExclamation} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 
-export const SidebarThirdHalf = ({themeMode, sidebarBurgerMenuClick}) => {
+export const SidebarThirdHalf = () => {
+	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
+
 	return (
 		<>
 			<hr
@@ -95,9 +98,4 @@ export const SidebarThirdHalf = ({themeMode, sidebarBurgerMenuClick}) => {
 			/>
 		</>
 	);
-};
-
-SidebarThirdHalf.propTypes = {
-	sidebarBurgerMenuClick: PropTypes.bool,
-	themeMode: PropTypes.string,
 };

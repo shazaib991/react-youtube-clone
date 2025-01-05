@@ -1,8 +1,18 @@
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {useContext} from "react";
+import {UseContext} from "../../App.jsx";
+import {changeSidebarBurgerMenuClick} from "../../states/States1";
+import {useDispatch} from "react-redux";
 
-export const BurgerMenu = ({handleSidebarBurgerMenuClick, burgerIcon}) => {
+export const BurgerMenu = () => {
 	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
+	const {burgerIcon} = useContext(UseContext);
+	const dispatch = useDispatch();
+
+	const handleSidebarBurgerMenuClick = () => {
+		dispatch(changeSidebarBurgerMenuClick(!sidebarBurgerMenuClick));
+	};
 
 	return (
 		<div
@@ -98,9 +108,4 @@ export const BurgerMenu = ({handleSidebarBurgerMenuClick, burgerIcon}) => {
 			</div>
 		</div>
 	);
-};
-
-BurgerMenu.propTypes = {
-	handleSidebarBurgerMenuClick: PropTypes.func,
-	burgerIcon: PropTypes.object,
 };

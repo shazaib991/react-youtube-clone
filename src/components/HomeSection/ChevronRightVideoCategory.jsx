@@ -1,13 +1,16 @@
 import {ChevronRight} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {UseContext} from "../../App.jsx";
+import {useContext} from "react";
 
-export const ChevronRightVideoCategory = ({
-	handleRightScrollVideoCategory,
-	rightScrollVideoCategory,
-	leftScrollVideoCategory,
-}) => {
+export const ChevronRightVideoCategory = () => {
 	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const {rightScrollVideoCategory} = useContext(UseContext);
+	const {leftScrollVideoCategory} = useContext(UseContext);
+
+	const handleRightScrollVideoCategory = () => {
+		rightScrollVideoCategory.current.parentElement.children[2].scrollLeft += 400;
+	};
 
 	return (
 		<div
@@ -122,10 +125,4 @@ export const ChevronRightVideoCategory = ({
 			<ChevronRight color={`${themeMode === "systemDark" || themeMode === "dark" ? "#ffffff" : "#000000"}`} size={16} />
 		</div>
 	);
-};
-
-ChevronRightVideoCategory.propTypes = {
-	leftScrollVideoCategory: PropTypes.object,
-	rightScrollVideoCategory: PropTypes.object,
-	handleRightScrollVideoCategory: PropTypes.func,
 };

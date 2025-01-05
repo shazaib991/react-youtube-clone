@@ -6,6 +6,7 @@ const initialState = {
 	videoCategoryClickedId: 0,
 	videoCategoryArr: [],
 	videoData: [],
+	searchText: "",
 };
 
 export const States2Slice = createSlice({
@@ -27,6 +28,9 @@ export const States2Slice = createSlice({
 		changeVideoData: (state, action) => {
 			state.value.videoData = action.payload;
 		},
+		changeSearchText: (state, action) => {
+			state.value.searchText = action.payload;
+		},
 	},
 });
 
@@ -36,6 +40,7 @@ export const {
 	changeVideoCategoryClickedId,
 	changeVideoCategoryArr,
 	changeVideoData,
+	changeSearchText,
 } = States2Slice.actions;
 
 export default States2Slice.reducer;

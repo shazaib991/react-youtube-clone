@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import {useEffect} from "react";
 import {ThemeSettings} from "./ThemeSettings";
 import {PopOversTopHalf} from "./PopOversTopHalf";
 import {PopOversBottomHalf} from "./PopOversBottomHalf";
@@ -6,7 +6,6 @@ import {VideoMoreIconPopOver} from "./VideoMoreIconPopOver";
 import {useDispatch, useSelector} from "react-redux";
 import {changeIsMouseOutsideMoreIconActive} from "../../states/States2";
 import {changeWindowSize} from "../../states/States4";
-import {UseContext} from "../../App.jsx";
 
 export const PopOvers = () => {
 	const dispatch = useDispatch();
@@ -17,7 +16,6 @@ export const PopOvers = () => {
 	const micIconHover = useSelector((state) => state.states3.value.micIconHover);
 	const searchIconHover = useSelector((state) => state.states3.value.searchIconHover);
 	const navigateToThemeOptions = useSelector((state) => state.states4.value.navigateToThemeOptions);
-	const {videoMoreIconPopOver} = useContext(UseContext);
 
 	const windowResize = () => {
 		dispatch(changeWindowSize(window.innerHeight));
@@ -48,7 +46,7 @@ export const PopOvers = () => {
 					</>
 				)}
 			</div>
-			<VideoMoreIconPopOver videoMoreIconPopOver={videoMoreIconPopOver} />
+			<VideoMoreIconPopOver />
 			<div
 				className={`fixed top-[64px] right-[398px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
 					searchIconHover ? "opacity-100" : "opacity-0"

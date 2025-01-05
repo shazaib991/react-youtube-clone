@@ -1,15 +1,22 @@
 import {ThreeDotsVertical} from "react-bootstrap-icons";
 import {PersonCircle} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {useRef, useContext} from "react";
+import {UseContext} from "../../App.jsx";
+import {changeMoreIconActive} from "../../states/States1";
+import {useDispatch} from "react-redux";
 
-export const MoreAndLoginButton = ({
-	handleMoreIconClick,
-	handleHeaderTooltipMouseEnter,
-	handleHeaderTooltipMouseLeave,
-	moreIcon,
-}) => {
+export const MoreAndLoginButton = () => {
+	const dispatch = useDispatch();
 	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
+	const {handleHeaderTooltipMouseEnter} = useContext(UseContext);
+	const {handleHeaderTooltipMouseLeave} = useContext(UseContext);
+	const moreIcon = useRef();
+
+	const handleMoreIconClick = () => {
+		dispatch(changeMoreIconActive(!moreIconActive));
+	};
 
 	return (
 		<>
@@ -37,12 +44,4 @@ export const MoreAndLoginButton = ({
 			</div>
 		</>
 	);
-};
-
-MoreAndLoginButton.propTypes = {
-	handleHeaderTooltipMouseEnter: PropTypes.func,
-	handleHeaderTooltipMouseLeave: PropTypes.func,
-	handleMoreIconClick: PropTypes.func,
-	videoMoreIconActive: PropTypes.object,
-	moreIcon: PropTypes.object,
 };

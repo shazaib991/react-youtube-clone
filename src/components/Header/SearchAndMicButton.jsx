@@ -1,12 +1,13 @@
 import {MicFill, Search} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {useContext} from "react";
 import {UseContext} from "../../App.jsx";
 
-export const SearchAndMicButton = ({handleHeaderTooltipMouseEnter, handleHeaderTooltipMouseLeave}) => {
+export const SearchAndMicButton = () => {
 	const themeMode = useSelector((state) => state.states.value.themeMode);
 	const {handleMicListenClick} = useContext(UseContext);
+	const {handleHeaderTooltipMouseEnter} = useContext(UseContext);
+	const {handleHeaderTooltipMouseLeave} = useContext(UseContext);
 
 	return (
 		<>
@@ -39,9 +40,4 @@ export const SearchAndMicButton = ({handleHeaderTooltipMouseEnter, handleHeaderT
 			</div>
 		</>
 	);
-};
-
-SearchAndMicButton.propTypes = {
-	handleHeaderTooltipMouseEnter: PropTypes.func,
-	handleHeaderTooltipMouseLeave: PropTypes.func,
 };

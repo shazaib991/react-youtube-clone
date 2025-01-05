@@ -1,10 +1,24 @@
 import {Search} from "react-bootstrap-icons";
 import {XLg} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {useRef} from "react";
+import {changeSearchText} from "../../states/States2";
+import {useDispatch} from "react-redux";
 
-export const SearchInput = ({handleSearch, searchText, searchBox, handleClearSearch}) => {
+export const SearchInput = () => {
+	const dispatch = useDispatch();
 	const themeMode = useSelector((state) => state.states.value.themeMode);
+	const searchText = useSelector((state) => state.states2.value.searchText);
+	const searchBox = useRef();
+
+	const handleSearch = (e) => {
+		dispatch(changeSearchText(e.currentTarget.value));
+	};
+
+	const handleClearSearch = () => {
+		changeSearchText("");
+		searchBox.current.focus();
+	};
 
 	return (
 		<div className="w-[70%] h-[40px] flex items-center justify-end relative">
@@ -40,11 +54,4 @@ export const SearchInput = ({handleSearch, searchText, searchBox, handleClearSea
 			</div>
 		</div>
 	);
-};
-
-SearchInput.propTypes = {
-	handleSearch: PropTypes.func,
-	handleClearSearch: PropTypes.func,
-	searchText: PropTypes.string,
-	searchBox: PropTypes.object,
 };

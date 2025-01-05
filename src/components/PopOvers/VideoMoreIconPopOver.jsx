@@ -1,14 +1,16 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
+import {useContext} from "react";
 import {CollectionPlay} from "react-bootstrap-icons";
 import {Share} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {UseContext} from "../../App.jsx";
 
-export const VideoMoreIconPopOver = ({videoMoreIconPopOver}) => {
+export const VideoMoreIconPopOver = () => {
 	const themeMode = useSelector((state) => state.states.value.themeMode);
 	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
 	const videoMoreIconPos = useSelector((state) => state.states4.value.videoMoreIconPos);
 	const windowSize = useSelector((state) => state.states4.value.windowSize);
+	const {videoMoreIconPopOver} = useContext(UseContext);
 
 	return (
 		<div
@@ -87,8 +89,4 @@ export const VideoMoreIconPopOver = ({videoMoreIconPopOver}) => {
 			</div>
 		</div>
 	);
-};
-
-VideoMoreIconPopOver.propTypes = {
-	videoMoreIconPopOver: PropTypes.object,
 };

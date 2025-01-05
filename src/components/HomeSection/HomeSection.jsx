@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useContext} from "react";
+import {useCallback, useEffect} from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
 import {ChevronLeftVideoCategory} from "./ChevronLeftVideoCategory";
@@ -12,7 +12,6 @@ import {changeVideoCategoryArr} from "../../states/States2";
 import {changeVideoData} from "../../states/States2";
 import {changeAreNewVideosAtScrollDownLoading} from "../../states/States3";
 import {changeNextPageToken} from "../../states/States3";
-import {UseContext} from "../../App.jsx";
 
 export const HomeSection = () => {
 	const dispatch = useDispatch();
@@ -22,10 +21,6 @@ export const HomeSection = () => {
 	const videoCategoryArr = useSelector((state) => state.states2.value.videoCategoryArr);
 	const videoData = useSelector((state) => state.states2.value.videoData);
 	const nextPageToken = useSelector((state) => state.states3.value.nextPageToken);
-	const {leftScrollVideoCategory} = useContext(UseContext);
-	const {rightScrollVideoCategory} = useContext(UseContext);
-	const {handleVideoMouseEnter} = useContext(UseContext);
-	const {handleVideoMoreIconClick} = useContext(UseContext);
 	const timeZoneCityToCountry = {};
 	let userCity;
 	let userTimeZone;
@@ -117,14 +112,6 @@ export const HomeSection = () => {
 		},
 		[addVideosArray]
 	);
-
-	const handleRightScrollVideoCategory = () => {
-		rightScrollVideoCategory.current.parentElement.children[2].scrollLeft += 400;
-	};
-
-	const handleLeftScrollVideoCategory = () => {
-		leftScrollVideoCategory.current.parentElement.children[2].scrollLeft -= 400;
-	};
 
 	useEffect(() => {
 		//https://www.techighness.com/post/get-user-country-and-region-on-browser-with-javascript-only/
@@ -234,11 +221,7 @@ export const HomeSection = () => {
 									} 75%`,
 								}}
 							></div>
-							<ChevronLeftVideoCategory
-								handleLeftScrollVideoCategory={handleLeftScrollVideoCategory}
-								leftScrollVideoCategory={leftScrollVideoCategory}
-								rightScrollVideoCategory={rightScrollVideoCategory}
-							/>
+							<ChevronLeftVideoCategory />
 							<VideoCategory />
 							<div
 								className={`h-[34px] w-[125px] flex justify-end absolute top-[11px] right-[-2px] max-md:right-0`}
@@ -254,17 +237,13 @@ export const HomeSection = () => {
 									} 50%)`,
 								}}
 							></div>
-							<ChevronRightVideoCategory
-								handleRightScrollVideoCategory={handleRightScrollVideoCategory}
-								rightScrollVideoCategory={rightScrollVideoCategory}
-								leftScrollVideoCategory={leftScrollVideoCategory}
-							/>
+							<ChevronRightVideoCategory />
 						</div>
 					</div>
 				) : (
 					""
 				)}
-				<Video handleVideoMouseEnter={handleVideoMouseEnter} handleVideoMoreIconClick={handleVideoMoreIconClick} />
+				<Video />
 			</div>
 		</div>
 	);
