@@ -6,6 +6,7 @@ const initialState = {
 	moreIconHover: false,
 	micIconHover: false,
 	searchIconHover: false,
+	videoMoreIconClickActive: false,
 };
 
 export const States3Slice = createSlice({
@@ -27,6 +28,9 @@ export const States3Slice = createSlice({
 		changeSearchIconHover: (state, action) => {
 			state.value.searchIconHover = action.payload;
 		},
+		changeVideoMoreIconClickActive: (state, action) => {
+			state.value.videoMoreIconClickActive = action.payload;
+		},
 	},
 });
 
@@ -36,6 +40,7 @@ export const {
 	changeMoreIconHover,
 	changeMicIconHover,
 	changeSearchIconHover,
+	changeVideoMoreIconClickActive,
 } = States3Slice.actions;
 
 export default States3Slice.reducer;

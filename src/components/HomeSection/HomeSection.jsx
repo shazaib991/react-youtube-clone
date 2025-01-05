@@ -1,11 +1,10 @@
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useContext} from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
 import {ChevronLeftVideoCategory} from "./ChevronLeftVideoCategory";
 import {VideoCategory} from "./VideoCategory";
 import {ChevronRightVideoCategory} from "./ChevronRightVideoCategory";
 import {Video} from "./Video";
-import PropTypes from "prop-types";
 import {countries, zones} from "moment-timezone/data/meta/latest.json";
 import {useDispatch, useSelector} from "react-redux";
 import {changeLocation} from "../../states/States1";
@@ -13,13 +12,9 @@ import {changeVideoCategoryArr} from "../../states/States2";
 import {changeVideoData} from "../../states/States2";
 import {changeAreNewVideosAtScrollDownLoading} from "../../states/States3";
 import {changeNextPageToken} from "../../states/States3";
+import {UseContext} from "../../App.jsx";
 
-export const HomeSection = ({
-	handleVideoMoreIconClick,
-	leftScrollVideoCategory,
-	rightScrollVideoCategory,
-	handleVideoMouseEnter,
-}) => {
+export const HomeSection = () => {
 	const dispatch = useDispatch();
 	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
 	const themeMode = useSelector((state) => state.states.value.themeMode);
@@ -27,11 +22,12 @@ export const HomeSection = ({
 	const videoCategoryArr = useSelector((state) => state.states2.value.videoCategoryArr);
 	const videoData = useSelector((state) => state.states2.value.videoData);
 	const nextPageToken = useSelector((state) => state.states3.value.nextPageToken);
-	// const countryCode = "US";
+	const {leftScrollVideoCategory} = useContext(UseContext);
+	const {rightScrollVideoCategory} = useContext(UseContext);
+	const {handleVideoMouseEnter} = useContext(UseContext);
+	const {handleVideoMoreIconClick} = useContext(UseContext);
 	const timeZoneCityToCountry = {};
-	// let userRegion;
 	let userCity;
-	// let userCountry;
 	let userTimeZone;
 
 	const addVideosArray = useCallback(
@@ -272,11 +268,4 @@ export const HomeSection = ({
 			</div>
 		</div>
 	);
-};
-
-HomeSection.propTypes = {
-	handleVideoMoreIconClick: PropTypes.func,
-	leftScrollVideoCategory: PropTypes.object,
-	rightScrollVideoCategory: PropTypes.object,
-	handleVideoMouseEnter: PropTypes.func,
 };

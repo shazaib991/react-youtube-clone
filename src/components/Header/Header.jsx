@@ -13,14 +13,10 @@ import {changeTheme} from "../../states/States1";
 import {changeMoreIconActive} from "../../states/States1";
 import {changeSidebarBurgerMenuClick} from "../../states/States1";
 import {useSelector} from "react-redux";
+import {useContext} from "react";
+import {UseContext} from "../../App.jsx";
 
-export const Header = ({
-	handlePopoverDisable,
-	handleHeaderTooltipMouseEnter,
-	handleHeaderTooltipMouseLeave,
-	handleMicListenClick,
-	burgerIcon,
-}) => {
+export const Header = () => {
 	const dispatch = useDispatch();
 	const themeMode = useSelector((state) => state.states.value.themeMode);
 	const userLocation = useSelector((state) => state.states.value.userLocation);
@@ -28,6 +24,10 @@ export const Header = ({
 	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
 	const sidebarBurgerMenuClick = useSelector((state) => state.states.value.sidebarBurgerMenuClick);
 	const [searchText, setSearchText] = useState("");
+	const {handlePopoverDisable} = useContext(UseContext);
+	const {burgerIcon} = useContext(UseContext);
+	const {handleHeaderTooltipMouseEnter} = useContext(UseContext);
+	const {handleHeaderTooltipMouseLeave} = useContext(UseContext);
 	const moreIcon = useRef();
 	const searchBox = useRef();
 
@@ -93,7 +93,6 @@ export const Header = ({
 					<SearchAndMicButton
 						handleHeaderTooltipMouseEnter={handleHeaderTooltipMouseEnter}
 						handleHeaderTooltipMouseLeave={handleHeaderTooltipMouseLeave}
-						handleMicListenClick={handleMicListenClick}
 					/>
 				</div>
 				<div className="flex items-center max-md:hidden">
@@ -117,9 +116,7 @@ export const Header = ({
 };
 
 Header.propTypes = {
-	handlePopoverDisable: PropTypes.func,
 	handleHeaderTooltipMouseEnter: PropTypes.func,
 	handleHeaderTooltipMouseLeave: PropTypes.func,
-	handleMicListenClick: PropTypes.func,
 	burgerIcon: PropTypes.object,
 };

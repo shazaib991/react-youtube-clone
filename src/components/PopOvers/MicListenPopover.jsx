@@ -1,10 +1,13 @@
 import {MicFill} from "react-bootstrap-icons";
 import {XLg} from "react-bootstrap-icons";
-import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {changeIsMouseInsideMicListeningPopover} from "../../states/States4";
+import {useContext} from "react";
+import {UseContext} from "../../App.jsx";
 
-export const MicListenPopover = ({handleMicListenPopoverCancelClick, handleMicListenPopoverClick}) => {
+export const MicListenPopover = () => {
+	const {handleMicListenPopoverCancelClick} = useContext(UseContext);
+	const {handleMicListenPopoverClick} = useContext(UseContext);
 	const dispatch = useDispatch();
 
 	const showMicListeningPopover = useSelector((state) => state.states4.value.showMicListeningPopover);
@@ -58,9 +61,4 @@ export const MicListenPopover = ({handleMicListenPopoverCancelClick, handleMicLi
 			</div>
 		</div>
 	);
-};
-
-MicListenPopover.propTypes = {
-	handleMicListenPopoverCancelClick: PropTypes.func,
-	handleMicListenPopoverClick: PropTypes.func,
 };
