@@ -1,6 +1,8 @@
 import {useParams} from "react-router-dom";
 import {Header} from "../components/Header/Header";
 import {Video} from "../components/HomeSection/Video";
+import {PopOvers} from "../components/PopOvers/PopOvers";
+import {MicListenPopover} from "../components/PopOvers/MicListenPopover";
 import {useSelector} from "react-redux";
 
 export const VideoPage = () => {
@@ -11,6 +13,8 @@ export const VideoPage = () => {
 
 	return (
 		<>
+			<MicListenPopover />
+			<PopOvers />
 			<Header />
 			<div
 				className={`flex flex-col ${
