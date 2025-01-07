@@ -5,6 +5,7 @@ import {useState, useContext} from "react";
 import {NewVideosAtScroll} from "./NewVideosAtScroll";
 import {useSelector} from "react-redux";
 import {UseContext} from "../../App.jsx";
+import {useNavigate} from "react-router-dom";
 
 export const Video = () => {
 	const themeMode = useSelector((state) => state.states.value.themeMode);
@@ -13,6 +14,7 @@ export const Video = () => {
 	const videoData = useSelector((state) => state.states2.value.videoData);
 	const {handleVideoMouseEnter} = useContext(UseContext);
 	const {handleVideoMoreIconClick} = useContext(UseContext);
+	let navigate = useNavigate();
 
 	const [verifiedBadgeHover, setVerifiedBadgeHover] = useState({
 		status: false,
@@ -99,6 +101,11 @@ export const Video = () => {
 		return txt.value;
 	};
 
+	const routeChange = (id) => {
+		let path = `/watch/${id}`;
+		navigate(path);
+	};
+
 	return (
 		<div
 			className={`flex flex-wrap ${
@@ -156,6 +163,7 @@ export const Video = () => {
 								key={item.customId}
 								className="flex-[31%] max-md:flex-[100%] rounded-[11px] mb-[42px] cursor-pointer videoCard ml-[15px] max-md:ml-0"
 								onMouseEnter={() => handleVideoMouseEnter(index)}
+								onClick={() => routeChange(item.snippet.videoId)}
 							>
 								<div className="min-w-[300px] max-md:min-h-auto min-h-[190px] relative">
 									<div

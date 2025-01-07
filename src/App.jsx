@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Home} from "./pages/Home";
-import {Video} from "./pages/Video";
+import {VideoPage} from "./pages/VideoPage.jsx";
 import {HeaderFunctions} from "./functions/HeaderFunctions.jsx";
 import {HomesectionFunctions} from "./functions/HomesectionFunctions.jsx";
 import {PopoversFunctions} from "./functions/PopoversFunctions.jsx";
@@ -42,7 +42,7 @@ export default function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/watch" element={<Video />} />
+					<Route path="/watch/:id" element={<VideoPage />} />
 				</Routes>
 			</BrowserRouter>
 		</UseContext.Provider>

@@ -56,15 +56,23 @@ export const HomeSection = () => {
 						import.meta.env.VITE_API_KEY
 					}&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
 				);
+				const videoPlayerResponse = await axios(
+					`https://www.googleapis.com/youtube/v3/videos?key=${import.meta.env.VITE_API_KEY}&part=player&id=${
+						videoDataItems[i].id.videoId
+					}`
+				);
 				videoDataItems[i].customId = uniqueVideoId;
 
 				const channelDataArray = await channelResponse.data.items;
 				const channelStatisticsDataArray = await channelStatisticsResponse.data.items;
+				const videoPlayerDataArray = await videoPlayerResponse.data.items;
 
 				if (channelDataArray !== undefined) {
 					videoDataItems[i].snippet.channelImg = await channelDataArray[0].snippet.thumbnails.default.url;
 					videoDataItems[i].snippet.channelSubscriberCount = await channelStatisticsDataArray[0].statistics
 						.subscriberCount;
+					videoDataItems[i].snippet.videoPlayer = await videoPlayerDataArray[0].player;
+					videoDataItems[i].snippet.videoId = await videoDataItems[i].id.videoId;
 				} else {
 					videoDataItems[i].snippet.channelImg = "";
 					videoDataItems[i].snippet.channelSubscriberCount = "";
