@@ -29,96 +29,98 @@ export const HomeSection = () => {
 		async (countryCode) => {
 			const videoDataArray = [...videoData];
 
-			const videoResponse = await axios(
-				`https://www.googleapis.com/youtube/v3/search?key=${
-					import.meta.env.VITE_API_KEY
-				}&part=snippet&maxResults=12&type=video&regionCode=${userLocation || countryCode}&pageToken=${nextPageToken}`
-			);
-
-			dispatch(changeNextPageToken(await videoResponse.data.nextPageToken));
-
-			const videoDataItems = await videoResponse.data.items;
-
-			for (let i = 0; i < videoDataItems.length; i++) {
-				const uniqueVideoId = Math.random().toString(16).slice(2);
-				const channelResponse = await axios(
-					`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=snippet&id=${
-						videoDataItems[i].snippet.channelId
-					}`
-				);
-				const channelStatisticsResponse = await axios(
-					`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=statistics&id=${
-						videoDataItems[i].snippet.channelId
-					}`
-				);
-				const videoDetailsResponse = await axios(
-					`https://www.googleapis.com/youtube/v3/videos?key=${
-						import.meta.env.VITE_API_KEY
-					}&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`
-				);
-				const videoPlayerResponse = await axios(
-					`https://www.googleapis.com/youtube/v3/videos?key=${import.meta.env.VITE_API_KEY}&part=player&id=${
-						videoDataItems[i].id.videoId
-					}`
-				);
-				videoDataItems[i].customId = uniqueVideoId;
-
-				const channelDataArray = await channelResponse.data.items;
-				const channelStatisticsDataArray = await channelStatisticsResponse.data.items;
-				const videoPlayerDataArray = await videoPlayerResponse.data.items;
-
-				if (channelDataArray !== undefined) {
-					videoDataItems[i].snippet.channelImg = await channelDataArray[0].snippet.thumbnails.default.url;
-					videoDataItems[i].snippet.channelSubscriberCount = await channelStatisticsDataArray[0].statistics
-						.subscriberCount;
-					videoDataItems[i].snippet.videoPlayer = await videoPlayerDataArray[0].player;
-					videoDataItems[i].snippet.videoId = await videoDataItems[i].id.videoId;
-				} else {
-					videoDataItems[i].snippet.channelImg = "";
-					videoDataItems[i].snippet.channelSubscriberCount = "";
+			let videoDataItems = [];
+			try {
+				const videoResponse = await axios.get("http://localhost:3000/search", {withCredentials: true});
+				videoDataItems = videoResponse.data;
+			} catch (err) {
+				console.error("failed to load videos", err);
+				if (err.response && err.response.status === 401) {
+					alert("Please sign in to view your videos");
 				}
-
-				const videoDetailsArray = await videoDetailsResponse.data.items;
-
-				if (videoDetailsArray[0] !== undefined) {
-					videoDataItems[i].snippet.videoViewCount = await videoDetailsArray[0].statistics.viewCount;
-					videoDataItems[i].snippet.videoLength = await videoDetailsArray[0].contentDetails.duration;
-				}
-
-				videoDataArray.push(videoDataItems[i]);
+				// leave array empty
 			}
 
-			dispatch(changeVideoData(videoDataArray));
+			// for (let i = 0; i < videoDataItems.length; i++) {
+			// 	const uniqueVideoId = Math.random().toString(16).slice(2);
+			// 	const channelResponse = await axios(
+			// 		`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=snippet&id=${
+			// 			videoDataItems[i].snippet.channelId
+			// 		}`,
+			// 	);
+			// 	const channelStatisticsResponse = await axios(
+			// 		`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=statistics&id=${
+			// 			videoDataItems[i].snippet.channelId
+			// 		}`,
+			// 	);
+			// 	const videoDetailsResponse = await axios(
+			// 		`https://www.googleapis.com/youtube/v3/videos?key=${
+			// 			import.meta.env.VITE_API_KEY
+			// 		}&part=statistics&part=contentDetails&id=${videoDataItems[i].id.videoId}`,
+			// 	);
+			// 	const videoPlayerResponse = await axios(
+			// 		`https://www.googleapis.com/youtube/v3/videos?key=${import.meta.env.VITE_API_KEY}&part=player&id=${
+			// 			videoDataItems[i].id.videoId
+			// 		}`,
+			// 	);
+			// 	videoDataItems[i].customId = uniqueVideoId;
+
+			// 	const channelDataArray = await channelResponse.data.items;
+			// 	const channelStatisticsDataArray = await channelStatisticsResponse.data.items;
+			// 	const videoPlayerDataArray = await videoPlayerResponse.data.items;
+
+			// 	if (channelDataArray !== undefined) {
+			// 		videoDataItems[i].snippet.channelImg = await channelDataArray[0].snippet.thumbnails.default.url;
+			// 		videoDataItems[i].snippet.channelSubscriberCount =
+			// 			await channelStatisticsDataArray[0].statistics.subscriberCount;
+			// 		videoDataItems[i].snippet.videoPlayer = await videoPlayerDataArray[0].player;
+			// 		videoDataItems[i].snippet.videoId = await videoDataItems[i].id.videoId;
+			// 	} else {
+			// 		videoDataItems[i].snippet.channelImg = "";
+			// 		videoDataItems[i].snippet.channelSubscriberCount = "";
+			// 	}
+
+			// 	const videoDetailsArray = await videoDetailsResponse.data.items;
+
+			// 	if (videoDetailsArray[0] !== undefined) {
+			// 		videoDataItems[i].snippet.videoViewCount = await videoDetailsArray[0].statistics.viewCount;
+			// 		videoDataItems[i].snippet.videoLength = await videoDetailsArray[0].contentDetails.duration;
+			// 	}
+
+			// 	videoDataArray.push(videoDataItems[i]);
+			// }
+
+			dispatch(changeVideoData(videoDataItems));
 			dispatch(changeAreNewVideosAtScrollDownLoading(false));
 		},
-		[nextPageToken, videoData]
+		[nextPageToken, videoData],
 	);
 
 	const getData = useCallback(
 		async (countryCode) => {
-			const videoCategoryArr = [];
+			// const videoCategoryArr = [];
 
-			const videoFilterResponse = await axios(
-				`https://www.googleapis.com/youtube/v3/videoCategories?key=${
-					import.meta.env.VITE_API_KEY
-				}&part=snippet&regionCode=${userLocation || countryCode}`
-			);
+			// const videoFilterResponse = await axios(
+			// 	`https://www.googleapis.com/youtube/v3/videoCategories?key=${
+			// 		import.meta.env.VITE_API_KEY
+			// 	}&part=snippet&regionCode=${userLocation || countryCode}`,
+			// );
 
-			const videoFilterData = await videoFilterResponse.data.items;
+			// const videoFilterData = await videoFilterResponse.data.items;
 
-			videoCategoryArr.push("All");
+			// videoCategoryArr.push("All");
 
-			videoFilterData.forEach((item) => {
-				videoCategoryArr.push(item.snippet.title);
-			});
+			// videoFilterData.forEach((item) => {
+			// 	videoCategoryArr.push(item.snippet.title);
+			// });
 
-			videoCategoryArr.push("Recently uploaded");
-			videoCategoryArr.push("Watched");
+			// videoCategoryArr.push("Recently uploaded");
+			// videoCategoryArr.push("Watched");
 
 			addVideosArray(userLocation || countryCode);
-			dispatch(changeVideoCategoryArr(videoCategoryArr));
+			// dispatch(changeVideoCategoryArr(videoCategoryArr));
 		},
-		[addVideosArray]
+		[addVideosArray],
 	);
 
 	useEffect(() => {

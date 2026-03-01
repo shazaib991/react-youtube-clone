@@ -146,24 +146,24 @@ export const Video = () => {
 								</div>
 							</div>
 						);
-				  })
+					})
 				: videoData.map((item, index) => {
-						const videoDate = new Date(item.snippet.publishedAt);
-						const currentDate = new Date(Date.now());
-						const days = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 86400000);
-						const hours = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 3600000);
-						const seconds = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 1000);
-						const minutes = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 60000);
-						const months = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 2629746000);
-						const weeks = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 604800000);
-						const years = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 31556952000);
+						// const videoDate = new Date(item.snippet.publishedAt);
+						// const currentDate = new Date(Date.now());
+						// const days = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 86400000);
+						// const hours = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 3600000);
+						// const seconds = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 1000);
+						// const minutes = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 60000);
+						// const months = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 2629746000);
+						// const weeks = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 604800000);
+						// const years = Math.trunc((currentDate.getTime() - videoDate.getTime()) / 31556952000);
 
 						return (
 							<div
-								key={item.customId}
+								key={index}
 								className="flex-[31%] max-md:flex-[100%] rounded-[11px] mb-[42px] cursor-pointer videoCard ml-[15px] max-md:ml-0"
 								onMouseEnter={() => handleVideoMouseEnter(index)}
-								onClick={() => routeChange(item.snippet.videoId)}
+								// onClick={() => routeChange(item.snippet.videoId)}
 							>
 								<div className="min-w-[300px] max-md:min-h-auto min-h-[190px] relative">
 									<div
@@ -172,11 +172,10 @@ export const Video = () => {
 										} rounded-[12px] z-[100]`}
 										style={{display: "block"}}
 									></div>
-									{item.snippet.thumbnails.medium.url ? (
+									{item.imageUrl ? (
 										<img
-											src=""
+											src={item.imageUrl}
 											className="w-full h-full rounded-[12px]"
-											data-src={item.snippet.thumbnails.medium.url}
 											onLoad={(e) => {
 												e.currentTarget.previousElementSibling.style.display = "none";
 											}}
@@ -185,31 +184,20 @@ export const Video = () => {
 										<div className="w-full rounded-[12px] bg-[#cccccc]"></div>
 									)}
 									<div className="absolute bottom-[4px] right-[4px] bg-[#191C23] text-white font-medium text-[12px] px-[5px] rounded-[3px]">
-										<p>{extractVideoLength(item.snippet.videoLength)}</p>
+										{/* <p>{extractVideoLength(item.snippet.videoLength)}</p> */}
+										<p>{item.videoLength}</p>
 									</div>
 								</div>
 								<div className="flex relative max-md:flex-col max-md:items-center">
 									<div className="w-[36px] h-[36px] absolute left-0 top-0 max-md:static mt-[12px]">
-										{item.snippet.channelImg ? (
-											""
-										) : (
-											<div className={`w-[36px] h-[36px] bg-[#cccccc] rounded-full z-[100]`}></div>
-										)}
-										{item.snippet.channelImg ? (
+										{item.channelImageUrl ? (
 											<img
-												src=""
+												src={item.channelImageUrl}
+												alt="channel"
 												className="w-[36px] h-[36px] rounded-full"
-												data-src={item.snippet.channelImg}
-												onLoad={(e) =>
-													e.currentTarget.previousSibling
-														? e.currentTarget.previousSibling.classList.add("hidden")
-														: ""
-												}
-												width={36}
-												height={36}
 											/>
 										) : (
-											""
+											<div className="w-[36px] h-[36px] bg-[#cccccc] rounded-full"></div>
 										)}
 									</div>
 									<div className="w-full ml-[50px] max-md:ml-0 max-md:text-center">
@@ -217,9 +205,9 @@ export const Video = () => {
 											className={`w-[86%] max-md:w-full text-[16px] ${
 												themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
 											} font-medium text-ellipsis leading-[22px] mt-[12px] overflow-hidden line-clamp-2`}
-											title={`${decodeEntity(item.snippet.title)}`}
+											// title={`${decodeEntity(item.snippet.title)}`}
 										>
-											{decodeEntity(item.snippet.title)}
+											{item.title || item.baseName}
 										</p>
 										<div className="w-full mt-[2px] relative">
 											<p
@@ -229,7 +217,7 @@ export const Video = () => {
 													channelHover.status && channelHover.id === index ? "visible" : "invisible"
 												} transition-all cursor-default`}
 											>
-												{item.snippet.channelTitle}
+												{/* {item.snippet.channelTitle} */}
 											</p>
 											<div className="flex items-center max-md:justify-center max-md:flex-col">
 												{/* TODO fix overflow width  */}
@@ -242,12 +230,12 @@ export const Video = () => {
 														}`}
 														onMouseEnter={() => channelHoverMouseEnter(index)}
 														onMouseLeave={() => channelHoverMouseLeave(index)}
-														title={item.snippet.channelTitle}
+														// title={item.snippet.channelTitle}
 													>
-														{item.snippet.channelTitle}
+														{/* {item.snippet.channelTitle} */}
 													</p>
 												</div>
-												{item.snippet.channelSubscriberCount >= 100000 ? (
+												{/* {item.snippet.channelSubscriberCount >= 100000 ? (
 													<div className="relative">
 														<div
 															className={`absolute top-[-55px] left-[-24px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${
@@ -284,10 +272,10 @@ export const Video = () => {
 													</div>
 												) : (
 													""
-												)}
+												)} */}
 											</div>
 										</div>
-										<div>
+										{/* <div>
 											<p
 												className={`text-[14px] ${
 													themeMode === "dark" || themeMode === "systemDark"
@@ -299,41 +287,57 @@ export const Video = () => {
 													? Number(item.snippet.videoViewCount) === 1
 														? item.snippet.videoViewCount + " view"
 														: item.snippet.videoViewCount.length <= 3
-														? item.snippet.videoViewCount + " views"
-														: item.snippet.videoViewCount.length <= 4
-														? ParseFloat((Number(item.snippet.videoViewCount) / 1000, 2)) + "k views"
-														: item.snippet.videoViewCount.length <= 6
-														? ParseFloat(Number(item.snippet.videoViewCount) / 1000, 0) + "k views"
-														: item.snippet.videoViewCount.length <= 7
-														? ParseFloat(Number(item.snippet.videoViewCount) / 1000000, 2) + "M views"
-														: item.snippet.videoViewCount.length <= 9
-														? ParseFloat(Number(item.snippet.videoViewCount) / 1000000, 0) + "M views"
-														: item.snippet.videoViewCount.length <= 10
-														? ParseFloat(Number(item.snippet.videoViewCount) / 1000000000, 2) +
-														  "B views"
-														: item.snippet.videoViewCount.length <= 12
-														? ParseFloat(Number(item.snippet.videoViewCount) / 1000000000, 0) +
-														  "B views"
-														: item.snippet.videoViewCount + " views"
+															? item.snippet.videoViewCount + " views"
+															: item.snippet.videoViewCount.length <= 4
+																? ParseFloat((Number(item.snippet.videoViewCount) / 1000, 2)) +
+																	"k views"
+																: item.snippet.videoViewCount.length <= 6
+																	? ParseFloat(Number(item.snippet.videoViewCount) / 1000, 0) +
+																		"k views"
+																	: item.snippet.videoViewCount.length <= 7
+																		? ParseFloat(
+																				Number(item.snippet.videoViewCount) / 1000000,
+																				2,
+																			) + "M views"
+																		: item.snippet.videoViewCount.length <= 9
+																			? ParseFloat(
+																					Number(item.snippet.videoViewCount) / 1000000,
+																					0,
+																				) + "M views"
+																			: item.snippet.videoViewCount.length <= 10
+																				? ParseFloat(
+																						Number(item.snippet.videoViewCount) /
+																							1000000000,
+																						2,
+																					) + "B views"
+																				: item.snippet.videoViewCount.length <= 12
+																					? ParseFloat(
+																							Number(item.snippet.videoViewCount) /
+																								1000000000,
+																							0,
+																						) + "B views"
+																					: item.snippet.videoViewCount + " views"
 													: "? views"}
 												&nbsp;&#x2022;&nbsp;
 												{years != 0
 													? years + `${years === 1 ? " year" : " years"} ago`
 													: months != 0
-													? months + `${months === 1 ? " month" : " months"} ago`
-													: weeks != 0
-													? weeks + `${weeks === 1 ? " week" : " weeks"} ago`
-													: days != 0
-													? days + `${days === 1 ? " day" : " days"} ago`
-													: hours != 0
-													? hours + `${hours === 1 ? " hour" : " hours"} ago`
-													: minutes != 0
-													? minutes + `${minutes === 1 ? " minute" : " minutes"} ago`
-													: seconds != 0
-													? seconds + `${seconds === 1 ? " second" : " seconds"} ago`
-													: ""}
+														? months + `${months === 1 ? " month" : " months"} ago`
+														: weeks != 0
+															? weeks + `${weeks === 1 ? " week" : " weeks"} ago`
+															: days != 0
+																? days + `${days === 1 ? " day" : " days"} ago`
+																: hours != 0
+																	? hours + `${hours === 1 ? " hour" : " hours"} ago`
+																	: minutes != 0
+																		? minutes +
+																			`${minutes === 1 ? " minute" : " minutes"} ago`
+																		: seconds != 0
+																			? seconds +
+																				`${seconds === 1 ? " second" : " seconds"} ago`
+																			: ""}
 											</p>
-										</div>
+										</div> */}
 									</div>
 									<div
 										className={`${
@@ -357,8 +361,8 @@ export const Video = () => {
 								</div>
 							</div>
 						);
-				  })}
-			<NewVideosAtScroll />
+					})}
+			{/* <NewVideosAtScroll /> */}
 		</div>
 	);
 };
