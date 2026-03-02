@@ -85,7 +85,7 @@ export const MoreAndLoginButton = () => {
 	};
 
 	const handleSignout = async () => {
-		await fetch("http://localhost:3000/signout", { method: "POST", credentials: "include" });
+		await fetch("https://youtube-clone-api-gamma.vercel.app/signout", { method: "POST", credentials: "include" });
 		localStorage.removeItem("username");
 		setLoggedIn(false);
 	};
