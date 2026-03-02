@@ -209,6 +209,15 @@ export const Video = () => {
 										>
 											{item.title || item.baseName}
 										</p>
+									<p
+										className={`text-[14px] mt-[2px] ${
+										themeMode === "dark" || themeMode === "systemDark"
+										? "text-[#a5a5a5]"
+										: "text-[#777777]"
+									}`}
+									>
+									{item.channelName}
+									</p>
 										<div className="w-full mt-[2px] relative">
 											<p
 												className={`absolute top-[-52px] left-[-3px] bg-[#646464e6] px-[7px] py-[8px] text-white text-[12px] rounded-[4px] ${

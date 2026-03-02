@@ -21,6 +21,7 @@ export const MoreAndLoginButton = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [channelImage, setChannelImage] = useState(null);
+	const [channelName, setChannelName] = useState("");
 
 	useEffect(() => {
 		// naive check: existence of username in localStorage
@@ -34,11 +35,17 @@ export const MoreAndLoginButton = () => {
 
 	const openModal = (signup) => {
 		setIsSignup(signup);
+		if (!signup) setChannelName("");
 		setModalOpen(true);
 	};
 
 	const closeModal = () => {
 		setModalOpen(false);
+		// clear fields to avoid stale values
+		setUsername("");
+		setPassword("");
+		setChannelName("");
+		setChannelImage(null);
 	};
 
 	const submitCreds = async () => {
@@ -52,6 +59,8 @@ export const MoreAndLoginButton = () => {
 				const formData = new FormData();
 				formData.append("username", username);
 				formData.append("password", password);
+				// include the channel name so backend can persist it
+				formData.append("channelName", channelName);
 				if (channelImage) formData.append("channelImage", channelImage);
 				options.body = formData;
 			} else {
@@ -138,12 +147,21 @@ export const MoreAndLoginButton = () => {
 							className="border p-1 mb-2 w-full"
 						/>
 						{isSignup && (
-							<input
-								type="file"
-								accept="image/*"
-								onChange={(e) => setChannelImage(e.target.files[0])}
-								className="mb-2 w-full"
-							/>
+							<>
+								<input
+									type="text"
+									placeholder="Channel Name"
+									value={channelName}
+									onChange={(e) => setChannelName(e.target.value)}
+									className="border p-1 mb-2 w-full"
+								/>
+								<input
+									type="file"
+									accept="image/*"
+									onChange={(e) => setChannelImage(e.target.files[0])}
+									className="mb-2 w-full"
+								/>
+							</>
 						)}
 						<button onClick={submitCreds} className="bg-blue-500 text-white px-4 py-2 mr-2">
 							{isSignup ? "Sign Up" : "Sign In"}
