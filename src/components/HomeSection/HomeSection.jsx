@@ -1,17 +1,17 @@
-import {useCallback, useEffect} from "react";
+import { useCallback, useEffect } from "react";
 import axios from "axios";
 import "./HomeSectionStyle.css";
-import {ChevronLeftVideoCategory} from "./ChevronLeftVideoCategory";
-import {VideoCategory} from "./VideoCategory";
-import {ChevronRightVideoCategory} from "./ChevronRightVideoCategory";
-import {Video} from "./Video";
-import {countries, zones} from "moment-timezone/data/meta/latest.json";
-import {useDispatch, useSelector} from "react-redux";
-import {changeLocation} from "../../states/States1";
-import {changeVideoCategoryArr} from "../../states/States2";
-import {changeVideoData} from "../../states/States2";
-import {changeAreNewVideosAtScrollDownLoading} from "../../states/States3";
-import {changeNextPageToken} from "../../states/States3";
+import { ChevronLeftVideoCategory } from "./ChevronLeftVideoCategory";
+import { VideoCategory } from "./VideoCategory";
+import { ChevronRightVideoCategory } from "./ChevronRightVideoCategory";
+import { Video } from "./Video";
+import { countries, zones } from "moment-timezone/data/meta/latest.json";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLocation } from "../../states/States1";
+import { changeVideoCategoryArr } from "../../states/States2";
+import { changeVideoData } from "../../states/States2";
+import { changeAreNewVideosAtScrollDownLoading } from "../../states/States3";
+import { changeNextPageToken } from "../../states/States3";
 
 export const HomeSection = () => {
 	const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export const HomeSection = () => {
 
 			let videoDataItems = [];
 			try {
-				const videoResponse = await axios.get("http://localhost:3000/search", {withCredentials: true});
+				const videoResponse = await axios.get("https://youtube-clone-api-gamma.vercel.app/search", { withCredentials: true });
 				videoDataItems = videoResponse.data;
 			} catch (err) {
 				console.error("failed to load videos", err);
@@ -202,27 +202,23 @@ export const HomeSection = () => {
 			<div className={`mr-[27px] max-md:mr-0 flex justify-center`}>
 				{videoCategoryArr.length !== 0 && videoData.length !== 0 ? (
 					<div
-						className={`max-md:pl-[13px] flex justify-center w-full h-[56px] ${
-							themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
-						} fixed z-[900]`}
+						className={`max-md:pl-[13px] flex justify-center w-full h-[56px] ${themeMode === "dark" || themeMode === "systemDark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
+							} fixed z-[900]`}
 					>
 						<div
-							className={`relative h-full max-md:w-full ${
-								sidebarBurgerMenuClick ? "w-[calc(100%-124px)]" : "w-[calc(100%-261px)]"
-							}`}
+							className={`relative h-full max-md:w-full ${sidebarBurgerMenuClick ? "w-[calc(100%-124px)]" : "w-[calc(100%-261px)]"
+								}`}
 						>
 							<div
 								className={`h-[35px] w-[75px] flex justify-end absolute left-[-2px] max-md:left-0 top-[10px] hidden`}
 								style={{
-									background: `linear-gradient(90deg, ${
-										themeMode === "dark" || themeMode === "systemDark"
+									background: `linear-gradient(90deg, ${themeMode === "dark" || themeMode === "systemDark"
 											? "rgba(15,15,15,1)"
 											: "rgba(255,255,255,1)"
-									} 48%, ${
-										themeMode === "dark" || themeMode === "systemDark"
+										} 48%, ${themeMode === "dark" || themeMode === "systemDark"
 											? "rgba(0,0,0,0.1)"
 											: "rgba(255,255,255,0.1)"
-									} 75%`,
+										} 75%`,
 								}}
 							></div>
 							<ChevronLeftVideoCategory />
@@ -230,15 +226,13 @@ export const HomeSection = () => {
 							<div
 								className={`h-[34px] w-[125px] flex justify-end absolute top-[11px] right-[-2px] max-md:right-0`}
 								style={{
-									background: `linear-gradient(90deg, ${
-										themeMode === "dark" || themeMode === "systemDark"
+									background: `linear-gradient(90deg, ${themeMode === "dark" || themeMode === "systemDark"
 											? "rgba(0,0,0,0.1)"
 											: "rgba(255,255,255,0.1)"
-									} 10%, ${
-										themeMode === "dark" || themeMode === "systemDark"
+										} 10%, ${themeMode === "dark" || themeMode === "systemDark"
 											? "rgba(15,15,15,1)"
 											: "rgba(255,255,255,1)"
-									} 50%)`,
+										} 50%)`,
 								}}
 							></div>
 							<ChevronRightVideoCategory />

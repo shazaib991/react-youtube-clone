@@ -1,17 +1,17 @@
-import {ThreeDotsVertical} from "react-bootstrap-icons";
-import {PersonCircle} from "react-bootstrap-icons";
-import {useSelector} from "react-redux";
-import {useRef, useContext, useState, useEffect} from "react";
-import {UseContext} from "../../App.jsx";
-import {changeMoreIconActive} from "../../states/States1";
-import {useDispatch} from "react-redux";
+import { ThreeDotsVertical } from "react-bootstrap-icons";
+import { PersonCircle } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
+import { useRef, useContext, useState, useEffect } from "react";
+import { UseContext } from "../../App.jsx";
+import { changeMoreIconActive } from "../../states/States1";
+import { useDispatch } from "react-redux";
 
 export const MoreAndLoginButton = () => {
 	const dispatch = useDispatch();
 	const themeMode = useSelector((state) => state.states.value.themeMode);
 	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
-	const {handleHeaderTooltipMouseEnter} = useContext(UseContext);
-	const {handleHeaderTooltipMouseLeave} = useContext(UseContext);
+	const { handleHeaderTooltipMouseEnter } = useContext(UseContext);
+	const { handleHeaderTooltipMouseLeave } = useContext(UseContext);
 	const moreIcon = useRef();
 
 	// auth state
@@ -64,10 +64,10 @@ export const MoreAndLoginButton = () => {
 				if (channelImage) formData.append("channelImage", channelImage);
 				options.body = formData;
 			} else {
-				options.headers = {"Content-Type": "application/json"};
-				options.body = JSON.stringify({username, password});
+				options.headers = { "Content-Type": "application/json" };
+				options.body = JSON.stringify({ username, password });
 			}
-			const res = await fetch("http://localhost:3000" + url, options);
+			const res = await fetch("https://youtube-clone-api-gamma.vercel.app" + url, options);
 			const data = await res.json();
 			if (data.success) {
 				localStorage.setItem("username", username);
@@ -85,7 +85,7 @@ export const MoreAndLoginButton = () => {
 	};
 
 	const handleSignout = async () => {
-		await fetch("http://localhost:3000/signout", {method: "POST", credentials: "include"});
+		await fetch("http://localhost:3000/signout", { method: "POST", credentials: "include" });
 		localStorage.removeItem("username");
 		setLoggedIn(false);
 	};

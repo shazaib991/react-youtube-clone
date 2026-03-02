@@ -1,17 +1,17 @@
 import youtubeLogo from "../../assets/images/yt_logo_rgb_light.png";
 import youtubeLogoDark from "../../assets/images/yt_logo_rgb_dark.png";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import "./HeaderStyle.css";
-import {BurgerMenu} from "./BurgerMenu";
-import {SearchInput} from "./SearchInput";
-import {SearchAndMicButton} from "./SearchAndMicButton";
-import {MoreAndLoginButton} from "./MoreAndLoginButton";
-import {Search} from "react-bootstrap-icons";
-import {useDispatch} from "react-redux";
-import {changeTheme} from "../../states/States1";
-import {useSelector} from "react-redux";
-import {useContext} from "react";
-import {UseContext} from "../../App.jsx";
+import { BurgerMenu } from "./BurgerMenu";
+import { SearchInput } from "./SearchInput";
+import { SearchAndMicButton } from "./SearchAndMicButton";
+import { MoreAndLoginButton } from "./MoreAndLoginButton";
+import { Search } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { changeTheme } from "../../states/States1";
+import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { UseContext } from "../../App.jsx";
 import axios from "axios";
 
 // always send cookies so we stay authenticated
@@ -23,7 +23,7 @@ export const Header = () => {
 	const userLocation = useSelector((state) => state.states.value.userLocation);
 	const moreIconActive = useSelector((state) => state.states.value.moreIconActive);
 	const videoMoreIconActive = useSelector((state) => state.states.value.videoMoreIconActive);
-	const {handlePopoverDisable} = useContext(UseContext);
+	const { handlePopoverDisable } = useContext(UseContext);
 	const hiddenFileInput = useRef(null);
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [videoTitle, setVideoTitle] = useState("");
@@ -81,7 +81,7 @@ export const Header = () => {
 
 		// Replace with your actual backend endpoint
 		axios
-			.post("http://localhost:3000/upload", formData)
+			.post("https://youtube-clone-api-gamma.vercel.app/upload", formData)
 			.then((response) => {
 				console.log("Upload success:", response.data);
 				alert("File uploaded successfully!");
@@ -100,9 +100,8 @@ export const Header = () => {
 	return (
 		<>
 			<div
-				className={`w-[100%] h-[56px] flex items-center fixed top-0 justify-between pr-[18px] pl-[16px] z-[1000] ${
-					themeMode === "systemDark" || themeMode === "dark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
-				} max-md:pr-0 max-md:pl-0`}
+				className={`w-[100%] h-[56px] flex items-center fixed top-0 justify-between pr-[18px] pl-[16px] z-[1000] ${themeMode === "systemDark" || themeMode === "dark" ? "bg-[#0f0f0f]" : "bg-[#ffffff]"
+					} max-md:pr-0 max-md:pl-0`}
 				onClick={moreIconActive || videoMoreIconActive ? handlePopoverDisable : ""}
 			>
 				<div className="w-full flex justify-between">
@@ -117,9 +116,8 @@ export const Header = () => {
 								className=""
 							/>
 							<p
-								className={`${
-									themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
-								} text-[10px] mb-[18px] ml-[5px]`}
+								className={`${themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
+									} text-[10px] mb-[18px] ml-[5px]`}
 							>
 								{userLocation !== "" ? userLocation : ""}
 							</p>
@@ -157,9 +155,8 @@ export const Header = () => {
 										value={videoTitle}
 										onChange={(e) => setVideoTitle(e.target.value)}
 										placeholder="Enter video title"
-										className={`border p-1 mb-4 w-full bg-transparent ${
-											themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
-										}`}
+										className={`border p-1 mb-4 w-full bg-transparent ${themeMode === "dark" || themeMode === "systemDark" ? "text-white" : "text-black"
+											}`}
 									/>
 									<div className="flex justify-end">
 										<button
