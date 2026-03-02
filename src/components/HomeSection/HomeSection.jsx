@@ -35,13 +35,7 @@ export const HomeSection = () => {
 				videoDataItems = videoResponse.data;
 			} catch (err) {
 				console.error("failed to load videos", err);
-				if (err.response && err.response.status === 401) {
-					alert("Please sign in to view your videos");
-				}
-				// leave array empty
-			}
-
-			// for (let i = 0; i < videoDataItems.length; i++) {
+			} // willing to ignore authentication errors since search is now public
 			// 	const uniqueVideoId = Math.random().toString(16).slice(2);
 			// 	const channelResponse = await axios(
 			// 		`https://www.googleapis.com/youtube/v3/channels?key=${import.meta.env.VITE_API_KEY}&part=snippet&id=${

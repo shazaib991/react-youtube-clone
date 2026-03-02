@@ -108,13 +108,13 @@ export const MoreAndLoginButton = () => {
 						className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]"
 						onClick={() => openModal(false)}
 					>
-						<p className="text-[14px] font-[500] text-[#5e5eff]">Sign in</p>
+						<p className="text-[14px] font-[500] text-[#5e5eff] dark:text-white">Sign in</p>
 					</div>
 					<div
 						className="h-[35px] flex items-center border pl-[10px] pr-[15px] rounded-[40px] cursor-pointer hover:bg-[#def1ff]"
 						onClick={() => openModal(true)}
 					>
-						<p className="text-[14px] font-[500] text-[#5e5eff]">Sign up</p>
+						<p className="text-[14px] font-[500] text-[#5e5eff] dark:text-white">Sign up</p>
 					</div>
 				</div>
 			)}
