@@ -8,3 +8,6 @@ steps to run this project in dev
 3. npm install
 4. npm update - to update packages
 5. npm run dev
+
+/* IMPORTANT */
+Please upload video that is smaller than 4 mb
